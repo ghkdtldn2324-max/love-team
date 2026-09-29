@@ -34,3 +34,37 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .nav a.active{color:#b58cff!important;position:relative}
 .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7b5cff,#b052ff)}
 @media(max-width:600px){.page-divider{border-top:1px dashed #ded9e9}.nav a.active::after{display:none}}
+
+/* 가격표 실제 VALORANT 랭크 PNG */
+.rank-card .rank-icon{
+  width:72px !important;
+  height:72px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:0 auto 12px !important;
+  overflow:visible !important;
+}
+
+.rank-card .rank-icon img{
+  width:64px !important;
+  height:64px !important;
+  object-fit:contain !important;
+  display:block !important;
+  max-width:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+@media (max-width:600px){
+  .rank-card .rank-icon{
+    width:58px !important;
+    height:58px !important;
+    margin-bottom:8px !important;
+  }
+
+  .rank-card .rank-icon img{
+    width:52px !important;
+    height:52px !important;
+  }
+}
