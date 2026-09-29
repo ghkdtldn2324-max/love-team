@@ -671,7 +671,21 @@ if (adminAuthLink) {
         }
       );
 
+window.addEventListener(
+  "love-auth-state",
+  function(event) {
 
+    const session =
+      event.detail?.session;
+
+    if (session) {
+
+      checkAdmin();
+
+    }
+
+  }
+);
     checkAdmin();
 
   </script>
