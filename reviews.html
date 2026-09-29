@@ -1,42 +1,190 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOVE TEAM | 후기</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>후기 | 로브팀</title>
 <link rel="stylesheet" href="style.css">
+
 <style>
-.reviews-page{background:#fff;min-height:calc(100vh - 174px);padding:86px 20px 110px;color:#171722}
-.reviews-wrap{max-width:1000px;margin:0 auto}.reviews-head{text-align:center;margin-bottom:34px}.reviews-head h1{font-size:36px;margin:0 0 10px}.reviews-head p:last-child{color:#777889;font-size:13px;margin:0}
-.review-list{border-top:1px solid #e8e5ef}.review-row{padding:24px 10px;border-bottom:1px solid #e8e5ef}.review-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}.review-user{font-size:15px;font-weight:900}.stars{letter-spacing:2px;font-size:14px;background:linear-gradient(90deg,#4d91ff,#a74fe9);-webkit-background-clip:text;background-clip:text;color:transparent}.review-date{font-size:11px;color:#92929e;white-space:nowrap}.review-text{font-size:14px;line-height:1.8;color:#4e4e5c;margin:0}.review-meta{display:flex;align-items:center;gap:10px;margin-top:11px;font-size:11px;color:#92929e}.review-service{padding:5px 9px;border-radius:999px;background:#f2edff;color:#7042d0;font-weight:800}.reviews-note{text-align:center;margin:25px 0 0;color:#92929e;font-size:11px}
-.admin-link{display:none}
-@media(max-width:600px){.reviews-page{padding:62px 16px 80px}.reviews-head h1{font-size:29px}.review-row{padding:21px 4px}.review-top{align-items:flex-start}.review-date{font-size:10px}.review-text{font-size:13px}}
+/* 모바일 메뉴 */
+.mobile-menu-btn{
+  display:none;
+  background:none;
+  border:0;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+  padding:4px 8px;
+}
+
+.mobile-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  background:#111;
+  border-top:1px solid #333;
+  padding:15px;
+  z-index:9999;
+}
+
+.mobile-menu a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  padding:14px 10px;
+  border-bottom:1px solid #292929;
+}
+
+.mobile-menu .kakao-mobile{
+  margin-top:12px;
+  background:#ffe812;
+  color:#111;
+  text-align:center;
+  border-radius:8px;
+  font-weight:bold;
+  border:0;
+}
+
+@media(max-width:600px){
+  .nav{
+    display:none !important;
+  }
+
+  .mobile-menu-btn{
+    display:block;
+  }
+
+  .header-actions a:not(#openAuth){
+    display:none !important;
+  }
+
+  header{
+    position:relative;
+  }
+
+  .mobile-menu.active{
+    display:block;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
+
 <header class="header">
-<a class="logo" href="index.html" aria-label="LOVE TEAM 홈"><span class="logo-mark">♥</span><span class="logo-text"><strong>LOVE</strong><small>TEAM</small></span></a>
-<nav class="nav"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav>
-<div class="header-actions"><a href="#cart">장바구니</a><a href="#login">로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+  <a href="index.html" class="logo">LOVE TEAM</a>
+
+  <nav class="nav">
+    <a href="index.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="index.html#cart">장바구니</a>
+    <a href="#login" id="openAuth" data-auth-open>로그인 / 회원가입</a>
+    <a href="https://open.kakao.com/" target="_blank">카카오 고객센터</a>
+  </div>
+
+  <button class="mobile-menu-btn" id="mobileMenuBtn">⋮</button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+    <a href="#login" id="mobileOpenAuth">로그인 / 회원가입</a>
+    <a class="kakao-mobile" href="https://open.kakao.com/" target="_blank">
+      카카오 고객센터
+    </a>
+  </div>
 </header>
-<main><section class="reviews-page"><div class="reviews-wrap">
-<div class="reviews-head"><p class="eyebrow">LOVE TEAM REVIEWS</p><h1>고객 후기</h1><p>실제 이용 후기를 익명으로 안내합니다.</p></div>
-<div id="reviewList" class="review-list"></div>
-<p class="reviews-note">※ 고객 이름은 개인정보 보호를 위해 일부만 공개됩니다.</p>
-</div></section></main>
-<footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
+
+<main class="container">
+  <h1>후기</h1>
+
+  <div id="reviewsList"></div>
+</main>
+
 <script>
-const fallback=[
-{name:'Ja***',stars:5,text:'진행 과정이 깔끔했고 원하는 부분을 자세하게 설명해주셔서 만족했습니다.',date:'2026.09.28',service:'승당'},
-{name:'Mi***',stars:5,text:'플레이 방향을 잡는 데 도움이 많이 됐습니다. 문의 답변도 빠르게 받을 수 있었습니다.',date:'2026.09.27',service:'티어'},
-{name:'Ho***',stars:4,text:'일정 조율이 편했고 진행 상황도 안내받을 수 있어서 좋았습니다.',date:'2026.09.25',service:'듀오'},
-{name:'Se***',stars:5,text:'배치 진행 전에 필요한 내용을 안내받아서 처음 이용하는데도 어렵지 않았습니다.',date:'2026.09.23',service:'배치고사'},
-{name:'Lu***',stars:5,text:'전체적으로 친절하게 진행해주셨고 게임에 대한 피드백도 이해하기 쉬웠습니다.',date:'2026.09.21',service:'승당'}
-];
-function getReviews(){try{return JSON.parse(localStorage.getItem('loveTeamReviews'))||fallback}catch(e){return fallback}}
-function render(){document.getElementById('reviewList').innerHTML=getReviews().map(r=>{const stars='★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));return `<article class="review-row"><div class="review-top"><div><span class="review-user">${r.name} 님</span><span class="stars" aria-label="${r.stars}점"> ${stars}</span></div><span class="review-date">${r.date}</span></div><p class="review-text">${r.text}</p><div class="review-meta"><span class="review-service">${r.service}</span></div></article>`}).join('')}
-render();
+const reviewsList = document.getElementById("reviewsList");
+
+function loadReviews(){
+  const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+
+  if(!reviews.length){
+    reviewsList.innerHTML = `
+      <div style="padding:30px;text-align:center;color:#aaa;">
+        아직 등록된 후기가 없습니다.
+      </div>
+    `;
+    return;
+  }
+
+  reviewsList.innerHTML = reviews.map(review => `
+    <div class="review-item" style="
+      background:#151515;
+      border:1px solid #292929;
+      border-radius:12px;
+      padding:20px;
+      margin-bottom:15px;
+    ">
+      <div style="margin-bottom:8px;">
+        ${"★".repeat(Number(review.rating || 5))}
+        ${"☆".repeat(5 - Number(review.rating || 5))}
+      </div>
+
+      <div style="font-weight:bold;margin-bottom:8px;">
+        ${review.name || "익명"}
+      </div>
+
+      <div style="color:#ddd;line-height:1.6;">
+        ${review.content || ""}
+      </div>
+
+      <div style="color:#777;font-size:13px;margin-top:12px;">
+        ${review.date || ""}
+      </div>
+    </div>
+  `).join("");
+}
+
+loadReviews();
+
+/* 모바일 메뉴 */
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+mobileMenuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("active");
+});
+
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+  });
+});
+
+document.getElementById("mobileOpenAuth").addEventListener("click", e => {
+  e.preventDefault();
+
+  const authBtn = document.getElementById("openAuth");
+
+  if(authBtn){
+    authBtn.click();
+  }
+});
 </script>
+
 <script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js"></script></body></html>
+<script src="auth.js"></script>
+
+</body>
+</html>
