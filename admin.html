@@ -1,195 +1,447 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>LOVE TEAM | 관리자</title>
+<meta charset="UTF-8">
 
-  <link rel="stylesheet" href="style.css">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <style>
-    .admin-page{
-      min-height:calc(100vh - 140px);
-      background:#0b0b0f;
-      color:#fff;
-      padding:80px 20px;
-    }
+<title>LOVE TEAM | 관리자</title>
 
-    .admin-wrap{
-      max-width:1100px;
-      margin:0 auto;
-    }
+<link rel="stylesheet" href="style.css">
 
-    .admin-head{
-      margin-bottom:30px;
-    }
+<style>
 
-    .admin-head h1{
-      margin:0 0 10px;
-      font-size:36px;
-      font-weight:800;
-    }
+/* =========================
+   관리자 페이지
+========================= */
 
-    .admin-head p{
-      margin:0;
-      color:#999;
-    }
+.admin-page{
+  min-height:calc(100vh - 140px);
+  background:#0b0b0f;
+  color:#fff;
+  padding:80px 20px;
+}
 
-    .admin-status{
-      margin-top:20px;
-      padding:18px 20px;
-      border-radius:14px;
-      background:#17171d;
-      border:1px solid #292932;
-      color:#aaa;
-    }
+.admin-wrap{
+  max-width:1100px;
+  margin:0 auto;
+}
 
-    .admin-content{
-      display:none;
-    }
+.admin-head{
+  margin-bottom:30px;
+}
 
-    .admin-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
-      margin-top:25px;
-    }
+.admin-head h1{
+  margin:0 0 10px;
+  font-size:36px;
+  font-weight:800;
+}
 
-    .admin-card{
-      padding:25px;
-      border-radius:18px;
-      background:linear-gradient(145deg,#181820,#111116);
-      border:1px solid #292932;
-    }
+.admin-head p{
+  margin:0;
+  color:#999;
+}
 
-    .admin-card h2{
-      margin:0 0 10px;
-      font-size:20px;
-    }
+.admin-status{
+  margin-top:20px;
+  padding:18px 20px;
+  border-radius:14px;
+  background:#17171d;
+  border:1px solid #292932;
+  color:#aaa;
+}
 
-    .admin-card p{
-      margin:0;
-      color:#999;
-      line-height:1.6;
-    }
+.admin-content{
+  display:none;
+}
 
-    .admin-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:25px;
+}
 
-    .admin-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:10px;
-      border:1px solid #33333d;
-      background:#202028;
-      color:#fff;
-      text-decoration:none;
-      cursor:pointer;
-    }
+.admin-card{
+  padding:25px;
+  border-radius:18px;
+  background:linear-gradient(
+    145deg,
+    #181820,
+    #111116
+  );
+  border:1px solid #292932;
+}
 
-    .admin-btn:hover{
-      background:#292932;
-    }
+.admin-card h2{
+  margin:0 0 10px;
+  font-size:20px;
+}
 
-    .member-search{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-    }
+.admin-card p{
+  margin:0;
+  color:#999;
+  line-height:1.6;
+}
 
-    .member-search input{
-      flex:1;
-      min-width:0;
-      height:44px;
-      padding:0 14px;
-      border-radius:10px;
-      border:1px solid #33333d;
-      background:#0e0e13;
-      color:#fff;
-      outline:none;
-    }
+.admin-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
 
-    .member-result{
-      margin-top:15px;
-      padding:15px;
-      border-radius:10px;
-      background:#101016;
-      border:1px solid #292932;
-      color:#999;
-      line-height:1.6;
-    }
+.admin-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-    .admin-denied{
-      display:none;
-      margin-top:25px;
-      padding:25px;
-      border-radius:16px;
-      background:#17171d;
-      border:1px solid #3a2630;
-      color:#fff;
-    }
+  min-height:42px;
 
-    .admin-denied strong{
-      display:block;
-      margin-bottom:8px;
-      font-size:20px;
-    }
+  padding:0 16px;
 
-    .admin-denied p{
-      margin:0;
-      color:#aaa;
-      line-height:1.6;
-    }
+  border-radius:10px;
 
-    @media(max-width:700px){
+  border:1px solid #33333d;
 
-      .admin-page{
-        padding:55px 16px;
-      }
+  background:#202028;
 
-      .admin-head h1{
-        font-size:28px;
-      }
+  color:#fff;
 
-      .admin-grid{
-        grid-template-columns:1fr;
-      }
+  text-decoration:none;
 
-      .member-search{
-        flex-direction:column;
-      }
+  cursor:pointer;
+}
 
-    }
-  </style>
+.admin-btn:hover{
+  background:#292932;
+}
+
+.member-search{
+  margin-top:18px;
+
+  display:flex;
+
+  gap:10px;
+}
+
+.member-search input{
+  flex:1;
+
+  min-width:0;
+
+  height:44px;
+
+  padding:0 14px;
+
+  border-radius:10px;
+
+  border:1px solid #33333d;
+
+  background:#0e0e13;
+
+  color:#fff;
+
+  outline:none;
+}
+
+.member-result{
+  margin-top:15px;
+
+  padding:15px;
+
+  border-radius:10px;
+
+  background:#101016;
+
+  border:1px solid #292932;
+
+  color:#999;
+
+  line-height:1.6;
+}
+
+.admin-denied{
+  display:none;
+
+  margin-top:25px;
+
+  padding:25px;
+
+  border-radius:16px;
+
+  background:#17171d;
+
+  border:1px solid #3a2630;
+
+  color:#fff;
+}
+
+.admin-denied strong{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:20px;
+}
+
+.admin-denied p{
+  margin:0;
+
+  color:#aaa;
+
+  line-height:1.6;
+}
+
+
+/* =========================
+   모바일 헤더
+========================= */
+
+@media(max-width:760px){
+
+  .admin-page{
+    padding:
+      55px
+      16px
+      70px;
+  }
+
+  .admin-head h1{
+    font-size:28px;
+  }
+
+  .admin-grid{
+    grid-template-columns:1fr;
+  }
+
+  .member-search{
+    flex-direction:column;
+  }
+
+
+  /* 모바일 메뉴 버튼 */
+
+  .header{
+    position:relative !important;
+
+    z-index:10000 !important;
+  }
+
+  .mobile-menu-btn{
+    display:flex !important;
+
+    position:relative !important;
+
+    z-index:10002 !important;
+
+    width:44px !important;
+    height:44px !important;
+
+    align-items:center !important;
+    justify-content:center !important;
+
+    margin-left:auto !important;
+
+    border:0 !important;
+
+    background:transparent !important;
+
+    color:#fff !important;
+
+    font-size:27px !important;
+
+    line-height:1 !important;
+
+    cursor:pointer !important;
+
+    pointer-events:auto !important;
+  }
+
+
+  /* 모바일 메뉴 */
+
+  .mobile-menu{
+    position:absolute !important;
+
+    top:100% !important;
+
+    left:0 !important;
+
+    right:0 !important;
+
+    z-index:10001 !important;
+
+    display:none !important;
+
+    flex-direction:column !important;
+
+    width:100% !important;
+
+    padding:10px 16px 18px !important;
+
+    background:#0b0b0f !important;
+
+    border-top:1px solid #26262e !important;
+
+    border-bottom:1px solid #26262e !important;
+
+    box-shadow:
+      0 15px 35px
+      rgba(0,0,0,.45) !important;
+  }
+
+  .mobile-menu.active{
+    display:flex !important;
+  }
+
+  .mobile-menu a{
+    display:flex !important;
+
+    align-items:center !important;
+
+    min-height:48px !important;
+
+    padding:0 14px !important;
+
+    border-radius:10px !important;
+
+    color:#fff !important;
+
+    text-decoration:none !important;
+
+    font-size:14px !important;
+
+    font-weight:600 !important;
+
+    cursor:pointer !important;
+  }
+
+  .mobile-menu a:hover{
+    background:#18181f !important;
+  }
+
+  .mobile-menu .mobile-kakao{
+    margin-top:6px !important;
+
+    justify-content:center !important;
+
+    background:#fee500 !important;
+
+    color:#111 !important;
+  }
+
+
+  /* 모바일 로그인 */
+
+  .mobile-menu a[data-auth-open]{
+    margin-top:4px !important;
+
+    color:#fff !important;
+
+    background:#6d42d9 !important;
+
+    justify-content:center !important;
+  }
+
+
+  /* PC 헤더 액션은 모바일에서 숨김 */
+
+  .header-actions{
+    display:none !important;
+  }
+
+
+  /* 로고가 메뉴 버튼과 겹치지 않도록 */
+
+  .logo{
+    position:relative !important;
+
+    z-index:10003 !important;
+  }
+
+}
+
+
+/* 데스크톱에서는 모바일 버튼 숨김 */
+
+@media(min-width:761px){
+
+  .mobile-menu-btn{
+    display:none;
+  }
+
+  .mobile-menu{
+    display:none;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header class="header">
 
-  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+  <a
+    class="logo"
+    href="index.html"
+    aria-label="LOVE TEAM 홈"
+  >
+
     <span class="logo-mark">♥</span>
+
     <span class="logo-text">
+
       <strong>LOVE</strong>
+
       <small>TEAM</small>
+
     </span>
+
   </a>
 
+
+  <!-- PC 메뉴 -->
+
   <nav class="nav">
-    <a href="notice.html">공지사항</a>
-    <a href="faq.html">자주 묻는 질문</a>
-    <a href="pricing.html">가격표</a>
-    <a href="works.html">작업 내역</a>
-    <a href="reviews.html">후기</a>
+
+    <a href="notice.html">
+      공지사항
+    </a>
+
+    <a href="faq.html">
+      자주 묻는 질문
+    </a>
+
+    <a href="pricing.html">
+      가격표
+    </a>
+
+    <a href="works.html">
+      작업 내역
+    </a>
+
+    <a href="reviews.html">
+      후기
+    </a>
+
   </nav>
+
+
+  <!-- PC 로그인 -->
 
   <div class="header-actions">
 
@@ -200,6 +452,7 @@
     >
       로그인 / 회원가입
     </a>
+
 
     <a
       class="kakao-btn"
@@ -212,22 +465,47 @@
 
   </div>
 
+
+  <!-- 모바일 메뉴 버튼 -->
+
   <button
     class="mobile-menu-btn"
     id="mobileMenuBtn"
     type="button"
     aria-label="메뉴 열기"
+    aria-expanded="false"
   >
     ☰
   </button>
 
-  <div class="mobile-menu" id="mobileMenu">
 
-    <a href="notice.html">공지사항</a>
-    <a href="faq.html">자주 묻는 질문</a>
-    <a href="pricing.html">가격표</a>
-    <a href="works.html">작업 내역</a>
-    <a href="reviews.html">후기</a>
+  <!-- 모바일 메뉴 -->
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <a href="notice.html">
+      공지사항
+    </a>
+
+    <a href="faq.html">
+      자주 묻는 질문
+    </a>
+
+    <a href="pricing.html">
+      가격표
+    </a>
+
+    <a href="works.html">
+      작업 내역
+    </a>
+
+    <a href="reviews.html">
+      후기
+    </a>
+
 
     <a
       href="#login"
@@ -236,6 +514,7 @@
     >
       로그인 / 회원가입
     </a>
+
 
     <a
       class="mobile-kakao"
@@ -251,27 +530,39 @@
 </header>
 
 
+
+<!-- =========================
+     ADMIN MAIN
+========================= -->
+
 <main class="admin-page">
 
   <div class="admin-wrap">
 
+
     <div class="admin-head">
 
-      <h1>관리자 페이지</h1>
+      <h1>
+        관리자 페이지
+      </h1>
 
       <p>
         LOVE TEAM 관리자 전용 페이지입니다.
       </p>
 
+
       <div
         class="admin-status"
         id="adminStatus"
       >
-        관리자 인증 확인 중...
+        로그인 필요
       </div>
 
     </div>
 
+
+
+    <!-- 관리자 화면 -->
 
     <section
       class="admin-content"
@@ -280,94 +571,128 @@
 
       <div class="admin-grid">
 
+
+        <!-- 회원 -->
+
         <div class="admin-card">
 
-          <h2>회원 관리</h2>
+          <h2>
+            회원 관리
+          </h2>
 
           <p>
             회원 정보를 조회하고 관리합니다.
           </p>
 
           <div class="admin-actions">
+
             <button
               class="admin-btn"
               type="button"
-              onclick="document.getElementById('memberSearchInput').focus()"
+              onclick="
+                document
+                  .getElementById('memberSearchInput')
+                  .focus()
+              "
             >
               회원 검색
             </button>
+
           </div>
 
         </div>
 
 
+        <!-- 작업 -->
+
         <div class="admin-card">
 
-          <h2>작업 내역 관리</h2>
+          <h2>
+            작업 내역 관리
+          </h2>
 
           <p>
             작업 내역을 등록하고 관리합니다.
           </p>
 
           <div class="admin-actions">
+
             <a
               class="admin-btn"
               href="works.html"
             >
               작업 내역 보기
             </a>
+
           </div>
 
         </div>
 
 
+        <!-- 후기 -->
+
         <div class="admin-card">
 
-          <h2>후기 관리</h2>
+          <h2>
+            후기 관리
+          </h2>
 
           <p>
             회원 후기와 별점 정보를 관리합니다.
           </p>
 
           <div class="admin-actions">
+
             <a
               class="admin-btn"
               href="reviews.html"
             >
               후기 페이지 보기
             </a>
+
           </div>
 
         </div>
 
 
+        <!-- 공지 -->
+
         <div class="admin-card">
 
-          <h2>공지사항 관리</h2>
+          <h2>
+            공지사항 관리
+          </h2>
 
           <p>
             홈페이지 공지사항을 관리합니다.
           </p>
 
           <div class="admin-actions">
+
             <a
               class="admin-btn"
               href="notice.html"
             >
               공지사항 보기
             </a>
+
           </div>
 
         </div>
 
 
+        <!-- 회원 검색 -->
+
         <div class="admin-card">
 
-          <h2>회원 검색</h2>
+          <h2>
+            회원 검색
+          </h2>
 
           <p>
             회원 ID를 입력하여 회원을 검색합니다.
           </p>
+
 
           <div class="member-search">
 
@@ -387,6 +712,7 @@
 
           </div>
 
+
           <div
             class="member-result"
             id="memberResult"
@@ -397,28 +723,40 @@
         </div>
 
 
+        <!-- 보안 -->
+
         <div class="admin-card">
 
-          <h2>보안 안내</h2>
+          <h2>
+            보안 안내
+          </h2>
 
           <p>
-            관리자 인증은 Supabase Edge Function을 통해 서버 측에서 확인합니다.
-            관리자 비밀번호는 관리자 페이지에서 직접 노출되지 않습니다.
+            관리자 인증은 Supabase Edge Function을 통해
+            서버 측에서 확인합니다.
+            관리자 비밀번호는 관리자 페이지에서
+            직접 노출되지 않습니다.
           </p>
 
         </div>
+
 
       </div>
 
     </section>
 
 
+
+    <!-- 권한 없음 -->
+
     <section
       class="admin-denied"
       id="adminDenied"
     >
 
-      <strong>관리자 권한이 없습니다.</strong>
+      <strong>
+        관리자 권한이 없습니다.
+      </strong>
 
       <p id="adminDeniedMessage">
         관리자 계정으로 로그인해주세요.
@@ -426,43 +764,89 @@
 
     </section>
 
+
   </div>
 
 </main>
 
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer class="footer">
+
   <div class="footer-inner">
+
     <div>
-      <strong>LOVE TEAM</strong>
-      <p>VALORANT 작업 전문 서비스</p>
+
+      <strong>
+        LOVE TEAM
+      </strong>
+
+      <p>
+        VALORANT 작업 전문 서비스
+      </p>
+
     </div>
+
   </div>
+
 </footer>
 
 
-<!-- 중요: Supabase → config → auth 순서 -->
+
+<!-- =========================
+     중요
+     Supabase → config → auth
+========================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
 <script src="auth.js"></script>
 
+
+
+<!-- =========================
+     ADMIN SCRIPT
+========================= -->
 
 <script>
 
 (function(){
 
+
   const adminContent =
-    document.getElementById("adminContent");
+    document.getElementById(
+      "adminContent"
+    );
+
 
   const adminDenied =
-    document.getElementById("adminDenied");
+    document.getElementById(
+      "adminDenied"
+    );
+
 
   const adminStatus =
-    document.getElementById("adminStatus");
+    document.getElementById(
+      "adminStatus"
+    );
+
 
   const adminDeniedMessage =
-    document.getElementById("adminDeniedMessage");
+    document.getElementById(
+      "adminDeniedMessage"
+    );
 
+
+
+  /* =========================
+     관리자 화면 표시
+  ========================= */
 
   function showAdmin(){
 
@@ -477,10 +861,16 @@
 
     adminDenied.style.display =
       "none";
+
   }
 
 
-  function showDenied(message){
+
+  /* =========================
+     로그인 필요
+  ========================= */
+
+  function showLoginRequired(){
 
     adminContent.style.display =
       "none";
@@ -488,28 +878,87 @@
     adminDenied.style.display =
       "block";
 
-    adminDeniedMessage.textContent =
-      message;
-
     adminStatus.textContent =
-      "관리자 인증 실패";
+      "로그인 필요";
+
+    adminDeniedMessage.textContent =
+      "관리자 계정으로 로그인해주세요.";
+
   }
 
 
+
+  /* =========================
+     관리자 인증 실패
+  ========================= */
+
+  function showAuthError(){
+
+    adminContent.style.display =
+      "none";
+
+    adminDenied.style.display =
+      "block";
+
+    adminStatus.textContent =
+      "관리자 인증 실패";
+
+    adminDeniedMessage.textContent =
+      "관리자 인증에 실패했습니다.";
+
+  }
+
+
+
+  /* =========================
+     관리자 권한 없음
+  ========================= */
+
+  function showNotAdmin(){
+
+    adminContent.style.display =
+      "none";
+
+    adminDenied.style.display =
+      "block";
+
+    adminStatus.textContent =
+      "관리자 권한 없음";
+
+    adminDeniedMessage.textContent =
+      "관리자 권한이 없습니다.";
+
+  }
+
+
+
+  /* =========================
+     관리자 인증
+  ========================= */
+
   async function checkAdmin(){
 
+
     try{
+
 
       if(
         !window.LoveTeamAuth ||
         !window.LoveTeamAuth.client
       ){
 
-        showDenied(
-          "로그인 시스템을 불러오지 못했습니다."
+        /*
+          auth.js가 아직 준비되지 않은 경우
+          바로 실패 처리하지 않고 기다림
+        */
+
+        setTimeout(
+          checkAdmin,
+          500
         );
 
         return;
+
       }
 
 
@@ -517,11 +966,13 @@
         window.LoveTeamAuth.client;
 
 
+
       const {
-        data: sessionData,
-        error: sessionError
+        data:sessionData,
+        error:sessionError
       } =
         await supabase.auth.getSession();
+
 
 
       if(sessionError){
@@ -531,27 +982,38 @@
           sessionError
         );
 
-        showDenied(
-          "로그인 세션을 확인할 수 없습니다."
-        );
+        showAuthError();
 
         return;
+
       }
+
 
 
       const session =
         sessionData?.session;
 
 
+
+      /*
+        로그인하지 않은 경우
+        관리자 인증을 호출하지 않음
+      */
+
       if(!session){
 
-        showDenied(
-          "관리자 계정으로 로그인해주세요."
-        );
+        showLoginRequired();
 
         return;
+
       }
 
+
+
+      /*
+        로그인된 경우에만
+        admin-check 호출
+      */
 
       const {
         data,
@@ -565,11 +1027,13 @@
         );
 
 
+
       console.log(
         "admin-check response:",
         data,
         error
       );
+
 
 
       if(error){
@@ -579,12 +1043,12 @@
           error
         );
 
-        showDenied(
-          "관리자 인증에 실패했습니다."
-        );
+        showAuthError();
 
         return;
+
       }
+
 
 
       if(
@@ -596,42 +1060,64 @@
         showAdmin();
 
         return;
+
       }
 
 
-      showDenied(
-        data?.message ||
-        "관리자 권한이 없습니다."
-      );
+
+      if(
+        data &&
+        data.code === "NOT_ADMIN"
+      ){
+
+        showNotAdmin();
+
+        return;
+
+      }
+
+
+
+      showAuthError();
 
 
     }catch(error){
+
 
       console.error(
         "관리자 인증 오류:",
         error
       );
 
-      showDenied(
-        "관리자 인증 중 오류가 발생했습니다."
-      );
+
+      showAuthError();
+
 
     }
 
   }
 
 
-  /*
-    로그인 상태가 변경되면 관리자 인증 재실행
-  */
+
+  /* =========================
+     로그인 상태 변경
+  ========================= */
+
   window.addEventListener(
     "love-auth-state",
     function(event){
 
+
       const session =
         event.detail?.session;
 
+
       if(session){
+
+        /*
+          로그인 완료 후
+          세션 반영 시간을 조금 줌
+        */
 
         setTimeout(
           checkAdmin,
@@ -640,17 +1126,7 @@
 
       }else{
 
-        adminContent.style.display =
-          "none";
-
-        adminDenied.style.display =
-          "block";
-
-        adminStatus.textContent =
-          "로그인 필요";
-
-        adminDeniedMessage.textContent =
-          "관리자 계정으로 로그인해주세요.";
+        showLoginRequired();
 
       }
 
@@ -658,43 +1134,192 @@
   );
 
 
-  /*
-    auth.js가 이미 로드된 경우
-  */
-  if(
-    window.LoveTeamAuth &&
-    window.LoveTeamAuth.client
-  ){
 
-    checkAdmin();
+  /* =========================
+     최초 실행
+  ========================= */
 
-  }else{
+  function startAdminCheck(){
 
-    setTimeout(
-      checkAdmin,
-      1000
-    );
+
+    if(
+      window.LoveTeamAuth &&
+      window.LoveTeamAuth.client
+    ){
+
+      checkAdmin();
+
+    }else{
+
+      setTimeout(
+        startAdminCheck,
+        300
+      );
+
+    }
 
   }
 
 
-  /*
-    회원 검색
-  */
+  startAdminCheck();
+
+
+
+  /* =========================
+     모바일 메뉴
+  ========================= */
+
+  const mobileMenuBtn =
+    document.getElementById(
+      "mobileMenuBtn"
+    );
+
+
+  const mobileMenu =
+    document.getElementById(
+      "mobileMenu"
+    );
+
+
+
+  if(
+    mobileMenuBtn &&
+    mobileMenu
+  ){
+
+
+    mobileMenuBtn.addEventListener(
+      "click",
+      function(event){
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+
+        const isOpen =
+          mobileMenu.classList.contains(
+            "active"
+          );
+
+
+        if(isOpen){
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          mobileMenuBtn.textContent =
+            "☰";
+
+          mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          mobileMenuBtn.setAttribute(
+            "aria-label",
+            "메뉴 열기"
+          );
+
+
+        }else{
+
+          mobileMenu.classList.add(
+            "active"
+          );
+
+          mobileMenuBtn.textContent =
+            "✕";
+
+          mobileMenuBtn.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          mobileMenuBtn.setAttribute(
+            "aria-label",
+            "메뉴 닫기"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /*
+      모바일 메뉴 링크 클릭 시 닫기
+    */
+
+    mobileMenu
+      .querySelectorAll("a")
+      .forEach(function(link){
+
+        link.addEventListener(
+          "click",
+          function(){
+
+            /*
+              로그인 버튼은 auth.js가 처리하도록
+              잠깐 뒤 메뉴를 닫음
+            */
+
+            setTimeout(
+              function(){
+
+                mobileMenu.classList.remove(
+                  "active"
+                );
+
+                mobileMenuBtn.textContent =
+                  "☰";
+
+                mobileMenuBtn.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+                mobileMenuBtn.setAttribute(
+                  "aria-label",
+                  "메뉴 열기"
+                );
+
+              },
+              100
+            );
+
+          }
+        );
+
+      });
+
+  }
+
+
+
+  /* =========================
+     회원 검색
+  ========================= */
+
   const searchBtn =
     document.getElementById(
       "memberSearchBtn"
     );
+
 
   const searchInput =
     document.getElementById(
       "memberSearchInput"
     );
 
+
   const searchResult =
     document.getElementById(
       "memberResult"
     );
+
 
 
   if(searchBtn){
@@ -703,8 +1328,10 @@
       "click",
       function(){
 
+
         const id =
           searchInput.value.trim();
+
 
         if(!id){
 
@@ -712,7 +1339,9 @@
             "회원 ID를 입력해주세요.";
 
           return;
+
         }
+
 
         searchResult.textContent =
           "회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.";
@@ -722,9 +1351,11 @@
 
   }
 
+
 })();
 
 </script>
+
 
 </body>
 </html>
