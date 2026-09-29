@@ -2277,6 +2277,7 @@
         ) {
 
           event.preventDefault();
+          event.stopImmediatePropagation();
 
           openMemberMenu();
 
