@@ -10,7 +10,9 @@
 
 <body>
 
-<div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
+<div class="top-notice">
+  아시아서버 추가 비용 없이 이용가능
+</div>
 
 <header class="header">
 
@@ -33,260 +35,640 @@
   <div class="header-actions">
     <a href="#cart">장바구니</a>
     <a href="#" id="openAuth">로그인 / 회원가입</a>
-    <a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a>
+    <a class="kakao-btn"
+       href="https://open.kakao.com/"
+       target="_blank"
+       rel="noopener">
+      💬 고객센터
+    </a>
   </div>
 
   <!-- 모바일 메뉴 버튼 -->
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">☰</button>
+  <button
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    type="button"
+    aria-label="메뉴 열기">
+    ☰
+  </button>
 
   <!-- 모바일 메뉴 -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="notice.html">공지사항</a>
-    <a href="faq.html">자주 묻는 질문</a>
-    <a href="pricing.html">가격표</a>
-    <a href="works.html">작업 내역</a>
-    <a href="reviews.html">후기</a>
-    <a href="#" id="mobileOpenAuth">로그인 / 회원가입</a>
-    <a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a>
+
+    <a href="notice.html">
+      공지사항
+    </a>
+
+    <a href="faq.html">
+      자주 묻는 질문
+    </a>
+
+    <a href="pricing.html">
+      가격표
+    </a>
+
+    <a href="works.html">
+      작업 내역
+    </a>
+
+    <a href="reviews.html">
+      후기
+    </a>
+
+    <a href="#" id="mobileOpenAuth">
+      로그인 / 회원가입
+    </a>
+
+    <a
+      class="mobile-kakao"
+      href="https://open.kakao.com/"
+      target="_blank"
+      rel="noopener">
+      💬 고객센터
+    </a>
+
   </div>
 
 </header>
 
+
 <main>
 
-<section id="home" class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="eyebrow">LOVE TEAM SERVICE</p>
-    <h1>랭크 향상의 모든 것<br><span>오직 LOVE TEAM</span></h1>
-    <p class="hero-copy">배치고사부터 티어업까지, LOVE TEAM이 함께합니다.</p>
-    <div class="hero-buttons">
-      <a class="primary-btn" href="pricing.html">가격표 보기</a>
-      <a class="ghost-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">바로 상담하기</a>
-    </div>
-  </div>
-</section>
+  <!-- HERO -->
+  <section id="home" class="hero">
 
-<section class="section">
-  <div class="section-heading">
-    <p>NOTICE</p>
-    <h2>공지사항</h2>
-  </div>
+    <div class="hero-overlay"></div>
 
-  <div class="notice-card">
-    <div>
-      <strong>LOVE TEAM 사이트 오픈 안내</strong>
-      <span>새로운 서비스와 이용 안내를 확인해주세요.</span>
-    </div>
-    <span class="date">2026.10.01</span>
-  </div>
+    <div class="hero-content">
 
-  <div style="text-align:center">
-    <a class="preview-link" href="notice.html">공지사항 전체보기</a>
-  </div>
-</section>
+      <p class="eyebrow">
+        LOVE TEAM SERVICE
+      </p>
 
-<section class="pricing-section">
-  <div class="pricing-hero">
-    <p class="eyebrow">LOVE TEAM PRICE</p>
-    <h2>한 눈에 보는 가격표</h2>
-    <p>서비스 종류를 선택하고 원하는 가격을 확인해보세요.</p>
-  </div>
+      <h1>
+        랭크 향상의 모든 것<br>
+        <span>오직 LOVE TEAM</span>
+      </h1>
 
-  <div class="pricing-tabs" role="tablist">
-    <button class="pricing-tab active" data-tab="win" role="tab" aria-selected="true">승리</button>
-    <button class="pricing-tab" data-tab="duo" role="tab" aria-selected="false">듀오</button>
-    <button class="pricing-tab" data-tab="tier" role="tab" aria-selected="false">티어</button>
-    <button class="pricing-tab" data-tab="placement" role="tab" aria-selected="false">배치 고사</button>
-    <button class="pricing-tab" data-tab="lesson" role="tab" aria-selected="false">1:1 강의</button>
-  </div>
+      <p class="hero-copy">
+        배치고사부터 티어업까지, LOVE TEAM이 함께합니다.
+      </p>
 
-  <div class="pricing-panel">
-    <div class="pricing-info">
-      <span class="info-kicker">LOVE TEAM SERVICE GUIDE</span>
-      <strong id="info-title">승당제 강의</strong>
-      <span id="info-copy"></span>
+      <div class="hero-buttons">
+
+        <a class="primary-btn" href="pricing.html">
+          가격표 보기
+        </a>
+
+        <a
+          class="ghost-btn"
+          href="https://open.kakao.com/"
+          target="_blank"
+          rel="noopener">
+          바로 상담하기
+        </a>
+
+      </div>
+
     </div>
 
-    <div id="pricing-grid" class="rank-grid"></div>
-  </div>
+  </section>
 
-  <div style="text-align:center">
-    <a class="preview-link" href="pricing.html">가격표 전체보기</a>
-  </div>
-</section>
 
-<section class="section">
-  <div class="section-heading">
-    <p>WORKS</p>
-    <h2>작업 내역</h2>
-  </div>
+  <!-- NOTICE -->
+  <section class="section">
 
-  <div id="homeWorkList" style="max-width:900px;margin:0 auto;border-top:1px solid #e8e5ef"></div>
+    <div class="section-heading">
+      <p>NOTICE</p>
+      <h2>공지사항</h2>
+    </div>
 
-  <div style="text-align:center">
-    <a class="preview-link" href="works.html">작업 내역 전체보기</a>
-  </div>
-</section>
+    <div class="notice-card">
 
-<section class="section dark-section">
-  <div class="section-heading">
-    <p>REVIEWS</p>
-    <h2>고객 후기</h2>
-  </div>
+      <div>
+        <strong>LOVE TEAM 사이트 오픈 안내</strong>
+        <span>새로운 서비스와 이용 안내를 확인해주세요.</span>
+      </div>
 
-  <div class="review-grid">
-    <article>
-      <div>★★★★★</div>
-      <p>후기 내용을 입력해주세요.</p>
-      <small>고객님</small>
-    </article>
+      <span class="date">
+        2026.10.01
+      </span>
 
-    <article>
-      <div>★★★★★</div>
-      <p>후기 내용을 입력해주세요.</p>
-      <small>고객님</small>
-    </article>
+    </div>
 
-    <article>
-      <div>★★★★★</div>
-      <p>후기 내용을 입력해주세요.</p>
-      <small>고객님</small>
-    </article>
-  </div>
+    <div style="text-align:center">
+      <a class="preview-link" href="notice.html">
+        공지사항 전체보기
+      </a>
+    </div>
 
-  <div style="text-align:center">
-    <a class="preview-link" href="reviews.html">후기 전체보기</a>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="section-heading">
-    <p>FAQ</p>
-    <h2>자주 묻는 질문</h2>
-  </div>
 
-  <div class="faq-list">
-    <details>
-      <summary>서비스 이용 방법은 어떻게 되나요?</summary>
-      <p>원하는 서비스를 선택한 뒤 고객센터를 통해 상담을 진행해주세요.</p>
-    </details>
+  <!-- PRICING -->
+  <section class="pricing-section">
 
-    <details>
-      <summary>문의는 어디에서 할 수 있나요?</summary>
-      <p>상단 고객센터 또는 우측 하단 상담 버튼을 이용해주세요.</p>
-    </details>
+    <div class="pricing-hero">
 
-    <details>
-      <summary>주문 후 진행 상황은 어떻게 확인하나요?</summary>
-      <p>회원 기능을 연결한 뒤 마이페이지에서 확인할 수 있도록 만들 예정입니다.</p>
-    </details>
-  </div>
+      <p class="eyebrow">
+        LOVE TEAM PRICE
+      </p>
 
-  <div style="text-align:center">
-    <a class="preview-link" href="faq.html">FAQ 전체보기</a>
-  </div>
-</section>
+      <h2>
+        한 눈에 보는 가격표
+      </h2>
 
-<section class="cta-section">
-  <h2>궁금한 점이 있으신가요?</h2>
-  <p>LOVE TEAM 고객센터에서 상담해드리겠습니다.</p>
-  <a class="primary-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">카카오톡으로 상담하기</a>
-</section>
+      <p>
+        서비스 종류를 선택하고 원하는 가격을 확인해보세요.
+      </p>
+
+    </div>
+
+
+    <div class="pricing-tabs" role="tablist">
+
+      <button
+        class="pricing-tab active"
+        data-tab="win"
+        role="tab"
+        aria-selected="true">
+        승리
+      </button>
+
+      <button
+        class="pricing-tab"
+        data-tab="duo"
+        role="tab"
+        aria-selected="false">
+        듀오
+      </button>
+
+      <button
+        class="pricing-tab"
+        data-tab="tier"
+        role="tab"
+        aria-selected="false">
+        티어
+      </button>
+
+      <button
+        class="pricing-tab"
+        data-tab="placement"
+        role="tab"
+        aria-selected="false">
+        배치 고사
+      </button>
+
+      <button
+        class="pricing-tab"
+        data-tab="lesson"
+        role="tab"
+        aria-selected="false">
+        1:1 강의
+      </button>
+
+    </div>
+
+
+    <div class="pricing-panel">
+
+      <div class="pricing-info">
+
+        <span class="info-kicker">
+          LOVE TEAM SERVICE GUIDE
+        </span>
+
+        <strong id="info-title">
+          승당제 강의
+        </strong>
+
+        <span id="info-copy"></span>
+
+      </div>
+
+      <div
+        id="pricing-grid"
+        class="rank-grid">
+      </div>
+
+    </div>
+
+
+    <div style="text-align:center">
+      <a class="preview-link" href="pricing.html">
+        가격표 전체보기
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- WORKS -->
+  <section class="section">
+
+    <div class="section-heading">
+      <p>WORKS</p>
+      <h2>작업 내역</h2>
+    </div>
+
+    <div
+      id="homeWorkList"
+      style="max-width:900px;margin:0 auto;border-top:1px solid #e8e5ef">
+    </div>
+
+    <div style="text-align:center">
+      <a class="preview-link" href="works.html">
+        작업 내역 전체보기
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- REVIEWS -->
+  <section class="section dark-section">
+
+    <div class="section-heading">
+      <p>REVIEWS</p>
+      <h2>고객 후기</h2>
+    </div>
+
+    <div class="review-grid">
+
+      <article>
+        <div>★★★★★</div>
+        <p>후기 내용을 입력해주세요.</p>
+        <small>고객님</small>
+      </article>
+
+      <article>
+        <div>★★★★★</div>
+        <p>후기 내용을 입력해주세요.</p>
+        <small>고객님</small>
+      </article>
+
+      <article>
+        <div>★★★★★</div>
+        <p>후기 내용을 입력해주세요.</p>
+        <small>고객님</small>
+      </article>
+
+    </div>
+
+    <div style="text-align:center">
+      <a class="preview-link" href="reviews.html">
+        후기 전체보기
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section">
+
+    <div class="section-heading">
+      <p>FAQ</p>
+      <h2>자주 묻는 질문</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>
+          서비스 이용 방법은 어떻게 되나요?
+        </summary>
+
+        <p>
+          원하는 서비스를 선택한 뒤 고객센터를 통해 상담을 진행해주세요.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          문의는 어디에서 할 수 있나요?
+        </summary>
+
+        <p>
+          상단 고객센터 또는 우측 하단 상담 버튼을 이용해주세요.
+        </p>
+      </details>
+
+
+      <details>
+        <summary>
+          주문 후 진행 상황은 어떻게 확인하나요?
+        </summary>
+
+        <p>
+          회원 기능을 연결한 뒤 마이페이지에서 확인할 수 있도록 만들 예정입니다.
+        </p>
+      </details>
+
+    </div>
+
+
+    <div style="text-align:center">
+      <a class="preview-link" href="faq.html">
+        FAQ 전체보기
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-section">
+
+    <h2>
+      궁금한 점이 있으신가요?
+    </h2>
+
+    <p>
+      LOVE TEAM 고객센터에서 상담해드리겠습니다.
+    </p>
+
+    <a
+      class="primary-btn"
+      href="https://open.kakao.com/"
+      target="_blank"
+      rel="noopener">
+      카카오톡으로 상담하기
+    </a>
+
+  </section>
 
 </main>
 
-<a class="floating-chat" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 고객센터">💬</a>
 
-<button class="to-top" aria-label="맨 위로">↑</button>
+<!-- FLOATING CHAT -->
+<a
+  class="floating-chat"
+  href="https://open.kakao.com/"
+  target="_blank"
+  rel="noopener"
+  aria-label="카카오톡 고객센터">
+  💬
+</a>
 
+
+<!-- TOP BUTTON -->
+<button
+  class="to-top"
+  aria-label="맨 위로">
+  ↑
+</button>
+
+
+<!-- FOOTER -->
 <footer>
-  <strong>LOVE TEAM</strong>
-  <p>© 2026 LOVE TEAM. All rights reserved.</p>
+
+  <strong>
+    LOVE TEAM
+  </strong>
+
+  <p>
+    © 2026 LOVE TEAM. All rights reserved.
+  </p>
+
 </footer>
 
+
+<!-- HOME WORK DATA -->
 <script>
+
 const homeFallback = [
   {
-    name:'Gh***',
-    detail:'승당 3판 진행 중',
-    status:'progress'
+    name: 'Gh***',
+    detail: '승당 3판 진행 중',
+    status: 'progress'
   },
   {
-    name:'Ab***',
-    detail:'플레티넘 → 다이아몬드',
-    status:'done'
+    name: 'Ab***',
+    detail: '플레티넘 → 다이아몬드',
+    status: 'done'
   },
   {
-    name:'Lo***',
-    detail:'듀오 5판 진행 중',
-    status:'progress'
+    name: 'Lo***',
+    detail: '듀오 5판 진행 중',
+    status: 'progress'
   }
 ];
 
 let homeData = (() => {
+
   try {
-    return JSON.parse(localStorage.getItem('loveTeamWorks')) || homeFallback;
-  } catch(e) {
+    return JSON.parse(
+      localStorage.getItem('loveTeamWorks')
+    ) || homeFallback;
+
+  } catch (e) {
+
     return homeFallback;
+
   }
+
 })();
 
-document.getElementById('homeWorkList').innerHTML =
-  homeData.slice(0,3).map(x => `
-    <div style="min-height:66px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e5ef;padding:0 8px">
-      <div>
-        <strong>${x.name} 님</strong>
-        <span style="margin-left:12px;font-size:12px;color:#686878">${x.detail}</span>
-      </div>
 
-      <span style="font-size:12px;font-weight:800;color:${x.status==='done'?'#278b63':'#6d4ee8'}">
-        ● ${x.status==='done'?'완료':'진행 중'}
-      </span>
-    </div>
-  `).join('');
+const homeWorkList =
+  document.getElementById('homeWorkList');
+
+
+if (homeWorkList) {
+
+  homeWorkList.innerHTML =
+    homeData
+      .slice(0, 3)
+      .map(x => `
+
+        <div
+          style="
+            min-height:66px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            border-bottom:1px solid #e8e5ef;
+            padding:0 8px;
+          ">
+
+          <div>
+
+            <strong>
+              ${x.name} 님
+            </strong>
+
+            <span
+              style="
+                margin-left:12px;
+                font-size:12px;
+                color:#686878;
+              ">
+              ${x.detail}
+            </span>
+
+          </div>
+
+          <span
+            style="
+              font-size:12px;
+              font-weight:800;
+              color:${x.status === 'done'
+                ? '#278b63'
+                : '#6d4ee8'};
+            ">
+
+            ● ${x.status === 'done'
+              ? '완료'
+              : '진행 중'}
+
+          </span>
+
+        </div>
+
+      `)
+      .join('');
+
+}
+
 </script>
 
+
+<!-- 기존 사이트 스크립트 -->
 <script src="script.js"></script>
+
 <script src="supabase-config.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="auth.js"></script>
 
-<!-- 모바일 메뉴 작동 -->
+
+<!-- 모바일 메뉴 -->
 <script>
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
 
-if (mobileMenuBtn && mobileMenu) {
+document.addEventListener(
+  'DOMContentLoaded',
+  function () {
 
-  mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-  });
+    const menuBtn =
+      document.getElementById('mobileMenuBtn');
 
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-    });
-  });
-}
+    const menu =
+      document.getElementById('mobileMenu');
 
-const mobileOpenAuth = document.getElementById('mobileOpenAuth');
 
-if (mobileOpenAuth) {
-
-  mobileOpenAuth.addEventListener('click', (e) => {
-
-    e.preventDefault();
-
-    const openAuth = document.getElementById('openAuth');
-
-    if (openAuth) {
-      openAuth.click();
+    if (!menuBtn || !menu) {
+      return;
     }
 
-  });
 
-}
+    menuBtn.addEventListener(
+      'click',
+      function (e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+
+        menu.classList.toggle('active');
+
+
+        if (
+          menu.classList.contains('active')
+        ) {
+
+          menuBtn.textContent = '✕';
+
+          menuBtn.setAttribute(
+            'aria-label',
+            '메뉴 닫기'
+          );
+
+        } else {
+
+          menuBtn.textContent = '☰';
+
+          menuBtn.setAttribute(
+            'aria-label',
+            '메뉴 열기'
+          );
+
+        }
+
+      }
+    );
+
+
+    menu
+      .querySelectorAll('a')
+      .forEach(function (link) {
+
+        link.addEventListener(
+          'click',
+          function () {
+
+            menu.classList.remove('active');
+
+            menuBtn.textContent = '☰';
+
+            menuBtn.setAttribute(
+              'aria-label',
+              '메뉴 열기'
+            );
+
+          }
+        );
+
+      });
+
+
+    /*
+      모바일 로그인 / 회원가입
+      기존 PC 로그인 버튼을 그대로 호출
+    */
+
+    const mobileOpenAuth =
+      document.getElementById(
+        'mobileOpenAuth'
+      );
+
+
+    if (mobileOpenAuth) {
+
+      mobileOpenAuth.addEventListener(
+        'click',
+        function (e) {
+
+          e.preventDefault();
+
+
+          menu.classList.remove('active');
+
+          menuBtn.textContent = '☰';
+
+
+          const openAuth =
+            document.getElementById(
+              'openAuth'
+            );
+
+
+          if (openAuth) {
+
+            openAuth.click();
+
+          }
+
+        }
+      );
+
+    }
+
+  }
+);
+
 </script>
 
 </body>
