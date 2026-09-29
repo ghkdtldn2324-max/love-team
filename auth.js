@@ -1118,4 +1118,840 @@
       updateLoveHeader(session);
     });
   }
+    /* =========================================
+     LOVE TEAM 회원 메뉴
+     ========================================= */
+
+  const memberMenuStyle=document.createElement('style');
+
+  memberMenuStyle.textContent=`
+    .love-member-menu{
+      position:fixed;
+      width:280px;
+      background:#fff;
+      color:#222;
+      border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.28);
+      padding:18px;
+      z-index:100000;
+      display:none;
+      box-sizing:border-box;
+      font-family:Arial,"Noto Sans KR",sans-serif;
+    }
+
+    .love-member-menu.show{
+      display:block;
+    }
+
+    .love-member-head{
+      padding-bottom:14px;
+      border-bottom:1px solid #eee;
+      margin-bottom:14px;
+    }
+
+    .love-member-kicker{
+      font-size:9px;
+      letter-spacing:1.5px;
+      color:#8b56df;
+      font-weight:800;
+      margin-bottom:5px;
+    }
+
+    .love-member-name{
+      font-size:17px;
+      font-weight:900;
+      color:#222;
+    }
+
+    .love-member-id{
+      margin-top:4px;
+      font-size:11px;
+      color:#888;
+    }
+
+    .love-member-btn{
+      width:100%;
+      border:0;
+      border-radius:9px;
+      background:#f5f2fb;
+      color:#333;
+      padding:11px 12px;
+      margin-top:7px;
+      text-align:left;
+      font-size:12px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .love-member-btn:hover{
+      background:#eee9fa;
+    }
+
+    .love-member-btn.logout{
+      background:#fff0f1;
+      color:#c33;
+    }
+
+    .love-password-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.72);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .2s ease,visibility .2s ease;
+      z-index:100001;
+      font-family:Arial,"Noto Sans KR",sans-serif;
+    }
+
+    .love-password-overlay.show{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+    }
+
+    .love-password-box{
+      width:min(420px,100%);
+      background:#fff;
+      color:#222;
+      border-radius:17px;
+      padding:27px;
+      box-sizing:border-box;
+      position:relative;
+      box-shadow:0 30px 90px rgba(0,0,0,.45);
+    }
+
+    .love-password-close{
+      position:absolute;
+      right:9px;
+      top:6px;
+      width:32px;
+      height:32px;
+      border:0;
+      background:transparent;
+      color:#777;
+      font-size:23px;
+      cursor:pointer;
+    }
+
+    .love-password-box .kicker{
+      font-size:10px;
+      letter-spacing:2px;
+      color:#8b56df;
+      font-weight:800;
+      margin:0 0 6px;
+    }
+
+    .love-password-box h2{
+      margin:0 0 18px;
+      font-size:23px;
+    }
+
+    .love-password-box label{
+      display:block;
+      font-size:11px;
+      font-weight:700;
+      color:#444;
+      margin-bottom:12px;
+    }
+
+    .love-password-box input{
+      width:100%;
+      height:42px;
+      margin-top:6px;
+      padding:9px 11px;
+      border:1px solid #ddd9e8;
+      border-radius:8px;
+      box-sizing:border-box;
+      outline:none;
+      font:inherit;
+    }
+
+    .love-password-box input:focus{
+      border-color:#8662ed;
+      box-shadow:0 0 0 3px rgba(134,98,237,.1);
+    }
+
+    .love-password-help{
+      font-size:10px;
+      line-height:1.5;
+      color:#777;
+      margin:-1px 0 12px;
+    }
+
+    .love-password-message{
+      display:none;
+      padding:9px 11px;
+      border-radius:8px;
+      background:#f5f1ff;
+      color:#6d4ee8;
+      font-size:10px;
+      line-height:1.5;
+      margin-bottom:12px;
+    }
+
+    .love-password-message.error{
+      background:#fff0f1;
+      color:#c33;
+    }
+
+    .love-password-submit{
+      width:100%;
+      min-height:42px;
+      border:0;
+      border-radius:9px;
+      background:linear-gradient(100deg,#4e8fff,#a64de9);
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .love-password-submit:disabled{
+      opacity:.6;
+      cursor:wait;
+    }
+
+    @media(max-width:600px){
+
+      .love-member-menu{
+        width:calc(100vw - 34px);
+        max-width:320px;
+        left:50% !important;
+        right:auto !important;
+        transform:translateX(-50%);
+        top:70px !important;
+      }
+
+      .love-password-overlay{
+        padding:12px;
+      }
+
+      .love-password-box{
+        width:calc(100vw - 34px);
+        max-width:340px;
+        padding:27px 18px 20px;
+      }
+
+    }
+  `;
+
+  document.head.appendChild(memberMenuStyle);
+
+
+  /* 회원 메뉴 생성 */
+
+  const memberMenu=document.createElement('div');
+
+  memberMenu.className='love-member-menu';
+
+  memberMenu.innerHTML=`
+    <div class="love-member-head">
+
+      <div class="love-member-kicker">
+        LOVE TEAM MEMBER
+      </div>
+
+      <div class="love-member-name"
+           id="loveMemberName">
+        회원
+      </div>
+
+      <div class="love-member-id"
+           id="loveMemberId">
+        ID
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="love-member-btn"
+      id="loveOpenPassword">
+      🔐 비밀번호 변경
+    </button>
+
+    <button
+      type="button"
+      class="love-member-btn logout"
+      id="loveMemberLogout">
+      🚪 로그아웃
+    </button>
+  `;
+
+  document.body.appendChild(memberMenu);
+
+
+  /* 비밀번호 변경창 */
+
+  const passwordOverlay=document.createElement('div');
+
+  passwordOverlay.className='love-password-overlay';
+
+  passwordOverlay.innerHTML=`
+    <div class="love-password-box">
+
+      <button
+        type="button"
+        class="love-password-close"
+        id="lovePasswordClose"
+        aria-label="닫기">
+        ×
+      </button>
+
+      <p class="kicker">
+        LOVE TEAM MEMBER
+      </p>
+
+      <h2>
+        비밀번호 변경
+      </h2>
+
+      <label>
+        새 비밀번호
+
+        <input
+          type="password"
+          id="loveNewPassword"
+          placeholder="새 비밀번호를 입력해주세요"
+          autocomplete="new-password">
+      </label>
+
+      <label>
+        새 비밀번호 재확인
+
+        <input
+          type="password"
+          id="loveNewPassword2"
+          placeholder="새 비밀번호를 다시 입력해주세요"
+          autocomplete="new-password">
+      </label>
+
+      <p class="love-password-help">
+        비밀번호는 8자리 이상이며 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.
+      </p>
+
+      <p
+        class="love-password-message"
+        id="lovePasswordMessage">
+      </p>
+
+      <button
+        type="button"
+        class="love-password-submit"
+        id="lovePasswordSubmit">
+        비밀번호 변경
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(passwordOverlay);
+
+
+  /* 회원 메뉴 위치 */
+
+  function positionMemberMenu(target){
+
+    if(!target)return;
+
+    if(window.innerWidth<=600){
+
+      memberMenu.style.top='70px';
+
+      memberMenu.style.left='50%';
+
+      return;
+
+    }
+
+    const rect=target.getBoundingClientRect();
+
+    const menuWidth=280;
+
+    let left=
+      rect.right-menuWidth;
+
+    let top=
+      rect.bottom+10;
+
+    if(left<10){
+      left=10;
+    }
+
+    if(left+menuWidth>window.innerWidth-10){
+      left=window.innerWidth-menuWidth-10;
+    }
+
+    if(top+memberMenu.offsetHeight>window.innerHeight-10){
+      top=
+        rect.top-
+        memberMenu.offsetHeight-
+        10;
+    }
+
+    if(top<10){
+      top=10;
+    }
+
+    memberMenu.style.left=left+'px';
+    memberMenu.style.top=top+'px';
+
+  }
+
+
+  function showMemberMenu(target){
+
+    const session=
+      window.LoveTeamSession;
+
+    if(!session){
+
+      if(window.LoveTeamAuth){
+        window.LoveTeamAuth.open('login');
+      }
+
+      return;
+
+    }
+
+    const user=
+      session.user;
+
+    const meta=
+      user?.user_metadata || {};
+
+    const name=
+      meta.name ||
+      meta.username ||
+      '회원';
+
+    const username=
+      meta.username ||
+      'ID 없음';
+
+    const nameEl=
+      document.getElementById(
+        'loveMemberName'
+      );
+
+    const idEl=
+      document.getElementById(
+        'loveMemberId'
+      );
+
+    if(nameEl){
+      nameEl.textContent=
+        name+'님';
+    }
+
+    if(idEl){
+      idEl.textContent=
+        'ID · '+username;
+    }
+
+    memberMenu.classList.add('show');
+
+    positionMemberMenu(target);
+
+  }
+
+
+  function hideMemberMenu(){
+
+    memberMenu.classList.remove(
+      'show'
+    );
+
+  }
+
+
+  function showPasswordChange(){
+
+    hideMemberMenu();
+
+    passwordOverlay.classList.add(
+      'show'
+    );
+
+    const first=
+      document.getElementById(
+        'loveNewPassword'
+      );
+
+    if(first){
+
+      first.value='';
+
+      setTimeout(
+        ()=>first.focus(),
+        100
+      );
+
+    }
+
+  }
+
+
+  function hidePasswordChange(){
+
+    passwordOverlay.classList.remove(
+      'show'
+    );
+
+    const message=
+      document.getElementById(
+        'lovePasswordMessage'
+      );
+
+    if(message){
+
+      message.style.display='none';
+
+      message.textContent='';
+
+      message.classList.remove(
+        'error'
+      );
+
+    }
+
+  }
+
+
+  function passwordMessage(
+    text,
+    error=false
+  ){
+
+    const message=
+      document.getElementById(
+        'lovePasswordMessage'
+      );
+
+    if(!message)return;
+
+    message.textContent=text;
+
+    message.style.display='block';
+
+    message.classList.toggle(
+      'error',
+      error
+    );
+
+  }
+
+
+  /* 로그인 상태의 헤더 클릭 가로채기 */
+
+  document.addEventListener(
+    'click',
+    function(e){
+
+      const target=
+        e.target.closest(
+          '.header-actions a, .actions a, #mobileOpenAuth'
+        );
+
+      if(!target)return;
+
+      const session=
+        window.LoveTeamSession;
+
+      if(!session)return;
+
+      const isAuthButton=
+        target.dataset.loveAuthStatus==='1' ||
+        target.dataset.loveLogout==='1' ||
+        /로그아웃/.test(
+          (target.textContent||'')
+        );
+
+      if(!isAuthButton)return;
+
+      e.preventDefault();
+
+      e.stopImmediatePropagation();
+
+      showMemberMenu(target);
+
+    },
+    true
+  );
+
+
+  /* 회원 메뉴 안 클릭 */
+
+  document
+    .getElementById('loveOpenPassword')
+    .addEventListener(
+      'click',
+      function(){
+
+        showPasswordChange();
+
+      }
+    );
+
+
+  document
+    .getElementById('loveMemberLogout')
+    .addEventListener(
+      'click',
+      async function(){
+
+        if(!supabase)return;
+
+        this.disabled=true;
+
+        try{
+
+          const {error}=
+            await supabase.auth.signOut();
+
+          if(error)throw error;
+
+          hideMemberMenu();
+
+          window.LoveTeamSession=null;
+
+          updateLoveHeader(null);
+
+          window.dispatchEvent(
+            new Event(
+              'love-auth-changed'
+            )
+          );
+
+        }catch(error){
+
+          console.error(error);
+
+        }finally{
+
+          this.disabled=false;
+
+        }
+
+      }
+    );
+
+
+  /* 비밀번호 변경창 닫기 */
+
+  document
+    .getElementById('lovePasswordClose')
+    .addEventListener(
+      'click',
+      hidePasswordChange
+    );
+
+
+  passwordOverlay.addEventListener(
+    'click',
+    function(e){
+
+      if(
+        e.target===
+        passwordOverlay
+      ){
+
+        hidePasswordChange();
+
+      }
+
+    }
+  );
+
+
+  /* 비밀번호 변경 */
+
+  document
+    .getElementById('lovePasswordSubmit')
+    .addEventListener(
+      'click',
+      async function(){
+
+        if(!supabase){
+
+          passwordMessage(
+            'Supabase 연결 정보를 불러오지 못했습니다.',
+            true
+          );
+
+          return;
+
+        }
+
+        const password=
+          document
+            .getElementById(
+              'loveNewPassword'
+            )
+            .value;
+
+        const password2=
+          document
+            .getElementById(
+              'loveNewPassword2'
+            )
+            .value;
+
+
+        if(
+          !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/
+            .test(password)
+        ){
+
+          passwordMessage(
+            '비밀번호는 8자리 이상이며 대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다.',
+            true
+          );
+
+          return;
+
+        }
+
+
+        if(password!==password2){
+
+          passwordMessage(
+            '비밀번호 재확인이 일치하지 않습니다.',
+            true
+          );
+
+          return;
+
+        }
+
+
+        this.disabled=true;
+
+        this.textContent=
+          '변경 중...';
+
+
+        try{
+
+          const {error}=
+            await supabase.auth.updateUser({
+              password:password
+            });
+
+          if(error)throw error;
+
+
+          passwordMessage(
+            '비밀번호가 변경되었습니다.'
+          );
+
+
+          document
+            .getElementById(
+              'loveNewPassword'
+            )
+            .value='';
+
+          document
+            .getElementById(
+              'loveNewPassword2'
+            )
+            .value='';
+
+
+          setTimeout(
+            hidePasswordChange,
+            900
+          );
+
+
+        }catch(error){
+
+          console.error(error);
+
+          let message=
+            error?.message ||
+            '비밀번호 변경 중 오류가 발생했습니다.';
+
+          if(
+            /password/i.test(message)
+          ){
+
+            message=
+              '비밀번호를 변경하지 못했습니다. 잠시 후 다시 시도해주세요.';
+
+          }
+
+          passwordMessage(
+            message,
+            true
+          );
+
+        }finally{
+
+          this.disabled=false;
+
+          this.textContent=
+            '비밀번호 변경';
+
+        }
+
+      }
+    );
+
+
+  /* 바깥 클릭으로 회원 메뉴 닫기 */
+
+  document.addEventListener(
+    'click',
+    function(e){
+
+      if(
+        !memberMenu.contains(e.target) &&
+        !e.target.closest(
+          '.header-actions a, .actions a, #mobileOpenAuth'
+        )
+      ){
+
+        hideMemberMenu();
+
+      }
+
+    }
+  );
+
+
+  /* 화면 크기 변경 */
+
+  window.addEventListener(
+    'resize',
+    function(){
+
+      hideMemberMenu();
+
+    }
+  );
+
+
+  /* ESC */
+
+  document.addEventListener(
+    'keydown',
+    function(e){
+
+      if(e.key==='Escape'){
+
+        hideMemberMenu();
+
+        hidePasswordChange();
+
+      }
+
+    }
+  );
 })();
