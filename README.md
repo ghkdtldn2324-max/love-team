@@ -1,7 +1,11 @@
-LOVE TEAM Supabase 연결본
+LOVE TEAM Supabase 인증 링크 수정본
 
-1. supabase-security.sql을 Supabase Dashboard > SQL Editor에서 실행하세요.
-2. supabase-config.js에는 Project URL과 Publishable key만 들어 있습니다.
-3. Secret key / service_role key는 GitHub에 올리지 마세요.
-4. 회원가입/로그인/로그아웃 세션/비밀번호 재설정은 Supabase Auth를 사용합니다.
-5. 아이디는 가입 이메일을 사용합니다.
+현재 GitHub Pages 주소:
+https://ghkdtldn2324-max.github.io/love-team/index.html
+
+수정 내용:
+- 회원가입 확인 이메일 링크를 위 index.html로 이동
+- 비밀번호 재설정 이메일 링크를 위 index.html로 이동
+- 기존 assets 및 페이지 디자인은 유지
+
+중요: Supabase Dashboard > Authentication > URL Configuration에서 Site URL을 위 주소로 설정하고 Redirect URLs에도 같은 주소를 추가해야 합니다.

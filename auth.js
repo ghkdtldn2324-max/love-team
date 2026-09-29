@@ -120,7 +120,8 @@
         if(!email)return msg('loveSignupMessage','이메일을 입력해주세요.',true);
         if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(pw))return msg('loveSignupMessage','비밀번호는 8자리 이상이며 대문자, 소문자, 숫자, 특수문자를 모두 포함해야 합니다.',true);
         if(pw!==pw2)return msg('loveSignupMessage','비밀번호 재입력이 일치하지 않습니다.',true);
-        const {data,error}=await supabase.auth.signUp({email,password:pw,options:{data:{name}}});
+        const redirectTo=window.location.origin + '/love-team/index.html';
+        const {data,error}=await supabase.auth.signUp({email,password:pw,options:{data:{name},emailRedirectTo:redirectTo}});
         if(error)throw error;
         if(data.user){msg('loveSignupMessage',data.session?'회원가입이 완료되었습니다.':'가입 확인 이메일을 확인해주세요. 이메일 인증 후 로그인할 수 있습니다.');}
       }
@@ -139,7 +140,7 @@
       }
       if(action==='find-pw'){
         const email=document.getElementById('loveFindPwEmail').value.trim(); if(!email)return msg('loveFindPwMessage','가입한 이메일을 입력해주세요.',true);
-        const redirectTo=location.origin + location.pathname.substring(0,location.pathname.lastIndexOf('/')+1);
+        const redirectTo=window.location.origin + '/love-team/index.html';
         const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo}); if(error)throw error;
         msg('loveFindPwMessage','입력한 이메일로 비밀번호 재설정 안내를 요청했습니다. 메일함을 확인해주세요.');
       }
