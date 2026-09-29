@@ -6,6 +6,32 @@
 <meta name="description" content="LOVE TEAM">
 <title>LOVE TEAM | 홈</title>
 <link rel="stylesheet" href="style.css">
+<style id="love-team-common-header-fix">
+/* LOVE TEAM 공통 헤더 수정: 모든 페이지 동일 */
+.mobile-menu-btn{display:none!important}
+.mobile-menu{display:none!important}
+@media(max-width:600px){
+  .header{position:sticky!important;top:0!important;height:62px!important;min-height:62px!important;padding:0 14px!important;padding-right:66px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:0!important;z-index:10000!important;overflow:visible!important}
+  .header .nav{display:none!important}
+  .header-actions{margin-left:auto!important;margin-right:0!important;display:flex!important;align-items:center!important;gap:0!important}
+  .header-actions>a:first-child{display:none!important}
+  .header-actions .kakao-btn{display:none!important}
+  .header-actions>a#openAuth{display:inline-flex!important;align-items:center!important;color:#fff!important;text-decoration:none!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
+  .mobile-menu-btn{display:flex!important;position:absolute!important;top:10px!important;right:14px!important;width:42px!important;height:42px!important;align-items:center!important;justify-content:center!important;padding:0!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:10px!important;background:#111118!important;color:#fff!important;font-size:22px!important;line-height:1!important;cursor:pointer!important;z-index:10002!important}
+  .mobile-menu{position:absolute!important;top:62px!important;left:0!important;right:0!important;display:none!important;flex-direction:column!important;background:#08080b!important;border-top:1px solid #24242d!important;border-bottom:1px solid #2d2d37!important;box-shadow:0 12px 30px rgba(0,0,0,.35)!important;z-index:10001!important}
+  .mobile-menu.active{display:flex!important}
+  .mobile-menu>a{display:flex!important;align-items:center!important;min-height:52px!important;padding:0 20px!important;border-bottom:1px solid #24242d!important;color:#fff!important;text-decoration:none!important;font-size:14px!important;font-weight:700!important;background:#08080b!important}
+  .mobile-menu>a:last-child{border-bottom:0!important}
+  .mobile-menu>a:hover{background:#15151d!important}
+  .mobile-menu .mobile-kakao{color:#111!important;background:#ffe600!important;justify-content:center!important}
+}
+@media(max-width:380px){
+  .header-actions>a#openAuth{font-size:11px!important}
+  .mobile-menu-btn{right:10px!important}
+  .header{padding-left:10px!important;padding-right:58px!important}
+}
+</style>
+
 </head>
 
 <body>
@@ -15,80 +41,13 @@
 </div>
 
 <header class="header">
-
-  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
-    <span class="logo-mark">♥</span>
-    <span class="logo-text">
-      <strong>LOVE</strong>
-      <small>TEAM</small>
-    </span>
-  </a>
-
-  <nav class="nav">
-    <a href="notice.html">공지사항</a>
-    <a href="faq.html">자주 묻는 질문</a>
-    <a href="pricing.html">가격표</a>
-    <a href="works.html">작업 내역</a>
-    <a href="reviews.html">후기</a>
-  </nav>
-
-  <div class="header-actions">
-    <a href="#cart">장바구니</a>
-    <a href="#" id="openAuth">로그인 / 회원가입</a>
-    <a class="kakao-btn"
-       href="https://open.kakao.com/"
-       target="_blank"
-       rel="noopener">
-      💬 고객센터
-    </a>
-  </div>
-
-  <!-- 모바일 메뉴 버튼 -->
-  <button
-    class="mobile-menu-btn"
-    id="mobileMenuBtn"
-    type="button"
-    aria-label="메뉴 열기">
-    ☰
-  </button>
-
-  <!-- 모바일 메뉴 -->
-  <div class="mobile-menu" id="mobileMenu">
-
-    <a href="notice.html">
-      공지사항
-    </a>
-
-    <a href="faq.html">
-      자주 묻는 질문
-    </a>
-
-    <a href="pricing.html">
-      가격표
-    </a>
-
-    <a href="works.html">
-      작업 내역
-    </a>
-
-    <a href="reviews.html">
-      후기
-    </a>
-
-    <a href="#" id="mobileOpenAuth">
-      로그인 / 회원가입
-    </a>
-
-    <a
-      class="mobile-kakao"
-      href="https://open.kakao.com/"
-      target="_blank"
-      rel="noopener">
-      💬 고객센터
-    </a>
-
-  </div>
-
+<a class="logo" href="index.html" aria-label="LOVE TEAM 홈"><span class="logo-mark">♥</span><span class="logo-text"><strong>LOVE</strong><small>TEAM</small></span></a>
+<nav class="nav"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav>
+<div class="header-actions"><a href="#cart">장바구니</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+<button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+<div class="mobile-menu" id="mobileMenu">
+<a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a>
+</div>
 </header>
 
 
@@ -545,131 +504,15 @@ if (homeWorkList) {
 <script src="auth.js"></script>
 
 
-<!-- 모바일 메뉴 -->
-<script>
-
-document.addEventListener(
-  'DOMContentLoaded',
-  function () {
-
-    const menuBtn =
-      document.getElementById('mobileMenuBtn');
-
-    const menu =
-      document.getElementById('mobileMenu');
-
-
-    if (!menuBtn || !menu) {
-      return;
-    }
-
-
-    menuBtn.addEventListener(
-      'click',
-      function (e) {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-
-        menu.classList.toggle('active');
-
-
-        if (
-          menu.classList.contains('active')
-        ) {
-
-          menuBtn.textContent = '✕';
-
-          menuBtn.setAttribute(
-            'aria-label',
-            '메뉴 닫기'
-          );
-
-        } else {
-
-          menuBtn.textContent = '☰';
-
-          menuBtn.setAttribute(
-            'aria-label',
-            '메뉴 열기'
-          );
-
-        }
-
-      }
-    );
-
-
-    menu
-      .querySelectorAll('a')
-      .forEach(function (link) {
-
-        link.addEventListener(
-          'click',
-          function () {
-
-            menu.classList.remove('active');
-
-            menuBtn.textContent = '☰';
-
-            menuBtn.setAttribute(
-              'aria-label',
-              '메뉴 열기'
-            );
-
-          }
-        );
-
-      });
-
-
-    /*
-      모바일 로그인 / 회원가입
-      기존 PC 로그인 버튼을 그대로 호출
-    */
-
-    const mobileOpenAuth =
-      document.getElementById(
-        'mobileOpenAuth'
-      );
-
-
-    if (mobileOpenAuth) {
-
-      mobileOpenAuth.addEventListener(
-        'click',
-        function (e) {
-
-          e.preventDefault();
-
-
-          menu.classList.remove('active');
-
-          menuBtn.textContent = '☰';
-
-
-          const openAuth =
-            document.getElementById(
-              'openAuth'
-            );
-
-
-          if (openAuth) {
-
-            openAuth.click();
-
-          }
-
-        }
-      );
-
-    }
-
-  }
-);
-
+<script id="love-team-common-menu-script">
+document.addEventListener('DOMContentLoaded',function(){
+ const btn=document.getElementById('mobileMenuBtn'),menu=document.getElementById('mobileMenu');
+ if(!btn||!menu)return;
+ btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();menu.classList.toggle('active');const open=menu.classList.contains('active');btn.textContent=open?'✕':'☰';btn.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');});
+ menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(a.id!=='mobileOpenAuth'){menu.classList.remove('active');btn.textContent='☰';btn.setAttribute('aria-label','메뉴 열기');}});});
+ const ma=document.getElementById('mobileOpenAuth');
+ if(ma)ma.addEventListener('click',function(e){e.preventDefault();menu.classList.remove('active');btn.textContent='☰';const pc=document.getElementById('openAuth');if(pc)pc.click();else{const auth=document.querySelector('[data-auth-open]');if(auth)auth.click();}});
+});
 </script>
-
 </body>
 </html>

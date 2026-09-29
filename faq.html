@@ -2,14 +2,48 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>자주 묻는 질문 | LOVE TEAM</title>
+<title>자주 묻는 질문 | LOVE TEAM</title><link rel="stylesheet" href="style.css">
 <style>
 *{box-sizing:border-box}html{background:#fff}body{margin:0;background:#fff;color:#17181d;font-family:Arial,"Noto Sans KR",sans-serif}.top{background:linear-gradient(90deg,#6d38ff,#a44cff);padding:12px;text-align:center;font-weight:800;color:#fff}header{background:#050507;border-bottom:1px solid #24242d;padding:18px 5%;display:flex;align-items:center;gap:30px}.logo{font-size:25px;font-weight:900;color:#fff;text-decoration:none}.logo span{color:#8d5cff}nav{display:flex;gap:24px;margin:auto}nav a,.actions a{color:#ddd;text-decoration:none;font-size:14px}.actions{display:flex;gap:12px;align-items:center}.kakao{background:#ffe600;color:#111!important;padding:10px 15px;border-radius:9px;font-weight:800}.wrap{max-width:1050px;margin:65px auto;padding:0 22px;background:#fff}.hero{text-align:center;margin-bottom:35px}.eyebrow{color:#8d67ff;font-weight:800;font-size:13px}.hero h1{font-size:38px;margin:10px 0}.hero p{color:#888}.list{background:#fff;color:#17181d;border-radius:18px;overflow:hidden;border:1px solid #e2e3e8}.row{display:grid;grid-template-columns:1fr;align-items:center;border-bottom:1px solid #ececf1;min-height:68px}.row:last-child{border-bottom:0}.head{background:#f7f7fa;color:#666;font-size:13px;font-weight:800}.cell{padding:16px 18px}.question{font-weight:800;color:#17181d;text-decoration:none;background:linear-gradient(90deg,#eef2ff 0%,#f3edff 52%,#eee9ff 100%);border:1px solid #8b6cff;padding:19px 24px;font:inherit;text-align:left;cursor:pointer;width:100%;border-radius:12px;display:flex;align-items:center;gap:14px;transition:filter .2s ease,box-shadow .2s ease,transform .2s ease}.question:hover{filter:brightness(.98);box-shadow:0 8px 22px rgba(100,70,220,.12)}.qmark{font-size:18px;font-weight:900;background:linear-gradient(90deg,#4169ff,#9a4dff);-webkit-background-clip:text;background-clip:text;color:transparent;flex:0 0 auto}.qtext{flex:1}.toggle{font-size:28px;line-height:1;font-weight:300;color:#6f4cff;flex:0 0 28px;text-align:center;transition:transform .25s ease}.question.is-open .toggle{transform:rotate(180deg)}.question:hover{color:#7655df}.answer{display:grid;grid-template-rows:0fr;background:#f8f8fb;overflow:hidden;max-height:0;padding:0 30px 0 108px;border-bottom:0;transition:grid-template-rows .42s ease,max-height .42s ease,padding .42s ease,border-color .42s ease;line-height:1.75}.answer-inner{min-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);transition:opacity .3s ease,transform .42s ease}.answer.open{grid-template-rows:1fr;max-height:300px;padding:24px 30px 26px 108px;border-bottom:1px solid #e7e7ed}.answer.open .answer-inner{opacity:1;transform:translateY(0)}.answer-title{font-weight:800;color:#6d42d9;margin-bottom:8px}.amark{font-weight:900;color:#6d42d9;margin-right:6px}.answer p{margin:0;white-space:pre-line;color:#444}.muted{color:#888;font-size:13px}@media(max-width:760px){header{flex-wrap:wrap}nav{order:3;width:100%;overflow:auto;margin:0}.actions{margin-left:auto}.hero h1{font-size:30px}.question{padding:17px 16px}.answer{padding-left:20px;padding-right:20px}.answer.open{padding-left:20px;padding-right:20px}}
 </style>
+<style id="love-team-common-header-fix">
+/* LOVE TEAM 공통 헤더 수정: 모든 페이지 동일 */
+.mobile-menu-btn{display:none!important}
+.mobile-menu{display:none!important}
+@media(max-width:600px){
+  .header{position:sticky!important;top:0!important;height:62px!important;min-height:62px!important;padding:0 14px!important;padding-right:66px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:0!important;z-index:10000!important;overflow:visible!important}
+  .header .nav{display:none!important}
+  .header-actions{margin-left:auto!important;margin-right:0!important;display:flex!important;align-items:center!important;gap:0!important}
+  .header-actions>a:first-child{display:none!important}
+  .header-actions .kakao-btn{display:none!important}
+  .header-actions>a#openAuth{display:inline-flex!important;align-items:center!important;color:#fff!important;text-decoration:none!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
+  .mobile-menu-btn{display:flex!important;position:absolute!important;top:10px!important;right:14px!important;width:42px!important;height:42px!important;align-items:center!important;justify-content:center!important;padding:0!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:10px!important;background:#111118!important;color:#fff!important;font-size:22px!important;line-height:1!important;cursor:pointer!important;z-index:10002!important}
+  .mobile-menu{position:absolute!important;top:62px!important;left:0!important;right:0!important;display:none!important;flex-direction:column!important;background:#08080b!important;border-top:1px solid #24242d!important;border-bottom:1px solid #2d2d37!important;box-shadow:0 12px 30px rgba(0,0,0,.35)!important;z-index:10001!important}
+  .mobile-menu.active{display:flex!important}
+  .mobile-menu>a{display:flex!important;align-items:center!important;min-height:52px!important;padding:0 20px!important;border-bottom:1px solid #24242d!important;color:#fff!important;text-decoration:none!important;font-size:14px!important;font-weight:700!important;background:#08080b!important}
+  .mobile-menu>a:last-child{border-bottom:0!important}
+  .mobile-menu>a:hover{background:#15151d!important}
+  .mobile-menu .mobile-kakao{color:#111!important;background:#ffe600!important;justify-content:center!important}
+}
+@media(max-width:380px){
+  .header-actions>a#openAuth{font-size:11px!important}
+  .mobile-menu-btn{right:10px!important}
+  .header{padding-left:10px!important;padding-right:58px!important}
+}
+</style>
+
 </head>
 <body>
-<div class="top">LOVE TEAM 공식 홈페이지</div>
-<header><a class="logo" href="index.html">LOVE <span>TEAM</span></a><nav><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="actions"><a href="cart.html">장바구니</a><a href="#login" data-auth-open>로그인</a><a href="#signup" data-auth-open>회원가입</a><a class="kakao" href="#">고객센터</a></div></header>
+<div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
+<header class="header">
+<a class="logo" href="index.html" aria-label="LOVE TEAM 홈"><span class="logo-mark">♥</span><span class="logo-text"><strong>LOVE</strong><small>TEAM</small></span></a>
+<nav class="nav"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav>
+<div class="header-actions"><a href="#cart">장바구니</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+<button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+<div class="mobile-menu" id="mobileMenu">
+<a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a>
+</div>
+</header>
 <main class="wrap"><section class="hero"><div class="eyebrow">LOVE TEAM FAQ</div><h1>자주 묻는 질문</h1><p>서비스 이용 전에 많이 궁금해하시는 내용을 확인해 주세요.</p></section>
 <section class="list">
 <div class="row"><div class="cell"><button class="question" type="button" data-target="a1"><span class="qmark">Q.</span><span class="qtext">로브팀은 어떤 방식으로 운영되는 팀인가요?</span><span class="toggle">+</span></button></div></div><div id="a1" class="answer"><div class="answer-inner"><p><strong class="amark">A.</strong> 고티어 플레이어를 중심으로 구성된 랭크 향상 전문 팀입니다.
@@ -28,270 +62,14 @@
 document.querySelectorAll('.question').forEach(function(button){button.addEventListener('click',function(){var answer=document.getElementById(this.getAttribute('data-target'));var isOpen=answer.classList.contains('open');document.querySelectorAll('.answer.open').forEach(function(item){item.classList.remove('open')});document.querySelectorAll('.question.is-open').forEach(function(item){item.classList.remove('is-open');item.querySelector('.toggle').textContent='+'});if(!isOpen){answer.classList.add('open');this.classList.add('is-open');this.querySelector('.toggle').textContent='−'}})});
 </script><script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js"></script></body></html>
-/* =========================================================
-   LOVE TEAM
-   공통 모바일 메뉴 + 모바일 인증창 수정
-   ========================================================= */
-
-/* PC에서는 모바일 메뉴 숨김 */
-.mobile-menu-btn {
-  display: none;
-}
-
-.mobile-menu {
-  display: none;
-}
-
-
-/* =========================================================
-   MOBILE HEADER
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .header {
-    position: relative;
-  }
-
-  /* 기존 PC 네비게이션 숨김 */
-  .header .nav {
-    display: none !important;
-  }
-
-  /* 모바일에서는 장바구니 / PC 고객센터 숨김 */
-  .header-actions > a:first-child,
-  .header-actions .kakao-btn {
-    display: none !important;
-  }
-
-  /* 햄버거 버튼 */
-  .mobile-menu-btn {
-    display: flex !important;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-
-    margin-left: auto;
-
-    padding: 0;
-
-    border: 0;
-    background: transparent;
-
-    color: #fff;
-
-    font-size: 25px;
-    line-height: 1;
-
-    cursor: pointer;
-
-    position: relative;
-    z-index: 10001;
-  }
-
-
-  /* 모바일 메뉴 */
-  .mobile-menu {
-    position: absolute;
-
-    top: 100%;
-    left: 0;
-    right: 0;
-
-    z-index: 10000;
-
-    display: none;
-
-    flex-direction: column;
-
-    background: #050507;
-
-    border-top: 1px solid #292933;
-    border-bottom: 1px solid #292933;
-
-    box-shadow: 0 15px 35px rgba(0,0,0,.35);
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-menu a {
-    display: block;
-
-    width: 100%;
-
-    padding: 16px 20px;
-
-    color: #fff;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    border-bottom: 1px solid #24242d;
-
-    box-sizing: border-box;
-  }
-
-  .mobile-menu a:last-child {
-    border-bottom: 0;
-  }
-
-  .mobile-menu a:active {
-    background: #15151c;
-  }
-
-  .mobile-menu .mobile-kakao {
-    background: #ffe600;
-    color: #111;
-
-    text-align: center;
-
-    font-weight: 900;
-  }
-
-
-  /* =======================================================
-     모바일 로그인 / 회원가입 팝업
-     ======================================================= */
-
-  /* 인증 오버레이가 항상 최상단 */
-  .auth-overlay,
-  #authOverlay,
-  .auth-modal-overlay,
-  #authModalOverlay {
-    z-index: 100000 !important;
-  }
-
-  /* 인증창 */
-  .auth-modal,
-  #authModal,
-  .auth-modal-content,
-  #authModal .modal,
-  #authModal .auth-box {
-    z-index: 100001 !important;
-
-    box-sizing: border-box !important;
-
-    max-width: calc(100vw - 28px) !important;
-    max-height: calc(100vh - 30px) !important;
-
-    overflow-y: auto !important;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-
-  /* 닫기 버튼이 인증창 뒤로 들어가지 않게 */
-  .auth-close,
-  .modal-close,
-  #authModal .close,
-  #authModal .auth-close {
-    position: absolute !important;
-
-    top: 10px !important;
-    right: 10px !important;
-
-    z-index: 100005 !important;
-
-    width: 36px !important;
-    height: 36px !important;
-
-    min-width: 36px !important;
-    min-height: 36px !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    padding: 0 !important;
-
-    font-size: 20px !important;
-    line-height: 1 !important;
-
-    cursor: pointer !important;
-  }
-
-
-  /* 제목/입력창이 닫기 버튼을 덮지 않게 */
-  .auth-modal-content,
-  #authModal .modal,
-  #authModal .auth-box {
-    padding-top: 54px !important;
-  }
-
-}
-
-
-/* =========================================================
-   FAQ 모바일 헤더
-   FAQ는 다른 페이지와 별도 CSS를 사용하므로 따로 적용
-   ========================================================= */
-
-@media (max-width: 760px) {
-
-  .faq-mobile-menu-btn {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-
-    margin-left: auto;
-
-    border: 0;
-
-    background: transparent;
-
-    color: #fff;
-
-    font-size: 25px;
-    line-height: 1;
-  }
-
-  .faq-mobile-menu {
-    display: none;
-
-    position: absolute;
-
-    top: 100%;
-    left: 0;
-    right: 0;
-
-    z-index: 10000;
-
-    flex-direction: column;
-
-    background: #050507;
-
-    border-top: 1px solid #292933;
-  }
-
-  .faq-mobile-menu.active {
-    display: flex;
-  }
-
-  .faq-mobile-menu a {
-    padding: 16px 20px;
-
-    color: #fff;
-
-    text-decoration: none;
-
-    border-bottom: 1px solid #24242d;
-
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-}
+<script src="auth.js"></script><script id="love-team-common-menu-script">
+document.addEventListener('DOMContentLoaded',function(){
+ const btn=document.getElementById('mobileMenuBtn'),menu=document.getElementById('mobileMenu');
+ if(!btn||!menu)return;
+ btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();menu.classList.toggle('active');const open=menu.classList.contains('active');btn.textContent=open?'✕':'☰';btn.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');});
+ menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(a.id!=='mobileOpenAuth'){menu.classList.remove('active');btn.textContent='☰';btn.setAttribute('aria-label','메뉴 열기');}});});
+ const ma=document.getElementById('mobileOpenAuth');
+ if(ma)ma.addEventListener('click',function(e){e.preventDefault();menu.classList.remove('active');btn.textContent='☰';const pc=document.getElementById('openAuth');if(pc)pc.click();else{const auth=document.querySelector('[data-auth-open]');if(auth)auth.click();}});
+});
+</script>
+</body></html>
