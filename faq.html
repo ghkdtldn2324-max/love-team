@@ -29,3 +29,269 @@ document.querySelectorAll('.question').forEach(function(button){button.addEventL
 </script><script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js"></script></body></html>
+/* =========================================================
+   LOVE TEAM
+   공통 모바일 메뉴 + 모바일 인증창 수정
+   ========================================================= */
+
+/* PC에서는 모바일 메뉴 숨김 */
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    position: relative;
+  }
+
+  /* 기존 PC 네비게이션 숨김 */
+  .header .nav {
+    display: none !important;
+  }
+
+  /* 모바일에서는 장바구니 / PC 고객센터 숨김 */
+  .header-actions > a:first-child,
+  .header-actions .kakao-btn {
+    display: none !important;
+  }
+
+  /* 햄버거 버튼 */
+  .mobile-menu-btn {
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-left: auto;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 25px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 10001;
+  }
+
+
+  /* 모바일 메뉴 */
+  .mobile-menu {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 10000;
+
+    display: none;
+
+    flex-direction: column;
+
+    background: #050507;
+
+    border-top: 1px solid #292933;
+    border-bottom: 1px solid #292933;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+  }
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+  .mobile-menu a {
+    display: block;
+
+    width: 100%;
+
+    padding: 16px 20px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    border-bottom: 1px solid #24242d;
+
+    box-sizing: border-box;
+  }
+
+  .mobile-menu a:last-child {
+    border-bottom: 0;
+  }
+
+  .mobile-menu a:active {
+    background: #15151c;
+  }
+
+  .mobile-menu .mobile-kakao {
+    background: #ffe600;
+    color: #111;
+
+    text-align: center;
+
+    font-weight: 900;
+  }
+
+
+  /* =======================================================
+     모바일 로그인 / 회원가입 팝업
+     ======================================================= */
+
+  /* 인증 오버레이가 항상 최상단 */
+  .auth-overlay,
+  #authOverlay,
+  .auth-modal-overlay,
+  #authModalOverlay {
+    z-index: 100000 !important;
+  }
+
+  /* 인증창 */
+  .auth-modal,
+  #authModal,
+  .auth-modal-content,
+  #authModal .modal,
+  #authModal .auth-box {
+    z-index: 100001 !important;
+
+    box-sizing: border-box !important;
+
+    max-width: calc(100vw - 28px) !important;
+    max-height: calc(100vh - 30px) !important;
+
+    overflow-y: auto !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+
+  /* 닫기 버튼이 인증창 뒤로 들어가지 않게 */
+  .auth-close,
+  .modal-close,
+  #authModal .close,
+  #authModal .auth-close {
+    position: absolute !important;
+
+    top: 10px !important;
+    right: 10px !important;
+
+    z-index: 100005 !important;
+
+    width: 36px !important;
+    height: 36px !important;
+
+    min-width: 36px !important;
+    min-height: 36px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    font-size: 20px !important;
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+  }
+
+
+  /* 제목/입력창이 닫기 버튼을 덮지 않게 */
+  .auth-modal-content,
+  #authModal .modal,
+  #authModal .auth-box {
+    padding-top: 54px !important;
+  }
+
+}
+
+
+/* =========================================================
+   FAQ 모바일 헤더
+   FAQ는 다른 페이지와 별도 CSS를 사용하므로 따로 적용
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .faq-mobile-menu-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-left: auto;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .faq-mobile-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 10000;
+
+    flex-direction: column;
+
+    background: #050507;
+
+    border-top: 1px solid #292933;
+  }
+
+  .faq-mobile-menu.active {
+    display: flex;
+  }
+
+  .faq-mobile-menu a {
+    padding: 16px 20px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid #24242d;
+
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+}
