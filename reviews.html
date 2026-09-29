@@ -1,7 +1,9 @@
 ```html
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,41 +12,42 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+
 .reviews-page{
   background:#fff;
   min-height:calc(100vh - 174px);
   padding:86px 20px 110px;
-  color:#171722
+  color:#171722;
 }
 
 .reviews-wrap{
   max-width:1000px;
-  margin:0 auto
+  margin:0 auto;
 }
 
 .reviews-head{
   text-align:center;
-  margin-bottom:34px
+  margin-bottom:34px;
 }
 
 .reviews-head h1{
   font-size:36px;
-  margin:0 0 10px
+  margin:0 0 10px;
 }
 
 .reviews-head p:last-child{
   color:#777889;
   font-size:13px;
-  margin:0
+  margin:0;
 }
 
 .review-list{
-  border-top:1px solid #e8e5ef
+  border-top:1px solid #e8e5ef;
 }
 
 .review-row{
   padding:24px 10px;
-  border-bottom:1px solid #e8e5ef
+  border-bottom:1px solid #e8e5ef;
 }
 
 .review-top{
@@ -52,12 +55,12 @@
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-bottom:12px
+  margin-bottom:12px;
 }
 
 .review-user{
   font-size:15px;
-  font-weight:900
+  font-weight:900;
 }
 
 .stars{
@@ -66,20 +69,20 @@
   background:linear-gradient(90deg,#4d91ff,#a74fe9);
   -webkit-background-clip:text;
   background-clip:text;
-  color:transparent
+  color:transparent;
 }
 
 .review-date{
   font-size:11px;
   color:#92929e;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .review-text{
   font-size:14px;
   line-height:1.8;
   color:#4e4e5c;
-  margin:0
+  margin:0;
 }
 
 .review-meta{
@@ -88,7 +91,7 @@
   gap:10px;
   margin-top:11px;
   font-size:11px;
-  color:#92929e
+  color:#92929e;
 }
 
 .review-service{
@@ -96,24 +99,18 @@
   border-radius:999px;
   background:#f2edff;
   color:#7042d0;
-  font-weight:800
+  font-weight:800;
 }
 
 .reviews-note{
   text-align:center;
   margin:25px 0 0;
   color:#92929e;
-  font-size:11px
-}
-
-.admin-link{
-  display:none
+  font-size:11px;
 }
 
 
-/* =========================
-   후기 작성 영역
-   ========================= */
+/* 후기 작성 */
 
 .review-write-area{
   background:#fff;
@@ -121,11 +118,11 @@
   border-radius:16px;
   padding:24px;
   margin-bottom:34px;
-  box-shadow:0 10px 30px rgba(40,30,70,.05)
+  box-shadow:0 10px 30px rgba(40,30,70,.05);
 }
 
 .review-write-head{
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .review-write-kicker{
@@ -133,18 +130,18 @@
   font-size:9px;
   letter-spacing:1.5px;
   color:#8b56df;
-  font-weight:900
+  font-weight:900;
 }
 
 .review-write-head h2{
   margin:0 0 5px;
-  font-size:21px
+  font-size:21px;
 }
 
 .review-write-head p:last-child{
   margin:0;
   color:#888895;
-  font-size:11px
+  font-size:11px;
 }
 
 .review-write-label{
@@ -152,7 +149,7 @@
   margin-top:13px;
   font-size:11px;
   font-weight:800;
-  color:#444
+  color:#444;
 }
 
 .review-write-label select,
@@ -167,22 +164,22 @@
   font:inherit;
   font-size:12px;
   outline:none;
-  background:#fff
+  background:#fff;
 }
 
 .review-write-label select{
-  height:42px
+  height:42px;
 }
 
 .review-write-label textarea{
   min-height:110px;
-  resize:vertical
+  resize:vertical;
 }
 
 .review-write-label select:focus,
 .review-write-label textarea:focus{
   border-color:#8662ed;
-  box-shadow:0 0 0 3px rgba(134,98,237,.08)
+  box-shadow:0 0 0 3px rgba(134,98,237,.08);
 }
 
 .review-write-message{
@@ -192,12 +189,12 @@
   border-radius:8px;
   background:#f5f1ff;
   color:#6d4ee8;
-  font-size:11px
+  font-size:11px;
 }
 
 .review-write-message.error{
   background:#fff0f1;
-  color:#c33
+  color:#c33;
 }
 
 .review-submit{
@@ -209,7 +206,7 @@
   background:linear-gradient(100deg,#4e8fff,#a64de9);
   color:#fff;
   font-weight:800;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .review-login-notice{
@@ -219,7 +216,7 @@
   background:#f7f5fb;
   text-align:center;
   color:#777;
-  font-size:12px
+  font-size:12px;
 }
 
 .review-login-notice button{
@@ -228,86 +225,121 @@
   color:#7042d0;
   font-weight:900;
   cursor:pointer;
-  padding:0 3px
+  padding:0 3px;
 }
 
 
-/* =========================
-   모바일
-   ========================= */
+/* 모바일 */
 
 @media(max-width:600px){
 
   .reviews-page{
-    padding:62px 16px 80px
+    padding:62px 16px 80px;
   }
 
   .reviews-head h1{
-    font-size:29px
+    font-size:29px;
   }
 
   .review-row{
-    padding:21px 4px
+    padding:21px 4px;
   }
 
   .review-top{
-    align-items:flex-start
+    align-items:flex-start;
   }
 
   .review-date{
-    font-size:10px
+    font-size:10px;
   }
 
   .review-text{
-    font-size:13px
+    font-size:13px;
   }
 
   .review-write-area{
     padding:18px;
     border-radius:13px;
-    margin-bottom:28px
+    margin-bottom:28px;
   }
 
   .review-write-head h2{
-    font-size:19px
+    font-size:19px;
   }
 
   .review-write-label select,
   .review-write-label textarea{
-    font-size:13px
+    font-size:13px;
   }
 
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <div class="top-notice">
   아시아서버 추가 비용 없이 이용가능
 </div>
 
+
 <header class="header">
 
-  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+  <a
+    class="logo"
+    href="index.html"
+    aria-label="LOVE TEAM 홈"
+  >
     <span class="logo-mark">♥</span>
+
     <span class="logo-text">
       <strong>LOVE</strong>
       <small>TEAM</small>
     </span>
   </a>
 
+
   <nav class="nav">
-    <a href="notice.html">공지사항</a>
-    <a href="faq.html">자주 묻는 질문</a>
-    <a href="pricing.html">가격표</a>
-    <a href="works.html">작업 내역</a>
-    <a href="reviews.html">후기</a>
+
+    <a href="notice.html">
+      공지사항
+    </a>
+
+    <a href="faq.html">
+      자주 묻는 질문
+    </a>
+
+    <a href="pricing.html">
+      가격표
+    </a>
+
+    <a href="works.html">
+      작업 내역
+    </a>
+
+    <a href="reviews.html">
+      후기
+    </a>
+
   </nav>
 
+
   <div class="header-actions">
-    <a href="#cart">장바구니</a>
-    <a href="#login">로그인 / 회원가입</a>
+
+    <!-- 장바구니 제거 -->
+
+    <a
+      href="#login"
+      data-love-auth-status="1"
+      data-auth-open="1"
+    >
+      로그인 / 회원가입
+    </a>
+
     <a
       class="kakao-btn"
       href="https://open.kakao.com/"
@@ -316,6 +348,7 @@
     >
       💬 고객센터
     </a>
+
   </div>
 
 </header>
@@ -325,166 +358,178 @@
 
 <section class="reviews-page">
 
-  <div class="reviews-wrap">
-
-    <div class="reviews-head">
-      <p class="eyebrow">LOVE TEAM REVIEWS</p>
-      <h1>고객 후기</h1>
-      <p>실제 이용 후기를 익명으로 안내합니다.</p>
-    </div>
+<div class="reviews-wrap">
 
 
-    <!-- 로그인한 회원만 보이는 후기 작성 영역 -->
+  <div class="reviews-head">
 
-    <div
-      id="reviewWriteArea"
-      class="review-write-area"
-      style="display:none;"
-    >
+    <p class="eyebrow">
+      LOVE TEAM REVIEWS
+    </p>
 
-      <div class="review-write-head">
+    <h1>
+      고객 후기
+    </h1>
 
-        <div>
-          <p class="review-write-kicker">
-            LOVE TEAM MEMBER
-          </p>
-
-          <h2>후기 작성</h2>
-
-          <p>
-            서비스 이용 후기를 남겨주세요.
-          </p>
-        </div>
-
-      </div>
-
-
-      <label class="review-write-label">
-
-        서비스
-
-        <select id="reviewService">
-
-          <option value="승당">
-            승당제 강의
-          </option>
-
-          <option value="듀오">
-            듀오 서비스
-          </option>
-
-          <option value="티어">
-            티어 승급
-          </option>
-
-          <option value="배치고사">
-            배치고사
-          </option>
-
-          <option value="1:1">
-            1:1 강의
-          </option>
-
-        </select>
-
-      </label>
-
-
-      <label class="review-write-label">
-
-        별점
-
-        <select id="reviewStars">
-
-          <option value="5">
-            ★★★★★ 5점
-          </option>
-
-          <option value="4">
-            ★★★★☆ 4점
-          </option>
-
-          <option value="3">
-            ★★★☆☆ 3점
-          </option>
-
-          <option value="2">
-            ★★☆☆☆ 2점
-          </option>
-
-          <option value="1">
-            ★☆☆☆☆ 1점
-          </option>
-
-        </select>
-
-      </label>
-
-
-      <label class="review-write-label">
-
-        후기 내용
-
-        <textarea
-          id="reviewText"
-          maxlength="300"
-          placeholder="이용 후기를 작성해주세요."
-        ></textarea>
-
-      </label>
-
-
-      <p
-        id="reviewWriteMessage"
-        class="review-write-message"
-      ></p>
-
-
-      <button
-        type="button"
-        id="reviewSubmit"
-        class="review-submit"
-      >
-        후기 등록
-      </button>
-
-    </div>
-
-
-    <!-- 로그아웃 상태에서 보이는 안내 -->
-
-    <div
-      id="reviewLoginNotice"
-      class="review-login-notice"
-    >
-
-      후기를 작성하려면
-
-      <button
-        type="button"
-        id="reviewLoginButton"
-      >
-        로그인
-      </button>
-
-      해주세요.
-
-    </div>
-
-
-    <!-- 후기 목록 -->
-
-    <div
-      id="reviewList"
-      class="review-list"
-    ></div>
-
-
-    <p class="reviews-note">
-      ※ 고객 이름은 개인정보 보호를 위해 일부만 공개됩니다.
+    <p>
+      실제 이용 후기를 익명으로 안내합니다.
     </p>
 
   </div>
+
+
+  <!-- 로그인한 회원에게만 표시 -->
+
+  <div
+    id="reviewWriteArea"
+    class="review-write-area"
+    style="display:none;"
+  >
+
+    <div class="review-write-head">
+
+      <p class="review-write-kicker">
+        LOVE TEAM MEMBER
+      </p>
+
+      <h2>
+        후기 작성
+      </h2>
+
+      <p>
+        서비스 이용 후기를 남겨주세요.
+      </p>
+
+    </div>
+
+
+    <label class="review-write-label">
+
+      서비스
+
+      <select id="reviewService">
+
+        <option value="승당">
+          승당제 강의
+        </option>
+
+        <option value="듀오">
+          듀오 서비스
+        </option>
+
+        <option value="티어">
+          티어 승급
+        </option>
+
+        <option value="배치고사">
+          배치고사
+        </option>
+
+        <option value="1:1">
+          1:1 강의
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <label class="review-write-label">
+
+      별점
+
+      <select id="reviewStars">
+
+        <option value="5">
+          ★★★★★ 5점
+        </option>
+
+        <option value="4">
+          ★★★★☆ 4점
+        </option>
+
+        <option value="3">
+          ★★★☆☆ 3점
+        </option>
+
+        <option value="2">
+          ★★☆☆☆ 2점
+        </option>
+
+        <option value="1">
+          ★☆☆☆☆ 1점
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <label class="review-write-label">
+
+      후기 내용
+
+      <textarea
+        id="reviewText"
+        maxlength="300"
+        placeholder="이용 후기를 작성해주세요."
+      ></textarea>
+
+    </label>
+
+
+    <p
+      id="reviewWriteMessage"
+      class="review-write-message"
+    ></p>
+
+
+    <button
+      type="button"
+      id="reviewSubmit"
+      class="review-submit"
+    >
+      후기 등록
+    </button>
+
+  </div>
+
+
+  <!-- 로그아웃 회원에게 표시 -->
+
+  <div
+    id="reviewLoginNotice"
+    class="review-login-notice"
+  >
+
+    후기를 작성하려면
+
+    <button
+      type="button"
+      id="reviewLoginButton"
+    >
+      로그인
+    </button>
+
+    해주세요.
+
+  </div>
+
+
+  <!-- 후기 목록 -->
+
+  <div
+    id="reviewList"
+    class="review-list"
+  ></div>
+
+
+  <p class="reviews-note">
+    ※ 고객 이름은 개인정보 보호를 위해 일부만 공개됩니다.
+  </p>
+
+
+</div>
 
 </section>
 
@@ -493,8 +538,570 @@
 
 <footer>
 
-  <strong>LOVE TEAM</strong>
+  <strong>
+    LOVE TEAM
+  </strong>
 
   <p>
-    © 2
+    © 2026 LOVE TEAM. All rights reserved.
+  </p>
+
+</footer>
+
+
+<!--
+  중요:
+  Supabase와 auth.js를 후기 기능보다 먼저 불러온다.
+-->
+
+<script src="supabase-config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js"></script>
+
+
+<script>
+
+
+/* ============================
+   후기 데이터
+   ============================ */
+
+const fallback = [
+
+  {
+    name:'Ja***',
+    stars:5,
+    text:'진행 과정이 깔끔했고 원하는 부분을 자세하게 설명해주셔서 만족했습니다.',
+    date:'2026.09.28',
+    service:'승당'
+  },
+
+  {
+    name:'Mi***',
+    stars:5,
+    text:'플레이 방향을 잡는 데 도움이 많이 됐습니다. 문의 답변도 빠르게 받을 수 있었습니다.',
+    date:'2026.09.27',
+    service:'티어'
+  },
+
+  {
+    name:'Ho***',
+    stars:4,
+    text:'일정 조율이 편했고 진행 상황도 안내받을 수 있어서 좋았습니다.',
+    date:'2026.09.25',
+    service:'듀오'
+  },
+
+  {
+    name:'Se***',
+    stars:5,
+    text:'배치 진행 전에 필요한 내용을 안내받아서 처음 이용하는데도 어렵지 않았습니다.',
+    date:'2026.09.23',
+    service:'배치고사'
+  },
+
+  {
+    name:'Lu***',
+    stars:5,
+    text:'전체적으로 친절하게 진행해주셨고 게임에 대한 피드백도 이해하기 쉬웠습니다.',
+    date:'2026.09.21',
+    service:'승당'
+  }
+
+];
+
+
+function getReviews(){
+
+  try{
+
+    return (
+      JSON.parse(
+        localStorage.getItem(
+          'loveTeamReviews'
+        )
+      ) || fallback
+    );
+
+  }catch(e){
+
+    return fallback;
+
+  }
+
+}
+
+
+function render(){
+
+  const list =
+    document.getElementById(
+      'reviewList'
+    );
+
+  if(!list) return;
+
+
+  list.innerHTML =
+    getReviews()
+      .map(function(r){
+
+        const stars =
+          '★'.repeat(
+            Math.max(
+              0,
+              Math.min(
+                5,
+                Number(r.stars) || 0
+              )
+            )
+          );
+
+
+        return `
+
+          <article class="review-row">
+
+            <div class="review-top">
+
+              <div>
+
+                <span class="review-user">
+                  ${r.name} 님
+                </span>
+
+                <span
+                  class="stars"
+                  aria-label="${r.stars}점"
+                >
+                  ${stars}
+                </span>
+
+              </div>
+
+              <span class="review-date">
+                ${r.date}
+              </span>
+
+            </div>
+
+
+            <p class="review-text">
+              ${r.text}
+            </p>
+
+
+            <div class="review-meta">
+
+              <span class="review-service">
+                ${r.service}
+              </span>
+
+            </div>
+
+          </article>
+
+        `;
+
+      })
+      .join('');
+
+}
+
+
+render();
+
+
+
+/* ============================
+   후기 작성 기능
+   ============================ */
+
+(function(){
+
+
+  const writeArea =
+    document.getElementById(
+      'reviewWriteArea'
+    );
+
+
+  const loginNotice =
+    document.getElementById(
+      'reviewLoginNotice'
+    );
+
+
+  const loginButton =
+    document.getElementById(
+      'reviewLoginButton'
+    );
+
+
+  const submit =
+    document.getElementById(
+      'reviewSubmit'
+    );
+
+
+  const message =
+    document.getElementById(
+      'reviewWriteMessage'
+    );
+
+
+
+  function showMessage(
+    text,
+    error
+  ){
+
+    if(!message) return;
+
+
+    message.textContent =
+      text;
+
+
+    message.style.display =
+      'block';
+
+
+    message.classList.toggle(
+      'error',
+      !!error
+    );
+
+  }
+
+
+
+  function updateReviewWriter(){
+
+    const session =
+      window.LoveTeamSession;
+
+
+    if(session){
+
+      if(writeArea){
+
+        writeArea.style.display =
+          'block';
+
+      }
+
+
+      if(loginNotice){
+
+        loginNotice.style.display =
+          'none';
+
+      }
+
+    }else{
+
+      if(writeArea){
+
+        writeArea.style.display =
+          'none';
+
+      }
+
+
+      if(loginNotice){
+
+        loginNotice.style.display =
+          'block';
+
+      }
+
+    }
+
+  }
+
+
+
+  /*
+    auth.js가 현재 로그인 상태를
+    가져오는 동안 잠깐 기다렸다가
+    상태가 변경되면 다시 확인
+  */
+
+  updateReviewWriter();
+
+
+
+  window.addEventListener(
+    'love-auth-state',
+    function(e){
+
+      window.LoveTeamSession =
+        e.detail?.session || null;
+
+
+      updateReviewWriter();
+
+    }
+  );
+
+
+
+  window.addEventListener(
+    'love-auth-changed',
+    function(){
+
+      if(
+        window.LoveTeamAuth &&
+        window.LoveTeamAuth.client
+      ){
+
+        window.LoveTeamAuth.client.auth
+          .getSession()
+          .then(function(result){
+
+            window.LoveTeamSession =
+              result?.data?.session || null;
+
+
+            updateReviewWriter();
+
+          });
+
+      }
+
+    }
+  );
+
+
+
+  /* 로그인 버튼 */
+
+  if(loginButton){
+
+    loginButton.addEventListener(
+      'click',
+      function(){
+
+        if(
+          window.LoveTeamAuth &&
+          window.LoveTeamAuth.open
+        ){
+
+          window.LoveTeamAuth.open(
+            'login'
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  /* 후기 등록 */
+
+  if(submit){
+
+    submit.addEventListener(
+      'click',
+      function(){
+
+
+        const session =
+          window.LoveTeamSession;
+
+
+        if(!session){
+
+          showMessage(
+            '로그인 후 후기를 작성할 수 있습니다.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        const service =
+          document
+            .getElementById(
+              'reviewService'
+            )
+            .value;
+
+
+
+        const stars =
+          Number(
+            document
+              .getElementById(
+                'reviewStars'
+              )
+              .value
+          );
+
+
+
+        const text =
+          document
+            .getElementById(
+              'reviewText'
+            )
+            .value
+            .trim();
+
+
+
+        if(!text){
+
+          showMessage(
+            '후기 내용을 입력해주세요.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        if(text.length < 5){
+
+          showMessage(
+            '후기는 5자 이상 작성해주세요.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        const meta =
+          session.user?.user_metadata || {};
+
+
+
+        const username =
+          meta.username ||
+          '회원';
+
+
+
+        const displayName =
+          username.length > 2
+            ? username.slice(0,2) + '***'
+            : username + '***';
+
+
+
+        const now =
+          new Date();
+
+
+
+        const date =
+          now.getFullYear() +
+          '.' +
+          String(
+            now.getMonth() + 1
+          ).padStart(2,'0') +
+          '.' +
+          String(
+            now.getDate()
+          ).padStart(2,'0');
+
+
+
+        const newReview = {
+
+          name:displayName,
+
+          stars:stars,
+
+          text:text,
+
+          date:date,
+
+          service:service
+
+        };
+
+
+
+        let reviews =
+          getReviews();
+
+
+
+        reviews = [
+
+          newReview,
+
+          ...reviews
+
+        ];
+
+
+
+        localStorage.setItem(
+          'loveTeamReviews',
+          JSON.stringify(reviews)
+        );
+
+
+
+        document
+          .getElementById(
+            'reviewText'
+          )
+          .value = '';
+
+
+
+        showMessage(
+          '후기가 등록되었습니다.'
+        );
+
+
+
+        render();
+
+
+
+        setTimeout(
+          function(){
+
+            if(message){
+
+              message.style.display =
+                'none';
+
+            }
+
+          },
+          1200
+        );
+
+      }
+    );
+
+  }
+
+
+})();
+
+</script>
+
+
+</body>
+</html>
 ```
