@@ -1518,6 +1518,18 @@
 
             event.preventDefault();
 
+            /*
+              로그인 상태에서는 회원 메뉴를 열고,
+              로그아웃 상태에서만 로그인 모달을 연다.
+            */
+            if (
+              currentSession &&
+              currentSession.user
+            ) {
+              openMemberMenu();
+              return;
+            }
+
             show('login');
 
           }
