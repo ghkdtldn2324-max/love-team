@@ -1,14 +1,10 @@
 (function () {
-  'use strict';
-
-  /* =========================
-     가격표 데이터
-  ========================= */
 
   const pricing = {
+
     win: {
       title: '승당제 강의',
-      copy: '기본 1티어 승급을 목표로 하시는 분께 추천드립니다. 현재 티어에 맞춰 안정적으로 승급을 진행합니다.',
+      copy: '현재 티어에서 승당 단위로 안정적인 랭크 향상을 진행합니다.',
       items: [
         ['아이언', '5,000원'],
         ['브론즈', '5,000원'],
@@ -29,7 +25,7 @@
     },
 
     duo: {
-      title: '듀오 서비스',
+      title: '듀오제 강의',
       copy: '원하시는 게임 방향에 맞춰 함께 플레이하며 안정적으로 승급을 진행합니다.',
       items: [
         ['아이언', '5,000원'],
@@ -49,7 +45,7 @@
     },
 
     tier: {
-      title: '티어 승급',
+      title: '티어제 강의',
       copy: '현재 티어에서 목표 티어까지 구간별로 승급을 진행합니다.',
       items: [
         ['아이언', '16,000원'],
@@ -85,154 +81,86 @@
         ['래디언트', '판당 25,000원']
       ]
     }
+
   };
 
 
   /* =========================
-     랭크 PNG
+     발로란트 랭크 이미지
   ========================= */
 
-  const rankIcon = {
-    '아이언': './assets/ranks/iron1.png',
-    '브론즈': './assets/ranks/bronze1.png',
-    '실버': './assets/ranks/silver1.png',
-    '골드': './assets/ranks/gold1.png',
-    '플래티넘': './assets/ranks/platinum1.png',
+  const rankImages = {
 
-    '다이아 1': './assets/ranks/diamond1.png',
-    '다이아 2': './assets/ranks/diamond2.png',
-    '다이아 3': './assets/ranks/diamond3.png',
-    '다이아': './assets/ranks/diamond1.png',
+    '아이언': 'assets/ranks/iron1.png',
+    '브론즈': 'assets/ranks/bronze1.png',
+    '실버': 'assets/ranks/silver1.png',
+    '골드': 'assets/ranks/gold1.png',
+    '플래티넘': 'assets/ranks/platinum1.png',
 
-    '초월자 1': './assets/ranks/ascendant1.png',
-    '초월자 2': './assets/ranks/ascendant2.png',
-    '초월자 3': './assets/ranks/ascendant3.png',
-    '초월자': './assets/ranks/ascendant1.png',
+    '다이아': 'assets/ranks/diamond1.png',
+    '다이아 1': 'assets/ranks/diamond1.png',
+    '다이아 2': 'assets/ranks/diamond2.png',
+    '다이아 3': 'assets/ranks/diamond3.png',
 
-    '불멸 1': './assets/ranks/immortal1.png',
-    '불멸 2': './assets/ranks/immortal2.png',
-    '불멸 3': './assets/ranks/immortal3.png',
-    '불멸': './assets/ranks/immortal1.png',
+    '초월자': 'assets/ranks/ascendant1.png',
+    '초월자 1': 'assets/ranks/ascendant1.png',
+    '초월자 2': 'assets/ranks/ascendant2.png',
+    '초월자 3': 'assets/ranks/ascendant3.png',
 
-    '래디언트': './assets/ranks/radiant.png'
+    '불멸': 'assets/ranks/immortal1.png',
+    '불멸 1': 'assets/ranks/immortal1.png',
+    '불멸 2': 'assets/ranks/immortal2.png',
+    '불멸 3': 'assets/ranks/immortal3.png',
+
+    '래디언트': 'assets/ranks/radiant.png'
   };
 
 
   /* =========================
-     가격표 렌더링
+     가격표 출력
   ========================= */
 
   function renderPricing(key) {
 
-    const grid = document.getElementById('pricing-grid');
     const title = document.getElementById('info-title');
     const copy = document.getElementById('info-copy');
+    const grid = document.getElementById('pricing-grid');
 
-    if (!grid) {
-      return;
-    }
+    if (!title || !copy || !grid) return;
 
     const info = pricing[key];
 
-    if (!info) {
-      return;
-    }
+    if (!info) return;
 
-    if (title) {
-      title.textContent = info.title;
-    }
-
-    if (copy) {
-      copy.textContent = info.copy;
-    }
-
-
-    /* grid 자체가 CSS 때문에 숨겨지는 경우 강제 표시 */
-    grid.style.display = 'grid';
-    grid.style.visibility = 'visible';
-    grid.style.opacity = '1';
-    grid.style.height = 'auto';
-    grid.style.minHeight = '100px';
-
+    title.textContent = info.title;
+    copy.textContent = info.copy;
 
     grid.innerHTML = info.items.map(function (item) {
 
       const name = item[0];
       const price = item[1];
-      const icon = rankIcon[name] || '';
+      const image = rankImages[name];
 
       return `
-        <article
-          class="rank-card"
-          style="
-            display:flex !important;
-            visibility:visible !important;
-            opacity:1 !important;
-            position:relative !important;
-            width:auto !important;
-            min-height:190px !important;
-            box-sizing:border-box !important;
-          "
-        >
+        <article class="rank-card">
 
-          <div
-            class="rank-icon"
-            style="
-              display:flex !important;
-              visibility:visible !important;
-              opacity:1 !important;
-              width:78px !important;
-              height:78px !important;
-              min-width:78px !important;
-              min-height:78px !important;
-              margin:0 auto 12px !important;
-              align-items:center !important;
-              justify-content:center !important;
-              overflow:visible !important;
-            "
-          >
+          <div class="rank-card-glow"></div>
+
+          <div class="rank-icon">
+
             ${
-              icon
-                ? `
-                  <img
-                    src="${icon}"
-                    alt="${name}"
-                    loading="eager"
-                    style="
-                      display:block !important;
-                      visibility:visible !important;
-                      opacity:1 !important;
-                      width:68px !important;
-                      height:68px !important;
-                      max-width:none !important;
-                      max-height:none !important;
-                      object-fit:contain !important;
-                    "
-                  >
-                `
-                : ''
+              image
+              ? `<img src="${image}" alt="${name} 랭크" loading="lazy">`
+              : ''
             }
+
           </div>
 
-          <div
-            class="rank-name"
-            style="
-              display:block !important;
-              visibility:visible !important;
-              opacity:1 !important;
-            "
-          >
+          <div class="rank-name">
             ${name}
           </div>
 
-          <div
-            class="rank-price"
-            style="
-              display:block !important;
-              visibility:visible !important;
-              opacity:1 !important;
-            "
-          >
+          <div class="rank-price">
             ${price}
           </div>
 
@@ -240,24 +168,6 @@
       `;
 
     }).join('');
-
-
-    /* 이미지 로딩 실패 확인용 */
-    grid.querySelectorAll('img').forEach(function (img) {
-
-      img.addEventListener('error', function () {
-
-        console.error(
-          '랭크 이미지 로딩 실패:',
-          img.src
-        );
-
-        img.style.display = 'none';
-
-      });
-
-    });
-
   }
 
 
@@ -267,78 +177,92 @@
 
   function renderLesson() {
 
-    const grid = document.getElementById('pricing-grid');
     const title = document.getElementById('info-title');
     const copy = document.getElementById('info-copy');
+    const grid = document.getElementById('pricing-grid');
 
-    if (!grid) {
-      return;
-    }
+    if (!title || !copy || !grid) return;
 
-    if (title) {
-      title.textContent = '1:1 강의';
-    }
+    title.textContent = '1:1 강의';
 
-    if (copy) {
-      copy.textContent =
-        '개인별 플레이 분석과 코칭을 원하는 분들을 위한 1:1 강의입니다.';
-    }
-
-    grid.style.display = 'grid';
-    grid.style.visibility = 'visible';
-    grid.style.opacity = '1';
+    copy.textContent =
+      '개인별 플레이 분석과 코칭을 원하는 분들을 위한 1:1 강의입니다.';
 
     grid.innerHTML = `
-      <div
-        class="lesson-grid"
-        style="
-          grid-column:1/-1 !important;
-          display:grid !important;
-          grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-          gap:20px !important;
-          width:100% !important;
-        "
-      >
+
+      <div class="lesson-grid">
 
         <a
           class="lesson-card"
           href="https://open.kakao.com/"
           target="_blank"
           rel="noopener"
-          style="
-            display:block !important;
-            visibility:visible !important;
-            opacity:1 !important;
-          "
         >
-          <span class="eyebrow">1:1 COACHING</span>
-          <h3>1시간 강의</h3>
-          <strong>24,000원</strong>
+
+          <div class="lesson-radiant">
+
+            <img
+              src="assets/ranks/radiant.png"
+              alt="래디언트"
+            >
+
+          </div>
+
+          <span class="lesson-kicker">
+            1:1 COACHING
+          </span>
+
+          <h3>
+            1시간 강의
+          </h3>
+
+          <strong>
+            24,000원
+          </strong>
+
           <span class="lesson-link">
             카카오톡 오픈채팅 상담 →
           </span>
+
         </a>
 
+
         <a
           class="lesson-card"
           href="https://open.kakao.com/"
           target="_blank"
           rel="noopener"
-          style="
-            display:block !important;
-            visibility:visible !important;
-            opacity:1 !important;
-          "
         >
-          <span class="eyebrow">1:1 COACHING</span>
-          <h3>3시간 강의</h3>
-          <strong>69,000원</strong>
+
+          <div class="lesson-radiant">
+
+            <img
+              src="assets/ranks/radiant.png"
+              alt="래디언트"
+            >
+
+          </div>
+
+          <span class="lesson-kicker">
+            1:1 COACHING
+          </span>
+
+          <h3>
+            3시간 강의
+          </h3>
+
+          <strong>
+            69,000원
+          </strong>
+
           <span class="lesson-link">
             카카오톡 오픈채팅 상담 →
           </span>
+
         </a>
 
       </div>
+
     `;
   }
 
@@ -349,17 +273,20 @@
 
   document.addEventListener('DOMContentLoaded', function () {
 
-
     /* 가격표 탭 */
 
     document.querySelectorAll('.pricing-tab').forEach(function (button) {
 
       button.addEventListener('click', function () {
 
-        document.querySelectorAll('.pricing-tab').forEach(function (btn) {
-          btn.classList.remove('active');
-          btn.setAttribute('aria-selected', 'false');
-        });
+        document
+          .querySelectorAll('.pricing-tab')
+          .forEach(function (btn) {
+
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+
+          });
 
         this.classList.add('active');
         this.setAttribute('aria-selected', 'true');
@@ -388,8 +315,11 @@
        모바일 메뉴
     ========================= */
 
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const menu = document.getElementById('mobileMenu');
+    const menuBtn =
+      document.getElementById('mobileMenuBtn');
+
+    const menu =
+      document.getElementById('mobileMenu');
 
     if (menuBtn && menu) {
 
@@ -400,9 +330,11 @@
 
         menu.classList.toggle('active');
 
-        const open = menu.classList.contains('active');
+        const open =
+          menu.classList.contains('active');
 
-        menuBtn.textContent = open ? '✕' : '☰';
+        menuBtn.textContent =
+          open ? '✕' : '☰';
 
         menuBtn.setAttribute(
           'aria-label',
@@ -412,19 +344,14 @@
       });
 
 
-      menu.querySelectorAll('a').forEach(function (link) {
+      menu.querySelectorAll('a').forEach(function (a) {
 
-        link.addEventListener('click', function () {
+        a.addEventListener('click', function () {
 
-          if (link.id !== 'mobileOpenAuth') {
+          if (a.id !== 'mobileOpenAuth') {
 
             menu.classList.remove('active');
             menuBtn.textContent = '☰';
-
-            menuBtn.setAttribute(
-              'aria-label',
-              '메뉴 열기'
-            );
 
           }
 
@@ -445,12 +372,12 @@
           menu.classList.remove('active');
           menuBtn.textContent = '☰';
 
-          const authButton =
-            document.querySelector('#openAuth,[data-auth-open]');
+          const target =
+            document.querySelector(
+              '#openAuth,[data-auth-open]'
+            );
 
-          if (authButton) {
-            authButton.click();
-          }
+          if (target) target.click();
 
         });
 
@@ -463,61 +390,63 @@
        FAQ
     ========================= */
 
-    document.querySelectorAll('.question').forEach(function (button) {
+    document
+      .querySelectorAll('.question')
+      .forEach(function (button) {
 
-      button.addEventListener('click', function () {
+        button.addEventListener('click', function () {
 
-        const answer =
-          document.getElementById(this.dataset.target);
+          const answer =
+            document.getElementById(
+              this.dataset.target
+            );
 
-        if (!answer) {
-          return;
-        }
+          if (!answer) return;
 
-        const willOpen =
-          !answer.classList.contains('open');
+          const willOpen =
+            !answer.classList.contains('open');
 
-        document
-          .querySelectorAll('.answer.open')
-          .forEach(function (item) {
-            item.classList.remove('open');
-          });
+          document
+            .querySelectorAll('.answer.open')
+            .forEach(function (item) {
+              item.classList.remove('open');
+            });
 
-        document
-          .querySelectorAll('.question.is-open')
-          .forEach(function (item) {
-            item.classList.remove('is-open');
-          });
+          document
+            .querySelectorAll('.question.is-open')
+            .forEach(function (item) {
+              item.classList.remove('is-open');
+            });
 
-        if (willOpen) {
+          if (willOpen) {
 
-          answer.classList.add('open');
-          this.classList.add('is-open');
+            answer.classList.add('open');
+            this.classList.add('is-open');
 
-        }
+          }
+
+        });
 
       });
 
-    });
-
 
     /* =========================
-       맨 위로 버튼
+       맨 위로
     ========================= */
 
-    const topButton =
+    const top =
       document.querySelector('.to-top');
 
-    if (topButton) {
+    if (top) {
 
       window.addEventListener('scroll', function () {
 
-        topButton.style.display =
+        top.style.display =
           window.scrollY > 500 ? 'grid' : 'none';
 
       });
 
-      topButton.addEventListener('click', function () {
+      top.addEventListener('click', function () {
 
         window.scrollTo({
           top: 0,
@@ -565,11 +494,7 @@
             localStorage.getItem('loveTeamWorks')
           ) || fallback;
 
-      } catch (e) {
-
-        data = fallback;
-
-      }
+      } catch (e) {}
 
       homeWorkList.innerHTML =
         data.slice(0, 3).map(function (x) {
@@ -578,6 +503,7 @@
             <div class="work-status-row">
 
               <div class="work-left">
+
                 <span class="work-user">
                   ${x.name} 님
                 </span>
@@ -585,6 +511,7 @@
                 <span class="work-detail">
                   ${x.detail}
                 </span>
+
               </div>
 
               <span class="work-status ${
@@ -592,11 +519,13 @@
                   ? 'done'
                   : 'progress'
               }">
+
                 ${
                   x.status === 'done'
                     ? '완료'
                     : '진행 중'
                 }
+
               </span>
 
             </div>
@@ -622,27 +551,29 @@
           .pop() || 'index.html'
       ).toLowerCase();
 
-    document.querySelectorAll('.nav a').forEach(function (a) {
+    document
+      .querySelectorAll('.nav a')
+      .forEach(function (a) {
 
-      const href =
-        (
-          a.getAttribute('href') || ''
-        )
-          .split('#')[0]
-          .toLowerCase();
+        const href =
+          (
+            a.getAttribute('href') || ''
+          )
+            .split('#')[0]
+            .toLowerCase();
 
-      if (href === current) {
+        if (href === current) {
 
-        a.classList.add('active');
+          a.classList.add('active');
 
-        a.setAttribute(
-          'aria-current',
-          'page'
-        );
+          a.setAttribute(
+            'aria-current',
+            'page'
+          );
 
-      }
+        }
 
-    });
+      });
 
   })();
 
