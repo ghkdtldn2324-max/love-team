@@ -1452,10 +1452,20 @@
             event.preventDefault();
 
             /*
-              중요:
-              회원가입 버튼을 눌러도
-              바로 회원가입 화면으로 가지 않고
-              항상 로그인 화면부터 보여준다.
+              로그인 상태에서는
+              로그인 모달을 다시 열지 않고 회원 메뉴를 보여준다.
+            */
+
+            if (
+              currentSession &&
+              currentSession.user
+            ) {
+              openMemberMenu();
+              return;
+            }
+
+            /*
+              로그아웃 상태에서는 기존처럼 로그인 화면을 보여준다.
             */
 
             show('login');
