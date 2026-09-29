@@ -646,3 +646,79 @@
     font-size: 9px;
   }
 }
+/* =====================================================
+   LOVE TEAM — MOBILE HAMBURGER MENU
+   PC 디자인 유지 / 모바일에서만 표시
+   ===================================================== */
+.mobile-menu-btn {
+  display: none;
+}
+.mobile-menu {
+  display: none;
+}
+@media (max-width: 600px) {
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    margin-left: 6px;
+    border: 0;
+    border-radius: 10px;
+    background: #25202f;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    padding: 12px;
+    background: #111;
+    border-top: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+    z-index: 9999;
+  }
+  .mobile-menu.active {
+    display: flex;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 15px 14px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+  .mobile-menu a:active {
+    background: rgba(255,255,255,.08);
+  }
+  .mobile-menu .mobile-kakao {
+    margin-top: 5px;
+    background: #fee500;
+    color: #191600;
+    text-align: center;
+  }
+  .header {
+    position: relative;
+  }
+  .header-actions {
+    margin-left: auto;
+  }
+  /* 모바일에서는 장바구니 숨김 */
+  .header-actions > a:first-child {
+    display: none;
+  }
+  /* 모바일에서는 기존 헤더 고객센터 숨김 */
+  .header-actions .kakao-btn {
+    display: none !important;
+  }
+}
