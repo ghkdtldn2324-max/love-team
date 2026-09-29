@@ -1,5 +1,7 @@
-# LOVE TEAM 가격표 디자인 14차
+LOVE TEAM Supabase 연결본
 
-- 초월자 1/2/3: 위·아래 여백을 확보하도록 실제 표시 높이를 통일해 가장자리 잘림을 완화
-- 불멸 1: 검은 원형 부분이 불멸 2/3의 원형 영역과 비슷하게 보이도록 실제 표시 크기 조정
-- 기존 가격표, 가격, 탭, 페이지 구성은 유지
+1. supabase-security.sql을 Supabase Dashboard > SQL Editor에서 실행하세요.
+2. supabase-config.js에는 Project URL과 Publishable key만 들어 있습니다.
+3. Secret key / service_role key는 GitHub에 올리지 마세요.
+4. 회원가입/로그인/로그아웃 세션/비밀번호 재설정은 Supabase Auth를 사용합니다.
+5. 아이디는 가입 이메일을 사용합니다.

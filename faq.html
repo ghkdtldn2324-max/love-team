@@ -26,4 +26,6 @@
 </section></main>
 <script>
 document.querySelectorAll('.question').forEach(function(button){button.addEventListener('click',function(){var answer=document.getElementById(this.getAttribute('data-target'));var isOpen=answer.classList.contains('open');document.querySelectorAll('.answer.open').forEach(function(item){item.classList.remove('open')});document.querySelectorAll('.question.is-open').forEach(function(item){item.classList.remove('is-open');item.querySelector('.toggle').textContent='+'});if(!isOpen){answer.classList.add('open');this.classList.add('is-open');this.querySelector('.toggle').textContent='−'}})});
-</script><script src="auth.js"></script></body></html>
+</script><script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script></body></html>

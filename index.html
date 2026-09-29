@@ -24,4 +24,6 @@
 <a class="floating-chat" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 고객센터">💬</a><button class="to-top" aria-label="맨 위로">↑</button>
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script>const homeFallback=[{name:'Gh***',detail:'승당 3판 진행 중',status:'progress'},{name:'Ab***',detail:'플레티넘 → 다이아몬드',status:'done'},{name:'Lo***',detail:'듀오 5판 진행 중',status:'progress'}];let homeData=(()=>{try{return JSON.parse(localStorage.getItem('loveTeamWorks'))||homeFallback}catch(e){return homeFallback}})();document.getElementById('homeWorkList').innerHTML=homeData.slice(0,3).map(x=>`<div style="min-height:66px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e5ef;padding:0 8px"><div><strong>${x.name} 님</strong><span style="margin-left:12px;font-size:12px;color:#686878">${x.detail}</span></div><span style="font-size:12px;font-weight:800;color:${x.status==='done'?'#278b63':'#6d4ee8'}">● ${x.status==='done'?'완료':'진행 중'}</span></div>`).join('');</script>
 
-<script src="script.js"></script><script src="auth.js"></script></body></html>
+<script src="script.js"></script><script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script></body></html>
