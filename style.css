@@ -722,3 +722,278 @@
     display: none !important;
   }
 }
+/* =====================================================
+   LOVE TEAM — MOBILE HAMBURGER FIX
+   PC 디자인 변경 없음
+   ===================================================== */
+
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+
+@media (max-width: 600px) {
+
+  /* ===============================
+     모바일 헤더
+     =============================== */
+
+  .header {
+    position: sticky;
+    top: 0;
+
+    height: 62px;
+
+    padding: 0 14px;
+    padding-right: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 0;
+
+    overflow: visible;
+
+    z-index: 10000;
+  }
+
+
+  /* ===============================
+     로고
+     =============================== */
+
+  .logo {
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+
+  /* ===============================
+     PC 네비게이션 숨김
+     =============================== */
+
+  .nav {
+    display: none !important;
+  }
+
+
+  /* ===============================
+     장바구니 숨김
+     =============================== */
+
+  .header-actions > a:first-child {
+    display: none !important;
+  }
+
+
+  /* ===============================
+     기존 PC 카카오 버튼 숨김
+     =============================== */
+
+  .header-actions .kakao-btn {
+    display: none !important;
+  }
+
+
+  /* ===============================
+     로그인 / 회원가입
+     =============================== */
+
+  .header-actions {
+    margin-left: auto;
+    margin-right: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0;
+  }
+
+
+  .header-actions a {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+
+  /* ===============================
+     햄버거 버튼
+     =============================== */
+
+  .mobile-menu-btn {
+
+    position: absolute;
+
+    top: 10px;
+    right: 14px;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    border-radius: 10px;
+
+    background: #25202f;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    z-index: 10002;
+
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+
+  .mobile-menu-btn:active {
+
+    transform: scale(.95);
+
+    background: #342a46;
+
+  }
+
+
+  /* ===============================
+     모바일 메뉴
+     =============================== */
+
+  .mobile-menu {
+
+    position: absolute;
+
+    top: 62px;
+
+    left: 0;
+    right: 0;
+
+    display: none;
+
+    flex-direction: column;
+
+    padding: 10px;
+
+    background: #111116;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+      0 18px 35px rgba(0,0,0,.45);
+
+    z-index: 10001;
+  }
+
+
+  /* 메뉴 열림 */
+
+  .mobile-menu.active {
+    display: flex;
+  }
+
+
+  /* ===============================
+     메뉴 항목
+     =============================== */
+
+  .mobile-menu a {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    color: #ffffff;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+  }
+
+
+  .mobile-menu a:active {
+
+    background: rgba(255,255,255,.08);
+
+  }
+
+
+  /* ===============================
+     모바일 고객센터
+     =============================== */
+
+  .mobile-menu .mobile-kakao {
+
+    margin-top: 6px;
+
+    justify-content: center;
+
+    background: #fee500;
+
+    color: #191600;
+  }
+
+}
+
+
+/* =====================================================
+   작은 화면
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+  .header {
+
+    padding-left: 11px;
+    padding-right: 61px;
+
+  }
+
+
+  .mobile-menu-btn {
+
+    right: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 22px;
+
+  }
+
+}
