@@ -894,6 +894,56 @@
   }
 
 
+
+  function getFreshCaptchaToken(mode) {
+    try {
+      if (!window.turnstile) return '';
+
+      const widgetId =
+        mode === 'signup'
+          ? signupTurnstileWidget
+          : loginTurnstileWidget;
+
+      if (widgetId === null || widgetId === undefined) {
+        return '';
+      }
+
+      if (
+        typeof window.turnstile.isExpired === 'function' &&
+        window.turnstile.isExpired(widgetId)
+      ) {
+        if (mode === 'signup') {
+          signupCaptchaToken = '';
+        } else {
+          loginCaptchaToken = '';
+        }
+        return '';
+      }
+
+      const liveToken =
+        typeof window.turnstile.getResponse === 'function'
+          ? window.turnstile.getResponse(widgetId)
+          : '';
+
+      const token =
+        String(liveToken || '').trim();
+
+      if (mode === 'signup') {
+        signupCaptchaToken = token;
+      } else {
+        loginCaptchaToken = token;
+      }
+
+      return token;
+    } catch (error) {
+      console.warn(
+        'Turnstile 토큰 확인 실패:',
+        error
+      );
+      return '';
+    }
+  }
+
   /* =========================================================
      TURNSTILE LOAD
   ========================================================= */
@@ -1531,11 +1581,14 @@
       }
 
 
-      if (!loginCaptchaToken) {
+      const freshLoginCaptchaToken =
+        getFreshCaptchaToken('login');
+
+      if (!freshLoginCaptchaToken) {
 
         setMessage(
           loginMessage,
-          '보안 인증을 완료해주세요.',
+          '보안 인증을 완료해주세요. 체크 표시가 된 뒤 다시 시도해주세요.',
           'error'
         );
 
@@ -1565,7 +1618,7 @@
             password: password,
 
             options: {
-              captchaToken: loginCaptchaToken
+              captchaToken: freshLoginCaptchaToken
             }
 
           });
@@ -1600,10 +1653,13 @@
 
         if (result.error) {
 
-          console.error(
-            '로그인 오류:',
-            result.error
-          );
+          console.error('로그인 오류:', {
+            message: result.error.message,
+            code: result.error.code,
+            status: result.error.status,
+            name: result.error.name,
+            fullError: result.error
+          });
 
 
           let message =
@@ -1817,11 +1873,14 @@
       }
 
 
-      if (!signupCaptchaToken) {
+      const freshSignupCaptchaToken =
+        getFreshCaptchaToken('signup');
+
+      if (!freshSignupCaptchaToken) {
 
         setMessage(
           signupMessage,
-          '보안 인증을 완료해주세요.',
+          '보안 인증을 완료해주세요. 체크 표시가 된 뒤 다시 시도해주세요.',
           'error'
         );
 
@@ -1853,7 +1912,7 @@
             options: {
 
               captchaToken:
-                signupCaptchaToken,
+                freshSignupCaptchaToken,
 
               data: {
                 username: id,
@@ -1889,10 +1948,13 @@
 
         if (result.error) {
 
-          console.error(
-            '회원가입 오류:',
-            result.error
-          );
+          console.error('회원가입 오류:', {
+            message: result.error.message,
+            code: result.error.code,
+            status: result.error.status,
+            name: result.error.name,
+            fullError: result.error
+          });
 
 
           let message =
