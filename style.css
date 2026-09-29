@@ -34,9 +34,3 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .nav a.active{color:#b58cff!important;position:relative}
 .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:2px;border-radius:2px;background:linear-gradient(90deg,#7b5cff,#b052ff)}
 @media(max-width:600px){.page-divider{border-top:1px dashed #ded9e9}.nav a.active::after{display:none}}
-
-/* FAQ / REVIEW 안정화 */
-.faq-page .section-heading h1{font-size:42px;margin:0 0 12px;letter-spacing:-1.8px}
-.faq-page .faq-item{padding:10px 0}.faq-page .faq-item:first-child{padding-top:0}.faq-page .faq-item:last-child{padding-bottom:0}
-.reviews-page{overflow:visible}.review-list{overflow:hidden}.review-row{background:#fff}
-@media(max-width:600px){.faq-page .section-heading h1{font-size:31px}.faq-page .section-heading{margin-bottom:28px}.faq-page .faq-item{padding:7px 0}.reviews-head{margin-bottom:28px}.review-top{align-items:flex-start}.review-top>div{min-width:0}.review-user{white-space:nowrap}.stars{white-space:nowrap}.review-date{padding-top:3px}.review-text{word-break:keep-all;overflow-wrap:anywhere}}
