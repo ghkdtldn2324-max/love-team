@@ -251,6 +251,18 @@
       font-size: 14px;
     }
 
+    .go-login-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #6d35ff;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
     footer {
       border-top: 1px solid #202027;
       padding: 30px 20px;
@@ -313,11 +325,11 @@
     </nav>
 
     <div class="header-right">
-     <a
-  href="./index.html"
-  class="auth-link"
-  id="adminAuthLink"
->로그인 / 회원가입</a>
+      <a
+        href="./index.html"
+        class="auth-link"
+        id="adminAuthLink"
+      >로그인 / 회원가입</a>
 
       <a href="#" class="kakao-btn">카카오 고객센터</a>
     </div>
@@ -333,7 +345,6 @@
         <p>로브팀 사이트 관리 및 회원 관리</p>
         <span class="admin-status">ADMINISTRATOR</span>
       </div>
-
 
       <div class="dashboard">
 
@@ -353,7 +364,6 @@
         </div>
 
       </div>
-
 
       <h2 class="section-title">관리 메뉴</h2>
 
@@ -391,12 +401,12 @@
 
       </div>
 
-
       <div class="member-search">
 
         <h2 class="section-title">회원 검색</h2>
 
         <div class="search-row">
+
           <input
             type="text"
             id="memberSearch"
@@ -409,6 +419,7 @@
             class="search-btn"
             id="searchBtn"
           >검색</button>
+
         </div>
 
         <div class="result" id="searchResult">
@@ -423,11 +434,19 @@
     <section class="denied" id="accessDenied">
 
       <div class="denied-box">
+
         <h2>관리자 권한이 없습니다.</h2>
+
         <p>
           이 페이지는 로브팀 관리자만 이용할 수 있습니다.
           관리자 계정으로 로그인한 후 다시 접속해주세요.
         </p>
+
+        <a
+          href="./index.html"
+          class="go-login-btn"
+        >로그인하러 가기</a>
+
       </div>
 
     </section>
@@ -447,8 +466,12 @@
 
     async function checkAdmin() {
 
-      const page = document.getElementById("adminPage");
-      const denied = document.getElementById("accessDenied");
+      const page =
+        document.getElementById("adminPage");
+
+      const denied =
+        document.getElementById("accessDenied");
+
 
       page.style.display = "none";
       denied.style.display = "none";
@@ -460,17 +483,22 @@
           !window.LoveTeamAuth ||
           !window.LoveTeamAuth.client
         ) {
-          throw new Error("Supabase 인증 시스템을 찾을 수 없습니다.");
+          throw new Error(
+            "Supabase 인증 시스템을 찾을 수 없습니다."
+          );
         }
 
 
         const {
           data: { session }
-        } = await window.LoveTeamAuth.client.auth.getSession();
+        } =
+          await window.LoveTeamAuth.client.auth.getSession();
 
 
         if (!session) {
+
           denied.style.display = "flex";
+
           return;
         }
 
@@ -485,8 +513,14 @@
 
 
         if (response.error) {
-          console.error(response.error);
+
+          console.error(
+            "admin-check 오류:",
+            response.error
+          );
+
           denied.style.display = "flex";
+
           return;
         }
 
@@ -494,22 +528,29 @@
         const data = response.data;
 
 
-        if (data && data.admin === true) {
+        if (
+          data &&
+          data.admin === true
+        ) {
 
           adminAuthenticated = true;
 
           page.style.display = "block";
 
-        } else {
-
-          denied.style.display = "flex";
+          return;
 
         }
 
 
+        denied.style.display = "flex";
+
+
       } catch (error) {
 
-        console.error("관리자 인증 오류:", error);
+        console.error(
+          "관리자 인증 오류:",
+          error
+        );
 
         denied.style.display = "flex";
 
@@ -518,49 +559,111 @@
     }
 
 
+    const adminAuthLink =
+      document.getElementById("adminAuthLink");
+
+
+    if (adminAuthLink) {
+
+      adminAuthLink.addEventListener(
+        "click",
+        async function(event) {
+
+          event.preventDefault();
+
+
+          try {
+
+            const {
+              data: { session }
+            } =
+              await window.LoveTeamAuth.client.auth.getSession();
+
+
+            if (session) {
+
+              await checkAdmin();
+
+              return;
+
+            }
+
+
+            window.location.href =
+              "./index.html";
+
+          } catch (error) {
+
+            console.error(error);
+
+            window.location.href =
+              "./index.html";
+
+          }
+
+        }
+      );
+
+    }
+
+
     document
       .getElementById("searchBtn")
-      .addEventListener("click", function () {
+      .addEventListener(
+        "click",
+        function() {
 
-        if (!adminAuthenticated) {
-          return;
-        }
-
-        const id =
-          document
-            .getElementById("memberSearch")
-            .value
-            .trim();
-
-        const result =
-          document.getElementById("searchResult");
+          if (!adminAuthenticated) {
+            return;
+          }
 
 
-        if (!id) {
+          const id =
+            document
+              .getElementById("memberSearch")
+              .value
+              .trim();
+
+
+          const result =
+            document.getElementById(
+              "searchResult"
+            );
+
+
+          if (!id) {
+
+            result.textContent =
+              "검색할 회원 ID를 입력해주세요.";
+
+            return;
+
+          }
+
 
           result.textContent =
-            "검색할 회원 ID를 입력해주세요.";
-
-          return;
+            `"${id}" 회원 검색 기능은 다음 단계에서 연결합니다.`;
 
         }
-
-
-        result.textContent =
-          `"${id}" 회원 검색 기능은 다음 단계에서 연결합니다.`;
-
-      });
+      );
 
 
     document
       .getElementById("memberSearch")
-      .addEventListener("keydown", function (event) {
+      .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
-          document.getElementById("searchBtn").click();
+          if (event.key === "Enter") {
+
+            document
+              .getElementById("searchBtn")
+              .click();
+
+          }
+
         }
-
-      });
+      );
 
 
     checkAdmin();
