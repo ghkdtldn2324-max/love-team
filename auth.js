@@ -1034,5 +1034,88 @@
     close:hide,
     client:supabase
   };
+  // 로그인 상태를 홈페이지 헤더에 표시
+  function updateLoveHeader(session){
+    const loggedIn=!!session;
+    const user=session?.user;
+    const meta=user?.user_metadata||{};
+    const username=meta.username||'회원';
+    const name=meta.name||username;
 
+    document.querySelectorAll('.header-actions a, .actions a').forEach(function(a){
+      const text=(a.textContent||'').replace(/\s/g,'');
+      if(a.classList.contains('kakao-btn')||a.classList.contains('kakao')) return;
+      if(/장바구니|고객센터/.test(text)) return;
+
+      if(loggedIn){
+        if(!a.dataset.loveAuthStatus) return;
+
+        a.textContent=name+'님 / 로그아웃';
+        a.href='#logout';
+        a.removeAttribute('data-auth-open');
+        a.dataset.loveLogout='1';
+      }else{
+        if(a.dataset.loveLogout==='1'){
+          a.textContent='로그인 / 회원가입';
+          a.href='#';
+          a.dataset.authOpen='1';
+          a.dataset.loveLogout='';
+        }
+      }
+    });
+
+    document.querySelectorAll('#mobileOpenAuth').forEach(function(a){
+      if(loggedIn){
+        a.textContent=name+'님 / 로그아웃';
+        a.href='#logout';
+        a.dataset.loveLogout='1';
+      }else{
+        a.textContent='로그인 / 회원가입';
+        a.href='#';
+        a.dataset.loveLogout='';
+      }
+    });
+  }
+
+  // 헤더 로그인 버튼 표시용 표시 대상 지정
+  document.querySelectorAll('.header-actions a, .actions a').forEach(function(a){
+    const text=(a.textContent||'').replace(/\s/g,'');
+    if(/로그인|회원가입/.test(text) && !/장바구니|고객센터/.test(text)){
+      a.dataset.loveAuthStatus='1';
+    }
+  });
+
+  // 로그아웃 처리
+  document.addEventListener('click',async function(e){
+    const logout=e.target.closest('[data-love-logout]');
+    if(!logout)return;
+
+    e.preventDefault();
+
+    if(!supabase)return;
+
+    const {error}=await supabase.auth.signOut();
+
+    if(error){
+      console.error(error);
+      return;
+    }
+
+    updateLoveHeader(null);
+    window.dispatchEvent(new Event('love-auth-changed'));
+  });
+
+  // 현재 로그인 상태 확인
+  if(supabase){
+    supabase.auth.getSession().then(function(result){
+      const session=result?.data?.session||null;
+      window.LoveTeamSession=session;
+      updateLoveHeader(session);
+    });
+
+    supabase.auth.onAuthStateChange(function(event,session){
+      window.LoveTeamSession=session;
+      updateLoveHeader(session);
+    });
+  }
 })();
