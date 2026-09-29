@@ -559,52 +559,58 @@
     }
 
 
-    const adminAuthLink =
-      document.getElementById("adminAuthLink");
+ const adminAuthLink =
+  document.getElementById("adminAuthLink");
 
 
-    if (adminAuthLink) {
+if (adminAuthLink) {
 
-      adminAuthLink.addEventListener(
-        "click",
-        async function(event) {
+  adminAuthLink.addEventListener(
+    "click",
+    async function(event) {
 
-          event.preventDefault();
+      event.preventDefault();
 
+      try {
 
-          try {
-
-            const {
-              data: { session }
-            } =
-              await window.LoveTeamAuth.client.auth.getSession();
-
-
-            if (session) {
-
-              await checkAdmin();
-
-              return;
-
-            }
+        const {
+          data: { session }
+        } =
+          await window.LoveTeamAuth.client.auth.getSession();
 
 
-            window.location.href =
-              "./index.html";
+        if (session) {
 
-          } catch (error) {
+          await checkAdmin();
 
-            console.error(error);
-
-            window.location.href =
-              "./index.html";
-
-          }
+          return;
 
         }
-      );
+
+
+        // 현재 페이지에서 기존 로그인 팝업 열기
+        if (
+          window.LoveTeamAuth &&
+          typeof window.LoveTeamAuth.open === "function"
+        ) {
+
+          window.LoveTeamAuth.open("login");
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "로그인 팝업 실행 오류:",
+          error
+        );
+
+      }
 
     }
+  );
+
+}
 
 
     document
