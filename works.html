@@ -253,35 +253,81 @@ font-size:11px
 <div class="top-notice">
 아시아서버 추가 비용 없이 이용가능
 </div>
-
 <header class="header">
 
-<a class="logo"
-   href="index.html"
-   aria-label="LOVE TEAM 홈">
+  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+    <span class="logo-mark">♥</span>
+    <span class="logo-text">
+      <strong>LOVE</strong>
+      <small>TEAM</small>
+    </span>
+  </a>
 
-<span class="logo-mark">♥</span>
+  <nav class="nav">
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+  </nav>
 
-<span class="logo-text">
-<strong>LOVE</strong>
-<small>TEAM</small>
-</span>
+  <div class="header-actions">
 
+    <a href="#cart">
+      장바구니</a>
+
+    <a href="#" id="openAuth" data-auth-open>
+      로그인 / 회원가입
+    </a>
+
+    <a
+      class="kakao-btn"
+      href="https://open.kakao.com/"
+      target="_blank"
+      rel="noopener">
+      💬 고객센터
+    </a>
+
+  </div>
+
+
+  <button
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    type="button"
+    aria-label="메뉴 열기">
+    ☰
+  </button>
+
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <a href="notice.html">공지사항</a>
+
+    <a href="faq.html">자주 묻는 질문</a>
+
+    <a href="pricing.html">가격표</a>
+
+    <a href="works.html">작업 내역</a>
+
+    <a href="reviews.html">후기</a>
+
+    <a href="#" id="mobileOpenAuth">
+      로그인 / 회원가입
+    </a>
+
+    <a
+      class="mobile-kakao"
+      href="https://open.kakao.com/"
+      target="_blank"
+      rel="noopener">
+      💬 고객센터
+    </a>
+
+  </div>
+
+</header>
 </a>
-
-<nav class="nav">
-
-<a href="notice.html">공지사항</a>
-<a href="faq.html">자주 묻는 질문</a>
-<a href="pricing.html">가격표</a>
-<a href="works.html">작업 내역</a>
-<a href="reviews.html">후기</a>
-
-</nav>
-
-<div class="header-actions">
-
-<a href="#cart">장바구니</a>
 
 <a href="#login" id="openAuth">
 로그인 / 회원가입
@@ -476,6 +522,83 @@ if(pc)pc.click();
 });
 
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener('click', function (e) {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    menu.classList.toggle('active');
+
+    const opened =
+      menu.classList.contains('active');
+
+    btn.textContent =
+      opened ? '✕' : '☰';
+
+  });
+
+
+  menu.querySelectorAll('a').forEach(function (link) {
+
+    link.addEventListener('click', function () {
+
+      if (link.id !== 'mobileOpenAuth') {
+
+        menu.classList.remove('active');
+
+        btn.textContent = '☰';
+
+      }
+
+    });
+
+  });
+
+
+  const mobileAuth =
+    document.getElementById('mobileOpenAuth');
+
+  if (mobileAuth) {
+
+    mobileAuth.addEventListener('click', function (e) {
+
+      e.preventDefault();
+
+      menu.classList.remove('active');
+
+      btn.textContent = '☰';
+
+      const desktopAuth =
+        document.getElementById('openAuth');
+
+      if (desktopAuth) {
+
+        desktopAuth.click();
+
+      } else {
+
+        const authButton =
+          document.querySelector('[data-auth-open]');
+
+        if (authButton) {
+          authButton.click();
+        }
+
+      }
+
+    });
+
+  }
+
+});
+</script>
 </body>
 </html>
