@@ -828,18 +828,29 @@
       );
 
 
-      if(error){
+  if(error){
+  console.error("admin-check error:", error);
 
-        console.error(
-          "admin-check 오류:",
-          error
-        );
+  let detail = "";
 
-        showDenied(
-          "관리자 인증에 실패했습니다."
-        );
+  try{
+    if(error.context){
+      const errorBody = await error.context.json();
+      detail = errorBody?.message || "";
+      console.error("admin-check response:", errorBody);
+    }
+  }catch(e){
+    console.error("error body parse failed:", e);
+  }
 
-        return;
+  showDenied(
+    detail
+      ? "관리자 인증 실패: " + detail
+      : "관리자 인증에 실패했습니다."
+  );
+
+  return;
+}
 
       }
 
