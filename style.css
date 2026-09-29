@@ -68,3 +68,84 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     height:52px !important;
   }
 }
+/* =========================================
+   가격표 카드 표시 강제 수정
+========================================= */
+
+#pricing-grid {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 100px !important;
+}
+
+#pricing-grid .rank-card {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-height: 190px !important;
+}
+
+#pricing-grid .rank-icon {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 78px !important;
+  height: 78px !important;
+  min-width: 78px !important;
+  min-height: 78px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 12px !important;
+  overflow: visible !important;
+}
+
+#pricing-grid .rank-icon img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 68px !important;
+  height: 68px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+
+#pricing-grid .rank-name,
+#pricing-grid .rank-price {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 600px) {
+
+  #pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  #pricing-grid .rank-card {
+    min-height: 165px !important;
+  }
+
+  #pricing-grid .rank-icon {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+  }
+
+  #pricing-grid .rank-icon img {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  #pricing-grid .lesson-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+}
