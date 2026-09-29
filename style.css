@@ -59,8 +59,8 @@
 }
 .rank-art:before{display:none}
 .rank-art img{
-  width:100%;height:100%;
-  max-width:100%;max-height:100%;
+  width:auto;height:82px;
+  max-width:100%;max-height:82px;
   object-fit:contain;
   object-position:center;
   display:block;
@@ -100,3 +100,114 @@
 
 /* v6: rank source icons extracted from supplied 1920x1080 sheet; English labels hidden. */
 .rank-name-en{display:none !important;}
+
+/* v9: normalize rank visual scale while preserving original proportions */
+.rank-art{width:100px;height:90px;overflow:visible;display:grid;place-items:center;}
+.rank-art img{width:auto;height:82px;max-width:100%;max-height:82px;object-fit:contain;object-position:center;display:block;}
+
+/* v12: visually normalize the wider Ascendant 1 and Immortal 1 emblems without changing source resolution. */
+.rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:76px;max-height:76px;}
+.rank-art.immortal.tier-1 img{height:68px;max-height:68px;}
+
+/* v15: normalize every rank asset to the same 256x256 canvas and restore full emblem display. */
+.rank-art img{
+  width:auto;
+  height:82px;
+  max-width:100%;
+  max-height:82px;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+}
+/* Ascendant 1/2/3: use the same visible height so the top/bottom dark outer portions are not clipped. */
+.rank-art.ascendant.tier-1 img,
+.rank-art.ascendant.tier-2 img,
+.rank-art.ascendant.tier-3 img{
+  height:82px;
+  max-height:82px;
+}
+/* Immortal 1: only a very small optical correction against Immortal 2/3. */
+.rank-art.immortal.tier-1 img{
+  height:80px;
+  max-height:80px;
+}
+
+/* v17: slightly enlarge the visible rank emblems without changing source resolution. */
+.rank-art{
+  width:104px;
+  height:96px;
+  margin:0 auto 9px;
+  overflow:visible;
+}
+.rank-art img{
+  width:auto;
+  height:92px;
+  max-width:100%;
+  max-height:92px;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+}
+.rank-art.ascendant.tier-1 img,
+.rank-art.ascendant.tier-2 img,
+.rank-art.ascendant.tier-3 img{
+  height:92px;
+  max-height:92px;
+}
+.rank-art.immortal.tier-1 img{
+  height:90px;
+  max-height:90px;
+}
+@media(max-width:900px){
+  .rank-art{width:96px;height:88px;}
+  .rank-art img{height:84px;max-height:84px;}
+  .rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:84px;max-height:84px;}
+  .rank-art.immortal.tier-1 img{height:82px;max-height:82px;}
+}
+@media(max-width:600px){
+  .rank-art{width:94px;height:86px;}
+  .rank-art img{height:82px;max-height:82px;}
+  .rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:82px;max-height:82px;}
+  .rank-art.immortal.tier-1 img{height:80px;max-height:80px;}
+}
+
+/* v18: slightly fuller rank emblems, all centered in the same emblem box. */
+.rank-art{
+  width:112px;
+  height:104px;
+  margin:0 auto 8px;
+  display:grid;
+  place-items:center;
+  overflow:visible;
+}
+.rank-art img{
+  width:auto;
+  height:100px;
+  max-width:100%;
+  max-height:100px;
+  object-fit:contain;
+  object-position:center center;
+  display:block;
+  margin:0 auto;
+}
+/* Iron~Platinum always use rank 3 assets; keep every emblem centered and the same visible height. */
+.rank-art.iron img,
+.rank-art.bronze img,
+.rank-art.silver img,
+.rank-art.gold img,
+.rank-art.platinum img,
+.rank-art.diamond img,
+.rank-art.ascendant img,
+.rank-art.immortal img,
+.rank-art.radiant img{
+  height:100px;
+  max-height:100px;
+}
+@media(max-width:900px){
+  .rank-art{width:104px;height:98px;}
+  .rank-art img{height:94px;max-height:94px;}
+}
+@media(max-width:600px){
+  .rank-art{width:100px;height:94px;}
+  .rank-art img{height:90px;max-height:90px;}
+}
