@@ -101,3 +101,548 @@
 /* v6: rank source icons extracted from supplied 1920x1080 sheet; English labels hidden. */
 .rank-name-en{display:none !important;}
 .auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;z-index:1000}.auth-overlay.show{opacity:1;visibility:visible}.auth-modal{width:min(430px,100%);background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.35);padding:30px;position:relative;transform:translateY(18px) scale(.98);transition:transform .28s ease}.auth-overlay.show .auth-modal{transform:translateY(0) scale(1)}.auth-close{position:absolute;right:15px;top:10px;border:0;background:transparent;font-size:30px;line-height:1;color:#777;cursor:pointer}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f4f2fa;border-radius:10px;padding:4px;margin-bottom:25px}.auth-tab{border:0;background:transparent;padding:11px;border-radius:8px;font-weight:800;color:#777;cursor:pointer}.auth-tab.active{background:linear-gradient(100deg,#4e8fff,#a64de9);color:#fff;box-shadow:0 6px 15px rgba(105,86,226,.2)}.auth-panel h2{margin:0 0 20px;font-size:28px}.auth-kicker{font-size:10px;letter-spacing:2px;color:#8b56df;font-weight:800;margin:0 0 6px}.auth-panel label{display:block;font-size:12px;font-weight:700;color:#444;margin:0 0 14px}.auth-panel input{width:100%;margin-top:7px;padding:13px 14px;border:1px solid #ddd9e8;border-radius:9px;outline:none;font:inherit;transition:.2s}.auth-panel input:focus{border-color:#8662ed;box-shadow:0 0 0 3px rgba(134,98,237,.1)}.password-help{font-size:11px;color:#777;margin:-4px 0 16px;line-height:1.5}.auth-submit{width:100%;border:0;border-radius:9px;padding:14px;background:linear-gradient(100deg,#4e8fff,#a64de9);color:#fff;font-weight:800;cursor:pointer}.auth-open{overflow:hidden}@media(max-width:600px){.auth-modal{padding:25px 20px;border-radius:15px}.auth-panel h2{font-size:24px}}
+
+/* =====================================================
+   LOVE TEAM — MOBILE UI
+   기존 PC 디자인 유지 / 모바일만 개선
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  /* 전체 */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* 상단 공지 */
+  .top-notice {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* =========================
+     헤더
+     ========================= */
+
+  .header {
+    height: 62px;
+    padding: 0 14px;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .logo {
+    min-width: auto;
+    gap: 7px;
+  }
+
+  .logo-mark {
+    width: 29px;
+    height: 29px;
+    font-size: 15px;
+  }
+
+  .logo-text strong {
+    font-size: 17px;
+  }
+
+  .logo-text small {
+    font-size: 7px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
+
+  /*
+    모바일에서는 기존 PC용 메뉴를 숨김.
+    추후 햄버거 메뉴를 추가할 때 이 부분을 연결하면 됨.
+  */
+  .nav {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 7px;
+    font-size: 10px;
+  }
+
+  .header-actions > a:not(.kakao-btn) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 7px;
+  }
+
+  .kakao-btn {
+    padding: 9px 12px;
+    font-size: 10px;
+    border-radius: 999px;
+  }
+
+  /* =========================
+     히어로
+     ========================= */
+
+  .hero {
+    min-height: 430px;
+    padding: 55px 18px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+    word-break: keep-all;
+  }
+
+  .hero-copy {
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 17px 0 24px;
+    word-break: keep-all;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .primary-btn,
+  .ghost-btn {
+    min-height: 45px;
+    padding: 12px 17px;
+    font-size: 12px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* =========================
+     공통 섹션
+     ========================= */
+
+  .section {
+    padding: 55px 15px;
+  }
+
+  .section-heading {
+    margin-bottom: 22px;
+  }
+
+  .section-heading p {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .section-heading h2 {
+    font-size: 25px;
+    letter-spacing: -1px;
+  }
+
+  /* =========================
+     가격표
+     ========================= */
+
+  .pricing-section {
+    padding: 48px 10px 65px;
+    min-height: auto;
+  }
+
+  .pricing-hero {
+    margin-bottom: 22px;
+  }
+
+  .pricing-hero h2 {
+    font-size: 27px;
+    letter-spacing: -1.2px;
+  }
+
+  .pricing-hero > p:last-child {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  /* 가격표 탭 */
+  .pricing-tabs {
+    width: 100%;
+    padding: 4px;
+    gap: 3px;
+    border-radius: 11px;
+  }
+
+  .pricing-tab {
+    height: 43px;
+    min-width: 0;
+    padding: 0 2px;
+    border-radius: 8px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .pricing-tab.active:after {
+    left: 20%;
+    right: 20%;
+    bottom: 3px;
+  }
+
+  /* 가격표 설명 */
+  .pricing-panel {
+    width: 100%;
+    padding-top: 18px;
+  }
+
+  .pricing-info {
+    width: 100%;
+    padding: 20px 14px;
+    margin-bottom: 17px;
+    border-radius: 13px;
+  }
+
+  .pricing-info .info-kicker {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .pricing-info strong {
+    font-size: 18px;
+    letter-spacing: -.5px;
+    margin-bottom: 7px;
+  }
+
+  .pricing-info span:last-child {
+    font-size: 10px;
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+
+  /* 티어 카드 */
+  .rank-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .rank-card {
+    width: 100%;
+    min-height: 181px;
+    padding: 14px 7px 13px;
+    border-radius: 13px;
+  }
+
+  .rank-art {
+    width: 76px;
+    height: 68px;
+    margin-bottom: 7px;
+  }
+
+  .rank-name-ko {
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
+  .rank-price {
+    font-size: 13px;
+    margin-top: 7px;
+  }
+
+  .rank-note {
+    font-size: 8px;
+    margin-top: 3px;
+  }
+
+  /* 1:1 강의 */
+  .lesson-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lesson-card {
+    min-height: 205px;
+    padding: 18px 12px;
+  }
+
+  .lesson-card .rank-art {
+    width: 78px;
+    height: 70px;
+    margin-bottom: 9px;
+  }
+
+  .lesson-time {
+    font-size: 21px;
+  }
+
+  .lesson-desc {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .lesson-price {
+    font-size: 18px;
+  }
+
+  .lesson-btn {
+    min-height: 42px;
+    margin-top: 12px;
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+
+  /* =========================
+     공지사항
+     ========================= */
+
+  .notice-card {
+    width: 100%;
+    padding: 17px 15px;
+    border-radius: 10px;
+    gap: 12px;
+  }
+
+  .notice-card div {
+    min-width: 0;
+  }
+
+  .notice-card strong {
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: keep-all;
+  }
+
+  .notice-card span {
+    font-size: 10px;
+  }
+
+  /* =========================
+     작업내역
+     ========================= */
+
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .work-item {
+    min-height: auto;
+    padding: 18px 16px;
+    border-radius: 11px;
+  }
+
+  .work-item strong {
+    font-size: 13px;
+  }
+
+  .work-item p {
+    font-size: 11px;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+
+  /* =========================
+     후기
+     ========================= */
+
+  .review-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .review-grid article {
+    min-height: auto;
+    padding: 18px 16px;
+    border-radius: 11px;
+  }
+
+  .review-grid article p {
+    font-size: 12px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  /* =========================
+     FAQ
+     ========================= */
+
+  .faq-list {
+    width: 100%;
+  }
+
+  .faq-list details {
+    padding: 16px 3px;
+  }
+
+  .faq-list summary {
+    padding-right: 18px;
+    font-size: 13px;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
+  .faq-list p {
+    font-size: 11px;
+    line-height: 1.75;
+    margin: 10px 0 0;
+    word-break: keep-all;
+  }
+
+  /* =========================
+     CTA
+     ========================= */
+
+  .cta-section {
+    padding: 60px 18px;
+  }
+
+  .cta-section h2 {
+    font-size: 25px;
+    line-height: 1.3;
+    word-break: keep-all;
+  }
+
+  .cta-section p {
+    font-size: 11px;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  /* =========================
+     플로팅 버튼
+     ========================= */
+
+  .floating-chat {
+    width: 48px;
+    height: 48px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .to-top {
+    width: 38px;
+    height: 38px;
+    right: 20px;
+    bottom: 72px;
+  }
+
+  /* =========================
+     로그인 / 회원가입 팝업
+     ========================= */
+
+  .auth-overlay {
+    padding: 12px;
+  }
+
+  .auth-modal {
+    width: 100%;
+    max-width: 390px;
+    padding: 23px 18px;
+    border-radius: 15px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+  }
+
+  .auth-close {
+    right: 10px;
+    top: 7px;
+    font-size: 27px;
+  }
+
+  .auth-tabs {
+    margin-bottom: 20px;
+  }
+
+  .auth-tab {
+    padding: 10px 7px;
+    font-size: 12px;
+  }
+
+  .auth-panel h2 {
+    font-size: 23px;
+  }
+
+  .auth-panel label {
+    font-size: 11px;
+  }
+
+  .auth-panel input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .password-help {
+    font-size: 10px;
+  }
+
+  .auth-submit {
+    min-height: 46px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     푸터
+     ========================= */
+
+  footer {
+    padding: 22px 14px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}
+
+
+/* 아주 작은 아이폰 화면 */
+@media (max-width: 380px) {
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .hero-copy {
+    font-size: 12px;
+  }
+
+  .pricing-tab {
+    font-size: 8px;
+  }
+
+  .rank-card {
+    min-height: 173px;
+  }
+
+  .rank-art {
+    width: 69px;
+    height: 62px;
+  }
+
+  .rank-name-ko {
+    font-size: 11px;
+  }
+
+  .rank-price {
+    font-size: 12px;
+  }
+
+  .kakao-btn {
+    padding: 8px 9px;
+    font-size: 9px;
+  }
+}
