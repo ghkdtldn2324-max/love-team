@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="top">LOVE TEAM 공식 홈페이지</div>
-<header><a class="logo" href="index.html">LOVE <span>TEAM</span></a><nav><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="actions"><a href="cart.html">장바구니</a><a href="login.html">로그인</a><a href="signup.html">회원가입</a><a class="kakao" href="#">고객센터</a></div></header>
+<header><a class="logo" href="index.html">LOVE <span>TEAM</span></a><nav><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="actions"><a href="cart.html">장바구니</a><a href="#login" data-auth-open>로그인</a><a href="#signup" data-auth-open>회원가입</a><a class="kakao" href="#">고객센터</a></div></header>
 <main class="wrap"><section class="hero"><div class="eyebrow">LOVE TEAM FAQ</div><h1>자주 묻는 질문</h1><p>서비스 이용 전에 많이 궁금해하시는 내용을 확인해 주세요.</p></section>
 <section class="list">
 <div class="row"><div class="cell"><button class="question" type="button" data-target="a1"><span class="qmark">Q.</span><span class="qtext">로브팀은 어떤 방식으로 운영되는 팀인가요?</span><span class="toggle">+</span></button></div></div><div id="a1" class="answer"><div class="answer-inner"><p><strong class="amark">A.</strong> 고티어 플레이어를 중심으로 구성된 랭크 향상 전문 팀입니다.
@@ -26,4 +26,4 @@
 </section></main>
 <script>
 document.querySelectorAll('.question').forEach(function(button){button.addEventListener('click',function(){var answer=document.getElementById(this.getAttribute('data-target'));var isOpen=answer.classList.contains('open');document.querySelectorAll('.answer.open').forEach(function(item){item.classList.remove('open')});document.querySelectorAll('.question.is-open').forEach(function(item){item.classList.remove('is-open');item.querySelector('.toggle').textContent='+'});if(!isOpen){answer.classList.add('open');this.classList.add('is-open');this.querySelector('.toggle').textContent='−'}})});
-</script></body></html>
+</script><script src="auth.js"></script></body></html>

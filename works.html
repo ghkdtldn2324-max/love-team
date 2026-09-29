@@ -16,4 +16,4 @@ const fallback=[
 function getData(){try{return JSON.parse(localStorage.getItem('loveTeamWorks'))||fallback}catch(e){return fallback}}
 function render(){const list=document.getElementById('workList');list.innerHTML=getData().map(x=>`<div class="work-status-row"><div class="work-left"><span class="work-user">${x.name} 님</span><span class="work-detail">${x.detail}</span></div><span class="work-status ${x.status==='done'?'done':'progress'}">${x.status==='done'?'완료':'진행 중'}</span></div>`).join('')}
 render();
-</script></body></html>
+</script><script src="auth.js"></script></body></html>

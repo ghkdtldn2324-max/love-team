@@ -7,8 +7,11 @@
   <nav class="nav">
     <a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a>
   </nav>
-  <div class="header-actions"><a href="#cart">장바구니</a><a href="#login">로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+  <div class="header-actions"><a href="#cart">장바구니</a><a href="#" id="openAuth">로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
 </header>
+
+
+
 <main>
 <section id="home" class="hero"><div class="hero-overlay"></div><div class="hero-content"><p class="eyebrow">LOVE TEAM SERVICE</p><h1>랭크 향상의 모든 것<br><span>오직 LOVE TEAM</span></h1><p class="hero-copy">배치고사부터 티어업까지, LOVE TEAM이 함께합니다.</p><div class="hero-buttons"><a class="primary-btn" href="pricing.html">가격표 보기</a><a class="ghost-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">바로 상담하기</a></div></div></section>
 <section class="section"><div class="section-heading"><p>NOTICE</p><h2>공지사항</h2></div><div class="notice-card"><div><strong>LOVE TEAM 사이트 오픈 안내</strong><span>새로운 서비스와 이용 안내를 확인해주세요.</span></div><span class="date">2026.10.01</span></div><div style="text-align:center"><a class="preview-link" href="notice.html">공지사항 전체보기</a></div></section>
@@ -19,4 +22,6 @@
 <section class="cta-section"><h2>궁금한 점이 있으신가요?</h2><p>LOVE TEAM 고객센터에서 상담해드리겠습니다.</p><a class="primary-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">카카오톡으로 상담하기</a></section>
 </main>
 <a class="floating-chat" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 고객센터">💬</a><button class="to-top" aria-label="맨 위로">↑</button>
-<footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script>const homeFallback=[{name:'Gh***',detail:'승당 3판 진행 중',status:'progress'},{name:'Ab***',detail:'플레티넘 → 다이아몬드',status:'done'},{name:'Lo***',detail:'듀오 5판 진행 중',status:'progress'}];let homeData=(()=>{try{return JSON.parse(localStorage.getItem('loveTeamWorks'))||homeFallback}catch(e){return homeFallback}})();document.getElementById('homeWorkList').innerHTML=homeData.slice(0,3).map(x=>`<div style="min-height:66px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e5ef;padding:0 8px"><div><strong>${x.name} 님</strong><span style="margin-left:12px;font-size:12px;color:#686878">${x.detail}</span></div><span style="font-size:12px;font-weight:800;color:${x.status==='done'?'#278b63':'#6d4ee8'}">● ${x.status==='done'?'완료':'진행 중'}</span></div>`).join('');</script><script src="script.js"></script></body></html>
+<footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script>const homeFallback=[{name:'Gh***',detail:'승당 3판 진행 중',status:'progress'},{name:'Ab***',detail:'플레티넘 → 다이아몬드',status:'done'},{name:'Lo***',detail:'듀오 5판 진행 중',status:'progress'}];let homeData=(()=>{try{return JSON.parse(localStorage.getItem('loveTeamWorks'))||homeFallback}catch(e){return homeFallback}})();document.getElementById('homeWorkList').innerHTML=homeData.slice(0,3).map(x=>`<div style="min-height:66px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8e5ef;padding:0 8px"><div><strong>${x.name} 님</strong><span style="margin-left:12px;font-size:12px;color:#686878">${x.detail}</span></div><span style="font-size:12px;font-weight:800;color:${x.status==='done'?'#278b63':'#6d4ee8'}">● ${x.status==='done'?'완료':'진행 중'}</span></div>`).join('');</script>
+
+<script src="script.js"></script><script src="auth.js"></script></body></html>

@@ -59,8 +59,8 @@
 }
 .rank-art:before{display:none}
 .rank-art img{
-  width:auto;height:82px;
-  max-width:100%;max-height:82px;
+  width:100%;height:100%;
+  max-width:100%;max-height:100%;
   object-fit:contain;
   object-position:center;
   display:block;
@@ -100,114 +100,4 @@
 
 /* v6: rank source icons extracted from supplied 1920x1080 sheet; English labels hidden. */
 .rank-name-en{display:none !important;}
-
-/* v9: normalize rank visual scale while preserving original proportions */
-.rank-art{width:100px;height:90px;overflow:visible;display:grid;place-items:center;}
-.rank-art img{width:auto;height:82px;max-width:100%;max-height:82px;object-fit:contain;object-position:center;display:block;}
-
-/* v12: visually normalize the wider Ascendant 1 and Immortal 1 emblems without changing source resolution. */
-.rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:76px;max-height:76px;}
-.rank-art.immortal.tier-1 img{height:68px;max-height:68px;}
-
-/* v15: normalize every rank asset to the same 256x256 canvas and restore full emblem display. */
-.rank-art img{
-  width:auto;
-  height:82px;
-  max-width:100%;
-  max-height:82px;
-  object-fit:contain;
-  object-position:center;
-  display:block;
-}
-/* Ascendant 1/2/3: use the same visible height so the top/bottom dark outer portions are not clipped. */
-.rank-art.ascendant.tier-1 img,
-.rank-art.ascendant.tier-2 img,
-.rank-art.ascendant.tier-3 img{
-  height:82px;
-  max-height:82px;
-}
-/* Immortal 1: only a very small optical correction against Immortal 2/3. */
-.rank-art.immortal.tier-1 img{
-  height:80px;
-  max-height:80px;
-}
-
-/* v17: slightly enlarge the visible rank emblems without changing source resolution. */
-.rank-art{
-  width:104px;
-  height:96px;
-  margin:0 auto 9px;
-  overflow:visible;
-}
-.rank-art img{
-  width:auto;
-  height:92px;
-  max-width:100%;
-  max-height:92px;
-  object-fit:contain;
-  object-position:center;
-  display:block;
-}
-.rank-art.ascendant.tier-1 img,
-.rank-art.ascendant.tier-2 img,
-.rank-art.ascendant.tier-3 img{
-  height:92px;
-  max-height:92px;
-}
-.rank-art.immortal.tier-1 img{
-  height:90px;
-  max-height:90px;
-}
-@media(max-width:900px){
-  .rank-art{width:96px;height:88px;}
-  .rank-art img{height:84px;max-height:84px;}
-  .rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:84px;max-height:84px;}
-  .rank-art.immortal.tier-1 img{height:82px;max-height:82px;}
-}
-@media(max-width:600px){
-  .rank-art{width:94px;height:86px;}
-  .rank-art img{height:82px;max-height:82px;}
-  .rank-art.ascendant.tier-1 img,.rank-art.ascendant.tier-2 img,.rank-art.ascendant.tier-3 img{height:82px;max-height:82px;}
-  .rank-art.immortal.tier-1 img{height:80px;max-height:80px;}
-}
-
-/* v18: slightly fuller rank emblems, all centered in the same emblem box. */
-.rank-art{
-  width:112px;
-  height:104px;
-  margin:0 auto 8px;
-  display:grid;
-  place-items:center;
-  overflow:visible;
-}
-.rank-art img{
-  width:auto;
-  height:100px;
-  max-width:100%;
-  max-height:100px;
-  object-fit:contain;
-  object-position:center center;
-  display:block;
-  margin:0 auto;
-}
-/* Iron~Platinum always use rank 3 assets; keep every emblem centered and the same visible height. */
-.rank-art.iron img,
-.rank-art.bronze img,
-.rank-art.silver img,
-.rank-art.gold img,
-.rank-art.platinum img,
-.rank-art.diamond img,
-.rank-art.ascendant img,
-.rank-art.immortal img,
-.rank-art.radiant img{
-  height:100px;
-  max-height:100px;
-}
-@media(max-width:900px){
-  .rank-art{width:104px;height:98px;}
-  .rank-art img{height:94px;max-height:94px;}
-}
-@media(max-width:600px){
-  .rank-art{width:100px;height:94px;}
-  .rank-art img{height:90px;max-height:90px;}
-}
+.auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;z-index:1000}.auth-overlay.show{opacity:1;visibility:visible}.auth-modal{width:min(430px,100%);background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.35);padding:30px;position:relative;transform:translateY(18px) scale(.98);transition:transform .28s ease}.auth-overlay.show .auth-modal{transform:translateY(0) scale(1)}.auth-close{position:absolute;right:15px;top:10px;border:0;background:transparent;font-size:30px;line-height:1;color:#777;cursor:pointer}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f4f2fa;border-radius:10px;padding:4px;margin-bottom:25px}.auth-tab{border:0;background:transparent;padding:11px;border-radius:8px;font-weight:800;color:#777;cursor:pointer}.auth-tab.active{background:linear-gradient(100deg,#4e8fff,#a64de9);color:#fff;box-shadow:0 6px 15px rgba(105,86,226,.2)}.auth-panel h2{margin:0 0 20px;font-size:28px}.auth-kicker{font-size:10px;letter-spacing:2px;color:#8b56df;font-weight:800;margin:0 0 6px}.auth-panel label{display:block;font-size:12px;font-weight:700;color:#444;margin:0 0 14px}.auth-panel input{width:100%;margin-top:7px;padding:13px 14px;border:1px solid #ddd9e8;border-radius:9px;outline:none;font:inherit;transition:.2s}.auth-panel input:focus{border-color:#8662ed;box-shadow:0 0 0 3px rgba(134,98,237,.1)}.password-help{font-size:11px;color:#777;margin:-4px 0 16px;line-height:1.5}.auth-submit{width:100%;border:0;border-radius:9px;padding:14px;background:linear-gradient(100deg,#4e8fff,#a64de9);color:#fff;font-weight:800;cursor:pointer}.auth-open{overflow:hidden}@media(max-width:600px){.auth-modal{padding:25px 20px;border-radius:15px}.auth-panel h2{font-size:24px}}

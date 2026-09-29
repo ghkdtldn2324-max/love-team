@@ -37,4 +37,4 @@ function getReviews(){try{return JSON.parse(localStorage.getItem('loveTeamReview
 function render(){document.getElementById('reviewList').innerHTML=getReviews().map(r=>{const stars='★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));return `<article class="review-row"><div class="review-top"><div><span class="review-user">${r.name} 님</span><span class="stars" aria-label="${r.stars}점"> ${stars}</span></div><span class="review-date">${r.date}</span></div><p class="review-text">${r.text}</p><div class="review-meta"><span class="review-service">${r.service}</span></div></article>`}).join('')}
 render();
 </script>
-</body></html>
+<script src="auth.js"></script></body></html>
