@@ -5,13 +5,62 @@
     tier:{title:'티어 승급',copy:'현재 티어에서 목표 티어까지 구간별로 승급을 진행합니다.',items:[['아이언','16,000원'],['브론즈','18,000원'],['실버','19,000원'],['골드','23,000원'],['플래티넘','35,000원'],['다이아 1','46,000원'],['다이아 2','50,000원'],['다이아 3','53,000원'],['초월자 1','65,000원'],['초월자 2','75,000원'],['초월자 3','83,000원'],['불멸 1','150,000원'],['불멸 2','140,000원'],['불멸 3','190,000원'],['래디언트','가격문의']]},
     placement:{title:'배치고사',copy:'배치고사 진행을 원하는 분들을 위한 서비스입니다. 판당 기준으로 안내합니다.',items:[['아이언','판당 11,000원'],['브론즈','판당 11,000원'],['실버','판당 11,000원'],['골드','판당 11,000원'],['플래티넘','판당 11,000원'],['다이아','판당 14,000원'],['초월자','판당 17,000원'],['불멸','판당 19,000원'],['래디언트','판당 25,000원']]}
   };
-  const rankIcon={'아이언':'◉','브론즈':'◈','실버':'◆','골드':'◇','플래티넘':'⬟','다이아 1':'◈','다이아 2':'◈','다이아 3':'◈','다이아':'◈','초월자 1':'⬢','초월자 2':'⬢','초월자 3':'⬢','초월자':'⬢','불멸 1':'◈','불멸 2':'◈','불멸 3':'◈','불멸':'◈','래디언트':'✦'};
-  function renderPricing(key){
-    const panel=document.querySelector('.pricing-panel'); if(!panel)return;
-    const info=pricing[key]; const title=document.getElementById('info-title'); const copy=document.getElementById('info-copy'); const grid=document.getElementById('pricing-grid');
-    if(!info||!title||!copy||!grid)return;
-    title.textContent=info.title;copy.textContent=info.copy;
-    grid.innerHTML=info.items.map(([name,price])=>`<article class="rank-card"><div class="rank-icon">${rankIcon[name]||'◆'}</div><div class="rank-name">${name}</div><div class="rank-price">${price}</div></article>`).join('');
+  const rankIcon={
+  '아이언':'assets/ranks/iron1.png',
+  '브론즈':'assets/ranks/bronze1.png',
+  '실버':'assets/ranks/silver1.png',
+  '골드':'assets/ranks/gold1.png',
+  '플래티넘':'assets/ranks/platinum1.png',
+
+  '다이아 1':'assets/ranks/diamond1.png',
+  '다이아 2':'assets/ranks/diamond2.png',
+  '다이아 3':'assets/ranks/diamond3.png',
+  '다이아':'assets/ranks/diamond1.png',
+
+  '초월자 1':'assets/ranks/ascendant1.png',
+  '초월자 2':'assets/ranks/ascendant2.png',
+  '초월자 3':'assets/ranks/ascendant3.png',
+  '초월자':'assets/ranks/ascendant1.png',
+
+  '불멸 1':'assets/ranks/immortal1.png',
+  '불멸 2':'assets/ranks/immortal2.png',
+  '불멸 3':'assets/ranks/immortal3.png',
+  '불멸':'assets/ranks/immortal1.png',
+
+  '래디언트':'assets/ranks/radiant.png'
+};
+function renderPricing(key){
+  const panel=document.querySelector('.pricing-panel');
+  if(!panel)return;
+
+  const info=pricing[key];
+  const title=document.getElementById('info-title');
+  const copy=document.getElementById('info-copy');
+  const grid=document.getElementById('pricing-grid');
+
+  if(!info||!title||!copy||!grid)return;
+
+  title.textContent=info.title;
+  copy.textContent=info.copy;
+
+  grid.innerHTML=info.items.map(([name,price])=>{
+    const icon=rankIcon[name];
+
+    return `
+      <article class="rank-card">
+        <div class="rank-icon">
+          ${
+            icon
+              ? `<img src="${icon}" alt="${name}" loading="lazy">`
+              : ''
+          }
+        </div>
+        <div class="rank-name">${name}</div>
+        <div class="rank-price">${price}</div>
+      </article>
+    `;
+  }).join('');
+}
   }
   document.addEventListener('DOMContentLoaded',function(){
     document.querySelectorAll('.pricing-tab').forEach(btn=>btn.addEventListener('click',function(){document.querySelectorAll('.pricing-tab').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});this.classList.add('active');this.setAttribute('aria-selected','true');const key=this.dataset.tab;if(key==='lesson'){const grid=document.getElementById('pricing-grid');document.getElementById('info-title').textContent='1:1 강의';document.getElementById('info-copy').textContent='개인별 플레이 분석과 코칭을 원하는 분들을 위한 1:1 강의입니다.';grid.innerHTML='<div class="lesson-grid" style="grid-column:1/-1"><a class="lesson-card" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="eyebrow">1:1 COACHING</span><h3>1시간 강의</h3><strong>24,000원</strong><span class="lesson-link">카카오톡 오픈채팅 상담 →</span></a><a class="lesson-card" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="eyebrow">1:1 COACHING</span><h3>3시간 강의</h3><strong>69,000원</strong><span class="lesson-link">카카오톡 오픈채팅 상담 →</span></a></div>';return}renderPricing(key)}));
