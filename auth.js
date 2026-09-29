@@ -1,7 +1,16 @@
 (function(){
+
   if(document.getElementById('loveGlobalAuth')) return;
 
+  /* =========================================
+     LOVE TEAM AUTH + CLOUDFLARE TURNSTILE
+     ========================================= */
+
+  const LOVE_TURNSTILE_SITE_KEY =
+    '0x4AAAAAAFJkWkeTqUwHc2Ue';
+
   const css=`
+
   .love-auth-overlay{
     position:fixed;
     inset:0;
@@ -146,15 +155,6 @@
     cursor:wait;
   }
 
-  .love-auth-links{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:13px;
-    font-size:11px;
-    color:#777;
-  }
-
   .love-auth-message{
     display:none;
     margin:0 0 14px;
@@ -171,7 +171,17 @@
     color:#c33;
   }
 
+  .love-turnstile{
+    width:100%;
+    min-height:65px;
+    margin:2px 0 14px;
+    display:flex;
+    justify-content:center;
+    overflow:hidden;
+  }
+
   @media(max-width:600px){
+
     .love-auth-overlay{
       padding:12px;
     }
@@ -230,7 +240,16 @@
       padding:10px;
       font-size:13px;
     }
+
+    .love-turnstile{
+      transform:scale(.88);
+      transform-origin:center top;
+      min-height:58px;
+      margin-bottom:8px;
+    }
+
   }
+
   `;
 
   const style=document.createElement('style');
@@ -238,32 +257,46 @@
   style.textContent=css;
   document.head.appendChild(style);
 
+
+  /* =========================================
+     AUTH HTML
+     ========================================= */
+
   const wrap=document.createElement('div');
   wrap.id='loveGlobalAuth';
 
   wrap.innerHTML=`
-  <div class="love-auth-overlay" id="loveAuthOverlay" aria-hidden="true">
+
+  <div class="love-auth-overlay"
+       id="loveAuthOverlay"
+       aria-hidden="true">
 
     <div class="love-auth-modal"
          role="dialog"
          aria-modal="true"
          aria-labelledby="loveAuthTitle">
 
-      <button class="love-auth-close"
-              type="button"
-              aria-label="닫기">×</button>
+      <button
+        class="love-auth-close"
+        type="button"
+        aria-label="닫기">
+        ×
+      </button>
+
 
       <div class="love-auth-tabs">
 
-        <button class="love-auth-tab active"
-                type="button"
-                data-mode="login">
+        <button
+          class="love-auth-tab active"
+          type="button"
+          data-mode="login">
           로그인
         </button>
 
-        <button class="love-auth-tab"
-                type="button"
-                data-mode="signup">
+        <button
+          class="love-auth-tab"
+          type="button"
+          data-mode="signup">
           회원가입
         </button>
 
@@ -272,7 +305,9 @@
 
       <!-- 로그인 -->
 
-      <div class="love-auth-panel" data-panel="login">
+      <div
+        class="love-auth-panel"
+        data-panel="login">
 
         <p class="love-auth-kicker">
           LOVE TEAM MEMBER
@@ -284,6 +319,7 @@
 
         <label>
           ID
+
           <input
             type="text"
             id="loveLoginId"
@@ -293,6 +329,7 @@
 
         <label>
           비밀번호
+
           <input
             type="password"
             id="loveLoginPassword"
@@ -300,8 +337,18 @@
             autocomplete="current-password">
         </label>
 
-        <p class="love-auth-message"
-           id="loveLoginMessage"></p>
+
+        <div
+          class="love-turnstile"
+          id="loveLoginTurnstile">
+        </div>
+
+
+        <p
+          class="love-auth-message"
+          id="loveLoginMessage">
+        </p>
+
 
         <button
           class="love-auth-submit"
@@ -315,9 +362,10 @@
 
       <!-- 회원가입 -->
 
-      <div class="love-auth-panel"
-           data-panel="signup"
-           hidden>
+      <div
+        class="love-auth-panel"
+        data-panel="signup"
+        hidden>
 
         <p class="love-auth-kicker">
           LOVE TEAM MEMBER
@@ -327,8 +375,10 @@
           회원가입
         </h2>
 
+
         <label>
           ID
+
           <input
             type="text"
             id="loveSignupId"
@@ -337,8 +387,10 @@
             maxlength="20">
         </label>
 
+
         <label>
           비밀번호
+
           <input
             type="password"
             id="loveSignupPassword"
@@ -346,8 +398,10 @@
             autocomplete="new-password">
         </label>
 
+
         <label>
           비밀번호 재확인
+
           <input
             type="password"
             id="loveSignupPassword2"
@@ -355,8 +409,10 @@
             autocomplete="new-password">
         </label>
 
+
         <label>
           이름
+
           <input
             type="text"
             id="loveSignupName"
@@ -365,12 +421,23 @@
             maxlength="20">
         </label>
 
+
         <p class="love-auth-help">
           비밀번호는 8자리 이상이며 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.
         </p>
 
-        <p class="love-auth-message"
-           id="loveSignupMessage"></p>
+
+        <div
+          class="love-turnstile"
+          id="loveSignupTurnstile">
+        </div>
+
+
+        <p
+          class="love-auth-message"
+          id="loveSignupMessage">
+        </p>
+
 
         <button
           class="love-auth-submit"
@@ -382,11 +449,16 @@
       </div>
 
     </div>
-  </div>`;
+
+  </div>
+
+  `;
 
   document.body.appendChild(wrap);
 
-  const overlay=document.getElementById('loveAuthOverlay');
+
+  const overlay=
+    document.getElementById('loveAuthOverlay');
 
   const panels=[
     ...document.querySelectorAll(
@@ -399,6 +471,11 @@
       '#loveGlobalAuth .love-auth-tab'
     )
   ];
+
+
+  /* =========================================
+     SUPABASE
+     ========================================= */
 
   let supabase=null;
 
@@ -427,6 +504,303 @@
   }
 
 
+  /* =========================================
+     TURNSTILE
+     ========================================= */
+
+  let turnstileReadyPromise=null;
+
+  let loginTurnstileWidget=null;
+
+  let signupTurnstileWidget=null;
+
+  let loginCaptchaToken='';
+
+  let signupCaptchaToken='';
+
+
+  function loadTurnstile(){
+
+    if(window.turnstile){
+      return Promise.resolve();
+    }
+
+    if(turnstileReadyPromise){
+      return turnstileReadyPromise;
+    }
+
+    turnstileReadyPromise=
+      new Promise(function(resolve,reject){
+
+        const existing=
+          document.querySelector(
+            'script[data-love-turnstile]'
+          );
+
+        if(existing){
+
+          existing.addEventListener(
+            'load',
+            resolve,
+            {once:true}
+          );
+
+          existing.addEventListener(
+            'error',
+            reject,
+            {once:true}
+          );
+
+          return;
+
+        }
+
+
+        const script=
+          document.createElement('script');
+
+        script.src=
+          'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+
+        script.async=true;
+
+        script.defer=true;
+
+        script.dataset.loveTurnstile='1';
+
+
+        script.onload=function(){
+
+          resolve();
+
+        };
+
+
+        script.onerror=function(){
+
+          reject(
+            new Error(
+              'Cloudflare Turnstile을 불러오지 못했습니다.'
+            )
+          );
+
+        };
+
+
+        document.head.appendChild(script);
+
+      });
+
+
+    return turnstileReadyPromise;
+
+  }
+
+
+  function renderTurnstile(){
+
+    return loadTurnstile()
+      .then(function(){
+
+        if(
+          !window.turnstile ||
+          typeof window.turnstile.render!=='function'
+        ){
+
+          throw new Error(
+            'Cloudflare Turnstile을 사용할 수 없습니다.'
+          );
+
+        }
+
+
+        const loginBox=
+          document.getElementById(
+            'loveLoginTurnstile'
+          );
+
+        const signupBox=
+          document.getElementById(
+            'loveSignupTurnstile'
+          );
+
+
+        /* 로그인 위젯 */
+
+        if(
+          loginBox &&
+          loginTurnstileWidget===null
+        ){
+
+          loginTurnstileWidget=
+            window.turnstile.render(
+              '#loveLoginTurnstile',
+              {
+
+                sitekey:
+                  LOVE_TURNSTILE_SITE_KEY,
+
+                theme:'light',
+
+                size:'flexible',
+
+                callback:function(token){
+
+                  loginCaptchaToken=
+                    token;
+
+                },
+
+                'expired-callback':
+                  function(){
+
+                    loginCaptchaToken='';
+
+                  },
+
+                'error-callback':
+                  function(errorCode){
+
+                    console.error(
+                      'Turnstile 로그인 오류:',
+                      errorCode
+                    );
+
+                    loginCaptchaToken='';
+
+                  },
+
+                'timeout-callback':
+                  function(){
+
+                    loginCaptchaToken='';
+
+                  }
+
+              }
+            );
+
+        }
+
+
+        /* 회원가입 위젯 */
+
+        if(
+          signupBox &&
+          signupTurnstileWidget===null
+        ){
+
+          signupTurnstileWidget=
+            window.turnstile.render(
+              '#loveSignupTurnstile',
+              {
+
+                sitekey:
+                  LOVE_TURNSTILE_SITE_KEY,
+
+                theme:'light',
+
+                size:'flexible',
+
+                callback:function(token){
+
+                  signupCaptchaToken=
+                    token;
+
+                },
+
+                'expired-callback':
+                  function(){
+
+                    signupCaptchaToken='';
+
+                  },
+
+                'error-callback':
+                  function(errorCode){
+
+                    console.error(
+                      'Turnstile 회원가입 오류:',
+                      errorCode
+                    );
+
+                    signupCaptchaToken='';
+
+                  },
+
+                'timeout-callback':
+                  function(){
+
+                    signupCaptchaToken='';
+
+                  }
+
+              }
+            );
+
+        }
+
+      });
+
+  }
+
+
+  function resetLoginTurnstile(){
+
+    loginCaptchaToken='';
+
+    if(
+      window.turnstile &&
+      loginTurnstileWidget!==null
+    ){
+
+      try{
+
+        window.turnstile.reset(
+          loginTurnstileWidget
+        );
+
+      }catch(e){
+
+        console.error(e);
+
+      }
+
+    }
+
+  }
+
+
+  function resetSignupTurnstile(){
+
+    signupCaptchaToken='';
+
+    if(
+      window.turnstile &&
+      signupTurnstileWidget!==null
+    ){
+
+      try{
+
+        window.turnstile.reset(
+          signupTurnstileWidget
+        );
+
+      }catch(e){
+
+        console.error(e);
+
+      }
+
+    }
+
+  }
+
+
+  /* =========================================
+     AUTH UI
+     ========================================= */
+
   function show(mode){
 
     overlay.classList.add('show');
@@ -440,16 +814,48 @@
       'love-auth-lock'
     );
 
-    tabs.forEach(t=>{
+
+    tabs.forEach(function(t){
+
       t.classList.toggle(
         'active',
         t.dataset.mode===mode
       );
+
     });
 
-    panels.forEach(p=>{
-      p.hidden=p.dataset.panel!==mode;
+
+    panels.forEach(function(p){
+
+      p.hidden=
+        p.dataset.panel!==mode;
+
     });
+
+
+    clearMessages();
+
+
+    renderTurnstile()
+      .catch(function(error){
+
+        console.error(
+          'Turnstile 로드 실패:',
+          error
+        );
+
+        const target=
+          mode==='signup'
+            ? 'loveSignupMessage'
+            : 'loveLoginMessage';
+
+        msg(
+          target,
+          '보안 확인을 불러오지 못했습니다. 페이지를 새로고침한 뒤 다시 시도해주세요.',
+          true
+        );
+
+      });
 
   }
 
@@ -470,9 +876,14 @@
   }
 
 
-  function msg(id,text,error=false){
+  function msg(
+    id,
+    text,
+    error=false
+  ){
 
-    const m=document.getElementById(id);
+    const m=
+      document.getElementById(id);
 
     if(!m)return;
 
@@ -494,13 +905,15 @@
       .querySelectorAll(
         '#loveGlobalAuth .love-auth-message'
       )
-      .forEach(m=>{
+      .forEach(function(m){
 
         m.style.display='none';
 
         m.textContent='';
 
-        m.classList.remove('error');
+        m.classList.remove(
+          'error'
+        );
 
       });
 
@@ -518,22 +931,16 @@
       btn.textContent;
 
     btn.textContent=
-      on ? '처리 중...' :
-      btn.dataset.oldText;
+      on
+        ? '처리 중...'
+        : btn.dataset.oldText;
 
   }
 
 
-  /*
-    Supabase 내부에서는 ID를 이메일 형식으로 변환해서 사용합니다.
-
-    사용자에게는 이메일을 요구하지 않습니다.
-    실제 입력값:
-    example123
-
-    Supabase 내부:
-    example123@love-team.local
-  */
+  /* =========================================
+     INTERNAL AUTH EMAIL
+     ========================================= */
 
   function makeAuthEmail(id){
 
@@ -542,7 +949,7 @@
         .trim()
         .toLowerCase()
         .replace(/\s+/g,'')
-    ) + '@love-team.local';
+    )+'@love-team.local';
 
   }
 
@@ -553,6 +960,10 @@
 
   }
 
+
+  /* =========================================
+     HEADER AUTH OPENERS
+     ========================================= */
 
   function bindOpeners(){
 
@@ -565,15 +976,16 @@
         'a[data-auth-open],' +
         'a[href="#auth"]'
       )
-      .forEach(a=>{
+      .forEach(function(a){
 
         if(a.dataset.loveAuthBound)return;
 
         a.dataset.loveAuthBound='1';
 
+
         a.addEventListener(
           'click',
-          e=>{
+          function(e){
 
             e.preventDefault();
 
@@ -597,11 +1009,12 @@
       .querySelectorAll(
         '.header-actions a, .actions a'
       )
-      .forEach(a=>{
+      .forEach(function(a){
 
         const text=
           (a.textContent||'')
             .replace(/\s/g,'');
+
 
         if(
           /로그인.*회원가입|로그인|회원가입/.test(text) &&
@@ -611,9 +1024,10 @@
 
           a.dataset.loveAuthBound='1';
 
+
           a.addEventListener(
             'click',
-            e=>{
+            function(e){
 
               e.preventDefault();
 
@@ -637,11 +1051,15 @@
   bindOpeners();
 
 
+  /* =========================================
+     LOGIN / SIGNUP
+     ========================================= */
+
   document
     .getElementById('loveGlobalAuth')
     .addEventListener(
       'click',
-      async e=>{
+      async function(e){
 
         const t=
           e.target.closest(
@@ -667,6 +1085,7 @@
         const action=
           btn.dataset.submit;
 
+
         busy(btn,true);
 
 
@@ -681,32 +1100,43 @@
           }
 
 
-          /* =========================
+          /* =================================
              회원가입
-          ========================= */
+             ================================= */
 
           if(action==='signup'){
 
             const id=
               document
-                .getElementById('loveSignupId')
+                .getElementById(
+                  'loveSignupId'
+                )
                 .value
                 .trim();
+
 
             const name=
               document
-                .getElementById('loveSignupName')
+                .getElementById(
+                  'loveSignupName'
+                )
                 .value
                 .trim();
 
+
             const pw=
               document
-                .getElementById('loveSignupPassword')
+                .getElementById(
+                  'loveSignupPassword'
+                )
                 .value;
+
 
             const pw2=
               document
-                .getElementById('loveSignupPassword2')
+                .getElementById(
+                  'loveSignupPassword2'
+                )
                 .value;
 
 
@@ -768,6 +1198,17 @@
             }
 
 
+            if(!signupCaptchaToken){
+
+              return msg(
+                'loveSignupMessage',
+                '보안 확인을 완료해주세요.',
+                true
+              );
+
+            }
+
+
             const authEmail=
               makeAuthEmail(id);
 
@@ -780,16 +1221,27 @@
                 password:pw,
 
                 options:{
+
+                  captchaToken:
+                    signupCaptchaToken,
+
                   data:{
+
                     username:id,
+
                     name:name
+
                   }
+
                 }
 
               });
 
 
             if(error)throw error;
+
+
+            resetSignupTurnstile();
 
 
             if(data.user){
@@ -799,18 +1251,25 @@
                 '회원가입이 완료되었습니다. ID와 비밀번호로 로그인해주세요.'
               );
 
+
               setTimeout(
-                ()=>{
+                function(){
+
                   show('login');
+
 
                   const loginId=
                     document.getElementById(
                       'loveLoginId'
                     );
 
+
                   if(loginId){
+
                     loginId.value=id;
+
                     loginId.focus();
+
                   }
 
                 },
@@ -822,21 +1281,26 @@
           }
 
 
-          /* =========================
+          /* =================================
              로그인
-          ========================= */
+             ================================= */
 
           if(action==='login'){
 
             const id=
               document
-                .getElementById('loveLoginId')
+                .getElementById(
+                  'loveLoginId'
+                )
                 .value
                 .trim();
 
+
             const pw=
               document
-                .getElementById('loveLoginPassword')
+                .getElementById(
+                  'loveLoginPassword'
+                )
                 .value;
 
 
@@ -862,6 +1326,17 @@
             }
 
 
+            if(!loginCaptchaToken){
+
+              return msg(
+                'loveLoginMessage',
+                '보안 확인을 완료해주세요.',
+                true
+              );
+
+            }
+
+
             const authEmail=
               makeAuthEmail(id);
 
@@ -871,12 +1346,22 @@
 
                 email:authEmail,
 
-                password:pw
+                password:pw,
+
+                options:{
+
+                  captchaToken:
+                    loginCaptchaToken
+
+                }
 
               });
 
 
             if(error)throw error;
+
+
+            resetLoginTurnstile();
 
 
             msg(
@@ -903,15 +1388,11 @@
 
           console.error(err);
 
+
           let message=
             err?.message ||
             '처리 중 오류가 발생했습니다.';
 
-
-          /*
-            Supabase 에러를 사용자에게
-            조금 더 자연스럽게 표시
-          */
 
           if(
             /already registered|already exists|User already registered/i
@@ -928,6 +1409,13 @@
 
             message=
               'ID 또는 비밀번호가 올바르지 않습니다.';
+
+          }else if(
+            /captcha|turnstile/i.test(message)
+          ){
+
+            message=
+              '보안 확인에 실패했습니다. 다시 확인해주세요.';
 
           }else if(
             /email/i.test(message) &&
@@ -952,6 +1440,17 @@
             true
           );
 
+
+          if(action==='signup'){
+
+            resetSignupTurnstile();
+
+          }else{
+
+            resetLoginTurnstile();
+
+          }
+
         }finally{
 
           busy(btn,false);
@@ -961,6 +1460,10 @@
       }
     );
 
+
+  /* =========================================
+     AUTH CLOSE
+     ========================================= */
 
   document
     .querySelector(
@@ -974,16 +1477,28 @@
 
   overlay.addEventListener(
     'click',
-    e=>{
-      if(e.target===overlay)hide();
+    function(e){
+
+      if(e.target===overlay){
+
+        hide();
+
+      }
+
     }
   );
 
 
   document.addEventListener(
     'keydown',
-    e=>{
-      if(e.key==='Escape')hide();
+    function(e){
+
+      if(e.key==='Escape'){
+
+        hide();
+
+      }
+
     }
   );
 
@@ -997,18 +1512,22 @@
   document.head.appendChild(lock);
 
 
+  /* =========================================
+     SUPABASE AUTH STATE
+     ========================================= */
+
   if(supabase){
 
     supabase.auth.onAuthStateChange(
-      (event,session)=>{
+      function(event,session){
 
         window.dispatchEvent(
           new CustomEvent(
             'love-auth-state',
             {
               detail:{
-                event,
-                session
+                event:event,
+                session:session
               }
             }
           )
@@ -1019,112 +1538,279 @@
 
 
     supabase.auth.getSession()
-      .then(({data})=>{
+      .then(function(result){
 
         window.LoveTeamSession=
-          data.session;
+          result?.data?.session || null;
 
       });
 
   }
 
 
-  window.LoveTeamAuth={
-    open:show,
-    close:hide,
-    client:supabase
-  };
-  // 로그인 상태를 홈페이지 헤더에 표시
-  function updateLoveHeader(session){
-    const loggedIn=!!session;
-    const user=session?.user;
-    const meta=user?.user_metadata||{};
-    const username=meta.username||'회원';
-    const name=meta.name||username;
-
-    document.querySelectorAll('.header-actions a, .actions a').forEach(function(a){
-      const text=(a.textContent||'').replace(/\s/g,'');
-      if(a.classList.contains('kakao-btn')||a.classList.contains('kakao')) return;
-      if(/장바구니|고객센터/.test(text)) return;
-
-      if(loggedIn){
-        if(!a.dataset.loveAuthStatus) return;
-
-        a.textContent=name+'님 / 로그아웃';
-        a.href='#logout';
-        a.removeAttribute('data-auth-open');
-        a.dataset.loveLogout='1';
-      }else{
-        if(a.dataset.loveLogout==='1'){
-          a.textContent='로그인 / 회원가입';
-          a.href='#';
-          a.dataset.authOpen='1';
-          a.dataset.loveLogout='';
-        }
-      }
-    });
-
-    document.querySelectorAll('#mobileOpenAuth').forEach(function(a){
-      if(loggedIn){
-        a.textContent=name+'님 / 로그아웃';
-        a.href='#logout';
-        a.dataset.loveLogout='1';
-      }else{
-        a.textContent='로그인 / 회원가입';
-        a.href='#';
-        a.dataset.loveLogout='';
-      }
-    });
-  }
-
-  // 헤더 로그인 버튼 표시용 표시 대상 지정
-  document.querySelectorAll('.header-actions a, .actions a').forEach(function(a){
-    const text=(a.textContent||'').replace(/\s/g,'');
-    if(/로그인|회원가입/.test(text) && !/장바구니|고객센터/.test(text)){
-      a.dataset.loveAuthStatus='1';
-    }
-  });
-
-  // 로그아웃 처리
-  document.addEventListener('click',async function(e){
-    const logout=e.target.closest('[data-love-logout]');
-    if(!logout)return;
-
-    e.preventDefault();
-
-    if(!supabase)return;
-
-    const {error}=await supabase.auth.signOut();
-
-    if(error){
-      console.error(error);
-      return;
-    }
-
-    updateLoveHeader(null);
-    window.dispatchEvent(new Event('love-auth-changed'));
-  });
-
-  // 현재 로그인 상태 확인
-  if(supabase){
-    supabase.auth.getSession().then(function(result){
-      const session=result?.data?.session||null;
-      window.LoveTeamSession=session;
-      updateLoveHeader(session);
-    });
-
-    supabase.auth.onAuthStateChange(function(event,session){
-      window.LoveTeamSession=session;
-      updateLoveHeader(session);
-    });
-  }
-    /* =========================================
-     LOVE TEAM 회원 메뉴
+  /* =========================================
+     PUBLIC AUTH API
      ========================================= */
 
-  const memberMenuStyle=document.createElement('style');
+  window.LoveTeamAuth={
+
+    open:show,
+
+    close:hide,
+
+    client:supabase
+
+  };
+
+
+  /* =========================================
+     HEADER LOGIN STATE
+     ========================================= */
+
+  function updateLoveHeader(session){
+
+    const loggedIn=
+      !!session;
+
+    const user=
+      session?.user;
+
+    const meta=
+      user?.user_metadata || {};
+
+    const username=
+      meta.username || '회원';
+
+    const name=
+      meta.name || username;
+
+
+    document
+      .querySelectorAll(
+        '.header-actions a, .actions a'
+      )
+      .forEach(function(a){
+
+        const text=
+          (a.textContent||'')
+            .replace(/\s/g,'');
+
+
+        if(
+          a.classList.contains('kakao-btn') ||
+          a.classList.contains('kakao')
+        ){
+
+          return;
+
+        }
+
+
+        if(
+          /장바구니|고객센터/.test(text)
+        ){
+
+          return;
+
+        }
+
+
+        if(loggedIn){
+
+          if(!a.dataset.loveAuthStatus){
+
+            return;
+
+          }
+
+
+          a.textContent=
+            name+'님 / 로그아웃';
+
+          a.href='#logout';
+
+          a.removeAttribute(
+            'data-auth-open'
+          );
+
+          a.dataset.loveLogout='1';
+
+        }else{
+
+          if(
+            a.dataset.loveLogout==='1'
+          ){
+
+            a.textContent=
+              '로그인 / 회원가입';
+
+            a.href='#';
+
+            a.dataset.authOpen='1';
+
+            a.dataset.loveLogout='';
+
+          }
+
+        }
+
+      });
+
+
+    document
+      .querySelectorAll(
+        '#mobileOpenAuth'
+      )
+      .forEach(function(a){
+
+        if(loggedIn){
+
+          a.textContent=
+            name+'님 / 로그아웃';
+
+          a.href='#logout';
+
+          a.dataset.loveLogout='1';
+
+        }else{
+
+          a.textContent=
+            '로그인 / 회원가입';
+
+          a.href='#';
+
+          a.dataset.loveLogout='';
+
+        }
+
+      });
+
+  }
+
+
+  /* =========================================
+     AUTH HEADER TARGET
+     ========================================= */
+
+  document
+    .querySelectorAll(
+      '.header-actions a, .actions a'
+    )
+    .forEach(function(a){
+
+      const text=
+        (a.textContent||'')
+          .replace(/\s/g,'');
+
+
+      if(
+        /로그인|회원가입/.test(text) &&
+        !/장바구니|고객센터/.test(text)
+      ){
+
+        a.dataset.loveAuthStatus='1';
+
+      }
+
+    });
+
+
+  /* =========================================
+     LOGOUT
+     ========================================= */
+
+  document.addEventListener(
+    'click',
+    async function(e){
+
+      const logout=
+        e.target.closest(
+          '[data-love-logout]'
+        );
+
+
+      if(!logout)return;
+
+
+      e.preventDefault();
+
+
+      if(!supabase)return;
+
+
+      const {error}=
+        await supabase.auth.signOut();
+
+
+      if(error){
+
+        console.error(error);
+
+        return;
+
+      }
+
+
+      updateLoveHeader(null);
+
+
+      window.dispatchEvent(
+        new Event(
+          'love-auth-changed'
+        )
+      );
+
+    }
+  );
+
+
+  /* =========================================
+     CURRENT SESSION
+     ========================================= */
+
+  if(supabase){
+
+    supabase.auth.getSession()
+      .then(function(result){
+
+        const session=
+          result?.data?.session || null;
+
+        window.LoveTeamSession=
+          session;
+
+        updateLoveHeader(
+          session
+        );
+
+      });
+
+
+    supabase.auth.onAuthStateChange(
+      function(event,session){
+
+        window.LoveTeamSession=
+          session;
+
+        updateLoveHeader(
+          session
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================
+     LOVE TEAM MEMBER MENU
+     ========================================= */
+
+  const memberMenuStyle=
+    document.createElement('style');
 
   memberMenuStyle.textContent=`
+
     .love-member-menu{
       position:fixed;
       width:280px;
@@ -1338,35 +2024,47 @@
       }
 
     }
+
   `;
 
-  document.head.appendChild(memberMenuStyle);
+  document.head.appendChild(
+    memberMenuStyle
+  );
 
 
-  /* 회원 메뉴 생성 */
+  /* =========================================
+     MEMBER MENU
+     ========================================= */
 
-  const memberMenu=document.createElement('div');
+  const memberMenu=
+    document.createElement('div');
 
-  memberMenu.className='love-member-menu';
+  memberMenu.className=
+    'love-member-menu';
+
 
   memberMenu.innerHTML=`
+
     <div class="love-member-head">
 
       <div class="love-member-kicker">
         LOVE TEAM MEMBER
       </div>
 
-      <div class="love-member-name"
-           id="loveMemberName">
+      <div
+        class="love-member-name"
+        id="loveMemberName">
         회원
       </div>
 
-      <div class="love-member-id"
-           id="loveMemberId">
+      <div
+        class="love-member-id"
+        id="loveMemberId">
         ID
       </div>
 
     </div>
+
 
     <button
       type="button"
@@ -1375,24 +2073,34 @@
       🔐 비밀번호 변경
     </button>
 
+
     <button
       type="button"
       class="love-member-btn logout"
       id="loveMemberLogout">
       🚪 로그아웃
     </button>
+
   `;
 
-  document.body.appendChild(memberMenu);
+  document.body.appendChild(
+    memberMenu
+  );
 
 
-  /* 비밀번호 변경창 */
+  /* =========================================
+     PASSWORD CHANGE
+     ========================================= */
 
-  const passwordOverlay=document.createElement('div');
+  const passwordOverlay=
+    document.createElement('div');
 
-  passwordOverlay.className='love-password-overlay';
+  passwordOverlay.className=
+    'love-password-overlay';
+
 
   passwordOverlay.innerHTML=`
+
     <div class="love-password-box">
 
       <button
@@ -1403,13 +2111,16 @@
         ×
       </button>
 
+
       <p class="kicker">
         LOVE TEAM MEMBER
       </p>
 
+
       <h2>
         비밀번호 변경
       </h2>
+
 
       <label>
         새 비밀번호
@@ -1421,6 +2132,7 @@
           autocomplete="new-password">
       </label>
 
+
       <label>
         새 비밀번호 재확인
 
@@ -1431,14 +2143,17 @@
           autocomplete="new-password">
       </label>
 
+
       <p class="love-password-help">
         비밀번호는 8자리 이상이며 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.
       </p>
+
 
       <p
         class="love-password-message"
         id="lovePasswordMessage">
       </p>
+
 
       <button
         type="button"
@@ -1448,16 +2163,18 @@
       </button>
 
     </div>
+
   `;
 
-  document.body.appendChild(passwordOverlay);
+  document.body.appendChild(
+    passwordOverlay
+  );
 
-
-  /* 회원 메뉴 위치 */
 
   function positionMemberMenu(target){
 
     if(!target)return;
+
 
     if(window.innerWidth<=600){
 
@@ -1469,37 +2186,68 @@
 
     }
 
-    const rect=target.getBoundingClientRect();
+
+    const rect=
+      target.getBoundingClientRect();
+
 
     const menuWidth=280;
+
 
     let left=
       rect.right-menuWidth;
 
+
     let top=
       rect.bottom+10;
 
+
     if(left<10){
+
       left=10;
+
     }
 
-    if(left+menuWidth>window.innerWidth-10){
-      left=window.innerWidth-menuWidth-10;
+
+    if(
+      left+menuWidth>
+      window.innerWidth-10
+    ){
+
+      left=
+        window.innerWidth-
+        menuWidth-
+        10;
+
     }
 
-    if(top+memberMenu.offsetHeight>window.innerHeight-10){
+
+    if(
+      top+
+      memberMenu.offsetHeight>
+      window.innerHeight-10
+    ){
+
       top=
         rect.top-
         memberMenu.offsetHeight-
         10;
+
     }
+
 
     if(top<10){
+
       top=10;
+
     }
 
-    memberMenu.style.left=left+'px';
-    memberMenu.style.top=top+'px';
+
+    memberMenu.style.left=
+      left+'px';
+
+    memberMenu.style.top=
+      top+'px';
 
   }
 
@@ -1509,54 +2257,77 @@
     const session=
       window.LoveTeamSession;
 
+
     if(!session){
 
       if(window.LoveTeamAuth){
-        window.LoveTeamAuth.open('login');
+
+        window.LoveTeamAuth.open(
+          'login'
+        );
+
       }
 
       return;
 
     }
 
+
     const user=
       session.user;
 
+
     const meta=
       user?.user_metadata || {};
+
 
     const name=
       meta.name ||
       meta.username ||
       '회원';
 
+
     const username=
       meta.username ||
       'ID 없음';
+
 
     const nameEl=
       document.getElementById(
         'loveMemberName'
       );
 
+
     const idEl=
       document.getElementById(
         'loveMemberId'
       );
 
+
     if(nameEl){
+
       nameEl.textContent=
         name+'님';
+
     }
+
 
     if(idEl){
+
       idEl.textContent=
         'ID · '+username;
+
     }
 
-    memberMenu.classList.add('show');
 
-    positionMemberMenu(target);
+    memberMenu.classList.add(
+      'show'
+    );
+
+
+    positionMemberMenu(
+      target
+    );
 
   }
 
@@ -1574,21 +2345,28 @@
 
     hideMemberMenu();
 
+
     passwordOverlay.classList.add(
       'show'
     );
+
 
     const first=
       document.getElementById(
         'loveNewPassword'
       );
 
+
     if(first){
 
       first.value='';
 
       setTimeout(
-        ()=>first.focus(),
+        function(){
+
+          first.focus();
+
+        },
         100
       );
 
@@ -1603,10 +2381,12 @@
       'show'
     );
 
+
     const message=
       document.getElementById(
         'lovePasswordMessage'
       );
+
 
     if(message){
 
@@ -1633,11 +2413,14 @@
         'lovePasswordMessage'
       );
 
+
     if(!message)return;
+
 
     message.textContent=text;
 
-    message.style.display='block';
+    message.style.display=
+      'block';
 
     message.classList.toggle(
       'error',
@@ -1647,7 +2430,9 @@
   }
 
 
-  /* 로그인 상태의 헤더 클릭 가로채기 */
+  /* =========================================
+     LOGGED-IN HEADER CLICK
+     ========================================= */
 
   document.addEventListener(
     'click',
@@ -1658,37 +2443,50 @@
           '.header-actions a, .actions a, #mobileOpenAuth'
         );
 
+
       if(!target)return;
+
 
       const session=
         window.LoveTeamSession;
 
+
       if(!session)return;
+
 
       const isAuthButton=
         target.dataset.loveAuthStatus==='1' ||
         target.dataset.loveLogout==='1' ||
         /로그아웃/.test(
-          (target.textContent||'')
+          target.textContent||''
         );
 
+
       if(!isAuthButton)return;
+
 
       e.preventDefault();
 
       e.stopImmediatePropagation();
 
-      showMemberMenu(target);
+
+      showMemberMenu(
+        target
+      );
 
     },
     true
   );
 
 
-  /* 회원 메뉴 안 클릭 */
+  /* =========================================
+     MEMBER MENU BUTTONS
+     ========================================= */
 
   document
-    .getElementById('loveOpenPassword')
+    .getElementById(
+      'loveOpenPassword'
+    )
     .addEventListener(
       'click',
       function(){
@@ -1700,33 +2498,46 @@
 
 
   document
-    .getElementById('loveMemberLogout')
+    .getElementById(
+      'loveMemberLogout'
+    )
     .addEventListener(
       'click',
       async function(){
 
         if(!supabase)return;
 
+
         this.disabled=true;
+
 
         try{
 
           const {error}=
             await supabase.auth.signOut();
 
+
           if(error)throw error;
+
 
           hideMemberMenu();
 
-          window.LoveTeamSession=null;
 
-          updateLoveHeader(null);
+          window.LoveTeamSession=
+            null;
+
+
+          updateLoveHeader(
+            null
+          );
+
 
           window.dispatchEvent(
             new Event(
               'love-auth-changed'
             )
           );
+
 
         }catch(error){
 
@@ -1742,10 +2553,14 @@
     );
 
 
-  /* 비밀번호 변경창 닫기 */
+  /* =========================================
+     PASSWORD CLOSE
+     ========================================= */
 
   document
-    .getElementById('lovePasswordClose')
+    .getElementById(
+      'lovePasswordClose'
+    )
     .addEventListener(
       'click',
       hidePasswordChange
@@ -1769,10 +2584,14 @@
   );
 
 
-  /* 비밀번호 변경 */
+  /* =========================================
+     PASSWORD CHANGE
+     ========================================= */
 
   document
-    .getElementById('lovePasswordSubmit')
+    .getElementById(
+      'lovePasswordSubmit'
+    )
     .addEventListener(
       'click',
       async function(){
@@ -1788,12 +2607,14 @@
 
         }
 
+
         const password=
           document
             .getElementById(
               'loveNewPassword'
             )
             .value;
+
 
         const password2=
           document
@@ -1843,6 +2664,7 @@
               password:password
             });
 
+
           if(error)throw error;
 
 
@@ -1856,6 +2678,7 @@
               'loveNewPassword'
             )
             .value='';
+
 
           document
             .getElementById(
@@ -1874,9 +2697,11 @@
 
           console.error(error);
 
+
           let message=
             error?.message ||
             '비밀번호 변경 중 오류가 발생했습니다.';
+
 
           if(
             /password/i.test(message)
@@ -1887,10 +2712,12 @@
 
           }
 
+
           passwordMessage(
             message,
             true
           );
+
 
         }finally{
 
@@ -1905,14 +2732,18 @@
     );
 
 
-  /* 바깥 클릭으로 회원 메뉴 닫기 */
+  /* =========================================
+     MEMBER MENU OUTSIDE CLICK
+     ========================================= */
 
   document.addEventListener(
     'click',
     function(e){
 
       if(
-        !memberMenu.contains(e.target) &&
+        !memberMenu.contains(
+          e.target
+        ) &&
         !e.target.closest(
           '.header-actions a, .actions a, #mobileOpenAuth'
         )
@@ -1926,7 +2757,9 @@
   );
 
 
-  /* 화면 크기 변경 */
+  /* =========================================
+     RESIZE
+     ========================================= */
 
   window.addEventListener(
     'resize',
@@ -1938,7 +2771,9 @@
   );
 
 
-  /* ESC */
+  /* =========================================
+     ESC
+     ========================================= */
 
   document.addEventListener(
     'keydown',
@@ -1954,4 +2789,6 @@
 
     }
   );
+
+
 })();
