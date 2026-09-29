@@ -1,318 +1,203 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LOVE TEAM | 관리자</title>
+  <title>LOVE TEAM | 관리자</title>
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-<style>
-/* =========================
-   ADMIN PAGE
-========================= */
+  <style>
+    .admin-page{
+      min-height:calc(100vh - 140px);
+      background:#0b0b0f;
+      color:#fff;
+      padding:80px 20px;
+    }
 
-.admin-page{
-  min-height:calc(100vh - 174px);
-  background:#0b0b10;
-  color:#fff;
-  padding:70px 20px 100px;
-}
+    .admin-wrap{
+      max-width:1100px;
+      margin:0 auto;
+    }
 
-.admin-wrap{
-  max-width:1100px;
-  margin:0 auto;
-}
+    .admin-head{
+      margin-bottom:30px;
+    }
 
-/* 상단 제목 */
+    .admin-head h1{
+      margin:0 0 10px;
+      font-size:36px;
+      font-weight:800;
+    }
 
-.admin-head{
-  text-align:center;
-  margin-bottom:45px;
-}
+    .admin-head p{
+      margin:0;
+      color:#999;
+    }
 
-.admin-head .eyebrow{
-  color:#9b6cff;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin:0 0 10px;
-}
+    .admin-status{
+      margin-top:20px;
+      padding:18px 20px;
+      border-radius:14px;
+      background:#17171d;
+      border:1px solid #292932;
+      color:#aaa;
+    }
 
-.admin-head h1{
-  margin:0;
-  font-size:38px;
-  font-weight:900;
-}
+    .admin-content{
+      display:none;
+    }
 
-.admin-head p{
-  margin:12px 0 0;
-  color:#9696a5;
-  font-size:14px;
-}
+    .admin-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      margin-top:25px;
+    }
 
-/* 관리자 상태 */
+    .admin-card{
+      padding:25px;
+      border-radius:18px;
+      background:linear-gradient(145deg,#181820,#111116);
+      border:1px solid #292932;
+    }
 
-.admin-status{
-  display:none;
-  margin:0 auto 30px;
-  max-width:100%;
-  padding:16px 20px;
-  border:1px solid rgba(151,103,255,.25);
-  border-radius:14px;
-  background:rgba(119,70,210,.08);
-  color:#c8b5ff;
-  font-size:13px;
-}
+    .admin-card h2{
+      margin:0 0 10px;
+      font-size:20px;
+    }
 
-/* 관리자 컨텐츠 */
+    .admin-card p{
+      margin:0;
+      color:#999;
+      line-height:1.6;
+    }
 
-.admin-content{
-  display:none;
-}
+    .admin-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
 
-/* 카드 */
+    .admin-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:10px;
+      border:1px solid #33333d;
+      background:#202028;
+      color:#fff;
+      text-decoration:none;
+      cursor:pointer;
+    }
 
-.admin-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-  margin-bottom:20px;
-}
+    .admin-btn:hover{
+      background:#292932;
+    }
 
-.admin-card{
-  background:#14141b;
-  border:1px solid #292934;
-  border-radius:18px;
-  padding:28px;
-  min-height:150px;
-  box-sizing:border-box;
-}
+    .member-search{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+    }
 
-.admin-card.full{
-  grid-column:1 / -1;
-}
+    .member-search input{
+      flex:1;
+      min-width:0;
+      height:44px;
+      padding:0 14px;
+      border-radius:10px;
+      border:1px solid #33333d;
+      background:#0e0e13;
+      color:#fff;
+      outline:none;
+    }
 
-.admin-card h2{
-  margin:0 0 9px;
-  font-size:19px;
-}
+    .member-result{
+      margin-top:15px;
+      padding:15px;
+      border-radius:10px;
+      background:#101016;
+      border:1px solid #292932;
+      color:#999;
+      line-height:1.6;
+    }
 
-.admin-card p{
-  margin:0;
-  color:#90909e;
-  font-size:13px;
-  line-height:1.7;
-}
+    .admin-denied{
+      display:none;
+      margin-top:25px;
+      padding:25px;
+      border-radius:16px;
+      background:#17171d;
+      border:1px solid #3a2630;
+      color:#fff;
+    }
 
-.admin-card .admin-number{
-  font-size:34px;
-  font-weight:900;
-  margin:18px 0 0;
-  background:linear-gradient(135deg,#4d91ff,#a74fe9);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
+    .admin-denied strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:20px;
+    }
 
-/* 관리 버튼 */
+    .admin-denied p{
+      margin:0;
+      color:#aaa;
+      line-height:1.6;
+    }
 
-.admin-actions{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:20px;
-}
+    @media(max-width:700px){
 
-.admin-action{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:50px;
-  padding:0 15px;
-  border-radius:11px;
-  border:1px solid #30303c;
-  background:#1a1a22;
-  color:#fff;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:800;
-  transition:.2s;
-}
+      .admin-page{
+        padding:55px 16px;
+      }
 
-.admin-action:hover{
-  border-color:#8053e8;
-  background:#211a31;
-}
+      .admin-head h1{
+        font-size:28px;
+      }
 
-/* 회원 검색 */
+      .admin-grid{
+        grid-template-columns:1fr;
+      }
 
-.member-search{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
-}
+      .member-search{
+        flex-direction:column;
+      }
 
-.member-search input{
-  flex:1;
-  min-width:0;
-  height:48px;
-  padding:0 15px;
-  box-sizing:border-box;
-  border:1px solid #30303c;
-  border-radius:10px;
-  outline:none;
-  background:#0e0e14;
-  color:#fff;
-  font-size:14px;
-}
-
-.member-search input::placeholder{
-  color:#666675;
-}
-
-.member-search button{
-  height:48px;
-  padding:0 22px;
-  border:0;
-  border-radius:10px;
-  background:linear-gradient(135deg,#4d91ff,#a74fe9);
-  color:#fff;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.member-result{
-  display:none;
-  margin-top:15px;
-  padding:17px;
-  border-radius:11px;
-  background:#0e0e14;
-  border:1px solid #292934;
-  color:#c9c9d4;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* 관리자 인증 실패 */
-
-.admin-denied{
-  display:none;
-  max-width:560px;
-  margin:60px auto 0;
-  padding:35px 25px;
-  text-align:center;
-  border:1px solid #2d2d38;
-  border-radius:18px;
-  background:#14141b;
-}
-
-.admin-denied h2{
-  margin:0 0 12px;
-  font-size:21px;
-}
-
-.admin-denied p{
-  margin:0;
-  color:#92929f;
-  font-size:13px;
-  line-height:1.7;
-}
-
-/* 모바일 */
-
-@media(max-width:760px){
-
-  .admin-page{
-    padding:55px 16px 80px;
-  }
-
-  .admin-head h1{
-    font-size:30px;
-  }
-
-  .admin-grid{
-    grid-template-columns:1fr;
-  }
-
-  .admin-card.full{
-    grid-column:auto;
-  }
-
-  .admin-actions{
-    grid-template-columns:1fr;
-  }
-
-  .member-search{
-    flex-direction:column;
-  }
-
-  .member-search button{
-    width:100%;
-  }
-}
-</style>
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- 상단 안내 -->
-<div class="top-notice">
-  아시아서버 추가 비용 없이 이용가능
-</div>
-
-
-<!-- HEADER -->
 <header class="header">
 
-  <a
-    class="logo"
-    href="index.html"
-    aria-label="LOVE TEAM 홈">
-
+  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
     <span class="logo-mark">♥</span>
-
     <span class="logo-text">
       <strong>LOVE</strong>
       <small>TEAM</small>
     </span>
-
   </a>
 
-
   <nav class="nav">
-
-    <a href="notice.html">
-      공지사항
-    </a>
-
-    <a href="faq.html">
-      자주 묻는 질문
-    </a>
-
-    <a href="pricing.html">
-      가격표
-    </a>
-
-    <a href="works.html">
-      작업 내역
-    </a>
-
-    <a href="reviews.html">
-      후기
-    </a>
-
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
   </nav>
 
-
-  <!-- 관리자 페이지에서는 로그인 버튼 하나만 사용 -->
   <div class="header-actions">
 
     <a
       href="#login"
       id="adminAuthLink"
-      data-auth-open>
+      data-auth-open="1"
+    >
       로그인 / 회원가입
     </a>
 
@@ -320,52 +205,35 @@
       class="kakao-btn"
       href="https://open.kakao.com/"
       target="_blank"
-      rel="noopener">
+      rel="noopener"
+    >
       💬 고객센터
     </a>
 
   </div>
 
-
-  <!-- 모바일 메뉴 버튼 -->
   <button
     class="mobile-menu-btn"
     id="mobileMenuBtn"
     type="button"
-    aria-label="메뉴 열기">
+    aria-label="메뉴 열기"
+  >
     ☰
   </button>
 
+  <div class="mobile-menu" id="mobileMenu">
 
-  <!-- 모바일 메뉴 -->
-  <div
-    class="mobile-menu"
-    id="mobileMenu">
-
-    <a href="notice.html">
-      공지사항
-    </a>
-
-    <a href="faq.html">
-      자주 묻는 질문
-    </a>
-
-    <a href="pricing.html">
-      가격표
-    </a>
-
-    <a href="works.html">
-      작업 내역
-    </a>
-
-    <a href="reviews.html">
-      후기
-    </a>
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
 
     <a
       href="#login"
       id="mobileOpenAuth"
-      data-auth-open>
+      data-auth-open="1"
+    >
       로그인 / 회원가입
     </a>
 
@@ -373,7 +241,8 @@
       class="mobile-kakao"
       href="https://open.kakao.com/"
       target="_blank"
-      rel="noopener">
+      rel="noopener"
+    >
       💬 고객센터
     </a>
 
@@ -382,273 +251,174 @@
 </header>
 
 
-<!-- ADMIN -->
 <main class="admin-page">
 
   <div class="admin-wrap">
 
+    <div class="admin-head">
 
-    <!-- 제목 -->
-    <section class="admin-head">
-
-      <p class="eyebrow">
-        LOVE TEAM ADMIN
-      </p>
-
-      <h1>
-        관리자 페이지
-      </h1>
+      <h1>관리자 페이지</h1>
 
       <p>
-        관리자 전용 관리 화면입니다.
+        LOVE TEAM 관리자 전용 페이지입니다.
       </p>
 
-    </section>
+      <div
+        class="admin-status"
+        id="adminStatus"
+      >
+        관리자 인증 확인 중...
+      </div>
 
-
-    <!-- 상태 메시지 -->
-    <div
-      class="admin-status"
-      id="adminStatus">
     </div>
 
 
-    <!-- 관리자 화면 -->
     <section
       class="admin-content"
-      id="adminContent">
-
+      id="adminContent"
+    >
 
       <div class="admin-grid">
 
+        <div class="admin-card">
 
-        <!-- 회원 -->
-        <article class="admin-card">
-
-          <h2>
-            회원 관리
-          </h2>
+          <h2>회원 관리</h2>
 
           <p>
-            가입 회원을 조회하고 회원 관련 기능을 관리합니다.
+            회원 정보를 조회하고 관리합니다.
           </p>
 
-          <div class="admin-number">
-            —
-          </div>
-
           <div class="admin-actions">
-
-            <a
-              class="admin-action"
-              href="#member-search">
+            <button
+              class="admin-btn"
+              type="button"
+              onclick="document.getElementById('memberSearchInput').focus()"
+            >
               회원 검색
-            </a>
-
-            <a
-              class="admin-action"
-              href="#member-list">
-              회원 목록
-            </a>
-
-            <a
-              class="admin-action"
-              href="#password-reset">
-              비밀번호 관리
-            </a>
-
+            </button>
           </div>
 
-        </article>
+        </div>
 
 
-        <!-- 작업 -->
-        <article class="admin-card">
+        <div class="admin-card">
 
-          <h2>
-            작업 내역 관리
-          </h2>
+          <h2>작업 내역 관리</h2>
 
           <p>
-            진행 중인 작업과 완료된 작업을 관리합니다.
+            작업 내역을 등록하고 관리합니다.
           </p>
 
-          <div class="admin-number">
-            —
-          </div>
-
           <div class="admin-actions">
-
             <a
-              class="admin-action"
-              href="works.html">
+              class="admin-btn"
+              href="works.html"
+            >
               작업 내역 보기
             </a>
-
-            <a
-              class="admin-action"
-              href="#work-add">
-              작업 추가
-            </a>
-
-            <a
-              class="admin-action"
-              href="#work-manage">
-              작업 관리
-            </a>
-
           </div>
 
-        </article>
+        </div>
 
 
-        <!-- 후기 -->
-        <article class="admin-card">
+        <div class="admin-card">
 
-          <h2>
-            후기 관리
-          </h2>
+          <h2>후기 관리</h2>
 
           <p>
-            고객 후기와 별점 정보를 확인하고 관리합니다.
+            회원 후기와 별점 정보를 관리합니다.
           </p>
 
-          <div class="admin-number">
-            —
-          </div>
-
           <div class="admin-actions">
-
             <a
-              class="admin-action"
-              href="reviews.html">
-              후기 보기
+              class="admin-btn"
+              href="reviews.html"
+            >
+              후기 페이지 보기
             </a>
-
-            <a
-              class="admin-action"
-              href="#review-manage">
-              후기 관리
-            </a>
-
-            <a
-              class="admin-action"
-              href="#review-stat">
-              통계
-            </a>
-
           </div>
 
-        </article>
+        </div>
 
 
-        <!-- 공지 -->
-        <article class="admin-card">
+        <div class="admin-card">
 
-          <h2>
-            공지사항 관리
-          </h2>
+          <h2>공지사항 관리</h2>
 
           <p>
             홈페이지 공지사항을 관리합니다.
           </p>
 
-          <div class="admin-number">
-            —
-          </div>
-
           <div class="admin-actions">
-
             <a
-              class="admin-action"
-              href="notice.html">
+              class="admin-btn"
+              href="notice.html"
+            >
               공지사항 보기
             </a>
-
-            <a
-              class="admin-action"
-              href="#notice-add">
-              공지 작성
-            </a>
-
-            <a
-              class="admin-action"
-              href="#notice-manage">
-              공지 관리
-            </a>
-
           </div>
 
-        </article>
+        </div>
 
 
-        <!-- 회원 검색 -->
-        <article
-          class="admin-card full"
-          id="member-search">
+        <div class="admin-card">
 
-          <h2>
-            회원 검색
-          </h2>
+          <h2>회원 검색</h2>
 
           <p>
-            회원 ID를 입력하여 회원 정보를 확인합니다.
+            회원 ID를 입력하여 회원을 검색합니다.
           </p>
-
 
           <div class="member-search">
 
             <input
               id="memberSearchInput"
               type="text"
-              placeholder="회원 ID를 입력하세요"
-              autocomplete="off">
+              placeholder="회원 ID 입력"
+            >
 
             <button
-              id="memberSearchButton"
-              type="button">
+              class="admin-btn"
+              id="memberSearchBtn"
+              type="button"
+            >
               검색
             </button>
 
           </div>
 
-
           <div
             class="member-result"
-            id="memberResult">
+            id="memberResult"
+          >
+            회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.
           </div>
 
-        </article>
+        </div>
 
 
-        <!-- 보안 안내 -->
-        <article class="admin-card full">
+        <div class="admin-card">
 
-          <h2>
-            관리자 보안 안내
-          </h2>
+          <h2>보안 안내</h2>
 
           <p>
-            관리자 권한은 Supabase Edge Function을 통해 확인합니다.
-            관리자 페이지에서는 회원의 실제 비밀번호를 조회하거나 표시하지 않습니다.
+            관리자 인증은 Supabase Edge Function을 통해 서버 측에서 확인합니다.
+            관리자 비밀번호는 관리자 페이지에서 직접 노출되지 않습니다.
           </p>
 
-        </article>
-
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- 권한 없음 -->
     <section
       class="admin-denied"
-      id="adminDenied">
+      id="adminDenied"
+    >
 
-      <h2>
-        관리자 권한이 없습니다.
-      </h2>
+      <strong>관리자 권한이 없습니다.</strong>
 
       <p id="adminDeniedMessage">
         관리자 계정으로 로그인해주세요.
@@ -656,39 +426,28 @@
 
     </section>
 
-
   </div>
 
 </main>
 
 
-<!-- FOOTER -->
-<footer>
-
-  <strong>
-    LOVE TEAM
-  </strong>
-
-  <p>
-    © 2026 LOVE TEAM. All rights reserved.
-  </p>
-
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong>LOVE TEAM</strong>
+      <p>VALORANT 작업 전문 서비스</p>
+    </div>
+  </div>
 </footer>
 
 
-<!-- Supabase -->
-<script src="supabase-config.js"></script>
-
+<!-- 중요: Supabase → config → auth 순서 -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- 기존 로그인/회원가입 시스템 -->
+<script src="supabase-config.js"></script>
 <script src="auth.js"></script>
 
 
 <script>
-/* =========================================================
-   ADMIN AUTH
-========================================================= */
 
 (function(){
 
@@ -707,43 +466,33 @@
 
   function showAdmin(){
 
-    if(adminContent){
-      adminContent.style.display = "block";
-    }
+    adminStatus.textContent =
+      "관리자 인증 성공";
 
-    if(adminDenied){
-      adminDenied.style.display = "none";
-    }
+    adminStatus.style.color =
+      "#fff";
 
-    if(adminStatus){
-      adminStatus.style.display = "block";
-      adminStatus.textContent =
-        "관리자 인증이 완료되었습니다.";
-    }
+    adminContent.style.display =
+      "block";
 
+    adminDenied.style.display =
+      "none";
   }
 
 
   function showDenied(message){
 
-    if(adminContent){
-      adminContent.style.display = "none";
-    }
+    adminContent.style.display =
+      "none";
 
-    if(adminDenied){
-      adminDenied.style.display = "block";
-    }
+    adminDenied.style.display =
+      "block";
 
-    if(adminStatus){
-      adminStatus.style.display = "none";
-    }
+    adminDeniedMessage.textContent =
+      message;
 
-    if(adminDeniedMessage){
-      adminDeniedMessage.textContent =
-        message ||
-        "관리자 계정으로 로그인해주세요.";
-    }
-
+    adminStatus.textContent =
+      "관리자 인증 실패";
   }
 
 
@@ -761,7 +510,6 @@
         );
 
         return;
-
       }
 
 
@@ -770,8 +518,8 @@
 
 
       const {
-        data:sessionData,
-        error:sessionError
+        data: sessionData,
+        error: sessionError
       } =
         await supabase.auth.getSession();
 
@@ -779,16 +527,15 @@
       if(sessionError){
 
         console.error(
-          "세션 확인 오류:",
+          "session error:",
           sessionError
         );
 
         showDenied(
-          "로그인 상태를 확인하지 못했습니다."
+          "로그인 세션을 확인할 수 없습니다."
         );
 
         return;
-
       }
 
 
@@ -803,11 +550,8 @@
         );
 
         return;
-
       }
 
-
-      /* Edge Function 관리자 확인 */
 
       const {
         data,
@@ -822,36 +566,24 @@
 
 
       console.log(
-        "admin-check:",
+        "admin-check response:",
         data,
         error
       );
 
 
-  if(error){
-  console.error("admin-check error:", error);
+      if(error){
 
-  let detail = "";
+        console.error(
+          "admin-check error:",
+          error
+        );
 
-  try{
-    if(error.context){
-      const errorBody = await error.context.json();
-      detail = errorBody?.message || "";
-      console.error("admin-check response:", errorBody);
-    }
-  }catch(e){
-    console.error("error body parse failed:", e);
-  }
+        showDenied(
+          "관리자 인증에 실패했습니다."
+        );
 
-  showDenied(
-    detail
-      ? "관리자 인증 실패: " + detail
-      : "관리자 인증에 실패했습니다."
-  );
-
-  return;
-}
-
+        return;
       }
 
 
@@ -864,7 +596,6 @@
         showAdmin();
 
         return;
-
       }
 
 
@@ -890,8 +621,9 @@
   }
 
 
-  /* 로그인 성공 감지 */
-
+  /*
+    로그인 상태가 변경되면 관리자 인증 재실행
+  */
   window.addEventListener(
     "love-auth-state",
     function(event){
@@ -899,20 +631,26 @@
       const session =
         event.detail?.session;
 
-
       if(session){
 
-        /*
-          로그인 직후 Supabase 세션이
-          저장된 뒤 관리자 인증을 다시 실행
-        */
-
         setTimeout(
-          function(){
-            checkAdmin();
-          },
-          300
+          checkAdmin,
+          500
         );
+
+      }else{
+
+        adminContent.style.display =
+          "none";
+
+        adminDenied.style.display =
+          "block";
+
+        adminStatus.textContent =
+          "로그인 필요";
+
+        adminDeniedMessage.textContent =
+          "관리자 계정으로 로그인해주세요.";
 
       }
 
@@ -920,8 +658,9 @@
   );
 
 
-  /* auth.js가 이미 로그인 상태를 가지고 있는 경우 */
-
+  /*
+    auth.js가 이미 로드된 경우
+  */
   if(
     window.LoveTeamAuth &&
     window.LoveTeamAuth.client
@@ -931,108 +670,60 @@
 
   }else{
 
-    /*
-      auth.js 로딩 직후를 대비
-    */
-
     setTimeout(
       checkAdmin,
-      500
+      1000
     );
 
   }
 
 
-  /* =========================================================
-     회원 검색
-  ========================================================= */
+  /*
+    회원 검색
+  */
+  const searchBtn =
+    document.getElementById(
+      "memberSearchBtn"
+    );
 
   const searchInput =
     document.getElementById(
       "memberSearchInput"
     );
 
-  const searchButton =
-    document.getElementById(
-      "memberSearchButton"
-    );
-
-  const memberResult =
+  const searchResult =
     document.getElementById(
       "memberResult"
     );
 
 
-  async function searchMember(){
+  if(searchBtn){
 
-    if(!searchInput || !memberResult){
-      return;
-    }
-
-
-    const value =
-      searchInput.value.trim();
-
-
-    if(!value){
-
-      memberResult.style.display =
-        "block";
-
-      memberResult.textContent =
-        "검색할 회원 ID를 입력해주세요.";
-
-      return;
-
-    }
-
-
-    /*
-      회원 검색 기능은 추후
-      관리자용 Edge Function과 연결.
-      현재는 UI만 준비.
-    */
-
-    memberResult.style.display =
-      "block";
-
-    memberResult.innerHTML =
-      "회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.";
-
-  }
-
-
-  if(searchButton){
-
-    searchButton.addEventListener(
+    searchBtn.addEventListener(
       "click",
-      searchMember
-    );
+      function(){
 
-  }
+        const id =
+          searchInput.value.trim();
 
+        if(!id){
 
-  if(searchInput){
+          searchResult.textContent =
+            "회원 ID를 입력해주세요.";
 
-    searchInput.addEventListener(
-      "keydown",
-      function(event){
-
-        if(event.key === "Enter"){
-
-          event.preventDefault();
-
-          searchMember();
-
+          return;
         }
+
+        searchResult.textContent =
+          "회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.";
 
       }
     );
 
   }
 
-
 })();
+
 </script>
 
 </body>
