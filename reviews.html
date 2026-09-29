@@ -110,7 +110,9 @@
 }
 
 
-/* 후기 작성 */
+/* =========================
+   후기 작성
+   ========================= */
 
 .review-write-area{
   background:#fff;
@@ -182,6 +184,59 @@
   box-shadow:0 0 0 3px rgba(134,98,237,.08);
 }
 
+
+/* =========================
+   클릭 별점
+   ========================= */
+
+.review-star-box{
+  margin-top:6px;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+
+.review-star{
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  font-size:32px;
+  line-height:1;
+  color:#d9d6e2;
+  cursor:pointer;
+  transition:
+    transform .12s ease,
+    color .12s ease;
+}
+
+.review-star:hover{
+  transform:scale(1.08);
+}
+
+.review-star.active{
+  color:#8b56df;
+}
+
+.review-star:focus-visible{
+  outline:2px solid #8b56df;
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+.review-star-score{
+  margin-left:8px;
+  font-size:11px;
+  color:#777889;
+  font-weight:700;
+  min-width:35px;
+}
+
+
+/* =========================
+   메시지 / 버튼
+   ========================= */
+
 .review-write-message{
   display:none;
   margin:12px 0 0;
@@ -229,7 +284,9 @@
 }
 
 
-/* 모바일 */
+/* =========================
+   모바일
+   ========================= */
 
 @media(max-width:600px){
 
@@ -270,6 +327,10 @@
   .review-write-label select,
   .review-write-label textarea{
     font-size:13px;
+  }
+
+  .review-star{
+    font-size:30px;
   }
 
 }
@@ -330,8 +391,6 @@
 
   <div class="header-actions">
 
-    <!-- 장바구니 제거 -->
-
     <a
       href="#login"
       data-love-auth-status="1"
@@ -378,7 +437,7 @@
   </div>
 
 
-  <!-- 로그인한 회원에게만 표시 -->
+  <!-- 로그인한 회원만 보이는 후기 작성 -->
 
   <div
     id="reviewWriteArea"
@@ -434,35 +493,84 @@
     </label>
 
 
-    <label class="review-write-label">
+    <!-- 별점 -->
+
+    <div class="review-write-label">
 
       별점
 
-      <select id="reviewStars">
+      <div
+        id="reviewStarBox"
+        class="review-star-box"
+        role="radiogroup"
+        aria-label="별점 선택"
+      >
 
-        <option value="5">
-          ★★★★★ 5점
-        </option>
+        <button
+          type="button"
+          class="review-star"
+          data-star="1"
+          aria-label="1점"
+          aria-checked="false"
+          role="radio"
+        >
+          ☆
+        </button>
 
-        <option value="4">
-          ★★★★☆ 4점
-        </option>
+        <button
+          type="button"
+          class="review-star"
+          data-star="2"
+          aria-label="2점"
+          aria-checked="false"
+          role="radio"
+        >
+          ☆
+        </button>
 
-        <option value="3">
-          ★★★☆☆ 3점
-        </option>
+        <button
+          type="button"
+          class="review-star"
+          data-star="3"
+          aria-label="3점"
+          aria-checked="false"
+          role="radio"
+        >
+          ☆
+        </button>
 
-        <option value="2">
-          ★★☆☆☆ 2점
-        </option>
+        <button
+          type="button"
+          class="review-star"
+          data-star="4"
+          aria-label="4점"
+          aria-checked="false"
+          role="radio"
+        >
+          ☆
+        </button>
 
-        <option value="1">
-          ★☆☆☆☆ 1점
-        </option>
+        <button
+          type="button"
+          class="review-star"
+          data-star="5"
+          aria-label="5점"
+          aria-checked="false"
+          role="radio"
+        >
+          ☆
+        </button>
 
-      </select>
+        <span
+          id="reviewStarScore"
+          class="review-star-score"
+        >
+          선택
+        </span>
 
-    </label>
+      </div>
+
+    </div>
 
 
     <label class="review-write-label">
@@ -495,7 +603,7 @@
   </div>
 
 
-  <!-- 로그아웃 회원에게 표시 -->
+  <!-- 로그아웃 상태 -->
 
   <div
     id="reviewLoginNotice"
@@ -549,10 +657,7 @@
 </footer>
 
 
-<!--
-  중요:
-  Supabase와 auth.js를 후기 기능보다 먼저 불러온다.
--->
+<!-- 로그인 기능 먼저 불러오기 -->
 
 <script src="supabase-config.js"></script>
 
@@ -565,7 +670,7 @@
 
 
 /* ============================
-   후기 데이터
+   기존 후기
    ============================ */
 
 const fallback = [
@@ -687,11 +792,9 @@ function render(){
 
             </div>
 
-
             <p class="review-text">
               ${r.text}
             </p>
-
 
             <div class="review-meta">
 
@@ -716,7 +819,7 @@ render();
 
 
 /* ============================
-   후기 작성 기능
+   후기 작성
    ============================ */
 
 (function(){
@@ -752,6 +855,171 @@ render();
     );
 
 
+  const stars =
+    document.querySelectorAll(
+      '.review-star'
+    );
+
+
+  const starScore =
+    document.getElementById(
+      'reviewStarScore'
+    );
+
+
+  let selectedStars = 0;
+
+
+
+  /* ============================
+     별점 표시
+     ============================ */
+
+  function updateStars(score){
+
+    selectedStars = score;
+
+
+    stars.forEach(
+      function(star){
+
+        const value =
+          Number(
+            star.dataset.star
+          );
+
+
+        if(value <= score){
+
+          star.textContent = '★';
+
+          star.classList.add(
+            'active'
+          );
+
+          star.setAttribute(
+            'aria-checked',
+            'true'
+          );
+
+        }else{
+
+          star.textContent = '☆';
+
+          star.classList.remove(
+            'active'
+          );
+
+          star.setAttribute(
+            'aria-checked',
+            'false'
+          );
+
+        }
+
+      }
+    );
+
+
+    if(starScore){
+
+      starScore.textContent =
+        score > 0
+          ? score + '점'
+          : '선택';
+
+    }
+
+  }
+
+
+
+  /* 별 클릭 */
+
+  stars.forEach(
+    function(star){
+
+      star.addEventListener(
+        'click',
+        function(){
+
+          const score =
+            Number(
+              this.dataset.star
+            );
+
+
+          updateStars(
+            score
+          );
+
+        }
+      );
+
+
+      /* 마우스를 올렸을 때 미리보기 */
+
+      star.addEventListener(
+        'mouseenter',
+        function(){
+
+          const preview =
+            Number(
+              this.dataset.star
+            );
+
+
+          stars.forEach(
+            function(item){
+
+              const value =
+                Number(
+                  item.dataset.star
+                );
+
+
+              if(value <= preview){
+
+                item.textContent = '★';
+
+              }else{
+
+                item.textContent = '☆';
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+      /* 마우스가 별 영역을 벗어나면 실제 선택값 복원 */
+
+      document
+        .getElementById(
+          'reviewStarBox'
+        )
+        .addEventListener(
+          'mouseleave',
+          function(){
+
+            updateStars(
+              selectedStars
+            );
+
+          }
+        );
+
+    }
+  );
+
+
+
+  /* ============================
+     메시지
+     ============================ */
 
   function showMessage(
     text,
@@ -777,6 +1045,10 @@ render();
   }
 
 
+
+  /* ============================
+     로그인 상태
+     ============================ */
 
   function updateReviewWriter(){
 
@@ -822,13 +1094,6 @@ render();
 
   }
 
-
-
-  /*
-    auth.js가 현재 로그인 상태를
-    가져오는 동안 잠깐 기다렸다가
-    상태가 변경되면 다시 확인
-  */
 
   updateReviewWriter();
 
@@ -877,7 +1142,9 @@ render();
 
 
 
-  /* 로그인 버튼 */
+  /* ============================
+     로그인 버튼
+     ============================ */
 
   if(loginButton){
 
@@ -903,7 +1170,9 @@ render();
 
 
 
-  /* 후기 등록 */
+  /* ============================
+     후기 등록
+     ============================ */
 
   if(submit){
 
@@ -929,23 +1198,27 @@ render();
 
 
 
+        /* 별점 선택 여부 */
+
+        if(selectedStars === 0){
+
+          showMessage(
+            '별점을 선택해주세요.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
         const service =
           document
             .getElementById(
               'reviewService'
             )
             .value;
-
-
-
-        const stars =
-          Number(
-            document
-              .getElementById(
-                'reviewStars'
-              )
-              .value
-          );
 
 
 
@@ -1025,7 +1298,7 @@ render();
 
           name:displayName,
 
-          stars:stars,
+          stars:selectedStars,
 
           text:text,
 
@@ -1067,6 +1340,10 @@ render();
 
 
 
+        updateStars(0);
+
+
+
         showMessage(
           '후기가 등록되었습니다.'
         );
@@ -1103,5 +1380,6 @@ render();
 
 
 </body>
+
 </html>
 ```
