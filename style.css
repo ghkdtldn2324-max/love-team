@@ -5179,3 +5179,27 @@ select{
     color:rgba(255,255,255,.48)!important;
   }
 }
+
+
+/* PC HOMEPAGE — keep event headline fully inside its panel */
+@media (min-width:901px){
+  .home-page .home-hero-main{
+    grid-template-columns:minmax(330px,.95fr) minmax(0,1.55fr)!important;
+  }
+  .home-page .home-hero-main>.home-hero-event{
+    padding:28px 30px!important;
+    overflow:hidden!important;
+  }
+  .home-page .home-hero-event h2,
+  .home-page .home-hero-event>strong{
+    max-width:100%!important;
+    white-space:normal!important;
+    overflow-wrap:keep-all!important;
+    word-break:keep-all!important;
+  }
+  .home-page .home-hero-event>strong{
+    font-size:20px!important;
+    line-height:1.5!important;
+    letter-spacing:-.8px!important;
+  }
+}
