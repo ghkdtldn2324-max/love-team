@@ -1305,10 +1305,41 @@ render();
             error
           );
 
-          showMessage(
-            '후기 등록에 실패했습니다.',
-            true
-          );
+          const errorText =
+            String(error?.message || error?.details || "");
+
+          if (errorText.includes("REVIEW_COOLDOWN:")) {
+            const rawUntil =
+              errorText.split("REVIEW_COOLDOWN:")[1];
+
+            const until = new Date(rawUntil);
+            let remainText = "잠시 후 다시 시도해주세요.";
+
+            if (!Number.isNaN(until.getTime())) {
+              const remainMs = Math.max(0, until.getTime() - Date.now());
+              const remainMinutes = Math.max(
+                1,
+                Math.ceil(remainMs / 60000)
+              );
+              const hours = Math.floor(remainMinutes / 60);
+              const minutes = remainMinutes % 60;
+
+              remainText =
+                hours > 0
+                  ? hours + "시간 " + minutes + "분 후 다시 작성할 수 있습니다."
+                  : minutes + "분 후 다시 작성할 수 있습니다.";
+            }
+
+            showMessage(
+              "후기는 1시간에 한 번만 작성할 수 있습니다. " + remainText,
+              true
+            );
+          } else {
+            showMessage(
+              '후기 등록에 실패했습니다.',
+              true
+            );
+          }
 
           return;
         }
