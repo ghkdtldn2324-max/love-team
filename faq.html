@@ -3,7 +3,33 @@
 /* MOBILE HEADER LOGO — final page alignment */
 @media(max-width:760px){.header .logo{margin-left:0!important}.header .logo-image{transform:translateX(-12px)!important}}
 </style>
-</head><body>
+
+<style>
+/* PC SUBPAGE BACKGROUND — 20261001 */
+@media(min-width:761px){
+  body.lt-faq-page{
+    position:relative;
+    min-height:100vh;
+    background:#080912 url('assets/118760C5-320F-43B8-B305-7EABC8433F74.png?v=20261001-pc-bg') center center/cover fixed no-repeat!important;
+  }
+  body.lt-faq-page::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.72) 0%,rgba(8,7,18,.82) 48%,rgba(5,5,12,.9) 100%),
+      radial-gradient(circle at 20% 20%,rgba(78,125,255,.12),transparent 34%),
+      radial-gradient(circle at 82% 18%,rgba(177,70,255,.12),transparent 34%);
+  }
+  body.lt-faq-page>*{position:relative;z-index:1;}
+}
+</style>
+<style>
+@media(min-width:761px){.section{background:transparent!important}}
+</style>
+</head><body class="lt-faq-page">
 <div class="top-notice">아시아서버 추가 비용 없이 이용가능</div><header class="header"><a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
   <img class="logo-image" src="assets/love-team-logo-transparent.png?v=20261001-transparent" alt="LOVE TEAM">
 </a><nav class="nav"><a class="home-nav" href="index.html">홈</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button><div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div></header><div class="page-divider" aria-hidden="true"></div>
