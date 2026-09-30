@@ -2149,32 +2149,10 @@
   async function updateAdminAccessUI(session, retryCount = 0) {
 
     const desktopLinks = [];
+    const mobileAdminLink =
+      document.getElementById('loveMobileAdminLink');
 
     document.querySelectorAll('.header-actions').forEach(function(container){
-      let moreButton = container.querySelector('.love-mobile-more-btn');
-      if(!moreButton){
-        moreButton = document.createElement('button');
-        moreButton.type = 'button';
-        moreButton.className = 'love-mobile-more-btn';
-        moreButton.setAttribute('aria-label','회원 메뉴');
-        moreButton.setAttribute('aria-expanded','false');
-        moreButton.textContent = '⋯';
-        container.appendChild(moreButton);
-        moreButton.addEventListener('click', function(event){
-          event.preventDefault();
-          event.stopPropagation();
-          if(!currentSession?.user) return;
-          if(memberMenu.classList.contains('show')){
-            closeMemberMenu();
-            moreButton.setAttribute('aria-expanded','false');
-          }else{
-            openMemberMenu();
-            moreButton.setAttribute('aria-expanded','true');
-          }
-        });
-      }
-      mobileMoreButton = moreButton;
-
       let link = container.querySelector('.love-admin-link');
 
       if(!link){
@@ -2183,6 +2161,7 @@
         link.href = 'admin.html';
         link.textContent = '관리자 페이지';
         link.setAttribute('aria-label','관리자 페이지');
+
         container.insertBefore(
           link,
           container.querySelector('.kakao-btn') || null
@@ -2205,11 +2184,6 @@
     }
 
     try{
-      /*
-        모바일에서는 로그인 직후 세션이 저장되는 순간과
-        Edge Function 인증 토큰이 준비되는 순간이 약간 다를 수 있다.
-        따라서 관리자 확인이 실패하면 잠시 후 최대 3회 재확인한다.
-      */
       const result =
         await supabase.functions.invoke('admin-check',{body:{}});
 
@@ -2226,13 +2200,18 @@
                 fresh?.data?.session || null;
 
               if(freshSession?.user){
-                updateAdminAccessUI(freshSession, retryCount + 1);
+                updateAdminAccessUI(
+                  freshSession,
+                  retryCount + 1
+                );
               }
             });
           }, 350);
-
         } else if(result.error){
-          console.error('관리자 UI 확인 실패:', result.error);
+          console.error(
+            '관리자 UI 확인 실패:',
+            result.error
+          );
         }
 
         return;
@@ -2247,7 +2226,10 @@
       }
 
     }catch(error){
-      console.error('관리자 UI 확인 실패:', error);
+      console.error(
+        '관리자 UI 확인 실패:',
+        error
+      );
 
       if(retryCount < 3){
         setTimeout(function(){
@@ -2256,7 +2238,10 @@
               fresh?.data?.session || null;
 
             if(freshSession?.user){
-              updateAdminAccessUI(freshSession, retryCount + 1);
+              updateAdminAccessUI(
+                freshSession,
+                retryCount + 1
+              );
             }
           });
         }, 350);
