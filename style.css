@@ -6,7 +6,7 @@ a{color:inherit}
 button{font-family:inherit}
 .top-notice{height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#7043dc,#a14cff);color:#fff;font-size:13px;font-weight:700;letter-spacing:.2px}
 .header{position:relative;z-index:1000;height:82px;background:#07070a;color:#fff;border-bottom:1px solid #22232b;display:flex;align-items:center;padding:0 34px;gap:28px}
-.logo{text-decoration:none}
+
 .nav{display:flex;align-items:center;justify-content:center;gap:28px;flex:1}.nav a{color:#ddd;text-decoration:none;font-size:14px;font-weight:700;white-space:nowrap}.nav a:hover{color:#b38aff}
 .header-actions{display:flex;align-items:center;gap:15px;white-space:nowrap}.header-actions>a{font-size:13px;text-decoration:none;color:#eee;font-weight:700}.kakao-btn{background:#ffe600;color:#111!important;padding:12px 16px;border-radius:14px;font-weight:900!important}
 .mobile-menu-btn{display:none}.mobile-menu{display:none}
