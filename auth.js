@@ -1418,12 +1418,17 @@
 
   /* =========================================================
      OPENERS
+     
+     핵심 수정:
+     헤더의 "로그인 / 회원가입"을 눌러도
+     무조건 로그인 화면부터 열림.
   ========================================================= */
 
   function bindOpeners() {
 
     const selectors = [
-      '#openAuth',
+      'a[href="login.html"]',
+      'a[href="signup.html"]',
       'a[href="#login"]',
       'a[href="#signup"]',
       'a[data-auth-open]',
@@ -1446,13 +1451,62 @@
 
             event.preventDefault();
 
-            if (
-              currentSession &&
-              currentSession.user
-            ) {
-              openMemberMenu();
-              return;
-            }
+            /*
+              중요:
+              회원가입 버튼을 눌러도
+              바로 회원가입 화면으로 가지 않고
+              항상 로그인 화면부터 보여준다.
+            */
+
+            show('login');
+
+          }
+        );
+
+      });
+
+
+    /*
+      혹시 다른 페이지의 헤더가
+      .header-actions / .actions 구조를 사용하는 경우도 처리.
+    */
+
+    document
+      .querySelectorAll(
+        '.header-actions a, .actions a'
+      )
+      .forEach(function(a) {
+
+        if (a.dataset.loveAuthBound) {
+          return;
+        }
+
+        const text =
+          (a.textContent || '').trim();
+
+        const href =
+          a.getAttribute('href') || '';
+
+        const isAuthButton =
+          (
+            text.includes('로그인') ||
+            text.includes('회원가입')
+          ) &&
+          !text.includes('고객센터') &&
+          !text.includes('장바구니') &&
+          href !== 'https://open.kakao.com/';
+
+        if (!isAuthButton) {
+          return;
+        }
+
+        a.dataset.loveAuthBound = '1';
+
+        a.addEventListener(
+          'click',
+          function(event) {
+
+            event.preventDefault();
 
             show('login');
 
@@ -1463,7 +1517,550 @@
 
   }
 
+
   bindOpeners();
+
+
+  /* =========================================================
+     LOGIN
+  ========================================================= */
+
+  loginForm.addEventListener(
+    'submit',
+    async function(event) {
+
+      event.preventDefault();
+
+      clearMessages();
+
+
+      if (!supabase) {
+
+        setMessage(
+          loginMessage,
+          '로그인 시스템을 불러오지 못했습니다.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      const id =
+        loginId.value.trim();
+
+      const password =
+        loginPassword.value;
+
+
+      if (!id) {
+
+        setMessage(
+          loginMessage,
+          '아이디를 입력해주세요.',
+          'error'
+        );
+
+        loginId.focus();
+
+        return;
+      }
+
+
+      if (!password) {
+
+        setMessage(
+          loginMessage,
+          '비밀번호를 입력해주세요.',
+          'error'
+        );
+
+        loginPassword.focus();
+
+        return;
+      }
+
+
+      const freshLoginCaptchaToken =
+        getFreshCaptchaToken('login');
+
+      if (!freshLoginCaptchaToken) {
+
+        setMessage(
+          loginMessage,
+          '보안 인증을 완료해주세요. 체크 표시가 된 뒤 다시 시도해주세요.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      const submitButton =
+        document.getElementById(
+          'loveLoginSubmit'
+        );
+
+      submitButton.disabled = true;
+
+
+      try {
+
+        const authEmail =
+          makeAuthEmail(id);
+
+
+        const result =
+          await supabase.auth.signInWithPassword({
+
+            email: authEmail,
+
+            password: password,
+
+            options: {
+              captchaToken: freshLoginCaptchaToken
+            }
+
+          });
+
+
+        /*
+          Turnstile 토큰은
+          한 번 사용하면 다시 사용할 수 없으므로
+          성공/실패와 관계없이 초기화한다.
+        */
+
+        loginCaptchaToken = '';
+
+        if (
+          window.turnstile &&
+          loginTurnstileWidget !== null
+        ) {
+
+          try {
+            window.turnstile.reset(
+              loginTurnstileWidget
+            );
+          } catch (error) {
+            console.warn(
+              '로그인 Turnstile reset 실패:',
+              error
+            );
+          }
+
+        }
+
+
+        if (result.error) {
+
+          console.error('로그인 오류:', {
+            message: result.error.message,
+            code: result.error.code,
+            status: result.error.status,
+            name: result.error.name,
+            fullError: result.error
+          });
+
+
+          let message =
+            result.error.message ||
+            '로그인에 실패했습니다.';
+
+
+          if (
+            /captcha/i.test(message) ||
+            /turnstile/i.test(message)
+          ) {
+
+            message =
+              '보안 인증에 실패했습니다. 다시 인증해주세요.';
+
+          } else if (
+            /invalid login credentials/i.test(message)
+          ) {
+
+            message =
+              '아이디 또는 비밀번호가 올바르지 않습니다.';
+
+          }
+
+
+          setMessage(
+            loginMessage,
+            message,
+            'error'
+          );
+
+          return;
+        }
+
+
+        currentSession =
+          result.data.session || null;
+
+        window.LoveTeamSession =
+          currentSession;
+
+
+        setMessage(
+          loginMessage,
+          '로그인되었습니다.',
+          'success'
+        );
+
+
+        window.dispatchEvent(
+          new Event('love-auth-changed')
+        );
+
+        window.location.reload();
+
+
+        setTimeout(
+          function() {
+            hide();
+          },
+          700
+        );
+
+      } catch (error) {
+
+        console.error(
+          '로그인 처리 오류:',
+          error
+        );
+
+        loginCaptchaToken = '';
+
+        if (
+          window.turnstile &&
+          loginTurnstileWidget !== null
+        ) {
+
+          try {
+            window.turnstile.reset(
+              loginTurnstileWidget
+            );
+          } catch (resetError) {
+            console.warn(
+              'Turnstile reset 오류:',
+              resetError
+            );
+          }
+
+        }
+
+
+        setMessage(
+          loginMessage,
+          '로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+          'error'
+        );
+
+      } finally {
+
+        submitButton.disabled = false;
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     SIGNUP
+  ========================================================= */
+
+  signupForm.addEventListener(
+    'submit',
+    async function(event) {
+
+      event.preventDefault();
+
+      clearMessages();
+
+
+      if (!supabase) {
+
+        setMessage(
+          signupMessage,
+          '회원가입 시스템을 불러오지 못했습니다.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      const id =
+        signupId.value.trim();
+
+      const name =
+        signupName.value.trim();
+
+      const password =
+        signupPassword.value;
+
+      const passwordConfirm =
+        signupPassword2.value;
+
+
+      if (!id) {
+
+        setMessage(
+          signupMessage,
+          '아이디를 입력해주세요.',
+          'error'
+        );
+
+        signupId.focus();
+
+        return;
+      }
+
+
+      if (id.length < 3) {
+
+        setMessage(
+          signupMessage,
+          '아이디는 3자 이상 입력해주세요.',
+          'error'
+        );
+
+        signupId.focus();
+
+        return;
+      }
+
+
+      if (!name) {
+
+        setMessage(
+          signupMessage,
+          '이름을 입력해주세요.',
+          'error'
+        );
+
+        signupName.focus();
+
+        return;
+      }
+
+
+      if (!passwordIsStrong(password)) {
+
+        setMessage(
+          signupMessage,
+          '비밀번호는 영문, 숫자, 특수문자를 포함해 8자 이상이어야 합니다.',
+          'error'
+        );
+
+        signupPassword.focus();
+
+        return;
+      }
+
+
+      if (password !== passwordConfirm) {
+
+        setMessage(
+          signupMessage,
+          '비밀번호가 서로 일치하지 않습니다.',
+          'error'
+        );
+
+        signupPassword2.focus();
+
+        return;
+      }
+
+
+      const freshSignupCaptchaToken =
+        getFreshCaptchaToken('signup');
+
+      if (!freshSignupCaptchaToken) {
+
+        setMessage(
+          signupMessage,
+          '보안 인증을 완료해주세요. 체크 표시가 된 뒤 다시 시도해주세요.',
+          'error'
+        );
+
+        return;
+      }
+
+
+      const submitButton =
+        document.getElementById(
+          'loveSignupSubmit'
+        );
+
+      submitButton.disabled = true;
+
+
+      try {
+
+        const authEmail =
+          makeAuthEmail(id);
+
+
+        const result =
+          await supabase.auth.signUp({
+
+            email: authEmail,
+
+            password: password,
+
+            options: {
+
+              captchaToken:
+                freshSignupCaptchaToken,
+
+              data: {
+                username: id,
+                name: name
+              }
+
+            }
+
+          });
+
+
+        signupCaptchaToken = '';
+
+
+        if (
+          window.turnstile &&
+          signupTurnstileWidget !== null
+        ) {
+
+          try {
+            window.turnstile.reset(
+              signupTurnstileWidget
+            );
+          } catch (error) {
+            console.warn(
+              '회원가입 Turnstile reset 실패:',
+              error
+            );
+          }
+
+        }
+
+
+        if (result.error) {
+
+          console.error('회원가입 오류:', {
+            message: result.error.message,
+            code: result.error.code,
+            status: result.error.status,
+            name: result.error.name,
+            fullError: result.error
+          });
+
+
+          let message =
+            result.error.message ||
+            '회원가입에 실패했습니다.';
+
+
+          if (
+            /captcha/i.test(message) ||
+            /turnstile/i.test(message)
+          ) {
+
+            message =
+              '보안 인증에 실패했습니다. 다시 인증해주세요.';
+
+          } else if (
+            /already registered/i.test(message) ||
+            /already been registered/i.test(message)
+          ) {
+
+            message =
+              '이미 사용 중인 아이디입니다.';
+
+          }
+
+
+          setMessage(
+            signupMessage,
+            message,
+            'error'
+          );
+
+          return;
+        }
+
+
+        setMessage(
+          signupMessage,
+          '회원가입이 완료되었습니다. 로그인해주세요.',
+          'success'
+        );
+
+
+        /*
+          회원가입 완료 후
+          로그인 화면으로 이동.
+        */
+
+        setTimeout(
+          function() {
+
+            show('login');
+
+            loginId.value = id;
+
+            loginPassword.value = '';
+
+          },
+          900
+        );
+
+      } catch (error) {
+
+        console.error(
+          '회원가입 처리 오류:',
+          error
+        );
+
+        signupCaptchaToken = '';
+
+        if (
+          window.turnstile &&
+          signupTurnstileWidget !== null
+        ) {
+
+          try {
+            window.turnstile.reset(
+              signupTurnstileWidget
+            );
+          } catch (resetError) {
+            console.warn(
+              'Turnstile reset 오류:',
+              resetError
+            );
+          }
+
+        }
+
+
+        setMessage(
+          signupMessage,
+          '회원가입 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+          'error'
+        );
+
+      } finally {
+
+        submitButton.disabled = false;
+
+      }
+
+    }
+  );
+
 
   /* =========================================================
      HEADER LOGIN STATE
@@ -1647,6 +2244,64 @@
   }
 
 
+  document.addEventListener(
+    'click',
+    function(event) {
+      const authLink = event.target.closest(
+        '#mobileOpenAuth, .header-actions a, .actions a'
+      );
+
+      if (authLink) {
+        const text = (authLink.textContent || '').trim();
+        const href = authLink.getAttribute('href') || '';
+
+        const isAuthLink =
+          authLink.id === 'mobileOpenAuth' ||
+          authLink.hasAttribute('data-auth-open') ||
+          text.includes('로그인') ||
+          text.includes('회원가입') ||
+          text.includes('님') ||
+          href === '#member' ||
+          href === '#login';
+
+        if (isAuthLink && !text.includes('고객센터')) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+
+          const mobileMenu = document.getElementById('mobileMenu');
+          const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+          if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+          }
+
+          if (mobileMenuBtn) {
+            mobileMenuBtn.textContent = '☰';
+            mobileMenuBtn.setAttribute('aria-label', '메뉴 열기');
+          }
+
+          if (currentSession && currentSession.user) {
+            openMemberMenu();
+          } else {
+            show('login');
+          }
+
+          return;
+        }
+      }
+
+      if (
+        memberMenu.classList.contains('show') &&
+        !event.target.closest('#loveMemberMenu') &&
+        !event.target.closest(
+          '#mobileOpenAuth, .header-actions a, .actions a'
+        )
+      ) {
+        closeMemberMenu();
+      }
+    },
+    true
+  );
 
 
   /* =========================================================
@@ -1920,12 +2575,6 @@
           new Event('love-auth-changed')
         );
 
-        /*
-          로그아웃 후 헤더/세션 상태를 확실하게 초기화하기 위해
-          현재 페이지만 새로고침한다.
-        */
-        window.location.reload();
-
       } catch (error) {
 
         console.error(
@@ -2011,8 +2660,6 @@
     open: show,
 
     close: hide,
-
-    openMemberMenu: openMemberMenu,
 
     client: supabase
 
