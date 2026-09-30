@@ -1947,6 +1947,58 @@
 
           if (reviewLimitBtn) {
             reviewLimitBtn.style.display = "block";
+            reviewLimitBtn.disabled = true;
+            reviewLimitBtn.textContent = "제한 상태 확인 중...";
+          }
+
+          let reviewLimitStatus = null;
+
+          try {
+            const limitResult = await supabase.functions.invoke(
+              "admin-review-limit",
+              {
+                body: {
+                  action: "status",
+                  user_id: user.id
+                }
+              }
+            );
+
+            if (!limitResult.error && limitResult.data?.ok === true) {
+              reviewLimitStatus = limitResult.data;
+            }
+          } catch (limitError) {
+            console.error("후기 작성 제한 상태 확인 오류:", limitError);
+          }
+
+          let reviewLimitText = "확인할 수 없음";
+
+          if (reviewLimitStatus?.blocked) {
+            const until = new Date(reviewLimitStatus.blocked_until);
+            if (!Number.isNaN(until.getTime())) {
+              reviewLimitText =
+                "제한 중 · " +
+                until.toLocaleString("ko-KR", {
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit"
+                }) +
+                "까지";
+            } else {
+              reviewLimitText = "제한 중";
+            }
+
+            reviewLimitBtn.style.display = "block";
+            reviewLimitBtn.disabled = false;
+            reviewLimitBtn.textContent = "후기 작성 제한 해제";
+          } else if (reviewLimitStatus) {
+            reviewLimitText = "현재 작성 제한 없음";
+            reviewLimitBtn.style.display = "none";
+          } else {
+            reviewLimitBtn.style.display = "block";
+            reviewLimitBtn.disabled = false;
+            reviewLimitBtn.textContent = "후기 작성 제한 해제";
           }
 
           searchResult.textContent =
@@ -1957,6 +2009,8 @@
               "UUID: " + (user.id || ""),
               "가입일: " + formatDate(user.created_at),
               "최근 로그인: " + formatDate(user.last_sign_in_at),
+              "",
+              "후기 작성 상태: " + reviewLimitText,
               "",
               "※ 비밀번호는 보안상 표시되지 않습니다."
             ].join("\n");
