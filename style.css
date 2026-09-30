@@ -4051,3 +4051,306 @@ select{
   }
   .home-page .home-hero-benefits article strong{font-size:8px!important}
 }
+
+
+/* =========================================================
+   HOME PANEL FINAL — INDEPENDENT EVENTS / REVIEWS CARDS
+   2026-10-01
+========================================================= */
+
+/* Outer wrapper is only a layout container; the two sections are
+   independent glass cards with a small visual gap. */
+.home-page .home-hero-panel{
+  width:min(1280px,calc(100% - 100px))!important;
+  min-height:142px!important;
+  bottom:18px!important;
+  display:grid!important;
+  grid-template-columns:6fr 4fr!important;
+  gap:10px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+/* EVENTS + 4 benefits = one independent left card. */
+.home-page .home-hero-main{
+  min-width:0!important;
+  min-height:142px!important;
+  height:142px!important;
+  display:grid!important;
+  grid-template-columns:minmax(220px,.78fr) minmax(0,1.22fr)!important;
+  align-items:stretch!important;
+  border:1px solid rgba(126,104,255,.38)!important;
+  border-radius:15px!important;
+  background:linear-gradient(145deg,rgba(7,4,20,.88),rgba(20,9,43,.72))!important;
+  box-shadow:0 15px 38px rgba(0,0,0,.40),0 0 24px rgba(80,56,214,.10),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  overflow:hidden!important;
+}
+
+/* Reduce top empty space in EVENTS and keep the copy visually centered. */
+.home-page .home-hero-main>.home-hero-event{
+  min-width:0!important;
+  min-height:142px!important;
+  height:142px!important;
+  padding:10px 20px!important;
+  justify-content:center!important;
+  border:0!important;
+  border-right:1px solid rgba(160,130,255,.20)!important;
+  background:transparent!important;
+}
+
+.home-page .home-hero-event .home-hero-label{
+  margin:0 0 4px!important;
+  font-size:10px!important;
+  line-height:1.1!important;
+  letter-spacing:2.5px!important;
+}
+
+.home-page .home-hero-event h2{
+  margin:0 0 5px!important;
+  font-size:16px!important;
+  line-height:1.25!important;
+  letter-spacing:-.55px!important;
+}
+
+.home-page .home-hero-event>strong{
+  margin:0!important;
+  font-size:16px!important;
+  line-height:1.3!important;
+  letter-spacing:-.4px!important;
+  white-space:nowrap!important;
+}
+
+/* Four benefit cells: keep them horizontal, but allow descriptions to wrap
+   so the complete Korean copy is visible instead of being clipped. */
+.home-page .home-hero-benefits{
+  min-width:0!important;
+  height:142px!important;
+  min-height:142px!important;
+  padding:7px 5px!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:0!important;
+  align-items:stretch!important;
+  border:0!important;
+  background:transparent!important;
+}
+
+.home-page .home-hero-benefits article{
+  min-width:0!important;
+  min-height:128px!important;
+  height:128px!important;
+  padding:10px 7px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  text-align:center!important;
+  border:0!important;
+  border-right:1px solid rgba(160,130,255,.14)!important;
+  background:rgba(255,255,255,.012)!important;
+}
+
+.home-page .home-hero-benefits article:last-child{
+  border-right:0!important;
+}
+
+.home-page .home-hero-benefits .hero-benefit-icon{
+  width:24px!important;
+  height:24px!important;
+  min-width:24px!important;
+  min-height:24px!important;
+  margin:0 0 2px!important;
+  flex:0 0 24px!important;
+}
+
+.home-page .home-hero-benefits article b{
+  display:block!important;
+  margin:0!important;
+  font-size:8px!important;
+  line-height:1!important;
+  color:#9c84ff!important;
+}
+
+.home-page .home-hero-benefits article strong{
+  display:block!important;
+  max-width:100%!important;
+  margin:0!important;
+  font-size:10px!important;
+  line-height:1.3!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+}
+
+.home-page .home-hero-benefits article>span:last-child{
+  display:block!important;
+  max-width:100%!important;
+  margin:1px 0 0!important;
+  font-size:8px!important;
+  line-height:1.4!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  color:rgba(255,255,255,.58)!important;
+}
+
+/* REVIEWS = completely independent right card. */
+.home-page .home-hero-reviews{
+  min-width:0!important;
+  min-height:142px!important;
+  height:142px!important;
+  padding:15px 18px!important;
+  border:1px solid rgba(126,104,255,.38)!important;
+  border-radius:15px!important;
+  background:linear-gradient(145deg,rgba(7,4,20,.88),rgba(20,9,43,.72))!important;
+  box-shadow:0 15px 38px rgba(0,0,0,.40),0 0 24px rgba(80,56,214,.10),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+
+.home-page .home-hero-reviews .home-hero-review-head{
+  min-width:0!important;
+  grid-template-columns:minmax(105px,.72fr) minmax(0,1.28fr)!important;
+  gap:12px!important;
+}
+
+.home-page .home-hero-review-head>div:first-child strong{
+  font-size:13px!important;
+  line-height:1.45!important;
+}
+
+.home-page .home-hero-review-list{
+  min-width:0!important;
+}
+
+.home-page .home-hero-review-list p{
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  word-break:keep-all!important;
+  font-size:9px!important;
+  line-height:1.45!important;
+}
+
+.home-page .home-hero-review-list small{
+  font-size:7px!important;
+}
+
+/* Mobile: keep the two cards independent and stack them vertically.
+   Benefits remain visible as four 2x2 items. */
+@media(max-width:760px){
+  .home-page .home-hero-panel{
+    width:calc(100% - 24px)!important;
+    bottom:10px!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    min-height:0!important;
+  }
+
+  .home-page .home-hero-main{
+    width:100%!important;
+    height:auto!important;
+    min-height:210px!important;
+    grid-template-columns:1fr!important;
+    border-radius:14px!important;
+  }
+
+  .home-page .home-hero-main>.home-hero-event{
+    min-height:64px!important;
+    height:64px!important;
+    padding:8px 12px!important;
+    border-right:0!important;
+    border-bottom:1px solid rgba(160,130,255,.18)!important;
+  }
+
+  .home-page .home-hero-event .home-hero-label{
+    margin-bottom:2px!important;
+    font-size:8px!important;
+  }
+
+  .home-page .home-hero-event h2{
+    margin-bottom:2px!important;
+    font-size:10px!important;
+  }
+
+  .home-page .home-hero-event>strong{
+    font-size:12px!important;
+  }
+
+  .home-page .home-hero-benefits{
+    width:100%!important;
+    height:146px!important;
+    min-height:146px!important;
+    padding:0!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .home-page .home-hero-benefits article{
+    height:73px!important;
+    min-height:73px!important;
+    padding:6px 7px!important;
+    border-right:1px solid rgba(160,130,255,.14)!important;
+    border-bottom:1px solid rgba(160,130,255,.14)!important;
+  }
+
+  .home-page .home-hero-benefits article:nth-child(2n){
+    border-right:0!important;
+  }
+
+  .home-page .home-hero-benefits article:nth-child(n+3){
+    border-bottom:0!important;
+  }
+
+  .home-page .home-hero-benefits .hero-benefit-icon{
+    width:18px!important;
+    height:18px!important;
+    min-width:18px!important;
+    min-height:18px!important;
+  }
+
+  .home-page .home-hero-benefits article strong{
+    font-size:8px!important;
+    line-height:1.25!important;
+  }
+
+  .home-page .home-hero-benefits article>span:last-child{
+    font-size:7px!important;
+    line-height:1.3!important;
+  }
+
+  .home-page .home-hero-reviews{
+    width:100%!important;
+    height:auto!important;
+    min-height:112px!important;
+    padding:11px 12px!important;
+    border-radius:14px!important;
+  }
+
+  .home-page .home-hero-reviews .home-hero-review-head{
+    grid-template-columns:minmax(90px,.8fr) minmax(0,1.2fr)!important;
+    gap:8px!important;
+  }
+
+  .home-page .home-hero-review-head>div:first-child strong{
+    font-size:10px!important;
+  }
+
+  .home-page .home-hero-review-list article{
+    padding:4px 0!important;
+  }
+
+  .home-page .home-hero-review-list p{
+    font-size:8px!important;
+  }
+}
