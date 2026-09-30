@@ -977,18 +977,18 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM x REYNA-STYLE ROUNDED BRAND MARK
-   이미지 없이 CSS로 구성한 둥근 장식형 엠블럼
+   LOVE TEAM - NEW BRAND LOGO
+   기존 문양/폰트 완전 제거 후 신규 CSS 워드마크
 ===================================================== */
 .logo{
-  min-width:188px;
-  gap:11px;
+  min-width:184px;
+  gap:10px;
 }
 
 .logo-mark{
-  width:48px!important;
-  height:48px!important;
-  flex:0 0 48px!important;
+  width:44px!important;
+  height:44px!important;
+  flex:0 0 44px!important;
   position:relative!important;
   display:block!important;
   border:0!important;
@@ -998,99 +998,83 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   transform:none!important;
   overflow:visible!important;
 }
-
 .logo-mark svg{display:none!important}
 
-/* 네 개의 뾰족한 날개가 아니라, 부드럽게 말린 꽃잎/나비형 실루엣 */
+/* 부드러운 두 개의 곡선 링 + 중앙 원형 코어 */
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
   left:3px!important;
-  top:5px!important;
-  width:42px!important;
-  height:39px!important;
-  background:
-    radial-gradient(ellipse 15px 17px at 31% 30%,#e4c9ff 0 54%,transparent 56%),
-    radial-gradient(ellipse 15px 17px at 69% 30%,#c99aff 0 54%,transparent 56%),
-    radial-gradient(ellipse 16px 15px at 29% 70%,#9965f4 0 54%,transparent 56%),
-    radial-gradient(ellipse 16px 15px at 71% 70%,#e76bfa 0 54%,transparent 56%),
-    radial-gradient(ellipse 9px 11px at 50% 50%,#8b5ce8 0 62%,transparent 64%)!important;
-  filter:
-    drop-shadow(0 0 4px rgba(185,125,255,.78))
-    drop-shadow(0 0 12px rgba(222,92,255,.32))!important;
+  top:7px!important;
+  width:38px!important;
+  height:30px!important;
+  border:3px solid #b477ff!important;
+  border-radius:50% 50% 46% 54%!important;
+  transform:rotate(-22deg)!important;
+  box-shadow:
+    0 0 7px rgba(177,119,255,.7),
+    inset 0 0 7px rgba(218,155,255,.25)!important;
 }
 
-/* 중앙도 칼날 대신 둥근 리본/보석 형태 */
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:18px!important;
-  top:13px!important;
-  width:12px!important;
-  height:22px!important;
-  border-radius:48% 48% 54% 54%!important;
-  background:
-    radial-gradient(circle at 50% 24%,#fff 0 17%,transparent 18%),
-    linear-gradient(180deg,#fefcff 0%,#e6ccff 42%,#b16fff 72%,#ec72ff 100%)!important;
+  left:13px!important;
+  top:12px!important;
+  width:18px!important;
+  height:18px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 38% 32%,#fff 0 10%,#e4c9ff 24%,#9b61f4 62%,#e86cff 100%)!important;
   box-shadow:
-    0 0 6px rgba(231,196,255,.9),
-    0 0 15px rgba(180,100,255,.42)!important;
-  transform:rotate(0deg)!important;
+    0 0 8px rgba(202,142,255,.95),
+    0 0 17px rgba(185,91,255,.45)!important;
 }
 
-/* 레이나 계열의 화려한 팀 워드마크 느낌 */
+/* 신규 워드마크: 기존 세리프/이탤릭 스타일 제거 */
 .logo-text{
-  position:relative;
-  line-height:1;
+  display:flex;
+  flex-direction:column;
+  line-height:1!important;
   justify-content:center;
   gap:0;
 }
 
 .logo-text strong{
-  font-family:
-    "Bodoni 72",
-    "Didot",
-    "Bodoni MT",
-    Georgia,
-    "Times New Roman",
-    serif!important;
-  font-size:23px!important;
-  font-weight:900!important;
-  font-style:italic!important;
-  letter-spacing:1.5px!important;
-  transform:skewX(-8deg)!important;
+  font-family:Arial,"Noto Sans KR",sans-serif!important;
+  font-size:21px!important;
+  font-weight:950!important;
+  font-style:normal!important;
+  letter-spacing:3px!important;
+  transform:none!important;
   display:block;
-  color:#fff;
-  background:linear-gradient(180deg,#ffffff 5%,#ead8ff 48%,#b16eff 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:
-    0 0 1px rgba(255,255,255,.95),
-    2px 2px 0 rgba(67,31,143,.52),
-    0 0 15px rgba(171,103,255,.32);
+  color:#fff!important;
+  background:none!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 0 12px rgba(167,104,255,.4)!important;
 }
 
 .logo-text strong::after{
-  content:"";
-  display:block;
-  width:94%;
-  height:1px;
-  margin:3px 0 0 4%;
-  background:linear-gradient(90deg,transparent,#cba5ff 22%,#f08cff 76%,transparent);
-  box-shadow:0 0 6px rgba(211,132,255,.5);
-  transform:skewX(-20deg);
+  content:""!important;
+  display:block!important;
+  width:38px!important;
+  height:2px!important;
+  margin:5px 0 0 1px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,#8b5cf6,#ec70ff)!important;
+  box-shadow:0 0 7px rgba(195,108,255,.55)!important;
+  transform:none!important;
 }
 
 .logo-text small{
   font-family:Arial,"Noto Sans KR",sans-serif!important;
-  font-size:6.5px!important;
-  font-weight:900!important;
-  letter-spacing:6.5px!important;
-  color:#d4b8ff!important;
-  margin-top:5px;
-  padding-left:7px;
-  text-shadow:0 0 10px rgba(173,111,255,.42);
+  font-size:6px!important;
+  font-weight:800!important;
+  font-style:normal!important;
+  letter-spacing:5.5px!important;
+  color:#b993f7!important;
+  margin-top:4px!important;
+  padding-left:2px!important;
+  text-shadow:none!important;
 }
 
 @media(max-width:600px){
@@ -1098,40 +1082,36 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     min-width:0;
     gap:8px;
   }
-
   .logo-mark{
-    width:42px!important;
-    height:42px!important;
-    flex-basis:42px!important;
+    width:40px!important;
+    height:40px!important;
+    flex-basis:40px!important;
   }
-
   .logo-mark::before{
     left:2px!important;
-    top:4px!important;
-    width:38px!important;
-    height:35px!important;
+    top:7px!important;
+    width:35px!important;
+    height:27px!important;
+    border-width:2.5px!important;
   }
-
   .logo-mark::after{
-    left:16px!important;
-    top:12px!important;
-    width:11px!important;
-    height:20px!important;
+    left:12px!important;
+    top:11px!important;
+    width:16px!important;
+    height:16px!important;
   }
-
   .logo-text strong{
-    font-size:19px!important;
-    letter-spacing:1px!important;
+    font-size:18px!important;
+    letter-spacing:2.3px!important;
   }
-
   .logo-text strong::after{
-    margin-top:2px;
+    width:33px!important;
+    height:1.5px!important;
+    margin-top:4px!important;
   }
-
   .logo-text small{
-    font-size:5.5px!important;
-    letter-spacing:4.6px!important;
-    margin-top:4px;
-    padding-left:5px;
+    font-size:5px!important;
+    letter-spacing:4.3px!important;
+    margin-top:3px!important;
   }
 }
