@@ -50,7 +50,7 @@ h1{margin:0;font-size:32px}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="auth.js?v=20260930-11"></script>
 <script>
-const client=supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
+const client=window.LoveTeamSupabase || supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
 const list=document.getElementById('list');
 const count=document.getElementById('count');
 
@@ -74,7 +74,9 @@ async function callAdmin(body){
 async function load(){
  list.innerHTML='<div class="empty">후기 목록을 불러오는 중입니다.</div>';
  try{
-  const session=window.LoveTeamSession;
+  const sessionResult=await client.auth.getSession();
+  const session=sessionResult?.data?.session || null;
+  window.LoveTeamSession=session;
   if(!session?.user) throw new Error('로그인이 필요합니다.');
   const data=await callAdmin({action:'list'});
   const rows=Array.isArray(data.reviews)?data.reviews:[];
@@ -113,7 +115,17 @@ list.addEventListener('click',async function(e){
  }
 });
 
-window.addEventListener('load',load);
+async function start(){
+ try{
+  await client.auth.getSession();
+ }catch(_){}
+ await load();
+}
+if(document.readyState==='loading'){
+ document.addEventListener('DOMContentLoaded',start,{once:true});
+}else{
+ start();
+}
 </script>
 </body>
 </html>
