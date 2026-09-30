@@ -875,6 +875,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   transition:background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
 }
 .home-page .header.home-scrolled{
+  top:0;
   background:rgba(7,7,10,.96);
   border-bottom-color:#22232b;
   box-shadow:0 8px 28px rgba(0,0,0,.22);
@@ -903,6 +904,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     -webkit-backdrop-filter:none;
   }
   .home-page .header.home-scrolled{
+    top:0;
     background:rgba(7,7,10,.97);
     border-bottom-color:#22232b;
     box-shadow:0 8px 24px rgba(0,0,0,.22);
