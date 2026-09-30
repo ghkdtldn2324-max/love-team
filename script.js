@@ -139,7 +139,14 @@
 
       const name = item[0];
       const price = item[1];
-      const image = rankImages[name];
+      /* 배치고사는 다이아/초월자/불멸 모두 1 랭크 아이콘 사용 */
+      const image = key === 'placement'
+        ? ({
+            '다이아': 'assets/ranks/diamond1.png',
+            '초월자': 'assets/ranks/ascendant1.png',
+            '불멸': 'assets/ranks/immortal1.png'
+          }[name] || rankImages[name])
+        : rankImages[name];
 
       return `
         <article class="rank-card">
