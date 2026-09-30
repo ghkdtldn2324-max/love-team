@@ -2206,6 +2206,9 @@
         */
         if(mobileAdminLink){
           mobileAdminLink.style.setProperty('display','flex','important');
+          mobileAdminLink.hidden = false;
+          mobileAdminLink.removeAttribute('hidden');
+          mobileAdminLink.setAttribute('data-admin-visible','1');
         }
         return;
       }
