@@ -2677,3 +2677,191 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* =========================================================
+   HOME PC UI POLISH — HERO / HEADER / LOGO / PANEL
+   2026-10-01
+========================================================= */
+
+/* PC: hero artwork starts at the very top, directly behind navigation.
+   No blur on the header before scrolling. */
+.home-page .header{
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:50!important;
+  background:transparent!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+/* Scrolling: keep the navigation fixed as a clean glass header. */
+.home-page .header.home-scrolled{
+  position:fixed!important;
+  top:0!important;
+  background:rgba(7,5,18,.58)!important;
+  border-bottom:1px solid rgba(153,128,255,.22)!important;
+  box-shadow:0 10px 35px rgba(0,0,0,.34)!important;
+  backdrop-filter:blur(18px) saturate(135%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(135%)!important;
+}
+
+/* Keep the hero image crisp and unobstructed around the navigation. */
+.home-page .lt-hero-bg img{
+  filter:saturate(1.06) contrast(1.03)!important;
+}
+.home-page .lt-hero-overlay{
+  background:
+    linear-gradient(90deg,rgba(3,2,11,.72) 0%,rgba(5,3,16,.43) 35%,rgba(8,4,21,.08) 67%,rgba(5,2,14,.24) 100%),
+    linear-gradient(180deg,rgba(2,2,8,.06) 0%,rgba(5,2,14,.02) 45%,rgba(3,1,10,.80) 100%)!important;
+}
+
+/* Header logo: make the embedded dark edge visually merge into the artwork. */
+.home-page .logo{
+  position:relative!important;
+  isolation:isolate!important;
+}
+.home-page .logo::before{
+  content:""!important;
+  position:absolute!important;
+  left:-18px!important;
+  top:50%!important;
+  width:138px!important;
+  height:62px!important;
+  transform:translateY(-50%)!important;
+  z-index:-1!important;
+  pointer-events:none!important;
+  background:radial-gradient(ellipse at center,
+    rgba(45,32,105,.42) 0%,
+    rgba(33,23,78,.18) 42%,
+    rgba(10,7,28,0) 76%)!important;
+  filter:blur(8px)!important;
+}
+.home-page .logo-image{
+  mix-blend-mode:screen!important;
+  filter:
+    brightness(1.16) saturate(1.08)
+    drop-shadow(0 0 10px rgba(76,86,255,.72))
+    drop-shadow(0 0 18px rgba(171,74,255,.38))!important;
+}
+
+/* Center LOVE TEAM logo: remove the visible rectangular feel and blend
+   its dark embedded artwork into the surrounding hero. */
+.home-page .lt-hero-brand{
+  width:min(320px,23vw)!important;
+  top:54%!important;
+  padding:18px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,
+    rgba(40,26,105,.22) 0%,
+    rgba(28,18,74,.12) 38%,
+    rgba(10,6,25,0) 72%)!important;
+}
+.home-page .lt-hero-brand img{
+  mix-blend-mode:screen!important;
+  filter:
+    brightness(1.15) saturate(1.10)
+    drop-shadow(0 10px 18px rgba(0,0,0,.54))
+    drop-shadow(0 0 25px rgba(73,79,255,.48))
+    drop-shadow(0 0 34px rgba(171,70,255,.20))!important;
+}
+
+/* Smaller, lighter bottom glass panel on desktop. */
+.home-page .home-hero-panel{
+  width:min(1300px,calc(100% - 110px))!important;
+  min-height:148px!important;
+  bottom:22px!important;
+  grid-template-columns:1fr 1.18fr 1.05fr!important;
+  border-radius:17px!important;
+  background:linear-gradient(105deg,rgba(5,3,17,.84),rgba(15,8,34,.68))!important;
+  box-shadow:0 18px 52px rgba(0,0,0,.48),0 0 30px rgba(76,52,208,.12),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(16px) saturate(120%)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(120%)!important;
+}
+.home-page .home-hero-panel>div{
+  padding:19px 22px!important;
+}
+.home-page .home-hero-label{
+  margin-bottom:8px!important;
+  font-size:10px!important;
+}
+.home-page .home-hero-event h2{
+  font-size:17px!important;
+  margin-bottom:6px!important;
+}
+.home-page .home-hero-event>strong{
+  font-size:14px!important;
+}
+.home-page .home-hero-benefits .hero-benefit-icon{
+  width:40px!important;
+  height:40px!important;
+  margin-bottom:7px!important;
+  border-radius:11px!important;
+}
+.home-page .home-hero-benefits .hero-benefit-icon svg{
+  width:20px!important;
+  height:20px!important;
+}
+.home-page .home-hero-benefits strong{
+  font-size:10px!important;
+}
+.home-page .home-hero-benefits article>span:not(.hero-benefit-icon){
+  font-size:7px!important;
+}
+.home-page .home-hero-review-head{
+  grid-template-columns:.82fr 1.18fr!important;
+  gap:12px!important;
+}
+.home-page .home-hero-review-head>div:first-child strong{
+  font-size:14px!important;
+}
+.home-page .home-hero-review-head>div:first-child a{
+  margin-top:9px!important;
+  padding:6px 9px!important;
+  font-size:8px!important;
+}
+.home-page .home-hero-review-list article{
+  padding:7px 9px!important;
+}
+.home-page .home-hero-review-list p{
+  font-size:8px!important;
+}
+.home-page .home-hero-review-list small{
+  font-size:6px!important;
+}
+.home-page .home-hero-review-list b{
+  font-size:7px!important;
+}
+
+/* Mobile keeps its separate re-layout; only inherit the transparent header
+   and compact panel behavior. */
+@media(max-width:760px){
+  .home-page .header{
+    background:transparent!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  .home-page .header.home-scrolled{
+    background:rgba(7,5,18,.62)!important;
+    backdrop-filter:blur(16px) saturate(130%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(130%)!important;
+  }
+  .home-page .lt-hero-brand{
+    width:245px!important;
+    top:42%!important;
+    padding:12px!important;
+  }
+  .home-page .home-hero-panel{
+    width:auto!important;
+    min-height:0!important;
+    bottom:15px!important;
+    grid-template-columns:1fr!important;
+  }
+  .home-page .home-hero-panel>div{
+    padding:14px 14px!important;
+  }
+}
