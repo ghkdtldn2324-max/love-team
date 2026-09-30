@@ -2308,6 +2308,10 @@
       );
 
 
+    if (!nameElement || !idElement) {
+      return;
+    }
+
     if (!session || !session.user) {
 
       nameElement.textContent =
