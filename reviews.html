@@ -732,101 +732,59 @@ const fallback = [
 ];
 
 
-function getReviews(){
-
+async function getReviews(){
   try{
+    const client = window.LoveTeamAuth?.client;
+    if(!client) return fallback;
 
-    return (
-      JSON.parse(
-        localStorage.getItem(
-          'loveTeamReviews'
-        )
-      ) || fallback
-    );
+    const {data,error} = await client
+      .from('reviews')
+      .select('display_name,stars,content,service,created_at')
+      .order('created_at',{ascending:false});
 
-  }catch(e){
+    if(error) throw error;
 
+    return (data || []).map(function(r){
+      return {
+        name:r.display_name,
+        stars:r.stars,
+        text:r.content,
+        date:new Date(r.created_at).toLocaleDateString('ko-KR'),
+        service:r.service
+      };
+    });
+  }catch(error){
+    console.error('review load error:',error);
     return fallback;
-
   }
-
 }
 
-
-function render(){
-
-  const list =
-    document.getElementById(
-      'reviewList'
-    );
-
+async function render(){
+  const list = document.getElementById('reviewList');
   if(!list) return;
 
+  const reviews = await getReviews();
 
-  list.innerHTML =
-    getReviews()
-      .map(function(r){
+  list.innerHTML = reviews.map(function(r){
+    const stars = '★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
 
-        const stars =
-          '★'.repeat(
-            Math.max(
-              0,
-              Math.min(
-                5,
-                Number(r.stars) || 0
-              )
-            )
-          );
-
-
-        return `
-
-          <article class="review-row">
-
-            <div class="review-top">
-
-              <div>
-
-                <span class="review-user">
-                  ${r.name} 님
-                </span>
-
-                <span
-                  class="stars"
-                  aria-label="${r.stars}점"
-                >
-                  ${stars}
-                </span>
-
-              </div>
-
-              <span class="review-date">
-                ${r.date}
-              </span>
-
-            </div>
-
-            <p class="review-text">
-              ${r.text}
-            </p>
-
-            <div class="review-meta">
-
-              <span class="review-service">
-                ${r.service}
-              </span>
-
-            </div>
-
-          </article>
-
-        `;
-
-      })
-      .join('');
-
+    return \`
+      <article class="review-row">
+        <div class="review-top">
+          <div>
+            <span class="review-user">\${r.name} 님</span>
+            <span class="stars" aria-label="\${r.stars}점">\${stars}</span>
+          </div>
+          <span class="review-date">\${r.date}</span>
+        </div>
+        <p class="review-text">\${r.text}</p>
+        <div class="review-meta">
+          <span class="review-service">\${r.service}</span>
+        </div>
+      </article>
+    \`;
+  }).join('');
 }
-
 
 render();
 
@@ -1192,7 +1150,7 @@ render();
 
     submit.addEventListener(
       'click',
-      function(){
+      async function(){
 
 
         const session =
@@ -1275,74 +1233,49 @@ render();
         const meta =
           session.user?.user_metadata || {};
 
-
-
         const username =
-          meta.username ||
-          '회원';
-
-
+          meta.username || '회원';
 
         const displayName =
           username.length > 2
             ? username.slice(0,2) + '***'
             : username + '***';
 
+        const client =
+          window.LoveTeamAuth?.client;
 
+        if(!client){
+          showMessage(
+            '후기 기능을 준비하는 중입니다.',
+            true
+          );
+          return;
+        }
 
-        const now =
-          new Date();
+        const {error} =
+          await client
+            .from('reviews')
+            .insert({
+              user_id: session.user.id,
+              display_name: displayName,
+              stars: selectedStars,
+              content: text,
+              service: service
+            });
 
+        if(error){
+          console.error(
+            'review insert error:',
+            error
+          );
 
+          showMessage(
+            '후기 등록에 실패했습니다.',
+            true
+          );
 
-        const date =
-          now.getFullYear() +
-          '.' +
-          String(
-            now.getMonth() + 1
-          ).padStart(2,'0') +
-          '.' +
-          String(
-            now.getDate()
-          ).padStart(2,'0');
-
-
-
-        const newReview = {
-
-          name:displayName,
-
-          stars:selectedStars,
-
-          text:text,
-
-          date:date,
-
-          service:service
-
-        };
-
-
-
-        let reviews =
-          getReviews();
-
-
-
-        reviews = [
-
-          newReview,
-
-          ...reviews
-
-        ];
-
-
-
-        localStorage.setItem(
-          'loveTeamReviews',
-          JSON.stringify(reviews)
-        );
+          return;
+        }
 
 
 
