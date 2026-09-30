@@ -4939,3 +4939,11 @@ select{
     text-overflow:ellipsis!important;
   }
 }
+
+
+/* MOBILE HOMEPAGE — move review cards up 7px */
+@media (max-width:760px){
+  .home-page .home-hero-review-list{
+    transform:translateY(-7px)!important;
+  }
+}
