@@ -1510,14 +1510,12 @@
 
             event.preventDefault();
 
-            /*
-              중요:
-              회원가입 버튼을 눌러도
-              바로 회원가입 화면으로 가지 않고
-              항상 로그인 화면부터 보여준다.
-            */
+              const requestedMode =
+              a.dataset.authMode ||
+              (a.getAttribute('href') || '').replace('#','') ||
+              'login';
 
-            show('login');
+            show(requestedMode === 'signup' ? 'signup' : 'login');
 
           }
         );
