@@ -1386,8 +1386,42 @@
               error
             );
 
+            let detail =
+              error.message ||
+              "Edge Function 오류";
+
+            try {
+              if (
+                error.context &&
+                typeof error.context.json === "function"
+              ) {
+                const errorBody =
+                  await error.context.json();
+
+                if (errorBody?.message) {
+                  detail =
+                    errorBody.message;
+                } else if (errorBody?.error) {
+                  detail =
+                    typeof errorBody.error === "string"
+                      ? errorBody.error
+                      : JSON.stringify(errorBody.error);
+                } else if (errorBody?.code) {
+                  detail =
+                    errorBody.code;
+                }
+              }
+            } catch (bodyError) {
+              console.warn(
+                "Edge Function 오류 본문 확인 실패:",
+                bodyError
+              );
+            }
+
             searchResult.textContent =
-              "회원 검색에 실패했습니다. (" + (error.message || "Edge Function 오류") + ")";
+              "회원 검색에 실패했습니다. (" +
+              detail +
+              ")";
             return;
           }
 
