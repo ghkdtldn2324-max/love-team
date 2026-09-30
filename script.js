@@ -368,16 +368,14 @@
         mobileAuth.addEventListener('click', function (e) {
 
           e.preventDefault();
+          e.stopPropagation();
 
           menu.classList.remove('active');
           menuBtn.textContent = '☰';
 
-          const target =
-            document.querySelector(
-              '#openAuth,[data-auth-open]'
-            );
-
-          if (target) target.click();
+          if (window.LoveTeamAuth && typeof window.LoveTeamAuth.open === 'function') {
+            window.LoveTeamAuth.open('login');
+          }
 
         });
 
