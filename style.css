@@ -5450,3 +5450,62 @@ select{
     text-overflow:ellipsis!important;
   }
 }
+
+
+/* PC HOMEPAGE — four benefit items in one horizontal row */
+@media (min-width:901px){
+  .home-page .home-hero-benefits{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:1fr!important;
+    align-items:stretch!important;
+    justify-content:initial!important;
+    gap:0!important;
+    padding:18px 18px!important;
+  }
+  .home-page .home-hero-benefits article{
+    min-width:0!important;
+    width:auto!important;
+    height:100%!important;
+    min-height:0!important;
+    padding:8px 10px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    gap:5px!important;
+    border-right:1px solid rgba(160,130,255,.18)!important;
+  }
+  .home-page .home-hero-benefits article:last-child{
+    border-right:0!important;
+  }
+  .home-page .home-hero-benefits .hero-benefit-icon{
+    flex:0 0 auto!important;
+    width:20px!important;
+    height:20px!important;
+    margin-bottom:1px!important;
+  }
+  .home-page .home-hero-benefits article b{
+    display:block!important;
+    font-size:8px!important;
+    line-height:1!important;
+  }
+  .home-page .home-hero-benefits article strong{
+    display:block!important;
+    width:100%!important;
+    font-size:11px!important;
+    line-height:1.35!important;
+    white-space:normal!important;
+    word-break:keep-all!important;
+  }
+  .home-page .home-hero-benefits article>span:last-child{
+    display:block!important;
+    width:100%!important;
+    font-size:8px!important;
+    line-height:1.4!important;
+    white-space:normal!important;
+    word-break:keep-all!important;
+    overflow:visible!important;
+    text-overflow:unset!important;
+  }
+}
