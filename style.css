@@ -944,54 +944,52 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 }
 
 
-/* LOVE TEAM 브랜드 로고 - 클로브 모티프 */
+/* =========================================
+   LOVE TEAM 메인 로고 / 모바일 히어로 최종 정리
+   중복 선언 없이 PC·모바일 공통 적용
+========================================= */
 .logo{min-width:188px;gap:12px}
-.logo-mark{width:48px;height:48px;border:1px solid rgba(174,132,255,.34);border-radius:14px;transform:none;position:relative;display:block;flex:0 0 48px;background:linear-gradient(145deg,rgba(133,88,239,.16),rgba(211,92,255,.08));box-shadow:inset 0 0 18px rgba(145,91,255,.12),0 7px 22px rgba(58,31,120,.18)}
-.logo-mark::before{content:"";position:absolute;width:14px;height:14px;left:10px;top:9px;border:2px solid #b18aff;border-radius:7px 7px 3px 7px;transform:rotate(45deg);box-shadow:10px 0 0 -2px rgba(229,109,255,.95),0 10px 0 -2px rgba(154,108,255,.95),10px 10px 0 -2px rgba(213,184,255,.95)}
-.logo-mark::after{content:"";position:absolute;left:22px;top:15px;width:4px;height:18px;border-radius:3px;background:linear-gradient(180deg,#fff,#c6a6ff);box-shadow:0 0 10px rgba(183,140,255,.55)}
-.logo-text{position:relative;line-height:1;justify-content:center}
-.logo-text strong{font-family:Arial,"Noto Sans KR",sans-serif;font-size:23px;font-weight:950;letter-spacing:1.4px;color:#fff;text-shadow:0 2px 14px rgba(131,79,255,.22)}
-.logo-text small{font-size:8px;font-weight:900;letter-spacing:5px;color:#b28aff;margin-top:6px;padding-left:5px}
-.home-page .logo-mark{border-color:rgba(215,181,255,.38);background:linear-gradient(145deg,rgba(143,94,255,.2),rgba(223,103,255,.08))}
-.home-page .logo-text strong{letter-spacing:1.6px}
-@media(max-width:600px){.logo{gap:9px}.logo-mark{width:42px;height:42px;flex-basis:42px}.logo-text strong{font-size:20px;letter-spacing:1.1px}.logo-text small{font-size:7px;letter-spacing:4px;margin-top:5px;padding-left:4px}}
-
-
-/* 모바일 히어로 - 세로 비율별 캐릭터 가시성 최적화 */
-@media (max-width:760px){
-  .home-page .lt-hero{overflow:hidden;background:#090711}
-  .home-page .lt-hero-bg{background:#090711}
-  .home-page .lt-hero-bg img{object-fit:cover;object-position:50% 32%;width:100%;height:100%;transform:none}
+.logo-mark{
+  width:48px;height:48px;flex:0 0 48px;position:relative;display:block;
+  overflow:visible;border:1px solid rgba(204,166,255,.5);border-radius:9px;
+  transform:none;
+  background:linear-gradient(145deg,rgba(124,76,238,.2),rgba(231,83,255,.1));
+  box-shadow:inset 0 0 20px rgba(153,91,255,.16),0 8px 24px rgba(58,31,120,.24);
 }
-@media (max-width:760px) and (max-aspect-ratio:1/2){
-  .home-page .lt-hero-bg img{object-position:50% 29%}
+.logo-mark svg{display:none!important}
+.logo-mark::before{
+  content:"";position:absolute;left:8px;top:8px;width:28px;height:28px;
+  border:2px solid #c3a0ff;transform:rotate(45deg) skew(-8deg,-8deg);
+  border-radius:4px 12px 4px 12px;
+  box-shadow:8px 8px 0 -6px #eb79ff,0 0 12px rgba(177,126,255,.3);
 }
-@media (min-width:390px) and (max-width:760px) and (min-aspect-ratio:1/2){
-  .home-page .lt-hero-bg img{object-position:50% 34%}
+.logo-mark::after{
+  content:"";position:absolute;left:21px;top:8px;width:5px;height:29px;
+  background:linear-gradient(180deg,#fff,#bd8aff 58%,#e66cff);
+  clip-path:polygon(50% 0,100% 24%,68% 24%,100% 100%,50% 76%,0 100%,32% 24%,0 24%);
+  filter:drop-shadow(0 0 8px rgba(206,150,255,.7));
 }
-@media (max-width:380px){
-  .home-page .lt-hero-content{padding-left:18px;padding-right:18px}
-  .home-page .lt-hero h1{font-size:clamp(31px,9.3vw,39px)}
-  .home-page .lt-hero-bg img{object-position:50% 30%}
+.logo-text{position:relative;line-height:1;justify-content:center;gap:0}
+.logo-text strong{
+  font-family:Georgia,"Times New Roman","Noto Serif KR",serif;
+  font-size:22px;font-weight:900;font-style:italic;letter-spacing:1.8px;
+  transform:skewX(-7deg);display:block;
+  color:#fff;background:linear-gradient(180deg,#fff 8%,#eadbff 48%,#b27aff 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:0 0 1px #fff,2px 3px 0 rgba(76,39,155,.42),0 0 18px rgba(165,101,255,.3);
 }
-
-
-/* 로브팀 샤프 브랜드 로고 - 각진 엠블럼 + 뾰족한 타이포 */
-.logo-mark{border-radius:10px;transform:skewX(-4deg);background:linear-gradient(145deg,rgba(132,79,238,.18),rgba(218,75,255,.08));border-color:rgba(184,141,255,.42);box-shadow:inset 0 0 18px rgba(145,91,255,.14),0 7px 22px rgba(58,31,120,.2)}
-.logo-mark::before{content:"";position:absolute;left:8px;top:8px;width:28px;height:28px;border:2px solid #b995ff;transform:rotate(45deg) skew(-8deg,-8deg);border-radius:3px 12px 3px 12px;box-shadow:inset 0 0 0 3px rgba(141,91,255,.1),8px 8px 0 -6px rgba(226,102,255,.95)}
-.logo-mark::after{content:"";position:absolute;left:21px;top:8px;width:5px;height:29px;background:linear-gradient(180deg,#fff,#a875ff);clip-path:polygon(50% 0,100% 24%,68% 24%,100% 100%,50% 74%,0 100%,32% 24%,0 24%);filter:drop-shadow(0 0 7px rgba(193,145,255,.6))}
-.logo-text strong{font-family:"Arial Black",Arial,"Noto Sans KR",sans-serif;font-size:22px;font-weight:950;font-style:italic;letter-spacing:1px;transform:skewX(-8deg);display:block;text-shadow:2px 3px 0 rgba(96,52,178,.3),0 0 18px rgba(153,95,255,.18)}
-.logo-text small{font-size:7px;font-weight:950;letter-spacing:6px;color:#c09cff;margin-top:7px;padding-left:6px;font-style:italic}
-@media(max-width:600px){
- .logo-mark{width:42px;height:42px;flex-basis:42px;border-radius:9px}
- .logo-mark::before{left:7px;top:7px;width:26px;height:26px}
- .logo-mark::after{left:18px;top:7px;height:28px;width:5px}
- .logo-text strong{font-size:19px;letter-spacing:.7px}
- .logo-text small{font-size:6px;letter-spacing:4.5px;margin-top:6px;padding-left:5px}
+.logo-text strong::after{
+  content:"";display:block;width:92%;height:1px;margin:3px 0 0 5%;
+  background:linear-gradient(90deg,transparent,#d6b5ff,#f28cff,transparent);
+  box-shadow:0 0 6px rgba(212,137,255,.55);transform:skewX(-18deg);
+}
+.logo-text small{
+  font-family:Arial,"Noto Sans KR",sans-serif;font-size:6.5px;font-weight:950;
+  font-style:normal;letter-spacing:6.5px;color:#d0b3ff;margin-top:5px;padding-left:7px;
+  text-shadow:0 0 10px rgba(173,111,255,.45);
 }
 
-
-/* 모바일 히어로 - 우측 3:7 구도 */
+/* 모바일 히어로: 우측 3:7 구도 */
 @media (max-width:760px){
   .home-page .lt-hero-bg img{object-position:70% 32%}
 }
@@ -1002,24 +1000,18 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   .home-page .lt-hero-bg img{object-position:70% 34%}
 }
 @media (max-width:380px){
+  .home-page .lt-hero-content{padding-left:18px;padding-right:18px}
+  .home-page .lt-hero h1{font-size:clamp(31px,9.3vw,39px)}
   .home-page .lt-hero-bg img{object-position:70% 30%}
 }
 
-
-/* PC / 모바일 공통 LOVE TEAM 홈 엠블럼 및 화려한 브랜드 타이포 통일 */
-.logo-mark svg{display:none!important}
-.logo-mark{overflow:visible;border:1px solid rgba(204,166,255,.5);border-radius:9px;transform:none;background:linear-gradient(145deg,rgba(124,76,238,.2),rgba(231,83,255,.1));box-shadow:inset 0 0 20px rgba(153,91,255,.16),0 8px 24px rgba(58,31,120,.24)}
-.logo-mark::before{left:8px;top:8px;width:28px;height:28px;border:2px solid #c3a0ff;transform:rotate(45deg) skew(-8deg,-8deg);border-radius:4px 12px 4px 12px;box-shadow:8px 8px 0 -6px #eb79ff,0 0 12px rgba(177,126,255,.3)}
-.logo-mark::after{left:21px;top:8px;width:5px;height:29px;background:linear-gradient(180deg,#fff,#bd8aff 58%,#e66cff);clip-path:polygon(50% 0,100% 24%,68% 24%,100% 100%,50% 76%,0 100%,32% 24%,0 24%);filter:drop-shadow(0 0 8px rgba(206,150,255,.7))}
-.logo-text{gap:0}
-.logo-text strong{font-family:Georgia,"Times New Roman","Noto Serif KR",serif;font-size:22px;font-weight:900;font-style:italic;letter-spacing:1.8px;transform:skewX(-7deg);color:#fff;background:linear-gradient(180deg,#fff 8%,#eadbff 48%,#b27aff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 1px #fff,2px 3px 0 rgba(76,39,155,.42),0 0 18px rgba(165,101,255,.3)}
-.logo-text strong::after{content:"";display:block;width:92%;height:1px;margin:3px 0 0 5%;background:linear-gradient(90deg,transparent,#d6b5ff,#f28cff,transparent);box-shadow:0 0 6px rgba(212,137,255,.55);transform:skewX(-18deg)}
-.logo-text small{font-family:Arial,"Noto Sans KR",sans-serif;font-size:6.5px;font-weight:950;font-style:normal;letter-spacing:6.5px;color:#d0b3ff;margin-top:5px;padding-left:7px;text-shadow:0 0 10px rgba(173,111,255,.45)}
+/* 모바일에서 PC 로고와 동일한 엠블럼 구조를 크기만 축소 */
 @media(max-width:600px){
- .logo-mark{width:42px;height:42px;flex-basis:42px}
- .logo-mark::before{left:7px;top:7px;width:26px;height:26px}
- .logo-mark::after{left:18px;top:7px;width:5px;height:28px}
- .logo-text strong{font-size:19px;letter-spacing:1.2px}
- .logo-text strong::after{margin-top:2px}
- .logo-text small{font-size:5.5px;letter-spacing:4.8px;margin-top:4px;padding-left:5px}
+  .logo{min-width:0;gap:9px}
+  .logo-mark{width:42px;height:42px;flex-basis:42px;border-radius:9px}
+  .logo-mark::before{left:7px;top:7px;width:26px;height:26px}
+  .logo-mark::after{left:18px;top:7px;width:5px;height:28px}
+  .logo-text strong{font-size:19px;letter-spacing:1.2px}
+  .logo-text strong::after{margin-top:2px}
+  .logo-text small{font-size:5.5px;letter-spacing:4.8px;margin-top:4px;padding-left:5px}
 }
