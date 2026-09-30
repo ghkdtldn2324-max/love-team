@@ -675,7 +675,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="auth.js?v=20260930-13"></script>
+<script src="auth.js?v=20260930-14"></script>
 
 <script src="script.js?v=20260930-6"></script>
 
@@ -766,21 +766,21 @@ async function render(){
   list.innerHTML = reviews.map(function(r){
     const stars = '★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
 
-    return \`
+    return `
       <article class="review-row">
         <div class="review-top">
           <div>
-            <span class="review-user">\${r.name} 님</span>
-            <span class="stars" aria-label="\${r.stars}점">\${stars}</span>
+            <span class="review-user">${r.name} 님</span>
+            <span class="stars" aria-label="${r.stars}점">${stars}</span>
           </div>
-          <span class="review-date">\${r.date}</span>
+          <span class="review-date">${r.date}</span>
         </div>
-        <p class="review-text">\${r.text}</p>
+        <p class="review-text">${r.text}</p>
         <div class="review-meta">
-          <span class="review-service">\${r.service}</span>
+          <span class="review-service">${r.service}</span>
         </div>
       </article>
-    \`;
+    `;
   }).join('');
 }
 
