@@ -2148,35 +2148,19 @@
 
   async function updateAdminAccessUI(session, retryCount = 0) {
 
-    const desktopLinks = [];
     const mobileAdminLink =
       document.getElementById('loveMobileAdminLink');
-
-    document.querySelectorAll('.header-actions').forEach(function(container){
-      let link = container.querySelector('.love-admin-link');
-
-      if(!link){
-        link = document.createElement('a');
-        link.className = 'love-admin-link';
-        link.href = 'admin.html';
-        link.textContent = '관리자 페이지';
-        link.setAttribute('aria-label','관리자 페이지');
-
-        container.insertBefore(
-          link,
-          container.querySelector('.kakao-btn') || null
-        );
-      }
-
-      desktopLinks.push(link);
-    });
 
     const isMobileViewport =
       window.matchMedia &&
       window.matchMedia('(max-width:760px)').matches;
 
-    desktopLinks.forEach(function(link){
-      link.style.setProperty('display','none','important');
+    /*
+      모바일에서는 관리자 링크를 header-actions에 절대 생성하지 않는다.
+      기존 캐시/이전 코드로 생성된 링크도 즉시 제거한다.
+    */
+    document.querySelectorAll('.header-actions .love-admin-link').forEach(function(link){
+      link.remove();
     });
 
     if(mobileAdminLink){
@@ -2210,38 +2194,46 @@
                 );
               }
             });
-          }, 350);
-        } else if(result.error){
-          console.error(
-            '관리자 UI 확인 실패:',
-            result.error
-          );
+          },350);
         }
-
         return;
       }
 
-      desktopLinks.forEach(function(link){
-        if(isMobileViewport){
-          link.style.setProperty('display','none','important');
-        }else{
-          link.style.setProperty('display','flex','important');
-        }
-      });
-
-      if(mobileAdminLink){
-        if(isMobileViewport){
+      if(isMobileViewport){
+        /*
+          모바일 관리자 메뉴는 기존 ☰ 메뉴 내부의
+          #loveMobileAdminLink 하나만 사용한다.
+        */
+        if(mobileAdminLink){
           mobileAdminLink.style.setProperty('display','flex','important');
-        }else{
-          mobileAdminLink.style.setProperty('display','none','important');
         }
+        return;
       }
 
+      /*
+        PC에서만 header-actions에 관리자 페이지를 표시한다.
+      */
+      document.querySelectorAll('.header-actions').forEach(function(container){
+        let link = container.querySelector('.love-admin-link');
+
+        if(!link){
+          link = document.createElement('a');
+          link.className = 'love-admin-link';
+          link.href = 'admin.html';
+          link.textContent = '관리자 페이지';
+          link.setAttribute('aria-label','관리자 페이지');
+
+          container.insertBefore(
+            link,
+            container.querySelector('.kakao-btn') || null
+          );
+        }
+
+        link.style.setProperty('display','flex','important');
+      });
+
     }catch(error){
-      console.error(
-        '관리자 UI 확인 실패:',
-        error
-      );
+      console.error('관리자 UI 확인 실패:',error);
 
       if(retryCount < 3){
         setTimeout(function(){
@@ -2256,11 +2248,10 @@
               );
             }
           });
-        }, 350);
+        },350);
       }
     }
   }
-
 
   function updateLoveHeader(session) {
 
