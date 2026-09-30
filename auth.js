@@ -2098,7 +2098,7 @@
 
     const authLinks =
       document.querySelectorAll(
-        '.header-actions a, .actions a'
+        '.header-actions a, .actions a, #mobileOpenAuth'
       );
 
 
@@ -2107,11 +2107,19 @@
       const text =
         (a.textContent || '').trim();
 
+      const href =
+        a.getAttribute('href') || '';
 
-      if (
-        !text.includes('로그인') &&
-        !text.includes('회원가입')
-      ) {
+      const isAuthLink =
+        a.dataset.loveAuthStatus === '1' ||
+        a.hasAttribute('data-auth-open') ||
+        href === '#member' ||
+        href === '#login' ||
+        text.includes('로그인') ||
+        text.includes('회원가입') ||
+        text.endsWith('님');
+
+      if (!isAuthLink) {
         return;
       }
 
@@ -2121,9 +2129,10 @@
       }
 
 
-      if (session && session.user) {
+      a.dataset.loveAuthStatus = '1';
 
-        a.dataset.loveAuthStatus = '1';
+
+      if (session && session.user) {
 
         a.textContent =
           getDisplayName(session.user) +
@@ -2132,8 +2141,6 @@
         a.href = '#member';
 
       } else {
-
-        a.dataset.loveAuthStatus = '1';
 
         a.textContent =
           '로그인 / 회원가입';
