@@ -3814,3 +3814,16 @@ select{
 .home-page .header [aria-label*="more" i]{
   display:none!important;
 }
+
+
+/* Desktop: hide hamburger completely. Mobile: retain the existing hamburger. */
+@media(min-width:761px){
+  .home-page .mobile-menu-btn{
+    display:none!important;
+  }
+}
+@media(max-width:760px){
+  .home-page .mobile-menu-btn{
+    display:inline-flex!important;
+  }
+}
