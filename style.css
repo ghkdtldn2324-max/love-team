@@ -4786,3 +4786,22 @@ select{
     -webkit-tap-highlight-color:transparent;
   }
 }
+
+
+/* MOBILE HOMEPAGE — remove center logo, center and shrink CTA only */
+@media (max-width:760px){
+  .home-page .lt-hero-brand{
+    display:none!important;
+  }
+  .home-page .lt-hero-btn{
+    width:150px!important;
+    max-width:150px!important;
+    height:40px!important;
+    min-height:40px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    padding:0 14px!important;
+    border-radius:10px!important;
+    font-size:10px!important;
+  }
+}
