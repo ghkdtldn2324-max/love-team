@@ -282,11 +282,11 @@
   async function loadHomeReviews(){
     const list=document.getElementById('homeHeroReviewList');
     if(!list) return;
-    const fallback=[{display_name:'회원',stars:5,content:'로브팀 이용 후기가 등록되면 이곳에 실제 후기가 표시됩니다.',created_at:null}];
+    const fallback=[{display_name:'회원',content:'로브팀 이용 후기가 등록되면 이곳에 실제 후기가 표시됩니다.',created_at:null}];
     try{
       const client=window.LoveTeamAuth?.client||window.LoveTeamSupabase;
       if(!client) throw new Error('supabase unavailable');
-      const result=await client.from('reviews').select('display_name,stars,content,created_at').order('created_at',{ascending:false}).limit(2);
+      const result=await client.from('reviews').select('display_name,content,created_at').order('created_at',{ascending:false}).limit(2);
       if(result.error) throw result.error;
       const rows=result.data||[];
       const data=rows.length?rows:fallback;
