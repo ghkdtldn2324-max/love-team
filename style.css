@@ -4965,3 +4965,106 @@ select{
     overflow:hidden!important;
   }
 }
+
+
+/* MOBILE HOMEPAGE — review panel vertical clearance + quote-safe review text */
+@media (max-width:760px){
+  .home-page .home-hero-reviews{
+    height:150px!important;
+    min-height:150px!important;
+    max-height:150px!important;
+    box-sizing:border-box!important;
+    padding:10px 12px!important;
+    overflow:hidden!important;
+  }
+
+  .home-page .home-hero-reviews > .home-hero-label{
+    flex:0 0 auto!important;
+    height:10px!important;
+    min-height:10px!important;
+    margin:0 0 4px!important;
+    line-height:10px!important;
+  }
+
+  .home-page .home-hero-reviews .home-hero-review-head{
+    width:100%!important;
+    height:116px!important;
+    min-height:116px!important;
+    max-height:116px!important;
+    grid-template-columns:minmax(94px,.78fr) minmax(0,1.22fr)!important;
+    gap:8px!important;
+    align-items:center!important;
+    overflow:visible!important;
+  }
+
+  .home-page .home-hero-review-head > div:first-child{
+    height:116px!important;
+    min-height:116px!important;
+    max-height:116px!important;
+    overflow:visible!important;
+  }
+
+  .home-page .home-hero-review-list{
+    height:92px!important;
+    min-height:92px!important;
+    max-height:92px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    gap:6px!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+
+  .home-page .home-hero-review-list article,
+  .home-page .home-hero-review-list article:nth-child(n+2){
+    display:block!important;
+    position:relative!important;
+    flex:0 0 40px!important;
+    width:100%!important;
+    height:40px!important;
+    min-height:40px!important;
+    max-height:40px!important;
+    box-sizing:border-box!important;
+    padding:6px 32px 5px 8px!important;
+    overflow:hidden!important;
+    border-radius:8px!important;
+  }
+
+  .home-page .home-hero-review-list article::before{
+    top:5px!important;
+    right:9px!important;
+    font-size:28px!important;
+    line-height:1!important;
+    z-index:0!important;
+    pointer-events:none!important;
+  }
+
+  .home-page .home-hero-review-list article p{
+    position:relative!important;
+    z-index:1!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    font-size:7px!important;
+    line-height:1.35!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  .home-page .home-hero-review-list article small{
+    position:relative!important;
+    z-index:1!important;
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:2px!important;
+    font-size:6px!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+}
