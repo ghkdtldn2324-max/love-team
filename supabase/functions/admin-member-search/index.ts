@@ -8,8 +8,10 @@ export default {
     { auth: "user" },
     async (req, ctx) => {
       try {
+        console.info("admin-member-search request received");
         const adminUserId = (Deno.env.get("ADMIN_USER_ID") || "").trim();
         const callerId = String(ctx.userClaims?.sub || "").trim();
+        console.info("admin-member-search auth check", { hasAdminUserId: !!adminUserId, hasCallerId: !!callerId, isAdmin: !!adminUserId && !!callerId && callerId === adminUserId });
 
         if (!adminUserId || !callerId || callerId !== adminUserId) {
           return Response.json({
@@ -28,6 +30,7 @@ export default {
 
         const body = await req.json().catch(() => ({}));
         const username = String(body?.username || "").trim().toLowerCase();
+        console.info("admin-member-search username received", { hasUsername: !!username });
 
         if (!username) {
           return Response.json({
