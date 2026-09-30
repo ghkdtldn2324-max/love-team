@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box}
 :root{--purple:#7048ee;--purple2:#a14cff;--line:#e5e3eb;--text:#171722;--muted:#7b7b8c;--soft:#f5f1ff;--black:#08080b}
 html{background:#fff;scroll-behavior:smooth}
@@ -2890,7 +2891,7 @@ select{
 .home-page .logo-image,
 .home-page .lt-hero-brand img{
   mix-blend-mode:normal!important;
-  filter:url("assets/love-team-logo.svg?v=20261001-logo-cutout#lt-logo-cutout") brightness(1.04) saturate(1.08)
+  filter:brightness(1.04) saturate(1.08)
     drop-shadow(0 0 11px rgba(76,86,255,.68))
     drop-shadow(0 0 22px rgba(171,74,255,.32))!important;
 }
