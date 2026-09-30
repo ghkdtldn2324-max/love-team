@@ -543,7 +543,6 @@ const fallback = [
 
   {
     name:'Ja***',
-    stars:5,
     text:'진행 과정이 깔끔했고 원하는 부분을 자세하게 설명해주셔서 만족했습니다.',
     date:'2026.09.28',
     service:'승당'
@@ -551,7 +550,6 @@ const fallback = [
 
   {
     name:'Mi***',
-    stars:5,
     text:'플레이 방향을 잡는 데 도움이 많이 됐습니다. 문의 답변도 빠르게 받을 수 있었습니다.',
     date:'2026.09.27',
     service:'티어'
@@ -559,7 +557,6 @@ const fallback = [
 
   {
     name:'Ho***',
-    stars:4,
     text:'일정 조율이 편했고 진행 상황도 안내받을 수 있어서 좋았습니다.',
     date:'2026.09.25',
     service:'듀오'
@@ -567,7 +564,6 @@ const fallback = [
 
   {
     name:'Se***',
-    stars:5,
     text:'배치 진행 전에 필요한 내용을 안내받아서 처음 이용하는데도 어렵지 않았습니다.',
     date:'2026.09.23',
     service:'배치고사'
@@ -575,7 +571,6 @@ const fallback = [
 
   {
     name:'Lu***',
-    stars:5,
     text:'전체적으로 친절하게 진행해주셨고 게임에 대한 피드백도 이해하기 쉬웠습니다.',
     date:'2026.09.21',
     service:'승당'
@@ -589,7 +584,7 @@ async function getReviews(){
     const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
     if(!client) return fallback;
     const result = await client.from('reviews')
-      .select('display_name,stars,content,service,created_at')
+      .select('display_name,content,service,created_at')
       .order('created_at',{ascending:false});
     if(result.error) throw result.error;
     const rows = result.data || [];
@@ -597,7 +592,6 @@ async function getReviews(){
     return rows.map(function(r){
       return {
         name:r.display_name,
-        stars:r.stars,
         text:r.content,
         date:new Date(r.created_at).toLocaleDateString('ko-KR'),
         service:r.service
@@ -616,14 +610,11 @@ async function render(){
   const reviews = await getReviews();
 
   list.innerHTML = reviews.map(function(r){
-    const stars = '★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
-
     return `
       <article class="review-row">
         <div class="review-top">
           <div>
             <span class="review-user">${r.name} 님</span>
-            <span class="stars" aria-label="${r.stars}점">${stars}</span>
           </div>
           <span class="review-date">${r.date}</span>
         </div>
