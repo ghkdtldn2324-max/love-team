@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>후기 관리 - LOVE TEAM</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#09090d;color:#fff;font-family:Arial,sans-serif}
+.header{height:64px;background:#0b0b0f;border-bottom:1px solid #22222a;display:flex;align-items:center;padding:0 24px}
+.logo{color:#fff;text-decoration:none;font-weight:900;letter-spacing:.5px}
+.logo small{display:block;color:#8f70df;font-size:9px;letter-spacing:2px}
+.wrap{max-width:1000px;margin:0 auto;padding:60px 20px 80px}
+.head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+h1{margin:0;font-size:32px}
+.sub{margin:8px 0 0;color:#999;line-height:1.6}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:9px;border:1px solid #403c4b;background:#18161f;color:#fff;text-decoration:none;font-weight:700;cursor:pointer}
+.btn:hover{background:#24212d}
+.list{display:flex;flex-direction:column;gap:12px}
+.card{padding:18px;border:1px solid #292932;border-radius:14px;background:#111117}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.user{font-weight:800}.stars{color:#ffd84d;letter-spacing:1px;margin-left:8px}.date{color:#777;font-size:12px}
+.text{margin:12px 0;color:#ddd;line-height:1.7;overflow-wrap:anywhere}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.service{font-size:12px;color:#bca5ff;font-weight:800}
+.delete{min-height:36px;padding:0 13px;border-radius:8px;border:1px solid #5a3038;background:#24151a;color:#ffb8c2;font-weight:800;cursor:pointer}
+.delete:disabled{opacity:.5}
+.empty,.error{padding:20px;border:1px solid #292932;border-radius:14px;background:#111117;color:#888;line-height:1.6}
+.count{color:#aaa;font-size:13px;margin-bottom:12px}
+@media(max-width:700px){.wrap{padding:38px 14px 60px}.head{align-items:stretch;flex-direction:column}h1{font-size:27px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}.top{align-items:flex-start}.date{white-space:nowrap}.meta{align-items:flex-end}}
+</style>
+</head>
+<body>
+<header class="header">
+<a class="logo" href="index.html">♥ LOVE<small>TEAM</small></a>
+</header>
+<main class="wrap">
+<div class="head">
+<div><h1>후기 관리</h1><p class="sub">관리자 전용 후기 관리 페이지입니다.</p></div>
+<div class="actions">
+<a class="btn" href="admin.html">관리자 페이지</a>
+<a class="btn" href="reviews.html">공개 후기</a>
+</div>
+</div>
+<div class="count" id="count">후기 불러오는 중...</div>
+<div class="list" id="list"><div class="empty">후기 목록을 불러오는 중입니다.</div></div>
+</main>
+<script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=20260930-11"></script>
+<script>
+const client=supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
+const list=document.getElementById('list');
+const count=document.getElementById('count');
+
+function esc(v){
+ return String(v??'').replace(/[&<>"']/g,function(ch){
+  return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+ });
+}
+
+async function callAdmin(body){
+ const {data,error}=await client.functions.invoke('admin-review-management',{body});
+ if(error){
+  let message='관리자 요청에 실패했습니다.';
+  try{const json=await error.context.json();message=json.message||message;}catch(_){}
+  throw new Error(message);
+ }
+ if(!data?.ok) throw new Error(data?.message||'관리자 요청에 실패했습니다.');
+ return data;
+}
+
+async function load(){
+ list.innerHTML='<div class="empty">후기 목록을 불러오는 중입니다.</div>';
+ try{
+  const session=await window.LoveTeamAuth.getSession();
+  if(!session?.user) throw new Error('로그인이 필요합니다.');
+  const data=await callAdmin({action:'list'});
+  const rows=Array.isArray(data.reviews)?data.reviews:[];
+  count.textContent='등록 후기 '+rows.length+'개';
+  if(!rows.length){
+   list.innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';
+   return;
+  }
+  list.innerHTML=rows.map(function(r){
+   const stars='★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
+   return '<article class="card">'+
+    '<div class="top"><div><span class="user">'+esc(r.display_name)+'</span><span class="stars">'+stars+'</span></div>'+
+    '<span class="date">'+esc(new Date(r.created_at).toLocaleDateString('ko-KR'))+'</span></div>'+
+    '<p class="text">'+esc(r.content)+'</p>'+
+    '<div class="meta"><span class="service">'+esc(r.service)+'</span>'+
+    '<button class="delete" data-id="'+esc(r.id)+'">삭제</button></div>'+
+   '</article>';
+  }).join('');
+ }catch(e){
+  count.textContent='후기 불러오기 실패';
+  list.innerHTML='<div class="error">'+esc(e.message)+'</div>';
+ }
+}
+
+list.addEventListener('click',async function(e){
+ const btn=e.target.closest('.delete');
+ if(!btn)return;
+ if(!confirm('이 후기를 삭제할까요?'))return;
+ btn.disabled=true;
+ try{
+  await callAdmin({action:'delete',id:btn.dataset.id});
+  await load();
+ }catch(e){
+  alert(e.message);
+  btn.disabled=false;
+ }
+});
+
+window.addEventListener('load',load);
+</script>
+</body>
+</html>
