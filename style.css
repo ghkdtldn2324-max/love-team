@@ -1085,11 +1085,27 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   filter:drop-shadow(1px 2px 0 #241b72) drop-shadow(0 0 7px rgba(99,111,255,.45))!important;
   text-shadow:none!important;
 }
-.logo-text strong::first-letter{
-  font-size:25px!important;
-  font-weight:950!important;
+.logo-text strong b{
+  display:inline-block!important;
+  font-style:inherit!important;
+  font-weight:inherit!important;
+  color:inherit!important;
+  background:inherit!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
 }
-.logo-text strong::after{
+.logo-text strong .love-l,
+.logo-text strong .love-e{
+  font-size:25px!important;
+  line-height:25px!important;
+  transform:translateY(1px) scaleX(1.02)!important;
+}
+.logo-text strong .love-ov{
+  font-size:21px!important;
+  line-height:25px!important;
+  letter-spacing:-2px!important;
+}.logo-text strong::after{
   content:""!important;
   display:block!important;
   position:absolute!important;
