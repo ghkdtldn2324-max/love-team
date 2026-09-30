@@ -977,240 +977,34 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - STRONG FOX ESPORTS WORDMARK
-   기존 로고 완전 교체 / PC + MOBILE
+   LOVE TEAM - GENERATED ESPORTS LOGO IMAGE
 ===================================================== */
 .logo{
   display:flex!important;
   align-items:center!important;
-  gap:2px!important;
-  min-width:178px!important;
+  width:164px!important;
+  min-width:164px!important;
+  height:62px!important;
   text-decoration:none!important;
-}
-.logo-mark{
-  width:50px!important;
-  height:48px!important;
-  flex:0 0 50px!important;
-  position:relative!important;
-  display:block!important;
-  border:0!important;
-  background:transparent!important;
   overflow:visible!important;
-  transform:translateY(1px)!important;
 }
-.logo-mark::before{
-  content:""!important;
-  position:absolute!important;
-  left:2px!important;
-  top:2px!important;
-  width:46px!important;
-  height:44px!important;
-  background:linear-gradient(150deg,#7dd8ff 0%,#4b82ff 27%,#6d35ee 63%,#c34dff 100%)!important;
-  clip-path:polygon(
-    5% 22%,20% 28%,13% 2%,38% 15%,50% 9%,62% 15%,87% 2%,80% 28%,95% 22%,
-    90% 49%,84% 65%,73% 80%,61% 91%,50% 99%,39% 91%,27% 80%,16% 65%,10% 49%
-  )!important;
-  filter:drop-shadow(0 0 7px rgba(92,111,255,.55))!important;
-}
-.logo-mark::after{
-  content:""!important;
-  position:absolute!important;
-  left:8px!important;
-  top:12px!important;
-  width:34px!important;
-  height:33px!important;
-  background:#070811!important;
-  clip-path:polygon(
-    4% 22%,28% 32%,24% 17%,42% 28%,50% 36%,58% 28%,76% 17%,72% 32%,96% 22%,
-    87% 51%,79% 65%,67% 79%,50% 94%,33% 79%,21% 65%,13% 51%
-  )!important;
-}
-.logo-mark .fox-eye-left,
-.logo-mark .fox-eye-right{
-  position:absolute!important;
-  top:24px!important;
-  width:14px!important;
-  height:9px!important;
-  z-index:5!important;
+.logo-image{
   display:block!important;
-  background:linear-gradient(135deg,#ffffff 0%,#8fdcff 35%,#a44cff 100%)!important;
-  filter:drop-shadow(0 0 5px rgba(101,167,255,.8))!important;
-}
-.logo-mark .fox-eye-left{
-  left:10px!important;
-  clip-path:polygon(0 45%,100% 0,82% 74%,55% 100%,17% 82%)!important;
-}
-.logo-mark .fox-eye-right{
-  right:10px!important;
-  clip-path:polygon(0 0,100% 45%,83% 82%,45% 100%,18% 74%)!important;
-}
-.logo-mark i::after{
-  content:""!important;
-  position:absolute!important;
-  left:50%!important;
-  top:31px!important;
-  width:5px!important;
-  height:4px!important;
-  transform:translateX(-50%) rotate(45deg)!important;
-  background:#b9eaff!important;
-  clip-path:polygon(50% 0,100% 100%,0 100%)!important;
-  opacity:1!important;
-}
-.logo-text{
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:center!important;
-  line-height:1!important;
-  margin-left:-1px!important;
-  transform:translateY(-1px)!important;
-}
-.logo-text strong{
-  position:relative!important;
-  display:block!important;
-  width:104px!important;
-  height:25px!important;
-  line-height:25px!important;
-  font-family:"Arial Black","Trebuchet MS",Impact,sans-serif!important;
-  font-size:21px!important;
-  font-weight:950!important;
-  font-style:italic!important;
-  letter-spacing:-2px!important;
-  transform:skewX(-10deg)!important;
-  transform-origin:center!important;
-  color:transparent!important;
-  background:linear-gradient(105deg,#83ddff 0%,#4d8dff 28%,#7d42f4 62%,#d75cff 100%)!important;
-  -webkit-background-clip:text!important;
-  background-clip:text!important;
-  -webkit-text-fill-color:transparent!important;
-  filter:drop-shadow(1px 2px 0 #241b72) drop-shadow(0 0 7px rgba(99,111,255,.45))!important;
-  text-shadow:none!important;
-}
-.logo-text strong b{
-  display:inline-block!important;
-  font-style:inherit!important;
-  font-weight:inherit!important;
-  color:inherit!important;
-  background:inherit!important;
-  -webkit-background-clip:text!important;
-  background-clip:text!important;
-  -webkit-text-fill-color:transparent!important;
-}
-.logo-text strong .love-l,
-.logo-text strong .love-e{
-  font-size:25px!important;
-  line-height:25px!important;
-  transform:translateY(1px) scaleX(1.02)!important;
-}
-.logo-text strong .love-ov{
-  font-size:21px!important;
-  line-height:25px!important;
-  letter-spacing:-2px!important;
-}.logo-text strong::after{
-  content:""!important;
-  display:block!important;
-  position:absolute!important;
-  left:2px!important;
-  right:0!important;
-  bottom:-3px!important;
-  height:2px!important;
-  background:linear-gradient(90deg,#55cfff 0%,#7355ff 48%,#d65cff 100%)!important;
-  transform:skewX(-22deg)!important;
-  box-shadow:0 0 8px rgba(105,118,255,.55)!important;
-}
-.logo-text small{
-  display:block!important;
-  position:relative!important;
-  width:max-content!important;
-  margin:5px auto 0!important;
-  padding:0 12px!important;
-  font-family:"Arial Narrow","Trebuchet MS",Arial,sans-serif!important;
-  font-size:5.5px!important;
-  font-weight:900!important;
-  letter-spacing:3px!important;
-  line-height:1!important;
-  color:#b7c7ff!important;
-}
-.logo-text small::before,
-.logo-text small::after{
-  content:""!important;
-  position:absolute!important;
-  top:50%!important;
-  width:9px!important;
-  height:1px!important;
-  background:linear-gradient(90deg,#5bcfff,#9b59ff)!important;
-  box-shadow:0 0 5px rgba(112,130,255,.45)!important;
-}
-.logo-text small::before{
-  right:100%!important;
-}
-.logo-text small::after{
-  left:100%!important;
+  width:158px!important;
+  height:58px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  mix-blend-mode:screen!important;
+  filter:drop-shadow(0 0 7px rgba(89,112,255,.38))!important;
 }
 @media(max-width:600px){
   .logo{
-    min-width:0!important;
-    gap:0!important;
+    width:128px!important;
+    min-width:128px!important;
+    height:48px!important;
   }
-  .logo-mark{
-    width:43px!important;
-    height:41px!important;
-    flex-basis:43px!important;
-  }
-  .logo-mark::before{
-    left:1px!important;
-    top:2px!important;
-    width:41px!important;
-    height:38px!important;
-  }
-  .logo-mark::after{
-    left:7px!important;
-    top:10px!important;
-    width:29px!important;
-    height:29px!important;
-  }
-  .logo-mark .fox-eye-left,
-  .logo-mark .fox-eye-right{
-    top:22px!important;
-    width:11px!important;
-    height:7px!important;
-  }
-  .logo-mark .fox-eye-left{left:9px!important}
-  .logo-mark .fox-eye-right{right:9px!important}
-  .logo-text{
-    margin-left:-2px!important;
-  }
-  .logo-text strong{
-    width:82px!important;
-    height:21px!important;
-    line-height:21px!important;
-    font-size:17px!important;
-    letter-spacing:-1.7px!important;
-  }
-  .logo-text strong::first-letter{
-    font-size:20px!important;
-  }
-  .logo-text strong .love-l,
-  .logo-text strong .love-e{
-    font-size:20px!important;
-    line-height:21px!important;
-  }
-  .logo-text strong .love-ov{
-    font-size:17px!important;
-    line-height:21px!important;
-    letter-spacing:-1.7px!important;
-  }
-  .logo-text strong::after{
-    bottom:-2px!important;
-    height:1.5px!important;
-  }
-  .logo-text small{
-    margin-top:4px!important;
-    padding:0 9px!important;
-    font-size:4.5px!important;
-    letter-spacing:2.6px!important;
-  }
-  .logo-text small::before,
-  .logo-text small::after{
-    width:7px!important;
+  .logo-image{
+    width:124px!important;
+    height:46px!important;
   }
 }
