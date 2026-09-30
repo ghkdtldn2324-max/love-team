@@ -2865,3 +2865,94 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     padding:14px 14px!important;
   }
 }
+
+
+/* =========================================================
+   HOME TYPOGRAPHY / LOGO CUTOUT / HERO SCALE — 2026-10-01
+========================================================= */
+
+/* Premium Korean-first typography without changing page functionality. */
+body,
+button,
+input,
+textarea,
+select{
+  font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif!important;
+}
+.lt-hero,
+.lt-hero button,
+.lt-hero a{
+  font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif!important;
+}
+
+/* The logo asset now has a luminance-based transparent cutout.
+   Keep only the actual bright LOVE TEAM mark; remove the embedded JPEG box. */
+.home-page .logo-image,
+.home-page .lt-hero-brand img{
+  mix-blend-mode:normal!important;
+  filter:url("assets/love-team-logo.svg?v=20261001-logo-cutout#lt-logo-cutout") brightness(1.04) saturate(1.08)
+    drop-shadow(0 0 11px rgba(76,86,255,.68))
+    drop-shadow(0 0 22px rgba(171,74,255,.32))!important;
+}
+
+/* Header logo: no surrounding rectangle, only the mark and a soft glow. */
+.home-page .logo::before{
+  display:none!important;
+}
+.home-page .logo{
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+}
+
+/* Larger center LOVE TEAM mark, with no panel/box behind it. */
+.home-page .lt-hero-brand{
+  width:min(420px,29vw)!important;
+  top:51%!important;
+  padding:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.home-page .lt-hero-brand::before,
+.home-page .lt-hero-brand::after{
+  display:none!important;
+}
+.home-page .lt-hero-brand img{
+  width:100%!important;
+  height:auto!important;
+  display:block!important;
+}
+
+/* Show more of the original 16:9 hero artwork on desktop. */
+.home-page .lt-hero{
+  min-height:100svh!important;
+  height:100svh!important;
+  max-height:none!important;
+}
+.home-page .lt-hero-bg img{
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+
+/* Keep the enlarged logo above the compact glass panel. */
+.home-page .home-hero-panel{
+  bottom:20px!important;
+}
+
+/* Mobile remains a separate layout, but uses the same transparent logo asset. */
+@media(max-width:760px){
+  .home-page .lt-hero{
+    min-height:650px!important;
+    height:calc(100svh - 58px)!important;
+    max-height:760px!important;
+  }
+  .home-page .lt-hero-brand{
+    width:min(300px,72vw)!important;
+    top:40%!important;
+    padding:0!important;
+  }
+  .home-page .logo::before{
+    display:none!important;
+  }
+}
