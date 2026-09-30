@@ -720,6 +720,40 @@
             회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.
           </div>
 
+          <div
+            class="member-reset"
+            id="memberReset"
+            style="display:none;margin-top:15px;padding:15px;border-radius:10px;background:#101016;border:1px solid #292932;"
+          >
+            <strong style="display:block;margin-bottom:10px;color:#fff;">
+              비밀번호 초기화
+            </strong>
+
+            <input
+              id="memberResetPassword"
+              type="password"
+              minlength="8"
+              maxlength="72"
+              autocomplete="new-password"
+              placeholder="새 비밀번호 8자 이상"
+              style="width:100%;box-sizing:border-box;height:44px;padding:0 14px;border-radius:10px;border:1px solid #33333d;background:#0e0e13;color:#fff;outline:none;"
+            >
+
+            <button
+              class="admin-btn"
+              id="memberResetBtn"
+              type="button"
+              style="margin-top:10px;"
+            >
+              비밀번호 변경
+            </button>
+
+            <div
+              id="memberResetResult"
+              style="margin-top:10px;color:#999;line-height:1.5;"
+            ></div>
+          </div>
+
         </div>
 
 
@@ -1300,6 +1334,159 @@
 
 
   /* =========================
+     회원 비밀번호 초기화
+  ========================= */
+
+  const resetBox =
+    document.getElementById("memberReset");
+
+  const resetPasswordInput =
+    document.getElementById("memberResetPassword");
+
+  const resetBtn =
+    document.getElementById("memberResetBtn");
+
+  const resetResult =
+    document.getElementById("memberResetResult");
+
+  let selectedMemberId = "";
+
+  function showResetBox(userId){
+    selectedMemberId = userId || "";
+
+    if (!resetBox) return;
+
+    resetBox.style.display =
+      selectedMemberId ? "block" : "none";
+
+    if (resetPasswordInput) {
+      resetPasswordInput.value = "";
+    }
+
+    if (resetResult) {
+      resetResult.textContent = "";
+    }
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener(
+      "click",
+      async function(){
+        const newPassword =
+          resetPasswordInput?.value || "";
+
+        if (!selectedMemberId) {
+          resetResult.textContent =
+            "먼저 회원 검색을 해주세요.";
+          return;
+        }
+
+        if (newPassword.length < 8) {
+          resetResult.textContent =
+            "새 비밀번호는 8자 이상 입력해주세요.";
+          return;
+        }
+
+        if (newPassword.length > 72) {
+          resetResult.textContent =
+            "새 비밀번호는 72자 이하로 입력해주세요.";
+          return;
+        }
+
+        resetResult.textContent =
+          "비밀번호를 변경하는 중입니다...";
+
+        try {
+          const supabase =
+            window.LoveTeamAuth &&
+            window.LoveTeamAuth.client;
+
+          if (!supabase) {
+            resetResult.textContent =
+              "Supabase 연결을 확인할 수 없습니다.";
+            return;
+          }
+
+          const {
+            data: sessionData,
+            error: sessionError
+          } = await supabase.auth.getSession();
+
+          if (
+            sessionError ||
+            !sessionData?.session
+          ) {
+            resetResult.textContent =
+              "관리자 로그인이 필요합니다.";
+            return;
+          }
+
+          const {
+            data,
+            error
+          } = await supabase.functions.invoke(
+            "admin-member-password-reset",
+            {
+              body: {
+                user_id: selectedMemberId,
+                new_password: newPassword
+              }
+            }
+          );
+
+          if (error) {
+            let detail =
+              error.message ||
+              "Edge Function 오류";
+
+            try {
+              if (
+                error.context &&
+                typeof error.context.json === "function"
+              ) {
+                const body =
+                  await error.context.json();
+
+                if (body?.message) {
+                  detail = body.message;
+                }
+              }
+            } catch (_) {}
+
+            resetResult.textContent =
+              "비밀번호 변경에 실패했습니다. (" +
+              detail +
+              ")";
+            return;
+          }
+
+          if (!data || data.ok !== true) {
+            resetResult.textContent =
+              data?.message ||
+              "비밀번호 변경에 실패했습니다.";
+            return;
+          }
+
+          resetResult.textContent =
+            "비밀번호가 변경되었습니다.";
+
+          resetPasswordInput.value = "";
+
+        } catch (error) {
+          console.error(
+            "회원 비밀번호 변경 오류:",
+            error
+          );
+
+          resetResult.textContent =
+            "비밀번호 변경 중 오류가 발생했습니다.";
+        }
+      }
+    );
+  }
+
+
+  /* =========================
      회원 검색
   ========================= */
 
@@ -1433,6 +1620,7 @@
           }
 
           if (!data.found || !data.user) {
+            showResetBox("");
             searchResult.textContent =
               data.message ||
               "해당 회원을 찾을 수 없습니다.";
@@ -1461,6 +1649,8 @@
               }
             );
           };
+
+          showResetBox(user.id);
 
           searchResult.textContent =
             [
