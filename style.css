@@ -3802,3 +3802,15 @@ select{
   .home-page .home-hero-benefits article strong{font-size:8px!important}
   .home-page .home-hero-reviews{min-height:220px!important}
 }
+
+
+/* Remove any legacy desktop header dotted/more control. The mobile hamburger remains intact. */
+.home-page .header .love-mobile-more-btn,
+.home-page .header .header-more,
+.home-page .header .more-btn,
+.home-page .header .dots-btn,
+.home-page .header .dot-menu,
+.home-page .header [aria-label*="더보기"],
+.home-page .header [aria-label*="more" i]{
+  display:none!important;
+}
