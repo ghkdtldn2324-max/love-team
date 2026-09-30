@@ -712,8 +712,12 @@
               id="workDisplayName"
               type="text"
               maxlength="40"
-              placeholder="익명 이름 (예: Gh***)"
+              placeholder="회원 ID 입력 (예: dlgusthd)"
+              autocomplete="off"
             >
+            <div id="workDisplayPreview" style="margin:-3px 0 10px;color:#aaa;font-size:13px;line-height:1.5;">
+              입력한 ID는 공개 시 자동으로 익명 처리됩니다.
+            </div>
 
             <input
               id="workDetail"
@@ -1457,6 +1461,8 @@
     document.getElementById("workDisplayName");
   const workDetailEl =
     document.getElementById("workDetail");
+  const workDisplayPreviewEl =
+    document.getElementById("workDisplayPreview");
   const workStatusEl =
     document.getElementById("workStatus");
   const workEditIdEl =
@@ -1475,6 +1481,41 @@
       .replace(/>/g,"&gt;")
       .replace(/"/g,"&quot;")
       .replace(/'/g,"&#039;");
+  }
+
+  function maskWorkDisplayName(value){
+    const text = String(value || "").trim();
+
+    if(!text) return "";
+
+    if(text.length <= 2){
+      return "*".repeat(text.length);
+    }
+
+    if(text.length === 3){
+      return text.charAt(0) + "*" + text.charAt(2);
+    }
+
+    if(text.length === 4){
+      return text.substring(0,2) + "**";
+    }
+
+    return text.substring(0,2) + "***" + text.slice(-2);
+  }
+
+  function updateWorkDisplayPreview(){
+    if(!workDisplayPreviewEl) return;
+
+    const value = workNameEl.value.trim();
+
+    if(!value){
+      workDisplayPreviewEl.textContent =
+        "입력한 ID는 공개 시 자동으로 익명 처리됩니다.";
+      return;
+    }
+
+    workDisplayPreviewEl.textContent =
+      "공개 표시: " + maskWorkDisplayName(value);
   }
 
   function resetWorkForm(){
@@ -1531,6 +1572,7 @@
 
           workEditIdEl.value = row.id;
           workNameEl.value = row.display_name || "";
+          updateWorkDisplayPreview();
           workDetailEl.value = row.detail || "";
           workStatusEl.value = row.status || "progress";
           workSaveBtn.textContent = "수정 저장";
@@ -1644,9 +1686,13 @@
     }
   }
 
+  if(workNameEl){
+    workNameEl.addEventListener("input", updateWorkDisplayPreview);
+  }
+
   if(workSaveBtn){
     workSaveBtn.addEventListener("click",async function(){
-      const displayName = workNameEl.value.trim();
+      const displayName = maskWorkDisplayName(workNameEl.value);
       const detail = workDetailEl.value.trim();
       const status = workStatusEl.value;
 
