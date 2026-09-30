@@ -135,18 +135,28 @@
     transform .2s ease,
     box-shadow .2s ease;
 }
-.notice-item:hover{
-  background:linear-gradient(90deg,#faf8ff,#fff);
-  box-shadow:inset 4px 0 0 #7048ee;
+.notice-item{
+  background:#fff;
+  box-shadow:none;
+  outline:none;
 }
+.notice-item:hover,
 .notice-item:focus,
+.notice-item:focus-visible,
 .notice-item:active{
   outline:none;
-  box-shadow:none;
 }
-.notice-item:focus-visible{
-  outline:2px solid #8b6cff;
-  outline-offset:-2px;
+@media (hover:hover) and (pointer:fine){
+  .notice-item:hover{
+    background:linear-gradient(90deg,#faf8ff,#fff);
+    box-shadow:inset 4px 0 0 #7048ee;
+  }
+}
+.notice-item:focus:not(:hover),
+.notice-item:focus-visible:not(:hover),
+.notice-item:active:not(:hover){
+  background:#fff;
+  box-shadow:none;
 }
 .notice-item:visited{
   color:#171722;
@@ -319,6 +329,17 @@
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
 <script src="script.js?v=20260930-11"></script><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20260930-21"></script>
 <script>
+// 마우스를 올렸을 때만 강조 효과를 허용하고,
+// 클릭/포커스가 남아 있어도 강조 상태가 고정되지 않도록 초기화합니다.
+document.querySelectorAll('.notice-item').forEach(function(item){
+  item.addEventListener('click',function(){
+    item.blur();
+  });
+  item.addEventListener('mouseleave',function(){
+    item.blur();
+  });
+});
+
 (async function(){
   const client = window.LoveTeamSupabase || window.supabaseClient;
   if(!client) return;
