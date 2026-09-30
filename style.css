@@ -1107,3 +1107,42 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     object-position:80% 30%!important;
   }
 }
+
+
+/* LOVE TEAM 나비 엠블럼 - PC / 모바일 공통 */
+.logo-mark::before{
+  content:""!important;
+  position:absolute!important;
+  left:5px!important;
+  top:10px!important;
+  width:34px!important;
+  height:24px!important;
+  border:0!important;
+  transform:none!important;
+  border-radius:0!important;
+  background:
+    radial-gradient(ellipse at 25% 38%,#c9a6ff 0 42%,transparent 44%),
+    radial-gradient(ellipse at 25% 68%,#9a6cff 0 38%,transparent 40%),
+    radial-gradient(ellipse at 75% 38%,#ef86ff 0 42%,transparent 44%),
+    radial-gradient(ellipse at 75% 68%,#b66cff 0 38%,transparent 40%);
+  filter:drop-shadow(0 0 7px rgba(191,137,255,.62));
+}
+.logo-mark::after{
+  content:""!important;
+  position:absolute!important;
+  left:20px!important;
+  top:8px!important;
+  width:7px!important;
+  height:29px!important;
+  background:linear-gradient(180deg,#fff,#caa4ff 55%,#e86cff)!important;
+  clip-path:polygon(50% 0,85% 18%,72% 50%,100% 100%,50% 76%,0 100%,28% 50%,15% 18%)!important;
+  filter:drop-shadow(0 0 7px rgba(206,150,255,.75))!important;
+}
+@media(max-width:600px){
+  .logo-mark::before{
+    left:4px!important;top:9px!important;width:32px!important;height:23px!important;
+  }
+  .logo-mark::after{
+    left:17px!important;top:7px!important;width:7px!important;height:28px!important;
+  }
+}
