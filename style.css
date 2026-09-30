@@ -800,3 +800,62 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 
 }
+
+/* =====================================================
+   서브페이지 공통 네비게이션 UI 개선
+   메인 히어로는 건드리지 않고 현재 메뉴만 강조
+===================================================== */
+.nav a{
+  position:relative;
+  padding:10px 13px;
+  border-radius:10px;
+  color:#cfcdda;
+  transition:color .22s ease,background .22s ease,transform .22s ease;
+}
+.nav a:hover{
+  color:#fff;
+  background:rgba(112,72,238,.12);
+  transform:translateY(-1px);
+}
+.nav a.active{
+  color:#fff!important;
+  background:linear-gradient(135deg,rgba(112,72,238,.25),rgba(161,76,255,.16));
+  box-shadow:inset 0 0 0 1px rgba(153,125,255,.22),0 6px 18px rgba(70,45,150,.18);
+}
+.nav a.active::after{
+  left:14px;
+  right:14px;
+  bottom:4px;
+  height:2px;
+  background:linear-gradient(90deg,#765cff,#c052ff);
+  box-shadow:0 0 9px rgba(160,82,255,.55);
+}
+@media(max-width:600px){
+  .mobile-menu>a{
+    position:relative;
+    transition:background .2s ease,color .2s ease,padding-left .2s ease;
+  }
+  .mobile-menu>a:not(.mobile-kakao):hover{
+    background:rgba(112,72,238,.12);
+  }
+  .mobile-menu>a.mobile-current{
+    color:#fff;
+    background:linear-gradient(90deg,rgba(112,72,238,.24),rgba(161,76,255,.08));
+    box-shadow:inset 3px 0 0 #8b68ff;
+    padding-left:24px;
+  }
+  .mobile-menu>a.mobile-current::after{
+    content:"현재 페이지";
+    margin-left:auto;
+    padding:4px 7px;
+    border:1px solid rgba(166,137,255,.25);
+    border-radius:999px;
+    color:#bca8ff;
+    background:rgba(112,72,238,.12);
+    font-size:9px;
+    font-weight:900;
+  }
+  .mobile-menu>a#loveMobileAdminLink.mobile-current{
+    color:#fff;
+  }
+}
