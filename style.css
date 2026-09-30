@@ -864,17 +864,25 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 /* =====================================================
    메인 홈 - 히어로와 헤더 자연스럽게 연결
 ===================================================== */
+.home-page .top-notice{
+  position:relative;
+  z-index:1101;
+}
 .home-page .header{
-  position:fixed;
+  position:absolute;
   top:36px;
   left:0;
   right:0;
   width:100%;
   background:transparent;
   border-bottom:1px solid transparent;
-  transition:background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+  transition:background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease, top .25s ease;
 }
 .home-page .header.home-scrolled{
+  position:fixed;
+}
+.home-page .header.home-scrolled{
+  position:fixed;
   top:0;
   background:rgba(7,7,10,.96);
   border-bottom-color:#22232b;
@@ -896,6 +904,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 }
 @media(max-width:760px){
   .home-page .header{
+    position:absolute;
     top:36px;
     background:transparent;
     border-bottom-color:transparent;
@@ -904,6 +913,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     -webkit-backdrop-filter:none;
   }
   .home-page .header.home-scrolled{
+    position:fixed;
     top:0;
     background:rgba(7,7,10,.97);
     border-bottom-color:#22232b;
