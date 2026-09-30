@@ -148,6 +148,33 @@
   display:grid;
   gap:10px;
 }
+.work-pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.work-pagination button{
+  min-width:36px;
+  height:36px;
+  padding:0 10px;
+  border-radius:8px;
+  border:1px solid #33333d;
+  background:#202028;
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+}
+.work-pagination button.active{
+  background:#6d42d9;
+  border-color:#8d68ed;
+}
+.work-pagination button:disabled{
+  opacity:.45;
+  cursor:default;
+}
 .work-admin-row{
   padding:14px;
   border-radius:12px;
@@ -1512,6 +1539,9 @@
     document.getElementById("workCancelBtn");
   const workResultEl =
     document.getElementById("workAdminResult");
+  const WORK_PAGE_SIZE = 5;
+  let workAllRows = [];
+  let workCurrentPage = 1;
 
   function escapeWorkHtml(value){
     return String(value || "")
@@ -1566,13 +1596,19 @@
     workCancelBtn.style.display = "none";
   }
 
-  function renderWorkAdminList(rows){
+  function renderWorkAdminList(rows, page){
     if(!rows || !rows.length){
-      workListEl.textContent = "등록된 작업 내역이 없습니다.";
+      workListEl.innerHTML = '<div>등록된 작업 내역이 없습니다.</div>';
       return;
     }
 
-    workListEl.innerHTML = rows.map(function(row){
+    const totalPages = Math.ceil(rows.length / WORK_PAGE_SIZE);
+    workCurrentPage = Math.min(Math.max(page || 1, 1), totalPages);
+
+    const startIndex = (workCurrentPage - 1) * WORK_PAGE_SIZE;
+    const pageRows = rows.slice(startIndex, startIndex + WORK_PAGE_SIZE);
+
+    workListEl.innerHTML = pageRows.map(function(row){
       const statusText =
         row.status === "done" ? "완료" : "진행 중";
 
@@ -1679,6 +1715,25 @@
           });
         });
       });
+
+    const pagination = document.createElement("div");
+    pagination.className = "work-pagination";
+
+    if(totalPages > 1){
+      for(let i = 1; i <= totalPages; i++){
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = String(i);
+        button.className = i === workCurrentPage ? "active" : "";
+        button.addEventListener("click", function(){
+          renderWorkAdminList(workAllRows, i);
+          const list = document.getElementById("workAdminList");
+          if(list) list.scrollIntoView({behavior:"smooth",block:"start"});
+        });
+        pagination.appendChild(button);
+      }
+      workListEl.appendChild(pagination);
+    }
   }
 
   async function loadWorkAdminList(){
@@ -1706,7 +1761,9 @@
         return;
       }
 
-      renderWorkAdminList(data || []);
+      workAllRows = data || [];
+      workCurrentPage = 1;
+      renderWorkAdminList(workAllRows, workCurrentPage);
     }catch(error){
       console.error("작업 내역 조회 오류:",error);
       workListEl.textContent =
