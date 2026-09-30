@@ -2595,3 +2595,85 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     display:none!important;
   }
 }
+
+
+/* =========================================================
+   HOME REFERENCE MATCH — SCREENSHOT CORRECTION
+   2026-10-01
+========================================================= */
+
+/* 1) LOVE TEAM logo: remove baked-in black rectangle visually */
+.home-page .lt-hero-brand{
+  z-index:3!important;
+}
+.home-page .lt-hero-brand img{
+  mix-blend-mode:screen!important;
+  filter:
+    brightness(1.12) saturate(1.08)
+    drop-shadow(0 12px 17px rgba(0,0,0,.68))
+    drop-shadow(0 0 24px rgba(65,73,255,.48))!important;
+}
+.home-page .logo{
+  mix-blend-mode:screen!important;
+}
+.home-page .logo-image{
+  mix-blend-mode:screen!important;
+  filter:
+    brightness(1.10) saturate(1.05)
+    drop-shadow(0 0 8px rgba(65,92,255,.65))
+    drop-shadow(0 0 13px rgba(156,66,255,.38))!important;
+}
+
+/* 2) Reference screenshot panel proportions:
+      EVENTS wider / 4 benefits balanced / REVIEWS balanced */
+.home-page .home-hero-panel{
+  width:min(1440px,calc(100% - 72px))!important;
+  grid-template-columns:1fr 1.10fr 1.05fr!important;
+}
+
+/* Keep the four benefit cells visually even */
+.home-page .home-hero-benefits{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+
+/* Slightly larger event copy like the reference */
+.home-page .home-hero-event h2{
+  font-size:20px!important;
+  letter-spacing:-.8px!important;
+}
+.home-page .home-hero-event>strong{
+  font-size:16px!important;
+}
+
+/* Reference review block: heading has enough width */
+.home-page .home-hero-review-head{
+  grid-template-columns:.82fr 1.18fr!important;
+  gap:18px!important;
+}
+
+/* 3) Hero logo sits a little lower and smaller, matching the reference
+      composition without covering the character's face */
+.home-page .lt-hero-brand{
+  width:min(340px,25vw)!important;
+  top:53%!important;
+}
+
+/* 4) Reference hero keeps the artwork visible while retaining text contrast */
+.home-page .lt-hero-overlay{
+  background:
+    linear-gradient(90deg,rgba(3,2,11,.80) 0%,rgba(5,3,16,.52) 35%,rgba(8,4,21,.10) 67%,rgba(5,2,14,.30) 100%),
+    linear-gradient(180deg,rgba(2,2,8,.18) 0%,rgba(5,2,14,.03) 45%,rgba(3,1,10,.84) 100%)!important;
+}
+
+/* 5) Mobile keeps the same transparent-logo treatment and re-layout */
+@media(max-width:760px){
+  .home-page .lt-hero-brand{
+    width:245px!important;
+    left:61%!important;
+    top:42%!important;
+  }
+  .home-page .home-hero-panel{
+    width:auto!important;
+    grid-template-columns:1fr!important;
+  }
+}
