@@ -48,6 +48,15 @@ h1{margin:0;font-size:32px}
   .delete{min-height:42px;padding:0 15px;font-size:13px}
 }
 .logo{display:flex!important;align-items:center!important;width:164px!important;min-width:164px!important;height:62px!important;overflow:visible!important}.logo-image{display:block!important;width:158px!important;height:58px!important;object-fit:contain!important;object-position:center!important;mix-blend-mode:screen!important;filter:drop-shadow(0 0 7px rgba(89,112,255,.38))!important}@media(max-width:600px){.logo{width:128px!important;min-width:128px!important;height:48px!important}.logo-image{width:124px!important;height:46px!important}}</style>
+
+<style>
+/* MOBILE HEADER LOGO — final alignment */
+@media(max-width:700px){
+  .header{padding-left:0!important;padding-right:16px!important;}
+  .header .logo{margin-left:0!important;}
+  .header .logo-image{transform:translateX(-12px)!important;}
+}
+</style>
 </head>
 <body>
 <header class="header">
@@ -166,15 +175,3 @@ if(document.readyState==='loading'){
 </script>
 </body>
 </html>
-
-/* MOBILE HEADER LOGO — flush left */
-@media(max-width:760px){
-  .header{padding-left:0!important;}
-  .header .logo{margin-left:0!important;}
-}
-
-
-/* MOBILE HEADER LOGO — visible edge alignment */
-@media(max-width:760px){
-  .header .logo-image{transform:translateX(-12px)!important;}
-}
