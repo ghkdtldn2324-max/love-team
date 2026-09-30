@@ -2658,7 +2658,16 @@
 
     close: hide,
 
-    client: supabase
+    client: supabase,
+
+    getSession: async function() {
+      if (!supabase) return null;
+      const result = await supabase.auth.getSession();
+      const session = result?.data?.session || null;
+      currentSession = session;
+      window.LoveTeamSession = session;
+      return session;
+    }
 
   };
 
