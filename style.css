@@ -978,7 +978,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 }
 /* =====================================================
    LOVE TEAM - DISTINCT FOX ESPORTS WORDMARK
-   CSS only / 선명한 여우 얼굴 + 날렵한 워드마크
+   CSS only / 얇은 외곽선 + 선명한 여우 눈매
 ===================================================== */
 .logo{
   min-width:176px!important;
@@ -1000,36 +1000,35 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
-  inset:0!important;
-  background:linear-gradient(145deg,#f6e5ff 0%,#bd76ff 30%,#7448ee 67%,#d957ff 100%)!important;
+  inset:2px 1px 1px!important;
+  background:linear-gradient(145deg,#f3dcff 0%,#b96fff 34%,#7448ee 70%,#d95aff 100%)!important;
   clip-path:polygon(
-    4% 20%, 19% 25%, 13% 2%, 34% 15%,
-    50% 9%, 66% 15%, 87% 2%, 81% 25%,
-    96% 20%, 90% 48%, 82% 68%,
-    68% 83%, 50% 96%, 32% 83%,
-    18% 68%, 10% 48%
+    7% 19%, 20% 24%, 15% 5%, 34% 17%,
+    50% 11%, 66% 17%, 85% 5%, 80% 24%,
+    93% 19%, 87% 47%, 79% 66%,
+    66% 81%, 50% 94%, 34% 81%,
+    21% 66%, 13% 47%
   )!important;
-  filter:drop-shadow(0 0 8px rgba(157,92,255,.72))!important;
+  filter:drop-shadow(0 0 7px rgba(157,92,255,.62))!important;
 }
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
   left:9px!important;
-  top:12px!important;
+  top:13px!important;
   width:32px!important;
-  height:30px!important;
-  background:
-    radial-gradient(ellipse at 34% 39%,#b993ff 0 4%,transparent 5%),
-    radial-gradient(ellipse at 66% 39%,#b993ff 0 4%,transparent 5%),
-    linear-gradient(135deg,transparent 43%,#09090d 44% 56%,transparent 57%),
-    #09090d!important;
+  height:29px!important;
+  background:#09090d!important;
   clip-path:polygon(
-    4% 18%, 25% 28%, 21% 12%, 43% 25%,
-    50% 31%, 57% 25%, 79% 12%, 75% 28%,
-    96% 18%, 84% 48%, 80% 64%,
-    65% 78%, 50% 90%, 35% 78%,
-    20% 64%, 16% 48%
+    7% 18%, 26% 29%, 23% 15%, 42% 27%,
+    50% 33%, 58% 27%, 77% 15%, 74% 29%,
+    93% 18%, 83% 48%, 77% 63%,
+    64% 77%, 50% 88%, 36% 77%,
+    23% 63%, 17% 48%
   )!important;
+}
+.logo-mark span{
+  display:none!important;
 }
 .logo-text{
   display:flex!important;
@@ -1075,7 +1074,15 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 @media(max-width:600px){
   .logo{min-width:0!important;gap:1px!important}
   .logo-mark{width:43px!important;height:41px!important;flex-basis:43px!important}
-  .logo-mark::after{left:7px!important;top:10px!important;width:29px!important;height:27px!important}
+  .logo-mark::before{
+    inset:2px 1px 1px!important;
+  }
+  .logo-mark::after{
+    left:7px!important;
+    top:11px!important;
+    width:29px!important;
+    height:27px!important;
+  }
   .logo-text{margin-left:-2px!important}
   .logo-text strong{
     font-size:19px!important;
@@ -1084,4 +1091,34 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
   .logo-text strong::after{width:36px!important;height:1.5px!important;margin-top:4px!important}
   .logo-text small{font-size:5px!important;letter-spacing:3.2px!important;margin-top:2px!important}
+}
+
+/* 여우 눈매: 점이 아닌 가늘고 날카로운 눈 */
+.logo-mark .fox-eye-left,
+.logo-mark .fox-eye-right{
+  position:absolute!important;
+  display:block!important;
+  top:28px!important;
+  width:11px!important;
+  height:5px!important;
+  background:#c9a5ff!important;
+  filter:drop-shadow(0 0 4px rgba(201,165,255,.65))!important;
+  z-index:4!important;
+}
+.logo-mark .fox-eye-left{
+  left:14px!important;
+  clip-path:polygon(0 45%,100% 0,78% 100%,25% 82%)!important;
+}
+.logo-mark .fox-eye-right{
+  right:14px!important;
+  clip-path:polygon(0 0,100% 45%,75% 82%,22% 100%)!important;
+}
+.logo-mark .fox-eye-left::after,
+.logo-mark .fox-eye-right::after{
+  content:""!important;
+  position:absolute!important;
+  inset:1px 3px!important;
+  background:#fff!important;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)!important;
+  opacity:.9!important;
 }
