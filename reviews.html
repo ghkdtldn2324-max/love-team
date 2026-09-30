@@ -62,15 +62,6 @@
   font-weight:900;
 }
 
-.stars{
-  letter-spacing:2px;
-  font-size:14px;
-  background:linear-gradient(90deg,#4d91ff,#a74fe9);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
 .review-date{
   font-size:11px;
   color:#92929e;
@@ -184,45 +175,6 @@
 }
 
 
-/* =========================
-   클릭 별점
-   ========================= */
-
-.review-star-box{
-  margin-top:6px;
-  display:flex;
-  align-items:center;
-  gap:4px;
-}
-
-.review-star{
-  border:0;
-  background:transparent;
-  padding:0;
-  margin:0;
-  font-size:32px;
-  line-height:1;
-  color:#d9d6e2;
-  cursor:pointer;
-  transition:
-    transform .12s ease,
-    color .12s ease;
-}
-
-.review-star:hover{
-  transform:scale(1.08);
-}
-
-.review-star.active{
-  color:#8b56df;
-}
-
-.review-star:focus-visible{
-  outline:2px solid #8b56df;
-  outline-offset:3px;
-  border-radius:4px;
-}
-
 .review-star-score{
   margin-left:8px;
   font-size:11px;
@@ -326,10 +278,6 @@
   .review-write-label select,
   .review-write-label textarea{
     font-size:13px;
-  }
-
-  .review-star{
-    font-size:30px;
   }
 
 }
