@@ -37,7 +37,7 @@ export default {
         }
 
         const body = await req.json().catch(() => ({}));
-        const action = String(body?.action || "clear").trim();
+        const action = String(body?.action || "").trim();
         const userId = String(body?.user_id || "").trim();
 
         if (!userId) {
@@ -75,6 +75,16 @@ export default {
               ? "후기 작성 제한 중입니다."
               : "현재 후기 작성 제한이 없습니다."
           });
+        }
+
+        if (action !== "clear") {
+          return Response.json(
+            {
+              ok: false,
+              message: "지원하지 않는 요청입니다."
+            },
+            { status: 400 }
+          );
         }
 
         const { error } = await ctx.supabaseAdmin
