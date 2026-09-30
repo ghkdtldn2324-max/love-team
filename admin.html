@@ -206,6 +206,44 @@
 .work-admin-row-actions button:hover{
   background:#393946 !important;
 }
+.work-inline-edit{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:#17171e;
+  border:1px solid #33333d;
+}
+.work-inline-edit.active{
+  display:block;
+}
+.work-inline-edit input,
+.work-inline-edit select{
+  width:100%;
+  box-sizing:border-box;
+  height:40px;
+  margin-bottom:8px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid #33333d;
+  background:#0e0e13;
+  color:#fff;
+  outline:none;
+}
+.work-inline-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.work-inline-actions button{
+  min-height:36px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid #555565;
+  background:#292933;
+  color:#fff;
+  cursor:pointer;
+}
 @media(max-width:600px){
   .work-admin-row-main{
     flex-direction:column;
@@ -734,6 +772,7 @@
             <div class="admin-actions">
               <button class="admin-btn" id="workSaveBtn" type="button">등록</button>
               <button class="admin-btn" id="workCancelBtn" type="button" style="display:none;">수정 취소</button>
+              <button class="admin-btn" id="workExistingEditBtn" type="button">기존 작업 수정</button>
               <a class="admin-btn" href="works.html">공개 페이지 보기</a>
             </div>
 
@@ -1554,9 +1593,21 @@
           '</div>' +
           '<div class="work-admin-row-actions">' +
             '<button type="button" aria-label="작업 내역 수정" data-work-edit="' +
-              escapeWorkHtml(row.id) + '">✏️ 수정</button>' +
+              escapeWorkHtml(row.id) + '">✏️ 바로 수정</button>' +
             '<button type="button" aria-label="작업 내역 삭제" data-work-delete="' +
               escapeWorkHtml(row.id) + '">🗑️ 삭제</button>' +
+          '</div>' +
+          '<div class="work-inline-edit" data-work-inline="' + escapeWorkHtml(row.id) + '">' +
+            '<input type="text" maxlength="40" value="' + escapeWorkHtml(row.display_name) + '" data-inline-name>' +
+            '<input type="text" maxlength="200" value="' + escapeWorkHtml(row.detail) + '" data-inline-detail>' +
+            '<select data-inline-status>' +
+              '<option value="progress"' + (row.status === "progress" ? ' selected' : '') + '>진행 중</option>' +
+              '<option value="done"' + (row.status === "done" ? ' selected' : '') + '>완료</option>' +
+            '</select>' +
+            '<div class="work-inline-actions">' +
+              '<button type="button" data-inline-save>저장</button>' +
+              '<button type="button" data-inline-cancel>취소</button>' +
+            '</div>' +
           '</div>' +
         '</div>'
       );
@@ -1565,20 +1616,55 @@
     workListEl.querySelectorAll("[data-work-edit]")
       .forEach(function(button){
         button.addEventListener("click", function(){
-          const row = rows.find(function(item){
-            return item.id === button.dataset.workEdit;
-          });
-          if(!row) return;
+          const editor = workListEl.querySelector(
+            '[data-work-inline="' + button.dataset.workEdit + '"]'
+          );
+          if(!editor) return;
 
-          workEditIdEl.value = row.id;
-          workNameEl.value = row.display_name || "";
-          updateWorkDisplayPreview();
-          workDetailEl.value = row.detail || "";
-          workStatusEl.value = row.status || "progress";
-          workSaveBtn.textContent = "수정 저장";
-          workCancelBtn.style.display = "inline-flex";
-          workResultEl.textContent = "수정할 내용을 입력한 뒤 저장해주세요.";
-          workNameEl.focus();
+          workListEl.querySelectorAll(".work-inline-edit.active")
+            .forEach(function(other){
+              other.classList.remove("active");
+            });
+
+          editor.classList.add("active");
+
+          const nameInput = editor.querySelector("[data-inline-name]");
+          if(nameInput) nameInput.focus();
+        });
+      });
+
+    workListEl.querySelectorAll("[data-inline-cancel]")
+      .forEach(function(button){
+        button.addEventListener("click", function(){
+          const editor = button.closest(".work-inline-edit");
+          if(editor) editor.classList.remove("active");
+        });
+      });
+
+    workListEl.querySelectorAll("[data-inline-save]")
+      .forEach(function(button){
+        button.addEventListener("click", async function(){
+          const editor = button.closest(".work-inline-edit");
+          if(!editor) return;
+
+          const id = editor.dataset.workInline;
+          const name = editor.querySelector("[data-inline-name]")?.value || "";
+          const detail = editor.querySelector("[data-inline-detail]")?.value || "";
+          const status = editor.querySelector("[data-inline-status]")?.value || "progress";
+
+          const displayName = maskWorkDisplayName(name);
+          if(!displayName || !detail.trim()){
+            workResultEl.textContent = "익명 이름과 작업 내용을 입력해주세요.";
+            return;
+          }
+
+          await workAdminAction({
+            action:"update",
+            id:id,
+            display_name:displayName,
+            detail:detail.trim(),
+            status:status
+          });
         });
       });
 
@@ -1718,6 +1804,21 @@
     workCancelBtn.addEventListener("click",function(){
       resetWorkForm();
       workResultEl.textContent = "";
+    });
+  }
+
+  const workExistingEditBtn =
+    document.getElementById("workExistingEditBtn");
+
+  if(workExistingEditBtn){
+    workExistingEditBtn.addEventListener("click",function(){
+      const list = document.getElementById("workAdminList");
+      if(list){
+        list.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+      }
     });
   }
 
