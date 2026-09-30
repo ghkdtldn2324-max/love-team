@@ -5203,3 +5203,26 @@ select{
     letter-spacing:-.8px!important;
   }
 }
+
+
+/* PC HOMEPAGE — final event headline fit */
+@media (min-width:901px){
+  .home-page .home-hero-main{
+    grid-template-columns:minmax(390px,1.05fr) minmax(0,1.45fr)!important;
+  }
+  .home-page .home-hero-main>.home-hero-event{
+    min-width:0!important;
+    padding:28px 26px!important;
+  }
+  .home-page .home-hero-event>strong{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    font-size:18px!important;
+    line-height:1.55!important;
+    letter-spacing:-.6px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:clip!important;
+  }
+}
