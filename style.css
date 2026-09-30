@@ -3345,3 +3345,50 @@ select{
     padding:10px 11px!important;
   }
 }
+
+
+/* =========================================================
+   HOME LOGO ASSET — HIGH-RES UPLOAD
+   2026-10-01
+   Use the newly uploaded transparent/high-resolution logo
+   for both the header mark and the centered hero mark.
+========================================================= */
+.home-page .logo{
+  mix-blend-mode:normal!important;
+}
+.home-page .logo-image{
+  mix-blend-mode:normal!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  filter:
+    brightness(1.04) contrast(1.04) saturate(1.06)
+    drop-shadow(0 0 2px rgba(255,255,255,.22))
+    drop-shadow(0 0 8px rgba(72,86,255,.62))
+    drop-shadow(0 0 16px rgba(171,72,255,.30))!important;
+}
+.home-page .lt-hero-brand img{
+  mix-blend-mode:normal!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  filter:
+    brightness(1.04) contrast(1.04) saturate(1.06)
+    drop-shadow(0 8px 14px rgba(0,0,0,.46))
+    drop-shadow(0 0 10px rgba(72,86,255,.64))
+    drop-shadow(0 0 24px rgba(174,72,255,.34))!important;
+}
+@media(max-width:760px){
+  .home-page .logo-image{
+    filter:
+      brightness(1.04) contrast(1.04) saturate(1.05)
+      drop-shadow(0 0 2px rgba(255,255,255,.20))
+      drop-shadow(0 0 7px rgba(72,86,255,.58))
+      drop-shadow(0 0 14px rgba(171,72,255,.28))!important;
+  }
+  .home-page .lt-hero-brand img{
+    filter:
+      brightness(1.04) contrast(1.04) saturate(1.05)
+      drop-shadow(0 6px 12px rgba(0,0,0,.42))
+      drop-shadow(0 0 9px rgba(72,86,255,.58))
+      drop-shadow(0 0 20px rgba(174,72,255,.30))!important;
+  }
+}
