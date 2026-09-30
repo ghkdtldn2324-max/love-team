@@ -675,7 +675,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="auth.js?v=20260930-8"></script>
+<script src="auth.js?v=20260930-12"></script>
 
 <script src="script.js?v=20260930-6"></script>
 
@@ -734,13 +734,15 @@ const fallback = [
 
 async function getReviews(){
   try{
-    const client = window.LoveTeamAuth?.client;
+    const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
     if(!client) return fallback;
     const result = await client.from('reviews')
       .select('display_name,stars,content,service,created_at')
       .order('created_at',{ascending:false});
     if(result.error) throw result.error;
-    return (result.data || []).map(function(r){
+    const rows = result.data || [];
+    if(rows.length === 0) return fallback;
+    return rows.map(function(r){
       return {
         name:r.display_name,
         stars:r.stars,
@@ -1064,7 +1066,9 @@ render();
 
 
   async function syncReviewSession(){
-    const client = window.LoveTeamAuth?.client;
+    const client =
+      window.LoveTeamAuth?.client ||
+      window.LoveTeamSupabase;
 
     if(!client){
       updateReviewWriter();
@@ -1073,13 +1077,15 @@ render();
 
     try{
       const result = await client.auth.getSession();
-      window.LoveTeamSession =
-        result?.data?.session || null;
+      const session = result?.data?.session || null;
+      window.LoveTeamSession = session;
+      updateReviewWriter();
+      return session;
     }catch(error){
       console.error('후기 로그인 상태 확인 실패:',error);
+      updateReviewWriter();
+      return null;
     }
-
-    updateReviewWriter();
   }
 
 
@@ -1169,9 +1175,22 @@ render();
       async function(){
 
 
-        const session =
+        const client =
+          window.LoveTeamAuth?.client ||
+          window.LoveTeamSupabase;
+
+        let session =
           window.LoveTeamSession;
 
+        if(client){
+          try{
+            const result = await client.auth.getSession();
+            session = result?.data?.session || null;
+            window.LoveTeamSession = session;
+          }catch(error){
+            console.error('후기 등록 세션 확인 실패:',error);
+          }
+        }
 
         if(!session){
 
@@ -1256,9 +1275,6 @@ render();
           username.length > 2
             ? username.slice(0,2) + '***'
             : username + '***';
-
-        const client =
-          window.LoveTeamAuth?.client;
 
         if(!client){
           showMessage(
