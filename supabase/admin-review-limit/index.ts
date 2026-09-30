@@ -12,10 +12,17 @@ export default {
           return Response.json({ ok:false, message:"POST 요청만 허용됩니다." }, { status:405 });
         }
 
+        const body = await req.json().catch(() => ({}));
+        const accessToken = String(body?.access_token || "").trim();
+
+        if (!accessToken) {
+          return Response.json({ ok:false, message:"관리자 로그인이 필요합니다." }, { status:401 });
+        }
+
         const {
           data:{ user },
           error:userError
-        } = await ctx.supabase.auth.getUser();
+        } = await ctx.supabaseAdmin.auth.getUser(accessToken);
 
         if (userError || !user) {
           return Response.json({ ok:false, message:"관리자 로그인이 필요합니다." }, { status:401 });
@@ -26,7 +33,6 @@ export default {
           return Response.json({ ok:false, message:"관리자 권한이 없습니다." }, { status:403 });
         }
 
-        const body = await req.json().catch(() => ({}));
         const userId = String(body?.user_id || "").trim();
 
         if (!userId) {
