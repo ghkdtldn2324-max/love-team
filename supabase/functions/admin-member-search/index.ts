@@ -9,11 +9,37 @@ export default {
     async (req, ctx) => {
       try {
         console.info("admin-member-search request received");
-        const adminUserId = (Deno.env.get("ADMIN_USER_ID") || "").trim();
-        const callerId = String(ctx.userClaims?.sub || "").trim();
-        console.info("admin-member-search auth check", { hasAdminUserId: !!adminUserId, hasCallerId: !!callerId, isAdmin: !!adminUserId && !!callerId && callerId === adminUserId });
+        const adminUserId =
+          (Deno.env.get("ADMIN_USER_ID") || "").trim();
 
-        if (!adminUserId || !callerId || callerId !== adminUserId) {
+        const {
+          data: { user: caller },
+          error: callerError
+        } = await ctx.supabase.auth.getUser();
+
+        const callerId =
+          String(caller?.id || "").trim();
+
+        console.info(
+          "admin-member-search auth check",
+          {
+            hasAdminUserId: !!adminUserId,
+            hasCallerId: !!callerId,
+            callerError: callerError?.message || null,
+            isAdmin:
+              !!adminUserId &&
+              !!callerId &&
+              callerId === adminUserId
+          }
+        );
+
+        if (
+          callerError ||
+          !caller ||
+          !adminUserId ||
+          !callerId ||
+          callerId !== adminUserId
+        ) {
           return Response.json({
             ok: false,
             admin: false,
