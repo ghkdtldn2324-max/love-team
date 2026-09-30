@@ -385,16 +385,17 @@
     }
 
     @media(max-width:760px){
+      /*
+        모바일에서는 헤더 오른쪽에 별도 관리자 버튼을 만들지 않는다.
+        관리자 페이지는 회원 이름을 눌렀을 때 열리는
+        기존 점선 회원 메뉴 안에서만 표시한다.
+      */
+      .love-admin-link{
+        display:none !important;
+      }
+
       .mobile-menu .love-admin-link{
-        width:100%;
-        min-height:48px;
-        margin-top:4px;
-        padding:0 14px;
-        border-radius:10px;
-        background:#24183f;
-        border-color:#513b83;
-        color:#d8caff !important;
-        justify-content:center;
+        display:none !important;
       }
     }
 
