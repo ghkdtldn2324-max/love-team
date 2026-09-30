@@ -5,6 +5,131 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>LOVE TEAM | 작업 내역</title>
 <link rel="stylesheet" href="style.css?v=20260930-3">
+<style>
+/* 작업 내역 모바일 가독성 개선 */
+@media(max-width:600px){
+  .works-page{
+    padding:54px 12px 78px;
+    background:linear-gradient(180deg,#fff 0%,#faf9fd 100%);
+  }
+  .works-wrap{
+    width:100%;
+  }
+  .works-head{
+    margin-bottom:25px;
+    padding:0 4px;
+  }
+  .works-head .eyebrow{
+    font-size:10px;
+    letter-spacing:2.8px;
+    margin-bottom:8px;
+  }
+  .works-head h1{
+    font-size:30px;
+    letter-spacing:-1.4px;
+    margin-bottom:9px;
+  }
+  .works-head p:last-child{
+    font-size:13px;
+    line-height:1.65;
+  }
+
+  .work-status-list{
+    border:0;
+    border-radius:0;
+    padding:0;
+    background:transparent;
+    overflow:visible;
+  }
+  .work-status-row{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:12px;
+    min-height:0;
+    margin-bottom:11px;
+    padding:17px 15px 15px;
+    border:1px solid #e4e0ec;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 6px 18px rgba(45,32,100,.06);
+  }
+  .work-status-row:last-child{
+    margin-bottom:0;
+  }
+  .work-status-row::before{
+    content:"";
+    position:absolute;
+    left:-1px;
+    top:12px;
+    bottom:12px;
+    width:3px;
+    border-radius:0 4px 4px 0;
+    background:linear-gradient(180deg,#765cff,#a14cff);
+  }
+  .work-left{
+    width:100%;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    padding-left:3px;
+  }
+  .work-user{
+    display:block;
+    width:100%;
+    font-size:15px;
+    line-height:1.35;
+    letter-spacing:-.2px;
+    color:#171722;
+  }
+  .work-detail{
+    display:block;
+    width:100%;
+    max-width:none;
+    overflow:visible;
+    white-space:normal;
+    text-overflow:clip;
+    color:#5e5d6c;
+    font-size:13px;
+    line-height:1.55;
+    word-break:keep-all;
+  }
+  .work-status{
+    align-self:flex-start;
+    min-height:28px;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:11px;
+    line-height:1;
+    border:1px solid transparent;
+  }
+  .work-status::before{
+    width:7px;
+    height:7px;
+    box-shadow:none!important;
+  }
+  .work-status.progress{
+    color:#6644cf;
+    background:#f3efff;
+    border-color:#ddd2ff;
+  }
+  .work-status.done{
+    color:#247c59;
+    background:#eefaf5;
+    border-color:#cceede;
+  }
+  .works-note{
+    margin:19px 5px 0;
+    font-size:10px;
+    line-height:1.6;
+    word-break:keep-all;
+  }
+}
+</style>
 </head>
 <body>
 <div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
