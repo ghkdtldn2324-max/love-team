@@ -436,6 +436,22 @@
 
 
     /* =========================
+       메인 홈 헤더 스크롤 전환
+    ========================= */
+
+    const homeHeader = document.querySelector('.home-page .header');
+
+    if (homeHeader) {
+      const syncHomeHeader = function () {
+        homeHeader.classList.toggle('home-scrolled', window.scrollY > 8);
+      };
+
+      syncHomeHeader();
+      window.addEventListener('scroll', syncHomeHeader, { passive: true });
+    }
+
+
+    /* =========================
        맨 위로
     ========================= */
 
