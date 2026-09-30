@@ -239,6 +239,10 @@
       box-sizing:border-box;
     }
 
+    .love-mobile-more-btn{
+      display:none;
+    }
+
     .love-member-menu{
       position:fixed;
       z-index:100000;
@@ -385,17 +389,39 @@
     }
 
     @media(max-width:760px){
-      /*
-        모바일에서는 헤더 오른쪽에 별도 관리자 버튼을 만들지 않는다.
-        관리자 페이지는 회원 이름을 눌렀을 때 열리는
-        기존 점선 회원 메뉴 안에서만 표시한다.
-      */
       .love-admin-link{
         display:none !important;
       }
 
       .mobile-menu .love-admin-link{
         display:none !important;
+      }
+
+      .love-mobile-more-btn{
+        display:none;
+      }
+
+      .header-actions .love-mobile-more-btn{
+        width:40px;
+        min-width:40px;
+        height:40px;
+        margin-left:4px;
+        padding:0;
+        border:1px dashed rgba(255,255,255,.28);
+        border-radius:10px;
+        background:#151515;
+        color:#fff;
+        font-size:21px;
+        line-height:38px;
+        text-align:center;
+        cursor:pointer;
+        box-sizing:border-box;
+      }
+
+      .header-actions .love-mobile-more-btn.show{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
       }
     }
 
@@ -715,16 +741,6 @@
 
       <button
         type="button"
-        class="love-admin-menu-btn"
-        id="loveAdminMenuButton"
-        style="display:none;"
-        onclick="window.location.href='admin.html'"
-      >
-        🛡️ 관리자 페이지
-      </button>
-
-      <button
-        type="button"
         id="lovePasswordChange"
       >
         비밀번호 변경
@@ -904,6 +920,8 @@
 
   const memberMenu =
     document.getElementById('loveMemberMenu');
+
+  let mobileMoreButton = null;
 
 
   /* =========================================================
@@ -2138,6 +2156,30 @@
     const desktopLinks = [];
 
     document.querySelectorAll('.header-actions').forEach(function(container){
+      let moreButton = container.querySelector('.love-mobile-more-btn');
+      if(!moreButton){
+        moreButton = document.createElement('button');
+        moreButton.type = 'button';
+        moreButton.className = 'love-mobile-more-btn';
+        moreButton.setAttribute('aria-label','회원 메뉴');
+        moreButton.setAttribute('aria-expanded','false');
+        moreButton.textContent = '⋯';
+        container.appendChild(moreButton);
+        moreButton.addEventListener('click', function(event){
+          event.preventDefault();
+          event.stopPropagation();
+          if(!currentSession?.user) return;
+          if(memberMenu.classList.contains('show')){
+            closeMemberMenu();
+            moreButton.setAttribute('aria-expanded','false');
+          }else{
+            openMemberMenu();
+            moreButton.setAttribute('aria-expanded','true');
+          }
+        });
+      }
+      mobileMoreButton = moreButton;
+
       let link = container.querySelector('.love-admin-link');
 
       if(!link){
@@ -2154,9 +2196,6 @@
 
       desktopLinks.push(link);
     });
-
-    const memberAdminButton =
-      document.getElementById('loveAdminMenuButton');
 
     desktopLinks.forEach(function(link){
       link.style.display = 'none';
@@ -2208,13 +2247,21 @@
         link.style.display = 'flex';
       });
 
-      /*
-        모바일 관리자 페이지는 별도 메뉴가 아니라
-        기존 점선 회원 메뉴 내부에만 표시한다.
-      */
-      if(memberAdminButton){
-        memberAdminButton.style.display = 'flex';
-        memberAdminButton.style.visibility = 'visible';
+      if(mobileMoreButton){
+        mobileMoreButton.classList.add('show');
+      }
+
+      const menu = document.getElementById('loveMemberMenu');
+      if(menu && !menu.querySelector('#loveAdminMenuButton')){
+        const adminButton = document.createElement('button');
+        adminButton.type = 'button';
+        adminButton.id = 'loveAdminMenuButton';
+        adminButton.className = 'love-admin-menu-btn';
+        adminButton.textContent = '🛡️ 관리자 페이지';
+        adminButton.addEventListener('click', function(){
+          window.location.href = 'admin.html';
+        });
+        menu.insertBefore(adminButton, menu.querySelector('#lovePasswordChange'));
       }
 
     }catch(error){
