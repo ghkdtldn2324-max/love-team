@@ -736,15 +736,11 @@ async function getReviews(){
   try{
     const client = window.LoveTeamAuth?.client;
     if(!client) return fallback;
-
-    const {data,error} = await client
-      .from('reviews')
+    const result = await client.from('reviews')
       .select('display_name,stars,content,service,created_at')
       .order('created_at',{ascending:false});
-
-    if(error) throw error;
-
-    return (data || []).map(function(r){
+    if(result.error) throw result.error;
+    return (result.data || []).map(function(r){
       return {
         name:r.display_name,
         stars:r.stars,
