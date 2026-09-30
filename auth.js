@@ -1922,6 +1922,12 @@
           new Event('love-auth-changed')
         );
 
+        /*
+          로그아웃 후 헤더/세션 상태를 확실하게 초기화하기 위해
+          현재 페이지만 새로고침한다.
+        */
+        window.location.reload();
+
       } catch (error) {
 
         console.error(
@@ -2007,6 +2013,8 @@
     open: show,
 
     close: hide,
+
+    openMemberMenu: openMemberMenu,
 
     client: supabase
 
