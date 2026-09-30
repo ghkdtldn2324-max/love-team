@@ -1707,21 +1707,10 @@
           '로그인되었습니다.',
           'success'
         );
-
-
-        window.dispatchEvent(
-          new Event('love-auth-changed')
-        );
-
-        window.location.reload();
-
-
-        setTimeout(
-          function() {
-            hide();
-          },
-          700
-        );
+        updateLoveHeader(currentSession);
+        closeMemberMenu();
+        hide();
+        window.dispatchEvent(new Event('love-auth-changed'));
 
       } catch (error) {
 
