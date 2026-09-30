@@ -3392,3 +3392,28 @@ select{
       drop-shadow(0 0 20px rgba(174,72,255,.30))!important;
   }
 }
+
+
+/* LOGO LAYOUT CLEANUP — remove surrounding box/layout effects */
+.home-page .logo{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.home-page .logo-image{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.home-page .lt-hero-brand{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.home-page .lt-hero-brand img{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
