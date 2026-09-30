@@ -139,12 +139,12 @@
 
       const name = item[0];
       const price = item[1];
-      /* 배치고사는 흰색 문양이 더 많은 3 랭크 아이콘 사용 */
+      /* 배치고사는 기존 3단계와 다른 같은 티어의 2단계 문양 사용 */
       const image = key === 'placement'
         ? ({
-            '다이아': 'assets/ranks/diamond3.png',
-            '초월자': 'assets/ranks/ascendant3.png',
-            '불멸': 'assets/ranks/immortal3.png'
+            '다이아': 'assets/ranks/diamond2.png',
+            '초월자': 'assets/ranks/ascendant2.png',
+            '불멸': 'assets/ranks/immortal2.png'
           }[name] || rankImages[name])
         : rankImages[name];
 
