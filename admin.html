@@ -1033,7 +1033,7 @@
 
 <script src="supabase-config.js"></script>
 
-<script src="auth.js?v=20260930-21"></script>
+<script src="auth.js?v=20260930-22"></script>
 
 
 
@@ -1735,12 +1735,30 @@
             return;
           }
 
-          const { data: sessionData, error: sessionError } =
-            await supabase.auth.getSession();
+          let session = null;
 
-          if (sessionError || !sessionData?.session) {
+          for (let attempt = 0; attempt < 4; attempt++) {
+            try {
+              if (window.LoveTeamAuth?.getSession) {
+                session = await window.LoveTeamAuth.getSession();
+              } else {
+                const result = await supabase.auth.getSession();
+                session = result?.data?.session || null;
+              }
+            } catch (_) {
+              session = null;
+            }
+
+            if (session?.user) break;
+
+            await new Promise(function(resolve){
+              setTimeout(resolve, 350);
+            });
+          }
+
+          if (!session?.user) {
             searchResult.textContent =
-              "관리자 로그인이 필요합니다.";
+              "관리자 로그인이 필요합니다. 페이지를 새로고침한 뒤 다시 시도해주세요.";
             return;
           }
 
