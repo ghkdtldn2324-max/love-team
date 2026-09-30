@@ -323,7 +323,7 @@ async function recordNoticeView(){
     document.getElementById('views').textContent='-';
   }
 }
-recordNoticeView();
+window.addEventListener('load', recordNoticeView);
 </script>
 <script src="script.js?v=20260930-11"></script>
 <script src="supabase-config.js"></script>
