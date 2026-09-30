@@ -3827,3 +3827,138 @@ select{
     display:inline-flex!important;
   }
 }
+
+
+/* HOME HERO PANEL — event header + four independent benefit panels */
+.home-page .home-hero-main{
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  min-height:154px!important;
+  border-right:1px solid rgba(160,130,255,.32)!important;
+}
+.home-page .home-hero-main>.home-hero-event{
+  flex:0 0 auto!important;
+  min-height:68px!important;
+  padding:14px 22px 11px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  border-bottom:1px solid rgba(160,130,255,.18)!important;
+}
+.home-page .home-hero-event .home-hero-label{
+  margin:0 0 3px!important;
+  font-size:9px!important;
+  letter-spacing:2.8px!important;
+  color:#a989ff!important;
+}
+.home-page .home-hero-event h2{
+  margin:0 0 2px!important;
+  font-size:12px!important;
+  line-height:1.25!important;
+  color:#fff!important;
+}
+.home-page .home-hero-event>strong{
+  display:block!important;
+  margin:0!important;
+  font-size:15px!important;
+  line-height:1.25!important;
+  letter-spacing:-.35px!important;
+  white-space:nowrap!important;
+  background:linear-gradient(90deg,#b992ff,#727cff,#b95dff)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+}
+.home-page .home-hero-event>strong span{display:none!important}
+
+.home-page .home-hero-benefits{
+  flex:1 1 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  align-items:stretch!important;
+  gap:0!important;
+  min-height:86px!important;
+  padding:0!important;
+  border:0!important;
+}
+.home-page .home-hero-benefits article{
+  min-width:0!important;
+  min-height:86px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  gap:3px!important;
+  padding:10px 11px!important;
+  border:0!important;
+  border-right:1px solid rgba(160,130,255,.16)!important;
+  background:rgba(255,255,255,.018)!important;
+}
+.home-page .home-hero-benefits article:last-child{border-right:0!important}
+.home-page .home-hero-benefits article:hover{
+  background:rgba(116,91,255,.10)!important;
+}
+.home-page .home-hero-benefits .hero-benefit-icon{
+  width:22px!important;
+  height:22px!important;
+  flex:0 0 22px!important;
+}
+.home-page .home-hero-benefits article b{
+  margin:0!important;
+  font-size:8px!important;
+  line-height:1!important;
+  color:#9c84ff!important;
+}
+.home-page .home-hero-benefits article strong{
+  font-size:10px!important;
+  line-height:1.25!important;
+  color:#fff!important;
+  white-space:nowrap!important;
+}
+.home-page .home-hero-benefits article>span:last-child{
+  font-size:8px!important;
+  line-height:1.25!important;
+  color:rgba(255,255,255,.50)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  max-width:100%!important;
+}
+
+@media(max-width:760px){
+  .home-page .home-hero-panel{
+    grid-template-columns:1fr 1fr!important;
+    min-height:220px!important;
+  }
+  .home-page .home-hero-main{
+    min-height:220px!important;
+  }
+  .home-page .home-hero-main>.home-hero-event{
+    min-height:66px!important;
+    padding:10px 11px 8px!important;
+  }
+  .home-page .home-hero-event .home-hero-label{font-size:8px!important;margin-bottom:2px!important}
+  .home-page .home-hero-event h2{font-size:9px!important;margin-bottom:2px!important}
+  .home-page .home-hero-event>strong{
+    font-size:11px!important;
+    white-space:nowrap!important;
+  }
+  .home-page .home-hero-benefits{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    min-height:154px!important;
+  }
+  .home-page .home-hero-benefits article{
+    min-height:77px!important;
+    padding:8px 8px!important;
+    border-right:1px solid rgba(160,130,255,.16)!important;
+    border-bottom:1px solid rgba(160,130,255,.16)!important;
+  }
+  .home-page .home-hero-benefits article:nth-child(2n){border-right:0!important}
+  .home-page .home-hero-benefits article:nth-child(n+3){border-bottom:0!important}
+  .home-page .home-hero-benefits .hero-benefit-icon{width:18px!important;height:18px!important}
+  .home-page .home-hero-benefits article strong{font-size:8px!important}
+  .home-page .home-hero-benefits article>span:last-child{display:none!important}
+}
