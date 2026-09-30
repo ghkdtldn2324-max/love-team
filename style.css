@@ -983,7 +983,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .logo{
   display:flex!important;
   align-items:center!important;
-  gap:1px!important;
+  gap:0!important;
   min-width:172px!important;
   text-decoration:none!important;
 }
@@ -1002,58 +1002,72 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
-  inset:3px 2px 2px!important;
-  background:linear-gradient(145deg,#ead8ff 0%,#a96bff 42%,#7046e8 72%,#d35cff 100%)!important;
-  clip-path:polygon(4% 18%,18% 25%,14% 2%,34% 14%,50% 8%,66% 14%,86% 2%,82% 25%,96% 18%,89% 48%,82% 68%,70% 83%,58% 91%,50% 97%,42% 91%,30% 83%,18% 68%,11% 48%)!important;
+  left:2px!important;
+  top:2px!important;
+  width:46px!important;
+  height:44px!important;
+  background:linear-gradient(145deg,#f2e5ff 0%,#b36cff 38%,#7548eb 70%,#d45cff 100%)!important;
+  clip-path:polygon(
+    4% 22%, 20% 27%, 15% 3%, 39% 16%,
+    50% 11%, 61% 16%, 85% 3%, 80% 27%,
+    96% 22%, 90% 51%, 82% 68%, 70% 82%,
+    58% 91%, 50% 98%, 42% 91%, 30% 82%,
+    18% 68%, 10% 51%
+  )!important;
   filter:drop-shadow(0 0 6px rgba(157,92,255,.52))!important;
 }
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:10px!important;
-  top:14px!important;
-  width:30px!important;
-  height:28px!important;
+  left:9px!important;
+  top:13px!important;
+  width:32px!important;
+  height:31px!important;
   background:#08080c!important;
-  clip-path:polygon(6% 19%,27% 30%,24% 17%,42% 27%,50% 34%,58% 27%,76% 17%,73% 30%,94% 19%,84% 49%,78% 63%,65% 77%,50% 90%,35% 77%,22% 63%,16% 49%)!important;
+  clip-path:polygon(
+    5% 23%, 28% 32%, 25% 19%, 43% 29%,
+    50% 36%, 57% 29%, 75% 19%, 72% 32%,
+    95% 23%, 86% 50%, 79% 64%, 67% 78%,
+    50% 92%, 33% 78%, 21% 64%, 14% 50%
+  )!important;
 }
 .logo-mark .fox-eye-left,
 .logo-mark .fox-eye-right{
   position:absolute!important;
   display:block!important;
   top:27px!important;
-  width:12px!important;
-  height:7px!important;
+  width:13px!important;
+  height:8px!important;
   z-index:5!important;
-  background:linear-gradient(135deg,#fff 0%,#d8b8ff 55%,#9b68ff 100%)!important;
-  filter:drop-shadow(0 0 4px rgba(202,157,255,.7))!important;
+  background:linear-gradient(135deg,#fff 0%,#e2c8ff 48%,#9b68ff 100%)!important;
+  filter:drop-shadow(0 0 4px rgba(202,157,255,.75))!important;
 }
 .logo-mark .fox-eye-left{
-  left:13px!important;
-  clip-path:polygon(0 48%,100% 0,84% 72%,55% 100%,18% 83%)!important;
+  left:12px!important;
+  clip-path:polygon(0 42%,100% 0,84% 73%,57% 100%,18% 82%)!important;
 }
 .logo-mark .fox-eye-right{
-  right:13px!important;
-  clip-path:polygon(0 0,100% 48%,82% 83%,45% 100%,16% 72%)!important;
+  right:12px!important;
+  clip-path:polygon(0 0,100% 42%,82% 82%,43% 100%,16% 73%)!important;
 }
 .logo-mark i::after{
   content:""!important;
   position:absolute!important;
   left:50%!important;
   top:5px!important;
-  width:4px!important;
-  height:3px!important;
+  width:5px!important;
+  height:4px!important;
   transform:translateX(-50%) rotate(45deg)!important;
-  background:#d6b5ff!important;
+  background:#d8b8ff!important;
   clip-path:polygon(50% 0,100% 100%,0 100%)!important;
-  opacity:.9!important;
+  opacity:.95!important;
 }
 .logo-text{
   display:flex!important;
   flex-direction:column!important;
   line-height:1!important;
   justify-content:center!important;
-  margin-left:-3px!important;
+  margin-left:-2px!important;
   transform:translateY(-1px)!important;
 }
 .logo-text strong{
@@ -1100,23 +1114,28 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     height:41px!important;
     flex-basis:43px!important;
   }
-  .logo-mark::before{inset:3px 1px 2px!important}
+  .logo-mark::before{
+    left:1px!important;
+    top:2px!important;
+    width:41px!important;
+    height:38px!important;
+  }
   .logo-mark::after{
     left:8px!important;
-    top:12px!important;
+    top:11px!important;
     width:27px!important;
-    height:26px!important;
+    height:27px!important;
   }
   .logo-mark .fox-eye-left,
   .logo-mark .fox-eye-right{
-    top:24px!important;
-    width:10px!important;
-    height:6px!important;
+    top:23px!important;
+    width:11px!important;
+    height:7px!important;
   }
-  .logo-mark .fox-eye-left{left:11px!important}
-  .logo-mark .fox-eye-right{right:11px!important}
+  .logo-mark .fox-eye-left{left:10px!important}
+  .logo-mark .fox-eye-right{right:10px!important}
   .logo-text{
-    margin-left:-3px!important;
+    margin-left:-2px!important;
   }
   .logo-text strong{
     font-size:18px!important;
