@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>공지사항 관리 - LOVE TEAM</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#09090d;color:#fff;font-family:Arial,sans-serif}
+.header{height:64px;background:#0b0b0f;border-bottom:1px solid #22222a;display:flex;align-items:center;padding:0 24px}
+.logo{color:#fff;text-decoration:none;font-weight:900}.logo small{display:block;color:#8f70df;font-size:9px;letter-spacing:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:55px 20px 80px}
+.head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+h1{margin:0;font-size:32px}.sub{margin:8px 0 0;color:#999;line-height:1.6}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:9px;border:1px solid #403c4b;background:#18161f;color:#fff;text-decoration:none;font-weight:700;cursor:pointer}
+.btn:hover{background:#24212d}
+.panel{padding:20px;border:1px solid #292932;border-radius:16px;background:#111117;margin-bottom:18px}
+.panel h2{margin:0 0 15px;font-size:20px}
+.form{display:grid;gap:10px}
+.form input,.form textarea{width:100%;border:1px solid #33333d;border-radius:10px;background:#0e0e13;color:#fff;padding:12px 14px;outline:none;font:inherit}
+.form input{height:46px}.form textarea{min-height:150px;resize:vertical;line-height:1.6}
+.row{display:grid;grid-template-columns:1fr 180px;gap:10px}
+.form input:focus,.form textarea:focus{border-color:#7350c9;box-shadow:0 0 0 3px rgba(109,66,217,.15)}
+.form-actions{display:flex;gap:8px;flex-wrap:wrap}.primary{background:#6d42d9;border-color:#805ce4}.danger{border-color:#5a3038;background:#24151a;color:#ffb8c2}
+.message{min-height:20px;color:#aaa;line-height:1.5}
+.list{display:grid;gap:12px}.card{padding:18px;border:1px solid #292932;border-radius:14px;background:#111117}
+.card-head{display:flex;justify-content:space-between;gap:12px}.title{font-weight:900;font-size:17px}.date{color:#777;font-size:12px;white-space:nowrap}
+.summary{margin:8px 0 0;color:#aaa;line-height:1.6}.content-preview{margin-top:10px;color:#777;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:95px;overflow:hidden}
+.card-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.empty{padding:20px;border:1px solid #292932;border-radius:14px;background:#111117;color:#888}
+@media(max-width:700px){
+ .header{height:58px;padding:0 16px}.wrap{padding:30px 14px 55px}.head{align-items:stretch;flex-direction:column}
+ h1{font-size:27px}.sub{font-size:14px}.actions{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%;min-height:46px}
+ .panel{padding:16px}.row{grid-template-columns:1fr}.form textarea{min-height:180px}
+ .card{padding:15px}.card-head{flex-direction:column;gap:6px}.title{font-size:15px}.card-actions{display:grid;grid-template-columns:1fr 1fr}.card-actions .btn{min-height:44px}
+}
+</style>
+</head>
+<body>
+<header class="header"><a class="logo" href="index.html">♥ LOVE<small>TEAM</small></a></header>
+<main class="wrap">
+<div class="head"><div><h1>공지사항 관리</h1><p class="sub">관리자 전용 공지사항 등록·수정·삭제 페이지입니다.</p></div><div class="actions"><a class="btn" href="admin.html">관리자 페이지</a><a class="btn" href="notice.html">공개 공지사항</a></div></div>
+<section class="panel">
+<h2 id="formTitle">새 공지 등록</h2>
+<div class="form">
+<input id="title" maxlength="120" placeholder="공지 제목">
+<div class="row"><input id="publishedAt" type="date"><input id="author" maxlength="30" value="관리자" placeholder="작성자"></div>
+<input id="summary" maxlength="300" placeholder="목록에 표시할 요약">
+<textarea id="content" maxlength="10000" placeholder="공지사항 본문을 입력하세요."></textarea>
+<div class="form-actions"><button class="btn primary" id="save" type="button">공지 등록</button><button class="btn" id="cancel" type="button" style="display:none">수정 취소</button></div>
+<div class="message" id="message"></div>
+</div>
+</section>
+<section><div class="list" id="list"><div class="empty">공지사항을 불러오는 중입니다.</div></div></section>
+</main>
+<script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=20260930-23"></script>
+<script>
+const client=window.LoveTeamSupabase||supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
+const $=id=>document.getElementById(id);
+let editingId=null;
+function esc(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch]);}
+async function call(body){
+ const r=await client.functions.invoke('admin-notice-management',{body});
+ if(r.error){let m='관리자 요청에 실패했습니다.';try{const j=await r.error.context.json();m=j.message||m}catch(_){}throw new Error(m);}
+ if(!r.data?.ok)throw new Error(r.data?.message||'관리자 요청에 실패했습니다.');
+ return r.data;
+}
+async function ensureAdmin(){
+ const s=window.LoveTeamAuth?.getSession?await window.LoveTeamAuth.getSession():(await client.auth.getSession()).data.session;
+ if(!s?.user)throw new Error('관리자 계정으로 로그인해주세요.');
+ const r=await client.functions.invoke('admin-check',{body:{}});
+ if(r.error||r.data?.admin!==true)throw new Error(r.data?.message||'관리자 권한이 없습니다.');
+}
+function resetForm(){editingId=null;$('formTitle').textContent='새 공지 등록';$('save').textContent='공지 등록';$('cancel').style.display='none';$('title').value='';$('summary').value='';$('content').value='';$('author').value='관리자';$('publishedAt').value=new Date().toISOString().slice(0,10);}
+function startEdit(n){editingId=n.id;$('formTitle').textContent='공지 수정';$('save').textContent='수정 저장';$('cancel').style.display='inline-flex';$('title').value=n.title||'';$('summary').value=n.summary||'';$('content').value=n.content||'';$('author').value=n.author||'관리자';$('publishedAt').value=n.published_at||'';window.scrollTo({top:0,behavior:'smooth'});}
+async function load(){ $('list').innerHTML='<div class="empty">공지사항을 불러오는 중입니다.</div>'; try{const r=await call({action:'list'});const rows=r.notices||[];if(!rows.length){$('list').innerHTML='<div class="empty">등록된 공지사항이 없습니다.</div>';return;} $('list').innerHTML=rows.map(n=>'<article class="card"><div class="card-head"><div class="title">'+esc(n.title)+'</div><div class="date">'+esc(n.published_at)+'</div></div><div class="summary">'+esc(n.summary)+'</div><div class="content-preview">'+esc(n.content)+'</div><div class="card-actions"><button class="btn" data-edit="'+n.id+'">수정</button><button class="btn danger" data-delete="'+n.id+'">삭제</button></div></article>').join('');window.noticeRows=rows;}catch(e){$('list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';}}
+$('save').onclick=async()=>{ $('message').textContent='처리 중...'; try{const body={action:editingId?'update':'create',title:$('title').value,summary:$('summary').value,content:$('content').value,author:$('author').value,published_at:$('publishedAt').value};if(editingId)body.id=editingId;const r=await call(body);$('message').textContent=r.message;resetForm();await load();}catch(e){$('message').textContent=e.message;}};
+$('cancel').onclick=resetForm;
+$('list').onclick=async e=>{const edit=e.target.closest('[data-edit]');const del=e.target.closest('[data-delete]');if(edit){const n=(window.noticeRows||[]).find(x=>String(x.id)===edit.dataset.edit);if(n)startEdit(n);return;}if(del){const id=Number(del.dataset.delete);if(!confirm('이 공지사항을 삭제할까요?'))return;del.disabled=true;try{const r=await call({action:'delete',id});$('message').textContent=r.message;await load();}catch(err){alert(err.message);del.disabled=false;}}};
+async function start(){try{await ensureAdmin();resetForm();await load();}catch(e){$('message').textContent=e.message;$('list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';}}
+start();
+</script>
+</body>
+</html>
