@@ -2132,65 +2132,105 @@
   }
 
 
-  async function updateAdminAccessUI(session) {
+  async function updateAdminAccessUI(session, retryCount = 0) {
 
-    const targets = [];
+    const desktopLinks = [];
 
     document.querySelectorAll('.header-actions').forEach(function(container){
       let link = container.querySelector('.love-admin-link');
+
       if(!link){
         link = document.createElement('a');
         link.className = 'love-admin-link';
         link.href = 'admin.html';
         link.textContent = '관리자 페이지';
         link.setAttribute('aria-label','관리자 페이지');
-        container.insertBefore(link, container.querySelector('.kakao-btn') || null);
+        container.insertBefore(
+          link,
+          container.querySelector('.kakao-btn') || null
+        );
       }
-      targets.push(link);
+
+      desktopLinks.push(link);
     });
 
     const memberAdminButton =
       document.getElementById('loveAdminMenuButton');
 
+    desktopLinks.forEach(function(link){
+      link.style.display = 'none';
+    });
+
     if(memberAdminButton){
-      targets.push(memberAdminButton);
+      memberAdminButton.style.display = 'none';
     }
 
-    document.querySelectorAll('.mobile-menu .love-admin-link').forEach(function(link){
-      link.remove();
-    });
-
-    targets.forEach(function(target){
-      target.style.display = 'none';
-    });
-
-    if(!session?.user || !supabase) return;
+    if(!session?.user || !supabase){
+      return;
+    }
 
     try{
+      /*
+        모바일에서는 로그인 직후 세션이 저장되는 순간과
+        Edge Function 인증 토큰이 준비되는 순간이 약간 다를 수 있다.
+        따라서 관리자 확인이 실패하면 잠시 후 최대 3회 재확인한다.
+      */
       const result =
         await supabase.functions.invoke('admin-check',{body:{}});
 
-      if(
-        result.error ||
-        !result.data?.ok ||
-        result.data.admin !== true
-      ){
+      const isAdmin =
+        !result.error &&
+        result.data?.ok === true &&
+        result.data?.admin === true;
+
+      if(!isAdmin){
+        if(retryCount < 3){
+          setTimeout(function(){
+            supabase.auth.getSession().then(function(fresh){
+              const freshSession =
+                fresh?.data?.session || null;
+
+              if(freshSession?.user){
+                updateAdminAccessUI(freshSession, retryCount + 1);
+              }
+            });
+          }, 350);
+
+        } else if(result.error){
+          console.error('관리자 UI 확인 실패:', result.error);
+        }
+
         return;
       }
-
-      const desktopLinks =
-        document.querySelectorAll('.header-actions .love-admin-link');
 
       desktopLinks.forEach(function(link){
         link.style.display = 'flex';
       });
 
+      /*
+        모바일 관리자 페이지는 별도 메뉴가 아니라
+        기존 점선 회원 메뉴 내부에만 표시한다.
+      */
       if(memberAdminButton){
-        memberAdminButton.style.display = 'block';
+        memberAdminButton.style.display = 'flex';
+        memberAdminButton.style.visibility = 'visible';
       }
 
     }catch(error){
       console.error('관리자 UI 확인 실패:', error);
+
+      if(retryCount < 3){
+        setTimeout(function(){
+          supabase.auth.getSession().then(function(fresh){
+            const freshSession =
+              fresh?.data?.session || null;
+
+            if(freshSession?.user){
+              updateAdminAccessUI(freshSession, retryCount + 1);
+            }
+          });
+        }, 350);
+      }
     }
   }
 
