@@ -1189,6 +1189,16 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   .logo-text strong::first-letter{
     font-size:20px!important;
   }
+  .logo-text strong .love-l,
+  .logo-text strong .love-e{
+    font-size:20px!important;
+    line-height:21px!important;
+  }
+  .logo-text strong .love-ov{
+    font-size:17px!important;
+    line-height:21px!important;
+    letter-spacing:-1.7px!important;
+  }
   .logo-text strong::after{
     bottom:-2px!important;
     height:1.5px!important;
