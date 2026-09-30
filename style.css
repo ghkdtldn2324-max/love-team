@@ -5548,3 +5548,16 @@ select{
     height:44px!important;
   }
 }
+
+/* =====================================================
+   HOME HEADER AUTH STATE
+   로그인 후 회원정보 버튼은 1개만 표시
+   (홈 전용 기존 버튼 스타일보다 우선 적용)
+===================================================== */
+.home-page .header-actions a.header-signup[style*="display: none"]{
+  display:none!important;
+}
+
+.home-page .header-actions a.header-login[style*="display: none"]{
+  display:none!important;
+}
