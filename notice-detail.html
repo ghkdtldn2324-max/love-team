@@ -1,24 +1,337 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LOVE TEAM | 공지사항 상세</title>
-<style>html,body{background:#fff !important;} 
-*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Arial,"Noto Sans KR",sans-serif;color:#fff;background:#fff}a{text-decoration:none;color:inherit}.top{background:#6d43d8;text-align:center;padding:10px;font-size:12px;font-weight:700}.header{min-height:76px;background:#09090d;border-bottom:1px solid #24242d;display:flex;align-items:center;padding:0 5%;gap:30px}.logo{font-size:19px;font-weight:900}.logo span{color:#9b72ff}.nav{display:flex;justify-content:center;gap:27px;flex:1}.nav a{font-size:13px;color:#c7c5cc}.nav a:hover{color:#fff}.actions{display:flex;gap:13px;font-size:12px;white-space:nowrap}.kakao{background:#ffe600;color:#111;padding:10px 14px;border-radius:7px;font-weight:800}.wrap{max-width:1000px;margin:70px auto;padding:0 20px}.crumb{color:#9b72ff;font-size:12px;font-weight:700;margin-bottom:15px}.card{background:#fff;border:1px solid #e1e3ea;border-radius:16px;overflow:hidden}.title-area{padding:30px;border-bottom:1px solid #292a34}.title-area h1{margin:0 0 18px;font-size:30px;line-height:1.4}.meta{display:flex;gap:20px;color:#999;font-size:12px;flex-wrap:wrap}.content{padding:38px 30px;min-height:340px;color:#ddd;line-height:1.9;white-space:pre-wrap;font-size:14px}.back{display:inline-block;margin-top:22px;padding:12px 18px;background:linear-gradient(135deg,#6842d8,#a063e9);border-radius:9px;font-weight:800;font-size:13px}@media(max-width:850px){.header{padding:12px 4%;flex-wrap:wrap;gap:14px}.nav{order:3;flex-basis:100%;justify-content:flex-start;overflow:auto;padding-bottom:4px}.actions{margin-left:auto}.wrap{margin:40px auto}.title-area{padding:24px 20px}.title-area h1{font-size:24px}.content{padding:28px 20px}}@media(max-width:520px){.actions a:not(.kakao){display:none}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="LOVE TEAM 공지사항 상세">
+<title>LOVE TEAM | 공지사항</title>
+<link rel="stylesheet" href="style.css?v=20260930-3">
+<style>
+/* =========================================================
+   LOVE TEAM 공지사항 상세
+   기존 게시판 상세 구조를 참고하되 LOVE TEAM 전용
+   블랙 + 블루/퍼플 카드 스타일로 재구성
+========================================================= */
+.notice-detail-page{
+  min-height:calc(100vh - 118px);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(112,72,238,.07),transparent 34%),
+    #fff;
+  padding:68px 20px 110px;
+}
+.notice-detail-wrap{
+  max-width:900px;
+  margin:0 auto;
+}
+.notice-detail-crumb{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:18px;
+  color:#7b61e9;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.4px;
+}
+.notice-detail-card{
+  overflow:hidden;
+  border:1px solid #e0dceb;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(55,38,110,.08);
+}
+.notice-detail-title{
+  position:relative;
+  padding:30px 34px 26px;
+  background:
+    linear-gradient(135deg,#10111d,#17132a);
+  color:#fff;
+  border-bottom:1px solid #302b48;
+}
+.notice-detail-title::after{
+  content:"";
+  position:absolute;
+  left:34px;
+  right:34px;
+  bottom:0;
+  height:2px;
+  background:linear-gradient(90deg,#5d7cff,#8b68ff,#c65cff);
+}
+.notice-detail-kicker{
+  margin:0 0 12px;
+  color:#a992ff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+.notice-detail-title h1{
+  margin:0;
+  font-size:30px;
+  line-height:1.45;
+  letter-spacing:-1.1px;
+}
+.notice-detail-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  margin-top:17px;
+  color:#aaa8ba;
+  font-size:12px;
+}
+.notice-detail-meta span{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+}
+.notice-detail-meta strong{
+  color:#e6e3f0;
+  font-weight:800;
+}
+.notice-detail-content{
+  padding:38px 34px 44px;
+  color:#444353;
+  font-size:15px;
+  line-height:2;
+  white-space:pre-wrap;
+}
+.notice-detail-content .content-intro{
+  margin:0 0 28px;
+  padding:18px 20px;
+  border:1px solid #e2dcf4;
+  border-left:4px solid #7957ef;
+  border-radius:14px;
+  background:linear-gradient(90deg,#f7f4ff,#fcfbff);
+  color:#3d3850;
+  font-weight:800;
+}
+.notice-detail-content .content-block{
+  margin:0 0 22px;
+  padding:21px 22px;
+  border:1px solid #ece9f3;
+  border-radius:15px;
+  background:#fff;
+}
+.notice-detail-content .content-block:last-child{
+  margin-bottom:0;
+}
+.notice-detail-content .content-label{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:9px;
+  color:#7048ee;
+  font-size:13px;
+  font-weight:900;
+}
+.notice-detail-content .content-label::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#5d7cff,#b24cff);
+  box-shadow:0 0 0 5px rgba(112,72,238,.08);
+}
+.notice-detail-content p{
+  margin:0;
+  line-height:1.85;
+}
+.notice-detail-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-top:18px;
+}
+.notice-detail-back{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 19px;
+  border-radius:11px;
+  border:1px solid #ddd8ec;
+  background:#fff;
+  color:#5c526f;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+}
+.notice-detail-back:hover{
+  border-color:#a18bff;
+  color:#7048ee;
+}
+.notice-detail-contact{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 19px;
+  border-radius:11px;
+  background:linear-gradient(90deg,#5d7cff,#9f4cff);
+  color:#fff;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 8px 22px rgba(105,76,225,.18);
+}
+@media(max-width:600px){
+  .notice-detail-page{
+    padding:48px 14px 80px;
+  }
+  .notice-detail-crumb{
+    margin-bottom:14px;
+    font-size:11px;
+  }
+  .notice-detail-card{
+    border-radius:17px;
+  }
+  .notice-detail-title{
+    padding:25px 20px 22px;
+  }
+  .notice-detail-title::after{
+    left:20px;
+    right:20px;
+  }
+  .notice-detail-title h1{
+    font-size:22px;
+  }
+  .notice-detail-meta{
+    gap:7px 12px;
+    font-size:10px;
+  }
+  .notice-detail-content{
+    padding:25px 16px 30px;
+    font-size:13px;
+  }
+  .notice-detail-content .content-intro{
+    padding:15px 15px;
+    margin-bottom:18px;
+  }
+  .notice-detail-content .content-block{
+    padding:17px 15px;
+    margin-bottom:14px;
+  }
+  .notice-detail-bottom{
+    flex-direction:column-reverse;
+    align-items:stretch;
+  }
+  .notice-detail-back,
+  .notice-detail-contact{
+    width:100%;
+  }
+}
 </style>
 </head>
 <body>
-<div class="top">LOVE TEAM 공지사항</div>
-<header class="header"><a class="logo" href="index.html">LOVE <span>TEAM</span></a><nav class="nav"><a class="active" href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="actions"><a href="#login" data-auth-open>로그인</a><a href="#signup" data-auth-open>회원가입</a><a class="kakao" href="#" onclick="return false">고객센터</a></div></header>
-<main class="wrap"><div class="crumb">NOTICE / 상세보기</div><section class="card"><div class="title-area"><h1 id="title"></h1><div class="meta"><span id="author"></span><span id="date"></span><span id="views"></span></div></div><div class="content" id="content"></div></section><a class="back" href="notice.html">목록으로 돌아가기</a></main>
+<div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
+<header class="header">
+<a class="logo" href="index.html" aria-label="LOVE TEAM 홈"><span class="logo-mark">♥</span><span class="logo-text"><strong>LOVE</strong><small>TEAM</small></span></a>
+<nav class="nav"><a class="active" href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav>
+<div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+<button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+<div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
+</header>
+<div class="page-divider" aria-hidden="true"></div>
+
+<main class="notice-detail-page">
+  <div class="notice-detail-wrap">
+    <div class="notice-detail-crumb"><span>LOVE TEAM NOTICE</span><span>›</span><span>상세보기</span></div>
+
+    <article class="notice-detail-card">
+      <header class="notice-detail-title">
+        <p class="notice-detail-kicker">OFFICIAL NOTICE</p>
+        <h1 id="title"></h1>
+        <div class="notice-detail-meta">
+          <span>작성자 <strong id="author"></strong></span>
+          <span>작성일 <strong id="date"></strong></span>
+          <span>조회수 <strong id="views"></strong></span>
+        </div>
+      </header>
+
+      <div class="notice-detail-content" id="content"></div>
+    </article>
+
+    <div class="notice-detail-bottom">
+      <a class="notice-detail-back" href="notice.html">← 목록으로</a>
+      <a class="notice-detail-contact" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터 문의</a>
+    </div>
+  </div>
+</main>
+
+<footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
+
 <script>
 const notices={
-1:{title:'LOVE TEAM 홈페이지 오픈 안내',author:'관리자',date:'2026-09-29',views:128,content:'안녕하세요. LOVE TEAM 홈페이지가 오픈되었습니다.\n\n가격표와 작업 내역, 후기, 자주 묻는 질문 등 주요 정보를 홈페이지에서 확인하실 수 있습니다.'},
-2:{title:'서비스 이용 전 확인사항',author:'관리자',date:'2026-09-29',views:86,content:'서비스 이용 전 본인의 계정 정보와 신청 내용을 정확하게 확인해 주세요.\n\n자세한 문의는 고객센터를 이용해 주세요.'},
-3:{title:'고객센터 이용 안내',author:'관리자',date:'2026-09-29',views:54,content:'서비스 관련 문의는 홈페이지의 고객센터를 통해 문의하실 수 있습니다.\n\n운영 관련 문의사항은 고객센터를 통해 남겨 주세요.'}
+  1:{
+    title:'LOVE TEAM 홈페이지 오픈 안내',
+    author:'관리자',
+    date:'2026.09.29',
+    views:128,
+    intro:'안녕하세요. LOVE TEAM 홈페이지가 새롭게 오픈되었습니다.',
+    blocks:[
+      ['홈페이지 안내','가격표, 작업 내역, 후기, 자주 묻는 질문 등 주요 정보를 한 곳에서 편리하게 확인하실 수 있습니다.'],
+      ['서비스 이용 안내','원하시는 서비스를 확인하신 뒤 고객센터를 통해 상담을 진행해 주세요.']
+    ]
+  },
+  2:{
+    title:'서비스 이용 전 확인사항',
+    author:'관리자',
+    date:'2026.09.29',
+    views:86,
+    intro:'서비스 신청 전 아래 내용을 꼭 확인해 주세요.',
+    blocks:[
+      ['계정 정보 확인','서비스 이용 전 본인의 계정 정보와 신청 내용을 정확하게 확인해 주세요.'],
+      ['진행 일정 안내','진행 일정은 상담 후 고객님의 일정에 맞춰 조율해드립니다.']
+    ]
+  },
+  3:{
+    title:'고객센터 이용 안내',
+    author:'관리자',
+    date:'2026.09.29',
+    views:54,
+    intro:'LOVE TEAM 이용 중 궁금한 점은 언제든 고객센터로 문의해 주세요.',
+    blocks:[
+      ['상담 방법','홈페이지의 고객센터 버튼을 통해 상담을 요청하실 수 있습니다.'],
+      ['문의 내용','서비스 및 진행 일정 등 궁금하신 내용을 남겨주시면 안내해드리겠습니다.']
+    ]
+  }
 };
-const id=new URLSearchParams(location.search).get('id')||'1';const n=notices[id]||notices[1];
-document.getElementById('title').textContent=n.title;document.getElementById('author').textContent='글쓴이 '+n.author;document.getElementById('date').textContent='작성시간 '+n.date;document.getElementById('views').textContent='조회수 '+n.views;document.getElementById('content').textContent=n.content;
-</script><script src="supabase-config.js"></script>
+
+const id=Number(new URLSearchParams(location.search).get('id')||1);
+const n=notices[id]||notices[1];
+
+document.getElementById('title').textContent=n.title;
+document.getElementById('author').textContent=n.author;
+document.getElementById('date').textContent=n.date;
+document.getElementById('views').textContent=n.views;
+
+const content=document.getElementById('content');
+content.innerHTML='';
+
+const intro=document.createElement('p');
+intro.className='content-intro';
+intro.textContent=n.intro;
+content.appendChild(intro);
+
+n.blocks.forEach(function(block){
+  const section=document.createElement('section');
+  section.className='content-block';
+
+  const label=document.createElement('div');
+  label.className='content-label';
+  label.textContent=block[0];
+
+  const p=document.createElement('p');
+  p.textContent=block[1];
+
+  section.appendChild(label);
+  section.appendChild(p);
+  content.appendChild(section);
+});
+</script>
+<script src="script.js?v=20260930-11"></script>
+<script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js?v=20260930-16"></script></body></html>
+<script src="auth.js?v=20260930-21"></script>
+</body>
+</html>
