@@ -977,18 +977,18 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - FRESH ORGANIC MARK
-   기존 문양/워드마크를 완전히 제거하고 CSS로 새로 구성
-   비대칭 네잎클로버 + 나비 실루엣 계열
+   LOVE TEAM - ANGULAR ESPORTS MARK
+   추상 동물형 실루엣 / 실제 동물 재현 아님
 ===================================================== */
 .logo{
   min-width:184px;
-  gap:11px;
+  gap:10px;
+  align-items:center;
 }
 .logo-mark{
-  width:46px!important;
-  height:46px!important;
-  flex:0 0 46px!important;
+  width:48px!important;
+  height:44px!important;
+  flex:0 0 48px!important;
   position:relative!important;
   display:block!important;
   border:0!important;
@@ -1001,71 +1001,113 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
-  left:2px!important;
-  top:2px!important;
-  width:42px!important;
-  height:42px!important;
-  border-radius:46% 54% 48% 52%!important;
-  background:
-    radial-gradient(ellipse 45% 42% at 30% 28%,#d6a8ff 0 38%,transparent 40%),
-    radial-gradient(ellipse 47% 43% at 72% 25%,#9b63f5 0 38%,transparent 40%),
-    radial-gradient(ellipse 43% 46% at 38% 72%,#b06cff 0 38%,transparent 40%),
-    radial-gradient(ellipse 46% 42% at 78% 68%,#e66dff 0 38%,transparent 40%)!important;
-  filter:drop-shadow(0 0 6px rgba(178,105,255,.65))!important;
-  transform:rotate(-9deg)!important;
+  inset:3px 1px 3px 1px!important;
+  background:linear-gradient(145deg,#f0ddff 0%,#a875ff 38%,#7048ee 68%,#d85cff 100%)!important;
+  clip-path:polygon(
+    50% 0%,
+    63% 14%,
+    79% 5%,
+    77% 25%,
+    98% 17%,
+    87% 38%,
+    100% 50%,
+    87% 62%,
+    98% 83%,
+    77% 75%,
+    79% 95%,
+    63% 86%,
+    50% 100%,
+    37% 86%,
+    21% 95%,
+    23% 75%,
+    2% 83%,
+    13% 62%,
+    0% 50%,
+    13% 38%,
+    2% 17%,
+    23% 25%,
+    21% 5%,
+    37% 14%
+  )!important;
+  filter:drop-shadow(0 0 7px rgba(156,91,255,.62))!important;
 }
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:17px!important;
-  top:16px!important;
-  width:12px!important;
-  height:15px!important;
-  border-radius:52% 48% 58% 42%!important;
+  left:12px!important;
+  top:11px!important;
+  width:24px!important;
+  height:22px!important;
   background:#08080b!important;
-  transform:rotate(12deg)!important;
-  box-shadow:0 0 0 1px rgba(255,255,255,.08)!important;
+  clip-path:polygon(
+    50% 0%,
+    67% 19%,
+    88% 12%,
+    79% 40%,
+    100% 50%,
+    79% 60%,
+    88% 88%,
+    67% 81%,
+    50% 100%,
+    33% 81%,
+    12% 88%,
+    21% 60%,
+    0% 50%,
+    21% 40%,
+    12% 12%,
+    33% 19%
+  )!important;
+  transform:none!important;
+  box-shadow:none!important;
+}
+.logo-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1;
+  justify-content:center;
+  gap:0;
 }
 .logo-text strong{
-  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif!important;
-  font-size:21px!important;
+  font-family:Impact,"Arial Black","Arial Narrow",sans-serif!important;
+  font-size:22px!important;
   font-weight:900!important;
-  font-style:normal!important;
-  letter-spacing:2.8px!important;
-  transform:none!important;
+  font-style:italic!important;
+  letter-spacing:1.6px!important;
+  line-height:.9!important;
+  transform:skewX(-8deg)!important;
   display:block!important;
   color:#fff!important;
   background:none!important;
   -webkit-text-fill-color:#fff!important;
-  text-shadow:0 0 12px rgba(167,104,255,.35)!important;
+  text-shadow:2px 2px 0 #7048ee,0 0 12px rgba(154,91,255,.35)!important;
 }
 .logo-text strong::after{
   content:""!important;
   display:block!important;
-  width:34px!important;
+  width:42px!important;
   height:2px!important;
-  margin:5px 0 0 1px!important;
-  border-radius:999px!important;
-  background:linear-gradient(90deg,#8b5cf6,#ec70ff)!important;
-  box-shadow:0 0 7px rgba(195,108,255,.5)!important;
+  margin:6px 0 0 2px!important;
+  transform:skewX(-18deg)!important;
+  background:linear-gradient(90deg,#8d62ff,#e16aff)!important;
+  box-shadow:0 0 8px rgba(194,104,255,.55)!important;
 }
 .logo-text small{
-  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif!important;
+  font-family:Arial,"Noto Sans KR",sans-serif!important;
   font-size:6px!important;
-  font-weight:800!important;
+  font-weight:900!important;
   font-style:normal!important;
-  letter-spacing:5.5px!important;
+  letter-spacing:4.8px!important;
   color:#b993f7!important;
   margin-top:4px!important;
   padding-left:2px!important;
   text-shadow:none!important;
 }
 @media(max-width:600px){
-  .logo{min-width:0;gap:8px}
-  .logo-mark{width:40px!important;height:40px!important;flex-basis:40px!important}
-  .logo-mark::before{left:1px!important;top:1px!important;width:38px!important;height:38px!important}
-  .logo-mark::after{left:15px!important;top:14px!important;width:11px!important;height:14px!important}
-  .logo-text strong{font-size:18px!important;letter-spacing:2.2px!important}
-  .logo-text strong::after{width:30px!important;height:1.5px!important;margin-top:4px!important}
-  .logo-text small{font-size:5px!important;letter-spacing:4.2px!important;margin-top:3px!important}
+  .logo{min-width:0;gap:7px}
+  .logo-mark{width:41px!important;height:38px!important;flex-basis:41px!important}
+  .logo-mark::before{inset:2px 0 2px 0!important}
+  .logo-mark::after{left:10px!important;top:9px!important;width:21px!important;height:20px!important}
+  .logo-text strong{font-size:19px!important;letter-spacing:1.2px!important}
+  .logo-text strong::after{width:35px!important;height:1.5px!important;margin-top:5px!important}
+  .logo-text small{font-size:5px!important;letter-spacing:3.8px!important;margin-top:3px!important}
 }
