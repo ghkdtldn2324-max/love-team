@@ -239,9 +239,6 @@
       box-sizing:border-box;
     }
 
-    .love-mobile-more-btn{
-      display:none;
-    }
 
     .love-member-menu{
       position:fixed;
@@ -920,8 +917,6 @@
 
   const memberMenu =
     document.getElementById('loveMemberMenu');
-
-  let mobileMoreButton = null;
 
 
   /* =========================================================
@@ -2201,8 +2196,8 @@
       link.style.display = 'none';
     });
 
-    if(memberAdminButton){
-      memberAdminButton.style.display = 'none';
+    if(mobileAdminLink){
+      mobileAdminLink.style.display = 'none';
     }
 
     if(!session?.user || !supabase){
@@ -2247,21 +2242,8 @@
         link.style.display = 'flex';
       });
 
-      if(mobileMoreButton){
-        mobileMoreButton.classList.add('show');
-      }
-
-      const menu = document.getElementById('loveMemberMenu');
-      if(menu && !menu.querySelector('#loveAdminMenuButton')){
-        const adminButton = document.createElement('button');
-        adminButton.type = 'button';
-        adminButton.id = 'loveAdminMenuButton';
-        adminButton.className = 'love-admin-menu-btn';
-        adminButton.textContent = '🛡️ 관리자 페이지';
-        adminButton.addEventListener('click', function(){
-          window.location.href = 'admin.html';
-        });
-        menu.insertBefore(adminButton, menu.querySelector('#lovePasswordChange'));
+      if(mobileAdminLink){
+        mobileAdminLink.style.display = 'flex';
       }
 
     }catch(error){
