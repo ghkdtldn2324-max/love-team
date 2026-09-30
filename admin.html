@@ -1387,7 +1387,7 @@
             );
 
             searchResult.textContent =
-              "회원 검색에 실패했습니다.";
+              "회원 검색에 실패했습니다. (" + (error.message || "Edge Function 오류") + ")";
             return;
           }
 
