@@ -1008,3 +1008,201 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     height:46px!important;
   }
 }
+
+
+/* =====================================================
+   HOME - GENERATED MOCKUP UI
+===================================================== */
+.home-page .lt-hero{
+  isolation:isolate;
+}
+.home-page .lt-hero-bg{
+  background:#090711;
+}
+.home-page .lt-hero-bg img{
+  transform:scale(1.015);
+}
+.home-page .lt-hero-overlay{
+  background:
+    linear-gradient(90deg,rgba(4,3,13,.86) 0%,rgba(7,4,18,.60) 38%,rgba(8,4,20,.16) 68%,rgba(7,4,18,.46) 100%),
+    linear-gradient(180deg,rgba(4,3,12,.22) 0%,rgba(8,4,18,.08) 48%,rgba(6,3,16,.76) 100%);
+}
+.home-page .lt-hero-content{
+  padding-top:130px;
+  padding-bottom:245px;
+}
+.home-page .lt-hero h1{
+  max-width:760px;
+  font-weight:900;
+  letter-spacing:-3.8px;
+}
+.home-page .lt-hero h1 span{
+  background:linear-gradient(90deg,#8e7dff,#b45cff,#ed75ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+.home-page .lt-hero-btn{
+  min-height:54px;
+  padding:0 25px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:12px;
+  background:linear-gradient(135deg,#5d7cff,#9e50ee);
+  box-shadow:0 12px 34px rgba(50,30,140,.38);
+}
+.home-hero-panel{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+  width:min(1220px,calc(100% - 56px));
+  display:grid;
+  grid-template-columns:1.05fr 1.7fr .9fr;
+  gap:0;
+  min-height:138px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  background:rgba(10,8,22,.56);
+  box-shadow:0 18px 55px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  overflow:hidden;
+}
+.home-hero-panel>div{
+  padding:22px 24px;
+}
+.home-hero-panel>div+div{
+  border-left:1px solid rgba(255,255,255,.10);
+}
+.home-hero-label{
+  margin:0 0 9px;
+  color:#b89aff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.home-hero-event h2{
+  margin:0 0 8px;
+  color:#fff;
+  font-size:17px;
+  letter-spacing:-.5px;
+}
+.home-hero-event>strong{
+  display:block;
+  color:#fff;
+  font-size:15px;
+}
+.home-hero-event>strong span{
+  color:#ce8cff;
+}
+.home-hero-benefits{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px 20px;
+  align-content:center;
+}
+.home-hero-benefits article{
+  min-width:0;
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  column-gap:8px;
+  align-items:center;
+}
+.home-hero-benefits b{
+  grid-row:1 / span 2;
+  color:#8ea5ff;
+  font-size:9px;
+  letter-spacing:1px;
+}
+.home-hero-benefits strong{
+  color:#fff;
+  font-size:12px;
+}
+.home-hero-benefits span{
+  color:rgba(255,255,255,.55);
+  font-size:10px;
+  margin-top:3px;
+}
+.home-hero-reviews strong{
+  display:block;
+  color:#fff;
+  font-size:12px;
+  line-height:1.6;
+}
+.home-hero-reviews a{
+  display:inline-block;
+  margin-top:13px;
+  color:#bda5ff;
+  font-size:10px;
+  font-weight:900;
+  text-decoration:none;
+}
+@media(max-width:900px){
+  .home-hero-panel{
+    width:calc(100% - 34px);
+    grid-template-columns:1fr 1fr;
+    bottom:18px;
+  }
+  .home-hero-panel>div:nth-child(2){
+    border-left:1px solid rgba(255,255,255,.10);
+  }
+  .home-hero-panel>div:nth-child(3){
+    grid-column:1/-1;
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.10);
+  }
+}
+@media(max-width:760px){
+  .home-page .lt-hero{
+    min-height:calc(100svh - 36px);
+    height:auto;
+    max-height:none;
+    padding-bottom:390px;
+  }
+  .home-page .lt-hero-content{
+    min-height:560px;
+    padding:112px 20px 40px;
+    justify-content:flex-start;
+  }
+  .home-page .lt-hero h1{
+    font-size:clamp(35px,10vw,44px);
+    letter-spacing:-2.5px;
+  }
+  .home-hero-panel{
+    left:17px;
+    right:17px;
+    bottom:16px;
+    transform:none;
+    width:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:0;
+    border-radius:16px;
+  }
+  .home-hero-panel>div{
+    padding:17px 15px;
+  }
+  .home-hero-event{
+    grid-column:1/-1;
+  }
+  .home-hero-panel>div:nth-child(2){
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.10);
+  }
+  .home-hero-panel>div:nth-child(3){
+    border-left:1px solid rgba(255,255,255,.10);
+    border-top:1px solid rgba(255,255,255,.10);
+    grid-column:auto;
+  }
+  .home-hero-benefits{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .home-hero-benefits article:nth-child(n+3){
+    display:none;
+  }
+  .home-hero-event h2{font-size:15px}
+  .home-hero-event>strong{font-size:13px}
+  .home-hero-reviews strong{font-size:11px}
+  .home-hero-reviews a{margin-top:9px}
+}
