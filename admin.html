@@ -121,6 +121,81 @@
   background:#292932;
 }
 
+.work-admin-form{
+  margin-top:18px;
+}
+.work-admin-form input,
+.work-admin-form select{
+  width:100%;
+  box-sizing:border-box;
+  height:44px;
+  margin-bottom:10px;
+  padding:0 14px;
+  border-radius:10px;
+  border:1px solid #33333d;
+  background:#0e0e13;
+  color:#fff;
+  outline:none;
+}
+.work-admin-result{
+  min-height:20px;
+  margin-top:8px;
+  color:#999;
+  line-height:1.5;
+}
+.work-admin-list{
+  margin-top:18px;
+  display:grid;
+  gap:10px;
+}
+.work-admin-row{
+  padding:14px;
+  border-radius:12px;
+  background:#101016;
+  border:1px solid #292932;
+}
+.work-admin-row-main{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+.work-admin-row-name{
+  color:#fff;
+  font-weight:800;
+}
+.work-admin-row-detail{
+  margin-top:5px;
+  color:#aaa;
+  line-height:1.5;
+}
+.work-admin-row-status{
+  flex:0 0 auto;
+  font-size:12px;
+  font-weight:800;
+  color:#bca5ff;
+}
+.work-admin-row-actions{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+.work-admin-row-actions button{
+  min-height:36px;
+  padding:0 12px;
+  border-radius:8px;
+  border:1px solid #33333d;
+  background:#202028;
+  color:#fff;
+  cursor:pointer;
+}
+@media(max-width:600px){
+  .work-admin-row-main{
+    flex-direction:column;
+    gap:5px;
+  }
+}
+
 .member-search{
   margin-top:18px;
 
@@ -607,23 +682,45 @@
 
         <div class="admin-card">
 
-          <h2>
-            작업 내역 관리
-          </h2>
+          <h2>작업 내역 관리</h2>
 
           <p>
-            작업 내역을 등록하고 관리합니다.
+            작업 내역을 등록, 수정, 삭제합니다.
           </p>
 
-          <div class="admin-actions">
+          <div class="work-admin-form">
+            <input id="workEditId" type="hidden">
 
-            <a
-              class="admin-btn"
-              href="works.html"
+            <input
+              id="workDisplayName"
+              type="text"
+              maxlength="40"
+              placeholder="익명 이름 (예: Gh***)"
             >
-              작업 내역 보기
-            </a>
 
+            <input
+              id="workDetail"
+              type="text"
+              maxlength="200"
+              placeholder="작업 내용 (예: 승당 3판 진행 중)"
+            >
+
+            <select id="workStatus">
+              <option value="progress">진행 중</option>
+              <option value="done">완료</option>
+            </select>
+
+            <div class="admin-actions">
+              <button class="admin-btn" id="workSaveBtn" type="button">등록</button>
+              <button class="admin-btn" id="workCancelBtn" type="button" style="display:none;">수정 취소</button>
+              <a class="admin-btn" href="works.html">공개 페이지 보기</a>
+            </div>
+
+            <div id="workAdminResult" class="work-admin-result"></div>
+          </div>
+
+          <div id="workAdminList" class="work-admin-list">
+            작업 내역을 불러오는 중입니다...
           </div>
 
         </div>
@@ -1334,6 +1431,234 @@
 
 
   /* =========================
+     작업 내역 관리
+  ========================= */
+
+  const workListEl =
+    document.getElementById("workAdminList");
+  const workNameEl =
+    document.getElementById("workDisplayName");
+  const workDetailEl =
+    document.getElementById("workDetail");
+  const workStatusEl =
+    document.getElementById("workStatus");
+  const workEditIdEl =
+    document.getElementById("workEditId");
+  const workSaveBtn =
+    document.getElementById("workSaveBtn");
+  const workCancelBtn =
+    document.getElementById("workCancelBtn");
+  const workResultEl =
+    document.getElementById("workAdminResult");
+
+  function escapeWorkHtml(value){
+    return String(value || "")
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+  }
+
+  function resetWorkForm(){
+    workEditIdEl.value = "";
+    workNameEl.value = "";
+    workDetailEl.value = "";
+    workStatusEl.value = "progress";
+    workSaveBtn.textContent = "등록";
+    workCancelBtn.style.display = "none";
+  }
+
+  function renderWorkAdminList(rows){
+    if(!rows || !rows.length){
+      workListEl.textContent = "등록된 작업 내역이 없습니다.";
+      return;
+    }
+
+    workListEl.innerHTML = rows.map(function(row){
+      const statusText =
+        row.status === "done" ? "완료" : "진행 중";
+
+      return (
+        '<div class="work-admin-row">' +
+          '<div class="work-admin-row-main">' +
+            '<div>' +
+              '<div class="work-admin-row-name">' +
+                escapeWorkHtml(row.display_name) +
+              '</div>' +
+              '<div class="work-admin-row-detail">' +
+                escapeWorkHtml(row.detail) +
+              '</div>' +
+            '</div>' +
+            '<span class="work-admin-row-status">' +
+              statusText +
+            '</span>' +
+          '</div>' +
+          '<div class="work-admin-row-actions">' +
+            '<button type="button" data-work-edit="' +
+              escapeWorkHtml(row.id) + '">수정</button>' +
+            '<button type="button" data-work-delete="' +
+              escapeWorkHtml(row.id) + '">삭제</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+
+    workListEl.querySelectorAll("[data-work-edit]")
+      .forEach(function(button){
+        button.addEventListener("click", function(){
+          const row = rows.find(function(item){
+            return item.id === button.dataset.workEdit;
+          });
+          if(!row) return;
+
+          workEditIdEl.value = row.id;
+          workNameEl.value = row.display_name || "";
+          workDetailEl.value = row.detail || "";
+          workStatusEl.value = row.status || "progress";
+          workSaveBtn.textContent = "수정 저장";
+          workCancelBtn.style.display = "inline-flex";
+          workResultEl.textContent = "수정할 내용을 입력한 뒤 저장해주세요.";
+          workNameEl.focus();
+        });
+      });
+
+    workListEl.querySelectorAll("[data-work-delete]")
+      .forEach(function(button){
+        button.addEventListener("click", async function(){
+          if(!confirm("이 작업 내역을 삭제할까요?")) return;
+
+          await workAdminAction({
+            action:"delete",
+            id:button.dataset.workDelete
+          });
+        });
+      });
+  }
+
+  async function loadWorkAdminList(){
+    try{
+      const supabase =
+        window.LoveTeamAuth &&
+        window.LoveTeamAuth.client;
+
+      if(!supabase){
+        workListEl.textContent =
+          "Supabase 연결을 확인할 수 없습니다.";
+        return;
+      }
+
+      const { data, error } =
+        await supabase
+          .from("work_history")
+          .select("id,display_name,detail,status,created_at,updated_at")
+          .order("created_at",{ascending:false});
+
+      if(error){
+        console.error("작업 내역 조회 오류:",error);
+        workListEl.textContent =
+          "작업 내역을 불러오지 못했습니다.";
+        return;
+      }
+
+      renderWorkAdminList(data || []);
+    }catch(error){
+      console.error("작업 내역 조회 오류:",error);
+      workListEl.textContent =
+        "작업 내역을 불러오는 중 오류가 발생했습니다.";
+    }
+  }
+
+  async function workAdminAction(payload){
+    workResultEl.textContent = "처리 중입니다...";
+
+    try{
+      const supabase =
+        window.LoveTeamAuth &&
+        window.LoveTeamAuth.client;
+
+      if(!supabase){
+        workResultEl.textContent =
+          "Supabase 연결을 확인할 수 없습니다.";
+        return;
+      }
+
+      const { data, error } =
+        await supabase.functions.invoke(
+          "admin-work-history",
+          { body:payload }
+        );
+
+      if(error){
+        let detail = error.message || "Edge Function 오류";
+
+        try{
+          if(error.context &&
+             typeof error.context.json === "function"){
+            const body = await error.context.json();
+            if(body?.message) detail = body.message;
+          }
+        }catch(_){}
+
+        workResultEl.textContent =
+          "작업 내역 처리에 실패했습니다. (" +
+          detail + ")";
+        return;
+      }
+
+      if(!data || data.ok !== true){
+        workResultEl.textContent =
+          data?.message || "작업 내역 처리에 실패했습니다.";
+        return;
+      }
+
+      resetWorkForm();
+      workResultEl.textContent =
+        data.message ||
+        (payload.action === "create" ? "작업 내역이 등록되었습니다." :
+         payload.action === "update" ? "작업 내역이 수정되었습니다." :
+         "작업 내역이 삭제되었습니다.");
+
+      await loadWorkAdminList();
+    }catch(error){
+      console.error("작업 내역 처리 오류:",error);
+      workResultEl.textContent =
+        "작업 내역 처리 중 오류가 발생했습니다.";
+    }
+  }
+
+  if(workSaveBtn){
+    workSaveBtn.addEventListener("click",async function(){
+      const displayName = workNameEl.value.trim();
+      const detail = workDetailEl.value.trim();
+      const status = workStatusEl.value;
+
+      if(!displayName || !detail){
+        workResultEl.textContent =
+          "익명 이름과 작업 내용을 입력해주세요.";
+        return;
+      }
+
+      const editId = workEditIdEl.value.trim();
+
+      await workAdminAction({
+        action: editId ? "update" : "create",
+        id: editId || undefined,
+        display_name: displayName,
+        detail: detail,
+        status: status
+      });
+    });
+  }
+
+  if(workCancelBtn){
+    workCancelBtn.addEventListener("click",function(){
+      resetWorkForm();
+      workResultEl.textContent = "";
+    });
+  }
+
+    /* =========================
      회원 비밀번호 초기화
   ========================= */
 
