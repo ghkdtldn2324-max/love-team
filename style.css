@@ -977,14 +977,14 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - FOX ESPORTS EMBLEM / WORDMARK
-   단일 로고 규칙 / PC + MOBILE 동일 디자인
+   LOVE TEAM - STRONG FOX ESPORTS WORDMARK
+   기존 로고 완전 교체 / PC + MOBILE
 ===================================================== */
 .logo{
   display:flex!important;
   align-items:center!important;
-  gap:0!important;
-  min-width:172px!important;
+  gap:2px!important;
+  min-width:178px!important;
   text-decoration:none!important;
 }
 .logo-mark{
@@ -995,7 +995,6 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   display:block!important;
   border:0!important;
   background:transparent!important;
-  box-shadow:none!important;
   overflow:visible!important;
   transform:translateY(1px)!important;
 }
@@ -1006,103 +1005,130 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   top:2px!important;
   width:46px!important;
   height:44px!important;
-  background:linear-gradient(145deg,#f2e5ff 0%,#b36cff 38%,#7548eb 70%,#d45cff 100%)!important;
+  background:linear-gradient(150deg,#7dd8ff 0%,#4b82ff 27%,#6d35ee 63%,#c34dff 100%)!important;
   clip-path:polygon(
-    4% 22%, 20% 27%, 15% 3%, 39% 16%,
-    50% 11%, 61% 16%, 85% 3%, 80% 27%,
-    96% 22%, 90% 51%, 82% 68%, 70% 82%,
-    58% 91%, 50% 98%, 42% 91%, 30% 82%,
-    18% 68%, 10% 51%
+    5% 22%,20% 28%,13% 2%,38% 15%,50% 9%,62% 15%,87% 2%,80% 28%,95% 22%,
+    90% 49%,84% 65%,73% 80%,61% 91%,50% 99%,39% 91%,27% 80%,16% 65%,10% 49%
   )!important;
-  filter:drop-shadow(0 0 6px rgba(157,92,255,.52))!important;
+  filter:drop-shadow(0 0 7px rgba(92,111,255,.55))!important;
 }
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:9px!important;
-  top:13px!important;
-  width:32px!important;
-  height:31px!important;
-  background:#08080c!important;
+  left:8px!important;
+  top:12px!important;
+  width:34px!important;
+  height:33px!important;
+  background:#070811!important;
   clip-path:polygon(
-    5% 23%, 28% 32%, 25% 19%, 43% 29%,
-    50% 36%, 57% 29%, 75% 19%, 72% 32%,
-    95% 23%, 86% 50%, 79% 64%, 67% 78%,
-    50% 92%, 33% 78%, 21% 64%, 14% 50%
+    4% 22%,28% 32%,24% 17%,42% 28%,50% 36%,58% 28%,76% 17%,72% 32%,96% 22%,
+    87% 51%,79% 65%,67% 79%,50% 94%,33% 79%,21% 65%,13% 51%
   )!important;
 }
 .logo-mark .fox-eye-left,
 .logo-mark .fox-eye-right{
   position:absolute!important;
-  display:block!important;
-  top:27px!important;
-  width:13px!important;
-  height:8px!important;
+  top:24px!important;
+  width:14px!important;
+  height:9px!important;
   z-index:5!important;
-  background:linear-gradient(135deg,#fff 0%,#e2c8ff 48%,#9b68ff 100%)!important;
-  filter:drop-shadow(0 0 4px rgba(202,157,255,.75))!important;
+  display:block!important;
+  background:linear-gradient(135deg,#ffffff 0%,#8fdcff 35%,#a44cff 100%)!important;
+  filter:drop-shadow(0 0 5px rgba(101,167,255,.8))!important;
 }
 .logo-mark .fox-eye-left{
-  left:12px!important;
-  clip-path:polygon(0 42%,100% 0,84% 73%,57% 100%,18% 82%)!important;
+  left:10px!important;
+  clip-path:polygon(0 45%,100% 0,82% 74%,55% 100%,17% 82%)!important;
 }
 .logo-mark .fox-eye-right{
-  right:12px!important;
-  clip-path:polygon(0 0,100% 42%,82% 82%,43% 100%,16% 73%)!important;
+  right:10px!important;
+  clip-path:polygon(0 0,100% 45%,83% 82%,45% 100%,18% 74%)!important;
 }
 .logo-mark i::after{
   content:""!important;
   position:absolute!important;
   left:50%!important;
-  top:5px!important;
+  top:31px!important;
   width:5px!important;
   height:4px!important;
   transform:translateX(-50%) rotate(45deg)!important;
-  background:#d8b8ff!important;
+  background:#b9eaff!important;
   clip-path:polygon(50% 0,100% 100%,0 100%)!important;
-  opacity:.95!important;
+  opacity:1!important;
 }
 .logo-text{
   display:flex!important;
   flex-direction:column!important;
-  line-height:1!important;
   justify-content:center!important;
-  margin-left:-2px!important;
+  line-height:1!important;
+  margin-left:-1px!important;
   transform:translateY(-1px)!important;
 }
 .logo-text strong{
-  font-family:"Trebuchet MS","Arial Black",Impact,sans-serif!important;
-  font-size:21px!important;
-  font-weight:900!important;
-  font-style:italic!important;
-  letter-spacing:-1px!important;
-  line-height:.82!important;
-  transform:skewX(-14deg) scaleX(.88)!important;
-  transform-origin:left center!important;
+  position:relative!important;
   display:block!important;
-  color:#fff!important;
-  background:none!important;
-  -webkit-text-fill-color:#fff!important;
-  text-shadow:1px 2px 0 #7048ee,0 0 12px rgba(154,91,255,.4)!important;
+  width:104px!important;
+  height:25px!important;
+  line-height:25px!important;
+  font-family:"Arial Black","Trebuchet MS",Impact,sans-serif!important;
+  font-size:21px!important;
+  font-weight:950!important;
+  font-style:italic!important;
+  letter-spacing:-2px!important;
+  transform:skewX(-10deg)!important;
+  transform-origin:center!important;
+  color:transparent!important;
+  background:linear-gradient(105deg,#83ddff 0%,#4d8dff 28%,#7d42f4 62%,#d75cff 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  filter:drop-shadow(1px 2px 0 #241b72) drop-shadow(0 0 7px rgba(99,111,255,.45))!important;
+  text-shadow:none!important;
+}
+.logo-text strong::first-letter{
+  font-size:25px!important;
+  font-weight:950!important;
 }
 .logo-text strong::after{
   content:""!important;
   display:block!important;
-  width:43px!important;
+  position:absolute!important;
+  left:2px!important;
+  right:0!important;
+  bottom:-3px!important;
   height:2px!important;
-  margin:5px 0 0 1px!important;
-  transform:skewX(-24deg)!important;
-  background:linear-gradient(90deg,#8d62ff,#e16aff)!important;
-  box-shadow:0 0 7px rgba(194,104,255,.5)!important;
+  background:linear-gradient(90deg,#55cfff 0%,#7355ff 48%,#d65cff 100%)!important;
+  transform:skewX(-22deg)!important;
+  box-shadow:0 0 8px rgba(105,118,255,.55)!important;
 }
 .logo-text small{
-  font-family:"Trebuchet MS",Arial,sans-serif!important;
+  display:block!important;
+  position:relative!important;
+  width:max-content!important;
+  margin:5px auto 0!important;
+  padding:0 12px!important;
+  font-family:"Arial Narrow","Trebuchet MS",Arial,sans-serif!important;
   font-size:5.5px!important;
   font-weight:900!important;
-  letter-spacing:3.8px!important;
-  color:#b993f7!important;
-  margin-top:3px!important;
-  padding-left:1px!important;
+  letter-spacing:3px!important;
+  line-height:1!important;
+  color:#b7c7ff!important;
+}
+.logo-text small::before,
+.logo-text small::after{
+  content:""!important;
+  position:absolute!important;
+  top:50%!important;
+  width:9px!important;
+  height:1px!important;
+  background:linear-gradient(90deg,#5bcfff,#9b59ff)!important;
+  box-shadow:0 0 5px rgba(112,130,255,.45)!important;
+}
+.logo-text small::before{
+  right:100%!important;
+}
+.logo-text small::after{
+  left:100%!important;
 }
 @media(max-width:600px){
   .logo{
@@ -1121,35 +1147,44 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     height:38px!important;
   }
   .logo-mark::after{
-    left:8px!important;
-    top:11px!important;
-    width:27px!important;
-    height:27px!important;
+    left:7px!important;
+    top:10px!important;
+    width:29px!important;
+    height:29px!important;
   }
   .logo-mark .fox-eye-left,
   .logo-mark .fox-eye-right{
-    top:23px!important;
+    top:22px!important;
     width:11px!important;
     height:7px!important;
   }
-  .logo-mark .fox-eye-left{left:10px!important}
-  .logo-mark .fox-eye-right{right:10px!important}
+  .logo-mark .fox-eye-left{left:9px!important}
+  .logo-mark .fox-eye-right{right:9px!important}
   .logo-text{
     margin-left:-2px!important;
   }
   .logo-text strong{
-    font-size:18px!important;
-    letter-spacing:-.9px!important;
-    transform:skewX(-14deg) scaleX(.87)!important;
+    width:82px!important;
+    height:21px!important;
+    line-height:21px!important;
+    font-size:17px!important;
+    letter-spacing:-1.7px!important;
+  }
+  .logo-text strong::first-letter{
+    font-size:20px!important;
   }
   .logo-text strong::after{
-    width:34px!important;
+    bottom:-2px!important;
     height:1.5px!important;
-    margin-top:4px!important;
   }
   .logo-text small{
-    font-size:4.7px!important;
-    letter-spacing:3px!important;
-    margin-top:2px!important;
+    margin-top:4px!important;
+    padding:0 9px!important;
+    font-size:4.5px!important;
+    letter-spacing:2.6px!important;
+  }
+  .logo-text small::before,
+  .logo-text small::after{
+    width:7px!important;
   }
 }
