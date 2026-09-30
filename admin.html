@@ -180,14 +180,31 @@
   gap:8px;
   margin-top:10px;
 }
+.work-admin-row-actions{
+  display:flex !important;
+  gap:8px !important;
+  margin-top:12px !important;
+  width:100% !important;
+}
 .work-admin-row-actions button{
-  min-height:36px;
-  padding:0 12px;
-  border-radius:8px;
-  border:1px solid #33333d;
-  background:#202028;
-  color:#fff;
-  cursor:pointer;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:72px !important;
+  min-height:38px !important;
+  padding:0 14px !important;
+  border-radius:8px !important;
+  border:1px solid #555565 !important;
+  background:#292933 !important;
+  color:#fff !important;
+  cursor:pointer !important;
+  font-size:14px !important;
+  font-weight:700 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+.work-admin-row-actions button:hover{
+  background:#393946 !important;
 }
 @media(max-width:600px){
   .work-admin-row-main{
@@ -1495,10 +1512,10 @@
             '</span>' +
           '</div>' +
           '<div class="work-admin-row-actions">' +
-            '<button type="button" data-work-edit="' +
-              escapeWorkHtml(row.id) + '">수정</button>' +
-            '<button type="button" data-work-delete="' +
-              escapeWorkHtml(row.id) + '">삭제</button>' +
+            '<button type="button" aria-label="작업 내역 수정" data-work-edit="' +
+              escapeWorkHtml(row.id) + '">✏️ 수정</button>' +
+            '<button type="button" aria-label="작업 내역 삭제" data-work-delete="' +
+              escapeWorkHtml(row.id) + '">🗑️ 삭제</button>' +
           '</div>' +
         '</div>'
       );
