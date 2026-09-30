@@ -2148,23 +2148,19 @@
 
   async function updateAdminAccessUI(session, retryCount = 0) {
 
-    const mobileAdminLink =
-      document.getElementById('loveMobileAdminLink');
+    const mobileAdminLink = document.getElementById('loveMobileAdminLink');
+    const desktopAdminLink = document.getElementById('loveDesktopAdminLink');
 
     const isMobileViewport =
       window.matchMedia &&
       window.matchMedia('(max-width:760px)').matches;
 
-    /*
-      모바일에서는 관리자 링크를 header-actions에 절대 생성하지 않는다.
-      기존 캐시/이전 코드로 생성된 링크도 즉시 제거한다.
-    */
-    document.querySelectorAll('.header-actions .love-admin-link').forEach(function(link){
-      link.remove();
-    });
-
     if(mobileAdminLink){
       mobileAdminLink.style.setProperty('display','none','important');
+    }
+
+    if(desktopAdminLink){
+      desktopAdminLink.style.setProperty('display','none','important');
     }
 
     if(!session?.user || !supabase){
@@ -2172,86 +2168,52 @@
     }
 
     try{
-      const result =
-        await supabase.functions.invoke('admin-check',{body:{}});
-
+      const result = await supabase.functions.invoke('admin-check',{body:{}});
       const isAdmin =
         !result.error &&
         result.data?.ok === true &&
         result.data?.admin === true;
 
       if(!isAdmin){
-        if(retryCount < 3){
+        if(retryCount < 4){
           setTimeout(function(){
             supabase.auth.getSession().then(function(fresh){
-              const freshSession =
-                fresh?.data?.session || null;
-
+              const freshSession = fresh?.data?.session || null;
               if(freshSession?.user){
-                updateAdminAccessUI(
-                  freshSession,
-                  retryCount + 1
-                );
+                updateAdminAccessUI(freshSession,retryCount + 1);
               }
             });
-          },350);
+          },400);
         }
         return;
       }
 
       if(isMobileViewport){
-        /*
-          모바일 관리자 메뉴는 기존 ☰ 메뉴 내부의
-          #loveMobileAdminLink 하나만 사용한다.
-        */
         if(mobileAdminLink){
           mobileAdminLink.style.setProperty('display','flex','important');
           mobileAdminLink.hidden = false;
           mobileAdminLink.removeAttribute('hidden');
-          mobileAdminLink.setAttribute('data-admin-visible','1');
         }
         return;
       }
 
-      /*
-        PC에서만 header-actions에 관리자 페이지를 표시한다.
-      */
-      document.querySelectorAll('.header-actions').forEach(function(container){
-        let link = container.querySelector('.love-admin-link');
-
-        if(!link){
-          link = document.createElement('a');
-          link.className = 'love-admin-link';
-          link.href = 'admin.html';
-          link.textContent = '관리자 페이지';
-          link.setAttribute('aria-label','관리자 페이지');
-
-          container.insertBefore(
-            link,
-            container.querySelector('.kakao-btn') || null
-          );
-        }
-
-        link.style.setProperty('display','flex','important');
-      });
+      if(desktopAdminLink){
+        desktopAdminLink.style.setProperty('display','inline-flex','important');
+        desktopAdminLink.hidden = false;
+        desktopAdminLink.removeAttribute('hidden');
+      }
 
     }catch(error){
       console.error('관리자 UI 확인 실패:',error);
-
-      if(retryCount < 3){
+      if(retryCount < 4){
         setTimeout(function(){
           supabase.auth.getSession().then(function(fresh){
-            const freshSession =
-              fresh?.data?.session || null;
-
+            const freshSession = fresh?.data?.session || null;
             if(freshSession?.user){
-              updateAdminAccessUI(
-                freshSession,
-                retryCount + 1
-              );
+              updateAdminAccessUI(freshSession,retryCount + 1);
             }
           });
-        },350);
+        },400);
       }
     }
   }
