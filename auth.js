@@ -2232,6 +2232,12 @@
       );
 
 
+    /* 로그인/회원가입 버튼이 분리된 헤더에서는
+       로그인 후 회원정보 진입점을 하나만 유지한다. */
+    const primaryAuthLink =
+      document.getElementById('openAuth') ||
+      document.getElementById('adminAuthLink');
+
     authLinks.forEach(function(a) {
 
       const text =
@@ -2253,17 +2259,22 @@
         return;
       }
 
-
       if (text.includes('고객센터')) {
         return;
       }
 
-
       a.dataset.loveAuthStatus = '1';
-
 
       if (session && session.user) {
 
+        /* 보조 로그인/회원가입 링크는 숨기고
+           대표 링크 하나만 회원정보 버튼으로 사용 */
+        if (primaryAuthLink && a !== primaryAuthLink) {
+          a.style.display = 'none';
+          return;
+        }
+
+        a.style.display = '';
         a.textContent =
           getDisplayName(session.user) +
           '님';
@@ -2271,6 +2282,9 @@
         a.href = '#member';
 
       } else {
+
+        /* 로그아웃 상태에서는 원래 버튼을 모두 복원 */
+        a.style.display = '';
 
         const mode =
           a.dataset.authMode ||
