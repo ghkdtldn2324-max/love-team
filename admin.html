@@ -1766,7 +1766,7 @@
             await supabase.functions.invoke(
               "admin-review-limit",
               {
-                body: { user_id: selectedMemberId }
+                body: { action: "clear", user_id: selectedMemberId }
               }
             );
 
