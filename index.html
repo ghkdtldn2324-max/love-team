@@ -190,12 +190,11 @@
       const rows=result.data||[];
       const data=rows.length?rows:fallback;
       list.innerHTML=data.map(function(r){
-        const stars='★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
         const date=r.created_at?new Date(r.created_at).toLocaleDateString('ko-KR'):'';
-        return '<article><p>“'+String(r.content||'').replace(/[<>&]/g,function(ch){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]})+'”</p><small>'+String(r.display_name||'회원')+' · '+date+'</small><b>'+stars+'</b></article>';
+        return '<article><p>“'+String(r.content||'').replace(/[<>&]/g,function(ch){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]})+'”</p><small>'+String(r.display_name||'회원')+' · '+date+'</small></article>';
       }).join('');
     }catch(e){
-      list.innerHTML=fallback.map(function(r){return '<article><p>“'+r.content+'”</p><small>후기 페이지에서 실제 후기 확인</small><b>★★★★★</b></article>';}).join('');
+      list.innerHTML=fallback.map(function(r){return '<article><p>“'+r.content+'”</p><small>후기 페이지에서 실제 후기 확인</small></article>';}).join('');
     }
   }
   window.addEventListener('load',function(){setTimeout(loadHomeReviews,250);});
