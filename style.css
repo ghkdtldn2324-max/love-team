@@ -976,14 +976,13 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     object-position:80% 30%!important;
   }
 }
-
 /* =====================================================
-   LOVE TEAM - ROUNDED CLOVE INSPIRED BRAND EMBLEM
-   이미지 없이 CSS로 만든 둥근 e스포츠 엠블럼
+   LOVE TEAM x REYNA-STYLE ROUNDED BRAND MARK
+   이미지 없이 CSS로 구성한 둥근 장식형 엠블럼
 ===================================================== */
 .logo{
   min-width:188px;
-  gap:12px;
+  gap:11px;
 }
 
 .logo-mark{
@@ -993,56 +992,53 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   position:relative!important;
   display:block!important;
   border:0!important;
-  border-radius:50%!important;
+  border-radius:0!important;
   background:transparent!important;
   box-shadow:none!important;
   transform:none!important;
   overflow:visible!important;
 }
 
-.logo-mark svg{
-  display:none!important;
-}
+.logo-mark svg{display:none!important}
 
-/* 둥근 4-러브/나비 실루엣
-   기존 날개·칼날처럼 뾰족한 형태를 제거하고
-   부드러운 곡선 중심의 독립 엠블럼으로 구성 */
+/* 네 개의 뾰족한 날개가 아니라, 부드럽게 말린 꽃잎/나비형 실루엣 */
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
   left:3px!important;
   top:5px!important;
   width:42px!important;
-  height:38px!important;
-  border-radius:50%!important;
+  height:39px!important;
   background:
-    radial-gradient(circle at 29% 28%,#e7cfff 0 18%,transparent 19%),
-    radial-gradient(circle at 71% 28%,#d39cff 0 18%,transparent 19%),
-    radial-gradient(circle at 28% 72%,#9a68ff 0 19%,transparent 20%),
-    radial-gradient(circle at 72% 72%,#ee69ff 0 19%,transparent 20%),
-    radial-gradient(circle at 50% 50%,#8c55ef 0 16%,transparent 17%)!important;
+    radial-gradient(ellipse 15px 17px at 31% 30%,#e4c9ff 0 54%,transparent 56%),
+    radial-gradient(ellipse 15px 17px at 69% 30%,#c99aff 0 54%,transparent 56%),
+    radial-gradient(ellipse 16px 15px at 29% 70%,#9965f4 0 54%,transparent 56%),
+    radial-gradient(ellipse 16px 15px at 71% 70%,#e76bfa 0 54%,transparent 56%),
+    radial-gradient(ellipse 9px 11px at 50% 50%,#8b5ce8 0 62%,transparent 64%)!important;
   filter:
-    drop-shadow(0 0 4px rgba(174,115,255,.72))
-    drop-shadow(0 0 12px rgba(218,82,255,.30))!important;
+    drop-shadow(0 0 4px rgba(185,125,255,.78))
+    drop-shadow(0 0 12px rgba(222,92,255,.32))!important;
 }
 
-/* 중앙은 칼날 대신 둥근 보석형 포인트 */
+/* 중앙도 칼날 대신 둥근 리본/보석 형태 */
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
   left:18px!important;
-  top:16px!important;
+  top:13px!important;
   width:12px!important;
-  height:16px!important;
-  border-radius:8px 8px 7px 7px!important;
-  background:linear-gradient(180deg,#ffffff 0%,#eadbff 38%,#b06dff 72%,#ee76ff 100%)!important;
+  height:22px!important;
+  border-radius:48% 48% 54% 54%!important;
+  background:
+    radial-gradient(circle at 50% 24%,#fff 0 17%,transparent 18%),
+    linear-gradient(180deg,#fefcff 0%,#e6ccff 42%,#b16fff 72%,#ec72ff 100%)!important;
   box-shadow:
-    0 0 6px rgba(224,177,255,.95),
-    0 0 13px rgba(183,101,255,.48)!important;
-  transform:rotate(45deg)!important;
+    0 0 6px rgba(231,196,255,.9),
+    0 0 15px rgba(180,100,255,.42)!important;
+  transform:rotate(0deg)!important;
 }
 
-/* LOVE TEAM 워드마크 */
+/* 레이나 계열의 화려한 팀 워드마크 느낌 */
 .logo-text{
   position:relative;
   line-height:1;
@@ -1051,50 +1047,56 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 }
 
 .logo-text strong{
-  font-family:Georgia,"Times New Roman","Noto Serif KR",serif!important;
-  font-size:22px!important;
+  font-family:
+    "Bodoni 72",
+    "Didot",
+    "Bodoni MT",
+    Georgia,
+    "Times New Roman",
+    serif!important;
+  font-size:23px!important;
   font-weight:900!important;
   font-style:italic!important;
-  letter-spacing:2px!important;
-  transform:skewX(-7deg)!important;
+  letter-spacing:1.5px!important;
+  transform:skewX(-8deg)!important;
   display:block;
   color:#fff;
-  background:linear-gradient(180deg,#fff 8%,#eadbff 48%,#b27aff 100%);
+  background:linear-gradient(180deg,#ffffff 5%,#ead8ff 48%,#b16eff 100%);
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
   text-shadow:
-    0 0 1px #fff,
-    2px 3px 0 rgba(66,30,145,.55),
-    0 0 16px rgba(165,101,255,.34);
+    0 0 1px rgba(255,255,255,.95),
+    2px 2px 0 rgba(67,31,143,.52),
+    0 0 15px rgba(171,103,255,.32);
 }
 
 .logo-text strong::after{
   content:"";
   display:block;
-  width:92%;
+  width:94%;
   height:1px;
-  margin:3px 0 0 5%;
-  background:linear-gradient(90deg,transparent,#d6b5ff,#f28cff,transparent);
-  box-shadow:0 0 6px rgba(212,137,255,.55);
-  transform:skewX(-18deg);
+  margin:3px 0 0 4%;
+  background:linear-gradient(90deg,transparent,#cba5ff 22%,#f08cff 76%,transparent);
+  box-shadow:0 0 6px rgba(211,132,255,.5);
+  transform:skewX(-20deg);
 }
 
 .logo-text small{
   font-family:Arial,"Noto Sans KR",sans-serif!important;
   font-size:6.5px!important;
-  font-weight:950!important;
+  font-weight:900!important;
   letter-spacing:6.5px!important;
-  color:#d0b3ff!important;
+  color:#d4b8ff!important;
   margin-top:5px;
   padding-left:7px;
-  text-shadow:0 0 10px rgba(173,111,255,.45);
+  text-shadow:0 0 10px rgba(173,111,255,.42);
 }
 
 @media(max-width:600px){
   .logo{
     min-width:0;
-    gap:9px;
+    gap:8px;
   }
 
   .logo-mark{
@@ -1112,14 +1114,14 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 
   .logo-mark::after{
     left:16px!important;
-    top:14px!important;
+    top:12px!important;
     width:11px!important;
-    height:15px!important;
+    height:20px!important;
   }
 
   .logo-text strong{
     font-size:19px!important;
-    letter-spacing:1.2px!important;
+    letter-spacing:1px!important;
   }
 
   .logo-text strong::after{
@@ -1128,7 +1130,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 
   .logo-text small{
     font-size:5.5px!important;
-    letter-spacing:4.8px!important;
+    letter-spacing:4.6px!important;
     margin-top:4px;
     padding-left:5px;
   }
