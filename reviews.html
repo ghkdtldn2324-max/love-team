@@ -675,7 +675,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="auth.js?v=20260930-21"></script>
+<script src="auth.js?v=20260930-23"></script>
 
 <script src="script.js?v=20260930-6"></script>
 
@@ -1288,16 +1288,54 @@ render();
           return;
         }
 
-        const {error} =
-          await client
-            .from('reviews')
-            .insert({
-              user_id: session.user.id,
-              display_name: displayName,
-              stars: selectedStars,
-              content: text,
-              service: service
-            });
+        let error = null;
+
+        // 관리자 계정은 별도 Edge Function을 통해 1시간 제한 없이 등록
+        let isAdmin = false;
+
+        try{
+          const adminCheck = await client.functions.invoke('admin-check',{body:{}});
+          isAdmin =
+            !adminCheck.error &&
+            adminCheck.data?.ok === true &&
+            adminCheck.data?.admin === true;
+        }catch(adminError){
+          console.error('관리자 여부 확인 실패:',adminError);
+        }
+
+        if(isAdmin){
+          const adminResult =
+            await client.functions.invoke(
+              'admin-review-create',
+              {
+                body:{
+                  user_id: session.user.id,
+                  stars: selectedStars,
+                  content: text,
+                  service: service
+                }
+              }
+            );
+
+          error = adminResult.error || (
+            adminResult.data?.ok === false
+              ? new Error(adminResult.data?.message || '관리자 후기 등록에 실패했습니다.')
+              : null
+          );
+        }else{
+          const insertResult =
+            await client
+              .from('reviews')
+              .insert({
+                user_id: session.user.id,
+                display_name: displayName,
+                stars: selectedStars,
+                content: text,
+                service: service
+              });
+
+          error = insertResult.error || null;
+        }
 
         if(error){
           console.error(
