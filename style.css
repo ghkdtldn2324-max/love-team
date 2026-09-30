@@ -977,13 +977,13 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - FOX / WOLF ESPORTS MARK
-   선명한 동물 얼굴 실루엣을 사용하는 메인 워드마크
+   LOVE TEAM - DISTINCT FOX ESPORTS WORDMARK
+   CSS only / 선명한 여우 얼굴 + 날렵한 워드마크
 ===================================================== */
 .logo{
-  min-width:184px;
-  gap:10px;
-  align-items:center;
+  min-width:176px!important;
+  gap:3px!important;
+  align-items:center!important;
 }
 .logo-mark{
   width:50px!important;
@@ -995,81 +995,93 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   background:transparent!important;
   box-shadow:none!important;
   overflow:visible!important;
+  transform:translateY(1px)!important;
 }
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
   inset:0!important;
-  background:linear-gradient(145deg,#f2dcff 0%,#b16fff 36%,#7048ee 68%,#d95cff 100%)!important;
+  background:linear-gradient(145deg,#f6e5ff 0%,#bd76ff 30%,#7448ee 67%,#d957ff 100%)!important;
   clip-path:polygon(
-    3% 12%, 28% 23%, 22% 2%, 42% 17%,
-    50% 12%, 58% 17%, 78% 2%, 72% 23%,
-    97% 12%, 88% 39%, 84% 61%,
-    72% 78%, 50% 96%, 28% 78%,
-    16% 61%, 12% 39%
+    4% 20%, 19% 25%, 13% 2%, 34% 15%,
+    50% 9%, 66% 15%, 87% 2%, 81% 25%,
+    96% 20%, 90% 48%, 82% 68%,
+    68% 83%, 50% 96%, 32% 83%,
+    18% 68%, 10% 48%
   )!important;
-  filter:drop-shadow(0 0 7px rgba(157,92,255,.7))!important;
+  filter:drop-shadow(0 0 8px rgba(157,92,255,.72))!important;
 }
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:8px!important;
+  left:9px!important;
   top:12px!important;
-  width:34px!important;
-  height:31px!important;
-  background:#08080b!important;
+  width:32px!important;
+  height:30px!important;
+  background:
+    radial-gradient(ellipse at 34% 39%,#b993ff 0 4%,transparent 5%),
+    radial-gradient(ellipse at 66% 39%,#b993ff 0 4%,transparent 5%),
+    linear-gradient(135deg,transparent 43%,#09090d 44% 56%,transparent 57%),
+    #09090d!important;
   clip-path:polygon(
-    5% 13%, 29% 27%, 23% 10%, 43% 22%,
-    50% 29%, 57% 22%, 77% 10%, 71% 27%,
-    95% 13%, 84% 44%, 79% 61%,
-    65% 75%, 50% 88%, 35% 75%,
-    21% 61%, 16% 44%
+    4% 18%, 25% 28%, 21% 12%, 43% 25%,
+    50% 31%, 57% 25%, 79% 12%, 75% 28%,
+    96% 18%, 84% 48%, 80% 64%,
+    65% 78%, 50% 90%, 35% 78%,
+    20% 64%, 16% 48%
   )!important;
 }
 .logo-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1;
-  justify-content:center;
+  display:flex!important;
+  flex-direction:column!important;
+  line-height:1!important;
+  justify-content:center!important;
+  margin-left:-1px!important;
 }
 .logo-text strong{
-  font-family:Impact,"Arial Black","Arial Narrow",sans-serif!important;
+  font-family:"Arial Narrow",Impact,"Arial Black",sans-serif!important;
   font-size:22px!important;
-  font-weight:900!important;
+  font-weight:950!important;
   font-style:italic!important;
-  letter-spacing:1.1px!important;
-  line-height:.88!important;
-  transform:skewX(-9deg)!important;
+  letter-spacing:.2px!important;
+  line-height:.84!important;
+  transform:skewX(-13deg) scaleX(.91)!important;
+  transform-origin:left center!important;
   display:block!important;
   color:#fff!important;
   background:none!important;
   -webkit-text-fill-color:#fff!important;
-  text-shadow:2px 2px 0 #7048ee,0 0 12px rgba(154,91,255,.4)!important;
+  text-shadow:2px 2px 0 #7048ee,0 0 13px rgba(154,91,255,.42)!important;
 }
 .logo-text strong::after{
   content:""!important;
   display:block!important;
-  width:44px!important;
+  width:42px!important;
   height:2px!important;
-  margin:6px 0 0 2px!important;
-  transform:skewX(-18deg)!important;
+  margin:5px 0 0 1px!important;
+  transform:skewX(-22deg)!important;
   background:linear-gradient(90deg,#8d62ff,#e16aff)!important;
   box-shadow:0 0 8px rgba(194,104,255,.55)!important;
 }
 .logo-text small{
-  font-family:Arial,"Noto Sans KR",sans-serif!important;
-  font-size:6px!important;
+  font-family:"Arial Narrow",Arial,"Noto Sans KR",sans-serif!important;
+  font-size:5.5px!important;
   font-weight:900!important;
-  letter-spacing:4.5px!important;
+  letter-spacing:4px!important;
   color:#b993f7!important;
-  margin-top:4px!important;
-  padding-left:2px!important;
+  margin-top:3px!important;
+  padding-left:1px!important;
 }
 @media(max-width:600px){
-  .logo{min-width:0;gap:7px}
+  .logo{min-width:0!important;gap:1px!important}
   .logo-mark{width:43px!important;height:41px!important;flex-basis:43px!important}
-  .logo-mark::after{left:7px!important;top:10px!important;width:29px!important;height:28px!important}
-  .logo-text strong{font-size:19px!important;letter-spacing:.9px!important}
-  .logo-text strong::after{width:36px!important;height:1.5px!important;margin-top:5px!important}
-  .logo-text small{font-size:5px!important;letter-spacing:3.5px!important;margin-top:3px!important}
+  .logo-mark::after{left:7px!important;top:10px!important;width:29px!important;height:27px!important}
+  .logo-text{margin-left:-2px!important}
+  .logo-text strong{
+    font-size:19px!important;
+    letter-spacing:0!important;
+    transform:skewX(-13deg) scaleX(.89)!important;
+  }
+  .logo-text strong::after{width:36px!important;height:1.5px!important;margin-top:4px!important}
+  .logo-text small{font-size:5px!important;letter-spacing:3.2px!important;margin-top:2px!important}
 }
