@@ -928,6 +928,14 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
     min-height:calc(100svh - 36px);
     height:calc(100svh - 36px);
     max-height:none;
+    aspect-ratio:auto;
+  }
+  .home-page .lt-hero-bg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 38%;
+    transform:none;
   }
   .home-page .lt-hero-content{
     padding-top:118px;
