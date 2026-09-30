@@ -4354,3 +4354,435 @@ select{
     font-size:8px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE HOMEPAGE UX PASS — mobile only
+   PC layout is intentionally untouched (max-width:760px).
+========================================================= */
+@media (max-width:760px){
+
+  html,body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+
+  /* Header: compact, thumb-friendly, no crowding. */
+  .home-page .top-notice{
+    height:26px!important;
+    min-height:26px!important;
+    padding:0 10px!important;
+    font-size:9px!important;
+    letter-spacing:0!important;
+    line-height:1!important;
+    text-align:center!important;
+  }
+  .home-page .header{
+    height:58px!important;
+    min-height:58px!important;
+    padding:0 10px!important;
+    gap:6px!important;
+  }
+  .home-page .header.home-scrolled{
+    background:rgba(5,4,13,.96)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+    border-bottom-color:rgba(166,137,255,.18)!important;
+  }
+  .home-page .logo{
+    flex:0 0 82px!important;
+    width:82px!important;
+    min-width:82px!important;
+    height:46px!important;
+  }
+  .home-page .logo-image{
+    width:78px!important;
+    height:44px!important;
+  }
+  .home-page .header-actions{
+    margin-left:auto!important;
+    margin-right:0!important;
+    gap:4px!important;
+  }
+  .home-page .header-actions .header-login,
+  .home-page .header-actions .header-signup{
+    height:29px!important;
+    min-height:29px!important;
+    padding:0 8px!important;
+    border-radius:8px!important;
+    font-size:9px!important;
+    line-height:1!important;
+  }
+  .home-page .mobile-menu-btn{
+    position:relative!important;
+    right:auto!important;
+    top:auto!important;
+    width:34px!important;
+    min-width:34px!important;
+    height:34px!important;
+    min-height:34px!important;
+    margin-left:1px!important;
+    border-radius:9px!important;
+    font-size:19px!important;
+    border-color:rgba(181,156,255,.28)!important;
+    background:rgba(10,8,20,.78)!important;
+  }
+
+  /* Mobile drawer: cleaner spacing and easier tapping. */
+  .home-page .mobile-menu{
+    top:58px!important;
+    left:8px!important;
+    right:8px!important;
+    border:1px solid rgba(151,122,255,.24)!important;
+    border-top:0!important;
+    border-radius:0 0 16px 16px!important;
+    background:rgba(8,6,18,.98)!important;
+    box-shadow:0 22px 50px rgba(0,0,0,.48)!important;
+    overflow:hidden!important;
+    backdrop-filter:blur(16px)!important;
+    -webkit-backdrop-filter:blur(16px)!important;
+  }
+  .home-page .mobile-menu>a{
+    min-height:46px!important;
+    padding:0 17px!important;
+    font-size:13px!important;
+    border-bottom-color:rgba(255,255,255,.07)!important;
+  }
+  .home-page .mobile-menu .mobile-kakao{
+    min-height:50px!important;
+    font-weight:900!important;
+  }
+
+  /* Hero: use the existing portrait asset edge-to-edge without changing PC. */
+  .home-page .lt-hero{
+    min-height:calc(100svh - 26px)!important;
+    height:calc(100svh - 26px)!important;
+    max-height:none!important;
+    isolation:isolate!important;
+  }
+  .home-page .lt-hero-bg,
+  .home-page .lt-hero-bg picture{
+    width:100%!important;
+    height:100%!important;
+    inset:0!important;
+  }
+  .home-page .lt-hero-bg picture img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    transform:none!important;
+  }
+  .home-page .lt-hero-overlay{
+    background:
+      linear-gradient(180deg,rgba(5,3,14,.28) 0%,rgba(7,4,18,.20) 31%,rgba(8,4,18,.62) 60%,rgba(6,3,14,.94) 100%)!important;
+  }
+  .home-page .lt-hero-brand{
+    width:155px!important;
+    max-width:42vw!important;
+    left:50%!important;
+    top:38%!important;
+    transform:translate(-50%,-50%)!important;
+    z-index:2!important;
+  }
+  .home-page .lt-hero-brand img{
+    width:100%!important;
+    height:auto!important;
+    opacity:.9!important;
+    filter:
+      brightness(1.08) contrast(1.08) saturate(1.15)
+      drop-shadow(0 0 5px rgba(209,178,255,.38))
+      drop-shadow(0 0 18px rgba(107,78,255,.42))!important;
+  }
+  .home-page .lt-hero-content{
+    width:100%!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:92px 18px 372px!important;
+    justify-content:flex-start!important;
+    text-align:center!important;
+  }
+  .home-page .lt-hero-badge{
+    max-width:100%!important;
+    height:28px!important;
+    min-height:28px!important;
+    padding:0 10px!important;
+    border-radius:999px!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+  }
+  .home-page .lt-hero-kicker{
+    margin:12px 0 7px!important;
+    font-size:9px!important;
+    letter-spacing:4px!important;
+  }
+  .home-page .lt-hero h1{
+    width:100%!important;
+    max-width:330px!important;
+    margin:0 auto!important;
+    font-size:clamp(30px,9.4vw,40px)!important;
+    line-height:1.16!important;
+    letter-spacing:-2px!important;
+  }
+  .home-page .lt-hero-content>p:not(.lt-hero-kicker){
+    max-width:300px!important;
+    margin:15px auto 20px!important;
+    font-size:11px!important;
+    line-height:1.7!important;
+  }
+  .home-page .lt-hero-btn{
+    width:min(100%,210px)!important;
+    height:46px!important;
+    min-height:46px!important;
+    padding:0 18px!important;
+    border-radius:11px!important;
+    font-size:12px!important;
+  }
+
+  /* Hero bottom cards: readable 2x2 benefits + independent review card. */
+  .home-page .home-hero-panel{
+    left:12px!important;
+    right:12px!important;
+    bottom:10px!important;
+    width:auto!important;
+    transform:none!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:7px!important;
+    min-height:0!important;
+  }
+  .home-page .home-hero-main{
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    border-radius:13px!important;
+  }
+  .home-page .home-hero-main>.home-hero-event{
+    width:100%!important;
+    height:auto!important;
+    min-height:61px!important;
+    padding:9px 12px!important;
+    border-right:0!important;
+    border-bottom:1px solid rgba(160,130,255,.18)!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+  }
+  .home-page .home-hero-event .home-hero-label{
+    margin:0 0 3px!important;
+    font-size:8px!important;
+    letter-spacing:2.4px!important;
+  }
+  .home-page .home-hero-event h2{
+    margin:0 0 2px!important;
+    font-size:10px!important;
+    line-height:1.3!important;
+  }
+  .home-page .home-hero-event>strong{
+    font-size:12px!important;
+    line-height:1.25!important;
+    white-space:nowrap!important;
+  }
+  .home-page .home-hero-benefits{
+    width:100%!important;
+    height:auto!important;
+    min-height:136px!important;
+    padding:0!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+  .home-page .home-hero-benefits article{
+    width:auto!important;
+    height:68px!important;
+    min-height:68px!important;
+    padding:7px 6px!important;
+    gap:2px!important;
+    align-items:center!important;
+    justify-content:center!important;
+    text-align:center!important;
+    border-right:1px solid rgba(160,130,255,.14)!important;
+    border-bottom:1px solid rgba(160,130,255,.14)!important;
+  }
+  .home-page .home-hero-benefits article:nth-child(2n){border-right:0!important}
+  .home-page .home-hero-benefits article:nth-child(n+3){border-bottom:0!important}
+  .home-page .home-hero-benefits .hero-benefit-icon{
+    width:17px!important;
+    height:17px!important;
+    min-width:17px!important;
+    min-height:17px!important;
+    margin:0!important;
+  }
+  .home-page .home-hero-benefits article b{
+    font-size:7px!important;
+  }
+  .home-page .home-hero-benefits article strong{
+    max-width:100%!important;
+    font-size:8px!important;
+    line-height:1.25!important;
+    word-break:keep-all!important;
+  }
+  .home-page .home-hero-benefits article>span:last-child{
+    display:block!important;
+    max-width:100%!important;
+    font-size:7px!important;
+    line-height:1.25!important;
+    word-break:keep-all!important;
+    white-space:normal!important;
+    color:rgba(255,255,255,.58)!important;
+  }
+
+  .home-page .home-hero-reviews{
+    width:100%!important;
+    height:76px!important;
+    min-height:76px!important;
+    padding:8px 10px!important;
+    border-radius:13px!important;
+    display:flex!important;
+    justify-content:center!important;
+  }
+  .home-page .home-hero-reviews>.home-hero-label{
+    margin:0 0 2px!important;
+    font-size:7px!important;
+    letter-spacing:2px!important;
+  }
+  .home-page .home-hero-reviews .home-hero-review-head{
+    width:100%!important;
+    height:55px!important;
+    min-height:55px!important;
+    max-height:55px!important;
+    grid-template-columns:minmax(94px,.8fr) minmax(0,1.2fr)!important;
+    gap:7px!important;
+    align-items:center!important;
+  }
+  .home-page .home-hero-review-head>div:first-child{
+    height:55px!important;
+    min-height:55px!important;
+    max-height:55px!important;
+    justify-content:center!important;
+  }
+  .home-page .home-hero-review-head>div:first-child>div:first-child strong{
+    font-size:10px!important;
+    line-height:1.35!important;
+    white-space:nowrap!important;
+  }
+  .home-page .home-hero-review-head>div:first-child a{
+    margin-top:4px!important;
+    padding:4px 7px!important;
+    border-radius:7px!important;
+    font-size:7px!important;
+  }
+  .home-page .home-hero-review-list{
+    height:55px!important;
+    min-height:55px!important;
+    max-height:55px!important;
+    gap:4px!important;
+    justify-content:center!important;
+  }
+  .home-page .home-hero-review-list article{
+    flex:0 0 25px!important;
+    height:25px!important;
+    min-height:25px!important;
+    max-height:25px!important;
+    padding:3px 6px!important;
+    border-radius:7px!important;
+  }
+  .home-page .home-hero-review-list article p{
+    margin:0!important;
+    font-size:7px!important;
+    line-height:1.3!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .home-page .home-hero-review-list article small{
+    display:none!important;
+  }
+  .home-page .home-hero-review-list article:nth-child(n+2){
+    display:none!important;
+  }
+
+  /* Event/benefit sections below hero. */
+  .home-page .lt-event{
+    padding:56px 18px 28px!important;
+  }
+  .home-page .lt-event-head p{
+    margin-bottom:10px!important;
+    font-size:9px!important;
+    letter-spacing:3.5px!important;
+  }
+  .home-page .lt-event-head h2{
+    font-size:25px!important;
+    line-height:1.5!important;
+    letter-spacing:-1px!important;
+  }
+  .home-page .lt-event-line{
+    display:block!important;
+  }
+
+  .home-page .lt-benefits{
+    padding:18px 14px 62px!important;
+  }
+  .home-page .lt-benefit-grid{
+    grid-template-columns:1fr 1fr!important;
+    border-top:1px solid #e7e1ef!important;
+    border-bottom:1px solid #e7e1ef!important;
+  }
+  .home-page .lt-benefit{
+    min-height:184px!important;
+    height:auto!important;
+    padding:25px 12px 22px!important;
+  }
+  .home-page .lt-benefit:nth-child(odd){
+    border-left:0!important;
+  }
+  .home-page .lt-benefit:nth-child(even){
+    border-left:1px solid #e7e1ef!important;
+  }
+  .home-page .lt-benefit:nth-child(n+3){
+    border-top:1px solid #e7e1ef!important;
+  }
+  .home-page .lt-benefit-number{
+    margin-bottom:12px!important;
+    font-size:9px!important;
+    letter-spacing:2.5px!important;
+  }
+  .home-page .lt-benefit h3{
+    font-size:17px!important;
+    line-height:1.3!important;
+    letter-spacing:-.6px!important;
+    word-break:keep-all!important;
+  }
+  .home-page .lt-benefit-sub{
+    margin:12px 0 8px!important;
+    font-size:10px!important;
+    line-height:1.6!important;
+    word-break:keep-all!important;
+  }
+  .home-page .lt-benefit>p:last-child{
+    font-size:9px!important;
+    line-height:1.65!important;
+    word-break:keep-all!important;
+  }
+
+  .home-page .lt-closing{
+    padding:62px 18px 74px!important;
+  }
+  .home-page .lt-closing p{
+    margin-bottom:11px!important;
+    font-size:9px!important;
+    letter-spacing:3.5px!important;
+  }
+  .home-page .lt-closing h2{
+    font-size:27px!important;
+    line-height:1.4!important;
+    letter-spacing:-1.1px!important;
+  }
+
+  /* Prevent mobile tap/hover states from looking like desktop interactions. */
+  .home-page a,
+  .home-page button{
+    -webkit-tap-highlight-color:transparent;
+  }
+}
