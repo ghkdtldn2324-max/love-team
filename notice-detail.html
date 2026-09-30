@@ -329,6 +329,34 @@ window.addEventListener('load', recordNoticeView);
 <script src="script.js?v=20260930-11"></script>
 <script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js?v=20260930-21"></script>
+<script src="auth.js?v=20260930-23"></script>
 </body>
-</html>
+</html<script>
+const id=Number(new URLSearchParams(location.search).get('id')||0);
+const titleEl=document.getElementById('title'), authorEl=document.getElementById('author'), dateEl=document.getElementById('date'), viewsEl=document.getElementById('views'), contentEl=document.getElementById('content');
+function renderContent(raw){
+  contentEl.innerHTML='';
+  const blocks=String(raw||'').split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
+  if(!blocks.length){contentEl.innerHTML='<p class="content-intro">등록된 공지사항 내용이 없습니다.</p>';return;}
+  const intro=document.createElement('p'); intro.className='content-intro'; intro.textContent=blocks.shift(); contentEl.appendChild(intro);
+  blocks.forEach(function(block){
+    const lines=block.split(/\n/), first=(lines[0]||'').trim(), m=first.match(/^\[([^\]]+)\]\s*$/);
+    const section=document.createElement('section'); section.className='content-block';
+    let body=block;
+    if(m){const label=document.createElement('div');label.className='content-label';label.textContent=m[1];section.appendChild(label);body=lines.slice(1).join('\n').trim();}
+    const p=document.createElement('p');p.textContent=body;section.appendChild(p);contentEl.appendChild(section);
+  });
+}
+async function loadNotice(){
+  const client=window.LoveTeamSupabase||window.supabaseClient;
+  if(!client||!Number.isInteger(id)||id<1){titleEl.textContent='공지사항을 찾을 수 없습니다.';authorEl.textContent='-';dateEl.textContent='-';viewsEl.textContent='-';renderContent('요청하신 공지사항을 찾을 수 없습니다.');return;}
+  try{
+    const r=await client.from('notices').select('id,title,content,author,published_at').eq('id',id).maybeSingle();
+    if(r.error)throw r.error;
+    if(!r.data){titleEl.textContent='공지사항을 찾을 수 없습니다.';authorEl.textContent='-';dateEl.textContent='-';viewsEl.textContent='-';renderContent('요청하신 공지사항이 존재하지 않습니다.');return;}
+    const n=r.data; titleEl.textContent=n.title;authorEl.textContent=n.author||'관리자';dateEl.textContent=String(n.published_at||'').replace(/-/g,'.');viewsEl.textContent='집계 중';renderContent(n.content);
+    const v=await client.rpc('increment_notice_view',{p_notice_id:id}); if(v.error)throw v.error; viewsEl.textContent=Number(v.data||0).toLocaleString('ko-KR');
+  }catch(err){console.error('공지사항 상세 처리 실패:',err);viewsEl.textContent='-';}
+}
+loadNotice();
+</script>>
