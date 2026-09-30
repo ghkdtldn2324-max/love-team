@@ -6,7 +6,7 @@ a{color:inherit}
 button{font-family:inherit}
 .top-notice{height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#7043dc,#a14cff);color:#fff;font-size:13px;font-weight:700;letter-spacing:.2px}
 .header{position:relative;z-index:1000;height:82px;background:#07070a;color:#fff;border-bottom:1px solid #22232b;display:flex;align-items:center;padding:0 34px;gap:28px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:170px}.logo-mark{width:48px;height:48px;border:2px solid #9b68ff;transform:rotate(45deg);display:grid;place-items:center;color:#fff;font-size:22px}.logo-mark::first-letter{transform:rotate(-45deg)}.logo-text{display:flex;flex-direction:column;line-height:1}.logo-text strong{font-size:26px;letter-spacing:.5px}.logo-text small{font-size:10px;letter-spacing:4px;color:#a87aff;margin-top:5px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:184px}.logo-mark{width:46px;height:46px;flex:0 0 46px;position:relative;display:block;border:0;background:transparent;box-shadow:none;transform:none;overflow:visible}.logo-text{display:flex;flex-direction:column;line-height:1;justify-content:center;gap:0}.logo-text strong{font-size:21px;font-weight:900;letter-spacing:3px}.logo-text small{font-size:6px;font-weight:800;letter-spacing:5.5px;color:#b993f7;margin-top:4px}
 .nav{display:flex;align-items:center;justify-content:center;gap:28px;flex:1}.nav a{color:#ddd;text-decoration:none;font-size:14px;font-weight:700;white-space:nowrap}.nav a:hover{color:#b38aff}
 .header-actions{display:flex;align-items:center;gap:15px;white-space:nowrap}.header-actions>a{font-size:13px;text-decoration:none;color:#eee;font-weight:700}.kakao-btn{background:#ffe600;color:#111!important;padding:12px 16px;border-radius:14px;font-weight:900!important}
 .mobile-menu-btn{display:none}.mobile-menu{display:none}
@@ -977,18 +977,18 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - NEW BRAND LOGO
-   기존 문양/폰트 완전 제거 후 신규 CSS 워드마크
+   LOVE TEAM - FRESH ORGANIC MARK
+   기존 문양/워드마크를 완전히 제거하고 CSS로 새로 구성
+   비대칭 네잎클로버 + 나비 실루엣 계열
 ===================================================== */
 .logo{
   min-width:184px;
-  gap:10px;
+  gap:11px;
 }
-
 .logo-mark{
-  width:44px!important;
-  height:44px!important;
-  flex:0 0 44px!important;
+  width:46px!important;
+  height:46px!important;
+  flex:0 0 46px!important;
   position:relative!important;
   display:block!important;
   border:0!important;
@@ -998,75 +998,59 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   transform:none!important;
   overflow:visible!important;
 }
-.logo-mark svg{display:none!important}
-
-/* 부드러운 두 개의 곡선 링 + 중앙 원형 코어 */
 .logo-mark::before{
   content:""!important;
   position:absolute!important;
-  left:3px!important;
-  top:7px!important;
-  width:38px!important;
-  height:30px!important;
-  border:3px solid #b477ff!important;
-  border-radius:50% 50% 46% 54%!important;
-  transform:rotate(-22deg)!important;
-  box-shadow:
-    0 0 7px rgba(177,119,255,.7),
-    inset 0 0 7px rgba(218,155,255,.25)!important;
+  left:2px!important;
+  top:2px!important;
+  width:42px!important;
+  height:42px!important;
+  border-radius:46% 54% 48% 52%!important;
+  background:
+    radial-gradient(ellipse 45% 42% at 30% 28%,#d6a8ff 0 38%,transparent 40%),
+    radial-gradient(ellipse 47% 43% at 72% 25%,#9b63f5 0 38%,transparent 40%),
+    radial-gradient(ellipse 43% 46% at 38% 72%,#b06cff 0 38%,transparent 40%),
+    radial-gradient(ellipse 46% 42% at 78% 68%,#e66dff 0 38%,transparent 40%)!important;
+  filter:drop-shadow(0 0 6px rgba(178,105,255,.65))!important;
+  transform:rotate(-9deg)!important;
 }
-
 .logo-mark::after{
   content:""!important;
   position:absolute!important;
-  left:13px!important;
-  top:12px!important;
-  width:18px!important;
-  height:18px!important;
-  border-radius:50%!important;
-  background:radial-gradient(circle at 38% 32%,#fff 0 10%,#e4c9ff 24%,#9b61f4 62%,#e86cff 100%)!important;
-  box-shadow:
-    0 0 8px rgba(202,142,255,.95),
-    0 0 17px rgba(185,91,255,.45)!important;
+  left:17px!important;
+  top:16px!important;
+  width:12px!important;
+  height:15px!important;
+  border-radius:52% 48% 58% 42%!important;
+  background:#08080b!important;
+  transform:rotate(12deg)!important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08)!important;
 }
-
-/* 신규 워드마크: 기존 세리프/이탤릭 스타일 제거 */
-.logo-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1!important;
-  justify-content:center;
-  gap:0;
-}
-
 .logo-text strong{
-  font-family:Arial,"Noto Sans KR",sans-serif!important;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif!important;
   font-size:21px!important;
-  font-weight:950!important;
+  font-weight:900!important;
   font-style:normal!important;
-  letter-spacing:3px!important;
+  letter-spacing:2.8px!important;
   transform:none!important;
-  display:block;
+  display:block!important;
   color:#fff!important;
   background:none!important;
   -webkit-text-fill-color:#fff!important;
-  text-shadow:0 0 12px rgba(167,104,255,.4)!important;
+  text-shadow:0 0 12px rgba(167,104,255,.35)!important;
 }
-
 .logo-text strong::after{
   content:""!important;
   display:block!important;
-  width:38px!important;
+  width:34px!important;
   height:2px!important;
   margin:5px 0 0 1px!important;
   border-radius:999px!important;
   background:linear-gradient(90deg,#8b5cf6,#ec70ff)!important;
-  box-shadow:0 0 7px rgba(195,108,255,.55)!important;
-  transform:none!important;
+  box-shadow:0 0 7px rgba(195,108,255,.5)!important;
 }
-
 .logo-text small{
-  font-family:Arial,"Noto Sans KR",sans-serif!important;
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif!important;
   font-size:6px!important;
   font-weight:800!important;
   font-style:normal!important;
@@ -1076,42 +1060,12 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   padding-left:2px!important;
   text-shadow:none!important;
 }
-
 @media(max-width:600px){
-  .logo{
-    min-width:0;
-    gap:8px;
-  }
-  .logo-mark{
-    width:40px!important;
-    height:40px!important;
-    flex-basis:40px!important;
-  }
-  .logo-mark::before{
-    left:2px!important;
-    top:7px!important;
-    width:35px!important;
-    height:27px!important;
-    border-width:2.5px!important;
-  }
-  .logo-mark::after{
-    left:12px!important;
-    top:11px!important;
-    width:16px!important;
-    height:16px!important;
-  }
-  .logo-text strong{
-    font-size:18px!important;
-    letter-spacing:2.3px!important;
-  }
-  .logo-text strong::after{
-    width:33px!important;
-    height:1.5px!important;
-    margin-top:4px!important;
-  }
-  .logo-text small{
-    font-size:5px!important;
-    letter-spacing:4.3px!important;
-    margin-top:3px!important;
-  }
+  .logo{min-width:0;gap:8px}
+  .logo-mark{width:40px!important;height:40px!important;flex-basis:40px!important}
+  .logo-mark::before{left:1px!important;top:1px!important;width:38px!important;height:38px!important}
+  .logo-mark::after{left:15px!important;top:14px!important;width:11px!important;height:14px!important}
+  .logo-text strong{font-size:18px!important;letter-spacing:2.2px!important}
+  .logo-text strong::after{width:30px!important;height:1.5px!important;margin-top:4px!important}
+  .logo-text small{font-size:5px!important;letter-spacing:4.2px!important;margin-top:3px!important}
 }
