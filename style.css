@@ -4947,3 +4947,21 @@ select{
     transform:translateY(-7px)!important;
   }
 }
+
+
+/* MOBILE HOMEPAGE — prevent review panel top clipping */
+@media (max-width:760px){
+  .home-page .home-hero-reviews{
+    overflow:visible!important;
+  }
+  .home-page .home-hero-review-head,
+  .home-page .home-hero-review-list{
+    overflow:visible!important;
+  }
+  .home-page .home-hero-review-list{
+    transform:translateY(-7px)!important;
+  }
+  .home-page .home-hero-review-list article{
+    overflow:hidden!important;
+  }
+}
