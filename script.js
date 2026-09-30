@@ -580,6 +580,30 @@
 
       });
 
+    document
+      .querySelectorAll('.mobile-menu a')
+      .forEach(function (a) {
+
+        const href =
+          (
+            a.getAttribute('href') || ''
+          )
+            .split('#')[0]
+            .toLowerCase();
+
+        if (href === current) {
+
+          a.classList.add('mobile-current');
+
+          a.setAttribute(
+            'aria-current',
+            'page'
+          );
+
+        }
+
+      });
+
   })();
 
 })();
