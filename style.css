@@ -3782,3 +3782,23 @@ select{
     right:8px!important;
   }
 }
+
+@media(max-width:760px){
+  .home-page .home-hero-panel{min-height:220px!important}
+  .home-page .home-hero-main{min-height:220px!important}
+  .home-page .home-hero-main>.home-hero-event{min-height:78px!important}
+  .home-page .home-hero-benefits{
+    display:flex!important;
+    min-height:142px!important;
+    padding:5px 10px!important;
+  }
+  .home-page .home-hero-benefits article{
+    min-height:31px!important;
+    grid-template-columns:18px 24px minmax(0,1fr)!important;
+    column-gap:4px!important;
+    padding:3px 0!important;
+  }
+  .home-page .home-hero-benefits article>span:last-child{display:none!important}
+  .home-page .home-hero-benefits article strong{font-size:8px!important}
+  .home-page .home-hero-reviews{min-height:220px!important}
+}
