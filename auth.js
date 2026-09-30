@@ -2087,6 +2087,56 @@
   }
 
 
+  async function updateAdminAccessUI(session) {
+
+    const targets = [];
+
+    document.querySelectorAll('.header-actions').forEach(function(container){
+      let link = container.querySelector('.love-admin-link');
+      if(!link){
+        link = document.createElement('a');
+        link.className = 'love-admin-link';
+        link.href = 'admin.html';
+        link.textContent = '관리자 페이지';
+        link.setAttribute('aria-label','관리자 페이지');
+        container.insertBefore(link, container.querySelector('.kakao-btn') || null);
+      }
+      targets.push(link);
+    });
+
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(mobileMenu){
+      let link = mobileMenu.querySelector('.love-admin-link');
+      if(!link){
+        link = document.createElement('a');
+        link.className = 'love-admin-link';
+        link.href = 'admin.html';
+        link.textContent = '🛡️ 관리자 페이지';
+        link.setAttribute('aria-label','관리자 페이지');
+        const kakao = mobileMenu.querySelector('.mobile-kakao');
+        mobileMenu.insertBefore(link, kakao || null);
+      }
+      targets.push(link);
+    }
+
+    targets.forEach(function(link){
+      link.style.display = 'none';
+    });
+
+    if(!session?.user || !supabase) return;
+
+    try{
+      const result = await supabase.functions.invoke('admin-check',{body:{}});
+      if(result.error || !result.data?.ok || result.data.admin !== true) return;
+      targets.forEach(function(link){
+        link.style.display = 'flex';
+      });
+    }catch(error){
+      console.error('관리자 UI 확인 실패:', error);
+    }
+  }
+
+
   function updateLoveHeader(session) {
 
     currentSession =
@@ -2153,6 +2203,7 @@
 
 
     updateMemberMenu(session);
+    updateAdminAccessUI(session);
 
   }
 
@@ -2634,6 +2685,7 @@
         updateLoveHeader(
           currentSession
         );
+        updateAdminAccessUI(currentSession);
 
       })
       .catch(function(error) {
