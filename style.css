@@ -989,3 +989,18 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
  .logo-text strong{font-size:19px;letter-spacing:.7px}
  .logo-text small{font-size:6px;letter-spacing:4.5px;margin-top:6px;padding-left:5px}
 }
+
+
+/* 모바일 히어로 - 우측 3:7 구도 */
+@media (max-width:760px){
+  .home-page .lt-hero-bg img{object-position:70% 32%}
+}
+@media (max-width:760px) and (max-aspect-ratio:1/2){
+  .home-page .lt-hero-bg img{object-position:70% 29%}
+}
+@media (min-width:390px) and (max-width:760px) and (min-aspect-ratio:1/2){
+  .home-page .lt-hero-bg img{object-position:70% 34%}
+}
+@media (max-width:380px){
+  .home-page .lt-hero-bg img{object-position:70% 30%}
+}
