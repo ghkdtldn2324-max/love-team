@@ -1344,7 +1344,111 @@
 
 
         searchResult.textContent =
-          "회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.";
+          "회원 정보를 확인하는 중입니다...";
+
+        try {
+          const supabase =
+            window.LoveTeamAuth &&
+            window.LoveTeamAuth.client;
+
+          if (!supabase) {
+            searchResult.textContent =
+              "Supabase 연결을 확인할 수 없습니다.";
+            return;
+          }
+
+          const {
+            data: sessionData,
+            error: sessionError
+          } = await supabase.auth.getSession();
+
+          if (sessionError || !sessionData?.session) {
+            searchResult.textContent =
+              "관리자 로그인이 필요합니다.";
+            return;
+          }
+
+          const {
+            data,
+            error
+          } = await supabase.functions.invoke(
+            "admin-member-search",
+            {
+              body: {
+                username: id
+              }
+            }
+          );
+
+          if (error) {
+            console.error(
+              "admin-member-search error:",
+              error
+            );
+
+            searchResult.textContent =
+              "회원 검색에 실패했습니다.";
+            return;
+          }
+
+          if (!data || data.ok !== true) {
+            searchResult.textContent =
+              data?.message ||
+              "회원 검색에 실패했습니다.";
+            return;
+          }
+
+          if (!data.found || !data.user) {
+            searchResult.textContent =
+              data.message ||
+              "해당 회원을 찾을 수 없습니다.";
+            return;
+          }
+
+          const user = data.user;
+
+          const formatDate = function(value) {
+            if (!value) return "기록 없음";
+
+            const date = new Date(value);
+
+            if (Number.isNaN(date.getTime())) {
+              return "기록 없음";
+            }
+
+            return date.toLocaleString(
+              "ko-KR",
+              {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit"
+              }
+            );
+          };
+
+          searchResult.textContent =
+            [
+              "회원 검색 결과",
+              "ID: " + (user.username || id),
+              "이름: " + (user.name || "등록된 이름 없음"),
+              "UUID: " + (user.id || ""),
+              "가입일: " + formatDate(user.created_at),
+              "최근 로그인: " + formatDate(user.last_sign_in_at),
+              "",
+              "※ 비밀번호는 보안상 표시되지 않습니다."
+            ].join("\n");
+
+        } catch (error) {
+          console.error(
+            "회원 검색 처리 오류:",
+            error
+          );
+
+          searchResult.textContent =
+            "회원 검색 중 오류가 발생했습니다.";
+        }
 
       }
     );
