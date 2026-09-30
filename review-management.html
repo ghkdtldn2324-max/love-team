@@ -74,7 +74,7 @@ async function callAdmin(body){
 async function load(){
  list.innerHTML='<div class="empty">후기 목록을 불러오는 중입니다.</div>';
  try{
-  const session=await window.LoveTeamAuth.getSession();
+  const session=window.LoveTeamSession;
   if(!session?.user) throw new Error('로그인이 필요합니다.');
   const data=await callAdmin({action:'list'});
   const rows=Array.isArray(data.reviews)?data.reviews:[];
