@@ -476,117 +476,6 @@
 
     <label class="review-write-label">
 
-      서비스
-
-      <select id="reviewService">
-
-        <option value="승당">
-          승당제 강의
-        </option>
-
-        <option value="듀오">
-          듀오 서비스
-        </option>
-
-        <option value="티어">
-          티어 승급
-        </option>
-
-        <option value="배치고사">
-          배치고사
-        </option>
-
-        <option value="1:1">
-          1:1 강의
-        </option>
-
-      </select>
-
-    </label>
-
-
-    <!-- 별점 -->
-
-    <div class="review-write-label">
-
-      별점
-
-      <div
-        id="reviewStarBox"
-        class="review-star-box"
-        role="radiogroup"
-        aria-label="별점 선택"
-      >
-
-        <button
-          type="button"
-          class="review-star"
-          data-star="1"
-          aria-label="1점"
-          aria-checked="false"
-          role="radio"
-        >
-          ☆
-        </button>
-
-        <button
-          type="button"
-          class="review-star"
-          data-star="2"
-          aria-label="2점"
-          aria-checked="false"
-          role="radio"
-        >
-          ☆
-        </button>
-
-        <button
-          type="button"
-          class="review-star"
-          data-star="3"
-          aria-label="3점"
-          aria-checked="false"
-          role="radio"
-        >
-          ☆
-        </button>
-
-        <button
-          type="button"
-          class="review-star"
-          data-star="4"
-          aria-label="4점"
-          aria-checked="false"
-          role="radio"
-        >
-          ☆
-        </button>
-
-        <button
-          type="button"
-          class="review-star"
-          data-star="5"
-          aria-label="5점"
-          aria-checked="false"
-          role="radio"
-        >
-          ☆
-        </button>
-
-        <span
-          id="reviewStarScore"
-          class="review-star-score"
-        >
-          선택
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <label class="review-write-label">
-
       후기 내용
 
       <textarea
@@ -825,167 +714,7 @@ render();
     );
 
 
-  const stars =
-    document.querySelectorAll(
-      '.review-star'
-    );
-
-
-  const starScore =
-    document.getElementById(
-      'reviewStarScore'
-    );
-
-
-  let selectedStars = 0;
-
-
-
-  /* ============================
-     별점 표시
-     ============================ */
-
-  function updateStars(score){
-
-    selectedStars = score;
-
-
-    stars.forEach(
-      function(star){
-
-        const value =
-          Number(
-            star.dataset.star
-          );
-
-
-        if(value <= score){
-
-          star.textContent = '★';
-
-          star.classList.add(
-            'active'
-          );
-
-          star.setAttribute(
-            'aria-checked',
-            'true'
-          );
-
-        }else{
-
-          star.textContent = '☆';
-
-          star.classList.remove(
-            'active'
-          );
-
-          star.setAttribute(
-            'aria-checked',
-            'false'
-          );
-
-        }
-
-      }
-    );
-
-
-    if(starScore){
-
-      starScore.textContent =
-        score > 0
-          ? score + '점'
-          : '선택';
-
-    }
-
-  }
-
-
-
-  /* 별 클릭 */
-
-  stars.forEach(
-    function(star){
-
-      star.addEventListener(
-        'click',
-        function(){
-
-          const score =
-            Number(
-              this.dataset.star
-            );
-
-
-          updateStars(
-            score
-          );
-
-        }
-      );
-
-
-      /* 마우스를 올렸을 때 미리보기 */
-
-      star.addEventListener(
-        'mouseenter',
-        function(){
-
-          const preview =
-            Number(
-              this.dataset.star
-            );
-
-
-          stars.forEach(
-            function(item){
-
-              const value =
-                Number(
-                  item.dataset.star
-                );
-
-
-              if(value <= preview){
-
-                item.textContent = '★';
-
-              }else{
-
-                item.textContent = '☆';
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-
-      /* 마우스가 별 영역을 벗어나면 실제 선택값 복원 */
-
-      document
-        .getElementById(
-          'reviewStarBox'
-        )
-        .addEventListener(
-          'mouseleave',
-          function(){
-
-            updateStars(
-              selectedStars
-            );
-
-          }
-        );
-
-    }
-  );
-
-
+  // 후기 작성은 별점/서비스 선택 없이 내용만 입력합니다.
 
   /* ============================
      메시지
@@ -1261,30 +990,6 @@ render();
 
 
 
-        /* 별점 선택 여부 */
-
-        if(selectedStars === 0){
-
-          showMessage(
-            '별점을 선택해주세요.',
-            true
-          );
-
-          return;
-
-        }
-
-
-
-        const service =
-          document
-            .getElementById(
-              'reviewService'
-            )
-            .value;
-
-
-
         const text =
           document
             .getElementById(
@@ -1362,9 +1067,9 @@ render();
               {
                 body:{
                   user_id: session.user.id,
-                  stars: selectedStars,
+                  stars: 5,
                   content: text,
-                  service: service
+                  service: '1:1'
                 }
               }
             );
@@ -1381,9 +1086,9 @@ render();
               .insert({
                 user_id: session.user.id,
                 display_name: displayName,
-                stars: selectedStars,
+                stars: 5,
                 content: text,
-                service: service
+                service: '1:1'
               });
 
           error = insertResult.error || null;
@@ -1442,9 +1147,6 @@ render();
           )
           .value = '';
 
-
-
-        updateStars(0);
 
 
 
