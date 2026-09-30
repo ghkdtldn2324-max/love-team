@@ -5083,3 +5083,99 @@ select{
     drop-shadow(-0.5px 0.5px 0 rgba(0,0,0,.68))
     drop-shadow(0.5px 0.5px 0 rgba(0,0,0,.68))!important;
 }
+
+
+/* PC HOMEPAGE — expand hero event/review panel for readability */
+@media (min-width:901px){
+  .home-page .home-hero-panel{
+    width:min(1320px,calc(100% - 56px))!important;
+    min-height:190px!important;
+    bottom:26px!important;
+    border-radius:20px!important;
+  }
+  .home-page .home-hero-main{
+    min-height:190px!important;
+    grid-template-columns:minmax(280px,.92fr) minmax(0,1.65fr)!important;
+  }
+  .home-page .home-hero-main>.home-hero-event{
+    min-height:190px!important;
+    padding:28px 32px!important;
+  }
+  .home-page .home-hero-event .home-hero-label{
+    font-size:11px!important;
+    letter-spacing:4.5px!important;
+    margin-bottom:12px!important;
+  }
+  .home-page .home-hero-event h2{
+    font-size:18px!important;
+    line-height:1.45!important;
+    margin-bottom:11px!important;
+    letter-spacing:-.7px!important;
+  }
+  .home-page .home-hero-event>strong{
+    font-size:22px!important;
+    line-height:1.45!important;
+    letter-spacing:-.7px!important;
+  }
+  .home-page .home-hero-benefits{
+    padding:20px 28px!important;
+  }
+  .home-page .home-hero-benefits article{
+    min-height:37px!important;
+    padding:7px 0!important;
+    grid-template-columns:24px 34px minmax(130px,1fr) auto!important;
+    column-gap:9px!important;
+  }
+  .home-page .home-hero-benefits .hero-benefit-icon{
+    width:22px!important;
+    height:22px!important;
+  }
+  .home-page .home-hero-benefits article b{
+    font-size:10px!important;
+  }
+  .home-page .home-hero-benefits article strong{
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+  .home-page .home-hero-benefits article>span:last-child{
+    font-size:10.5px!important;
+    line-height:1.5!important;
+    color:rgba(255,255,255,.64)!important;
+  }
+  .home-page .home-hero-reviews{
+    min-height:190px!important;
+    padding:26px 28px!important;
+  }
+  .home-page .home-hero-reviews>.home-hero-label{
+    font-size:11px!important;
+    letter-spacing:4.5px!important;
+    margin-bottom:12px!important;
+  }
+  .home-page .home-hero-review-head{
+    grid-template-columns:minmax(155px,.8fr) minmax(0,1.2fr)!important;
+    gap:22px!important;
+  }
+  .home-page .home-hero-review-head>div:first-child strong{
+    font-size:15px!important;
+    line-height:1.65!important;
+  }
+  .home-page .home-hero-reviews a{
+    margin-top:16px!important;
+    font-size:11px!important;
+  }
+  .home-page .home-hero-review-list{
+    gap:9px!important;
+  }
+  .home-page .home-hero-review-list article{
+    padding:9px 0!important;
+  }
+  .home-page .home-hero-review-list p{
+    font-size:11px!important;
+    line-height:1.55!important;
+    color:rgba(255,255,255,.88)!important;
+  }
+  .home-page .home-hero-review-list small{
+    font-size:9px!important;
+    color:rgba(255,255,255,.48)!important;
+  }
+}
