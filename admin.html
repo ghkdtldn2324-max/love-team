@@ -729,32 +729,75 @@
       <div class="admin-grid">
 
 
-        <!-- 회원 -->
+        <!-- 회원 관리 -->
 
         <div class="admin-card">
 
-          <h2>
-            회원 관리
-          </h2>
+          <h2>회원 관리</h2>
 
           <p>
-            회원 정보를 조회하고 관리합니다.
+            회원 ID를 입력하여 회원 정보를 조회하고 비밀번호를 변경합니다.
           </p>
 
-          <div class="admin-actions">
+          <div class="member-search">
+
+            <input
+              id="memberSearchInput"
+              type="text"
+              placeholder="회원 ID 입력"
+              autocomplete="off"
+            >
 
             <button
               class="admin-btn"
+              id="memberSearchBtn"
               type="button"
-              onclick="
-                document
-                  .getElementById('memberSearchInput')
-                  .focus()
-              "
             >
-              회원 검색
+              검색
             </button>
 
+          </div>
+
+          <div
+            class="member-result"
+            id="memberResult"
+            style="white-space:pre-line;"
+          >
+            회원 ID를 입력한 뒤 검색해주세요.
+          </div>
+
+          <div
+            class="member-reset"
+            id="memberReset"
+            style="display:none;margin-top:15px;padding:15px;border-radius:10px;background:#101016;border:1px solid #292932;"
+          >
+            <strong style="display:block;margin-bottom:10px;color:#fff;">
+              비밀번호 변경
+            </strong>
+
+            <input
+              id="memberResetPassword"
+              type="password"
+              minlength="8"
+              maxlength="72"
+              autocomplete="new-password"
+              placeholder="새 비밀번호 8자 이상"
+              style="width:100%;box-sizing:border-box;height:44px;padding:0 14px;border-radius:10px;border:1px solid #33333d;background:#0e0e13;color:#fff;outline:none;"
+            >
+
+            <button
+              class="admin-btn"
+              id="memberResetBtn"
+              type="button"
+              style="margin-top:10px;"
+            >
+              비밀번호 변경
+            </button>
+
+            <div
+              id="memberResetResult"
+              style="margin-top:10px;color:#999;line-height:1.5;"
+            ></div>
           </div>
 
         </div>
@@ -864,83 +907,6 @@
 
         </div>
 
-
-        <!-- 회원 검색 -->
-
-        <div class="admin-card">
-
-          <h2>
-            회원 검색
-          </h2>
-
-          <p>
-            회원 ID를 입력하여 회원을 검색합니다.
-          </p>
-
-
-          <div class="member-search">
-
-            <input
-              id="memberSearchInput"
-              type="text"
-              placeholder="회원 ID 입력"
-            >
-
-            <button
-              class="admin-btn"
-              id="memberSearchBtn"
-              type="button"
-            >
-              검색
-            </button>
-
-          </div>
-
-
-          <div
-            class="member-result"
-            id="memberResult"
-          >
-            회원 검색 기능은 관리자용 보안 API 연결 후 사용할 수 있습니다.
-          </div>
-
-          <div
-            class="member-reset"
-            id="memberReset"
-            style="display:none;margin-top:15px;padding:15px;border-radius:10px;background:#101016;border:1px solid #292932;"
-          >
-            <strong style="display:block;margin-bottom:10px;color:#fff;">
-              비밀번호 초기화
-            </strong>
-
-            <input
-              id="memberResetPassword"
-              type="password"
-              minlength="8"
-              maxlength="72"
-              autocomplete="new-password"
-              placeholder="새 비밀번호 8자 이상"
-              style="width:100%;box-sizing:border-box;height:44px;padding:0 14px;border-radius:10px;border:1px solid #33333d;background:#0e0e13;color:#fff;outline:none;"
-            >
-
-            <button
-              class="admin-btn"
-              id="memberResetBtn"
-              type="button"
-              style="margin-top:10px;"
-            >
-              비밀번호 변경
-            </button>
-
-            <div
-              id="memberResetResult"
-              style="margin-top:10px;color:#999;line-height:1.5;"
-            ></div>
-          </div>
-
-        </div>
-
-
         <!-- 보안 -->
 
         <div class="admin-card">
@@ -1024,7 +990,7 @@
 
 <script src="supabase-config.js"></script>
 
-<script src="auth.js?v=20260930-9"></script>
+<script src="auth.js?v=20260930-10"></script>
 
 
 
@@ -1079,6 +1045,14 @@
 
     adminDenied.style.display =
       "none";
+
+    /*
+      관리자 화면이 실제로 표시된 뒤
+      작업 내역을 바로 불러옵니다.
+    */
+    if (typeof loadWorkAdminList === "function") {
+      loadWorkAdminList();
+    }
 
   }
 
