@@ -2155,6 +2155,9 @@
       window.matchMedia &&
       window.matchMedia('(max-width:760px)').matches;
 
+    const currentPage =
+      (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
     if(mobileAdminLink){
       mobileAdminLink.style.setProperty('display','none','important');
     }
@@ -2175,7 +2178,7 @@
         result.data?.admin === true;
 
       if(!isAdmin){
-        if(retryCount < 4){
+        if(retryCount < 6){
           setTimeout(function(){
             supabase.auth.getSession().then(function(fresh){
               const freshSession = fresh?.data?.session || null;
@@ -2183,7 +2186,7 @@
                 updateAdminAccessUI(freshSession,retryCount + 1);
               }
             });
-          },400);
+          },500);
         }
         return;
       }
