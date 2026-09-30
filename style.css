@@ -1073,3 +1073,37 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
 @media (max-width:380px){
   .home-page .lt-hero-bg img{object-position:70% 30%!important}
 }
+
+
+/* 모바일 메인 히어로 최종 구도 - 축소 + 우단 2:8 */
+@media (max-width:760px){
+  .home-page .lt-hero-bg img{
+    width:112%!important;
+    height:112%!important;
+    max-width:none!important;
+    max-height:none!important;
+    left:-2%!important;
+    top:-4%!important;
+    object-fit:cover!important;
+    object-position:80% 32%!important;
+  }
+}
+@media (max-width:760px) and (max-aspect-ratio:1/2){
+  .home-page .lt-hero-bg img{
+    object-position:80% 29%!important;
+  }
+}
+@media (min-width:390px) and (max-width:760px) and (min-aspect-ratio:1/2){
+  .home-page .lt-hero-bg img{
+    object-position:80% 34%!important;
+  }
+}
+@media (max-width:380px){
+  .home-page .lt-hero-bg img{
+    width:110%!important;
+    height:110%!important;
+    left:-1%!important;
+    top:-3%!important;
+    object-position:80% 30%!important;
+  }
+}
