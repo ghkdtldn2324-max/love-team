@@ -2563,9 +2563,10 @@
         window.LoveTeamSession =
           null;
 
+        /* 로그아웃 성공 즉시 PC/모바일 헤더를 비로그인 상태로 갱신 */
+        updateLoveHeader(null);
 
         closeMemberMenu();
-
 
         window.dispatchEvent(
           new Event('love-auth-changed')
