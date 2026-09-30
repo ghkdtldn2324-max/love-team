@@ -368,20 +368,35 @@
         mobileAuth.addEventListener('click', function (e) {
 
           e.preventDefault();
+          e.stopPropagation();
 
           menu.classList.remove('active');
           menuBtn.textContent = '☰';
 
-          const target =
-            document.querySelector(
-              '#openAuth,[data-auth-open]'
-            );
+          /*
+            모바일에서 데스크톱 #openAuth를 다시 클릭하지 않는다.
+            직접 인증 API를 호출해 페이지 이동/새로고침을 방지한다.
+          */
+          if (
+            window.LoveTeamSession &&
+            window.LoveTeamSession.user &&
+            window.LoveTeamAuth &&
+            typeof window.LoveTeamAuth.openMemberMenu === 'function'
+          ) {
+            window.LoveTeamAuth.openMemberMenu();
+            return;
+          }
 
-          if (target) target.click();
+          if (
+            window.LoveTeamAuth &&
+            typeof window.LoveTeamAuth.open === 'function'
+          ) {
+            window.LoveTeamAuth.open('login');
+          }
 
         });
 
-      }
+      } }
 
     }
 
