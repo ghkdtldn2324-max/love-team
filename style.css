@@ -5078,8 +5078,8 @@ select{
   -webkit-text-stroke:0!important;
   paint-order:normal!important;
   filter:
-    drop-shadow(-1px -1px 0 rgba(0,0,0,.68))
-    drop-shadow(1px -1px 0 rgba(0,0,0,.68))
-    drop-shadow(-1px 1px 0 rgba(0,0,0,.68))
-    drop-shadow(1px 1px 0 rgba(0,0,0,.68))!important;
+    drop-shadow(-0.5px -0.5px 0 rgba(0,0,0,.68))
+    drop-shadow(0.5px -0.5px 0 rgba(0,0,0,.68))
+    drop-shadow(-0.5px 0.5px 0 rgba(0,0,0,.68))
+    drop-shadow(0.5px 0.5px 0 rgba(0,0,0,.68))!important;
 }
