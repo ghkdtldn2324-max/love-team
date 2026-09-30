@@ -363,6 +363,41 @@
       overflow:hidden;
     }
 
+    .love-admin-link{
+      display:none;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 13px;
+      border-radius:9px;
+      border:1px solid rgba(145,108,255,.45);
+      background:linear-gradient(135deg,#251548,#171020);
+      color:#d8caff !important;
+      text-decoration:none !important;
+      font-size:13px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .love-admin-link:hover{
+      background:linear-gradient(135deg,#32205e,#20152d);
+      border-color:#8d68ed;
+    }
+
+    @media(max-width:760px){
+      .mobile-menu .love-admin-link{
+        width:100%;
+        min-height:48px;
+        margin-top:4px;
+        padding:0 14px;
+        border-radius:10px;
+        background:#24183f;
+        border-color:#513b83;
+        color:#d8caff !important;
+        justify-content:center;
+      }
+    }
+
     @media(max-width:600px){
 
       .love-auth-overlay{
