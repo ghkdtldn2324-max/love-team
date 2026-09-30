@@ -5509,3 +5509,42 @@ select{
     text-overflow:unset!important;
   }
 }
+
+
+/* =====================================================
+   MOBILE HEADER - LOGO / MEMBER LINK CLEANUP
+   PC layout remains unchanged.
+===================================================== */
+@media(max-width:760px){
+  .header .logo{
+    flex:0 0 112px!important;
+    width:112px!important;
+    min-width:112px!important;
+    height:48px!important;
+    margin-left:4px!important;
+  }
+
+  .header .logo-image{
+    width:108px!important;
+    height:46px!important;
+    object-position:center!important;
+  }
+
+  /* 로그인/회원정보는 모바일 상단 헤더에서만 표시 */
+  .mobile-menu #mobileOpenAuth{
+    display:none!important;
+  }
+
+  /* 홈의 기존 모바일 로고 비율은 유지 */
+  .home-page .header .logo{
+    flex-basis:82px!important;
+    width:82px!important;
+    min-width:82px!important;
+    margin-left:0!important;
+  }
+
+  .home-page .header .logo-image{
+    width:78px!important;
+    height:44px!important;
+  }
+}
