@@ -4850,14 +4850,14 @@ select{
 }
 
 
-/* MOBILE HOMEPAGE — extend hero to the bottom edge with no visible white gap */
+/* MOBILE HOMEPAGE — extend hero +70px and keep lower panel below CTA */
 @media (max-width:760px){
   .home-page .lt-hero{
-    min-height:calc(100svh - 26px + 60px)!important;
-    height:calc(100svh - 26px + 60px)!important;
+    min-height:calc(100svh - 26px + 70px)!important;
+    height:calc(100svh - 26px + 70px)!important;
     max-height:none!important;
   }
   .home-page .home-hero-panel{
-    bottom:70px!important;
+    bottom:35px!important;
   }
 }
