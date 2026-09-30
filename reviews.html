@@ -1065,6 +1065,56 @@ render();
   }
 
 
+  async function refreshReviewCooldown(session){
+    const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+    if(!client || !session?.user) return;
+
+    const submitButton = document.getElementById('reviewSubmit');
+    if(!submitButton) return;
+
+    try{
+      const adminCheck = await client.functions.invoke('admin-check',{body:{}});
+      const isAdmin =
+        !adminCheck.error &&
+        adminCheck.data?.ok === true &&
+        adminCheck.data?.admin === true;
+
+      if(isAdmin){
+        submitButton.disabled = false;
+        return;
+      }
+
+      const result = await client
+        .from('review_write_limits')
+        .select('blocked_until')
+        .eq('user_id', session.user.id)
+        .maybeSingle();
+
+      if(result.error) return;
+
+      const blockedUntil = result.data?.blocked_until || null;
+      const until = blockedUntil ? new Date(blockedUntil) : null;
+      const blocked = until && !Number.isNaN(until.getTime()) && until.getTime() > Date.now();
+
+      if(blocked){
+        const remainMs = Math.max(0, until.getTime() - Date.now());
+        const remainMinutes = Math.max(1, Math.ceil(remainMs / 60000));
+        const hours = Math.floor(remainMinutes / 60);
+        const minutes = remainMinutes % 60;
+        const remainText = hours > 0
+          ? hours + '시간 ' + minutes + '분 후 다시 작성할 수 있습니다.'
+          : minutes + '분 후 다시 작성할 수 있습니다.';
+
+        submitButton.disabled = true;
+        showMessage('후기 작성 제한 중입니다. ' + remainText, true);
+      }else{
+        submitButton.disabled = false;
+      }
+    }catch(error){
+      console.error('후기 작성 제한 상태 확인 실패:',error);
+    }
+  }
+
   async function syncReviewSession(){
     try{
       let session = null;
@@ -1078,6 +1128,7 @@ render();
       }
 
       updateReviewWriter();
+      if(session) refreshReviewCooldown(session);
       return session;
     }catch(error){
       console.error('후기 로그인 상태 확인 실패:',error);
@@ -1124,6 +1175,7 @@ render();
 
 
             updateReviewWriter();
+            if(window.LoveTeamSession) refreshReviewCooldown(window.LoveTeamSession);
 
           });
 
@@ -1399,6 +1451,8 @@ render();
         showMessage(
           '후기가 등록되었습니다.'
         );
+
+        refreshReviewCooldown(session);
 
 
 
