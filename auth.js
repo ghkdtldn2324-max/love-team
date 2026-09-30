@@ -1486,8 +1486,6 @@
   function bindOpeners() {
 
     const selectors = [
-      'a[href="login.html"]',
-      'a[href="signup.html"]',
       'a[href="#login"]',
       'a[href="#signup"]',
       'a[data-auth-open]',
@@ -2274,10 +2272,17 @@
 
       } else {
 
-        a.textContent =
-          '로그인 / 회원가입';
+        const mode =
+          a.dataset.authMode ||
+          ((a.getAttribute('href') || '').replace('#',''));
 
-        a.href = '#login';
+        if (mode === 'signup' || a.getAttribute('href') === 'signup.html') {
+          a.textContent = '회원가입';
+          a.href = 'signup.html';
+        } else {
+          a.textContent = '로그인';
+          a.href = 'login.html';
+        }
 
       }
 
@@ -2384,14 +2389,21 @@
         const text = (authLink.textContent || '').trim();
         const href = authLink.getAttribute('href') || '';
 
+        const isSeparateAuthPage =
+          href === 'login.html' ||
+          href === 'signup.html';
+
         const isAuthLink =
-          authLink.id === 'mobileOpenAuth' ||
-          authLink.hasAttribute('data-auth-open') ||
-          text.includes('로그인') ||
-          text.includes('회원가입') ||
-          text.includes('님') ||
-          href === '#member' ||
-          href === '#login';
+          !isSeparateAuthPage &&
+          (
+            authLink.id === 'mobileOpenAuth' ||
+            authLink.hasAttribute('data-auth-open') ||
+            text.includes('로그인') ||
+            text.includes('회원가입') ||
+            text.includes('님') ||
+            href === '#member' ||
+            href === '#login'
+          );
 
         if (isAuthLink && !text.includes('고객센터')) {
           event.preventDefault();
