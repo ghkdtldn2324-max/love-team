@@ -1417,51 +1417,49 @@
 
 
   /* =========================================================
-     AUTH HEADER CLICK HANDLER
-     
-     헤더 인증 버튼은 이 한 곳에서만 처리한다.
-     로그인 상태: 회원 메뉴
-     로그아웃 상태: 로그인 모달
+     OPENERS
   ========================================================= */
 
   function bindOpeners() {
 
-    document.addEventListener(
-      'click',
-      function(event) {
+    const selectors = [
+      '#openAuth',
+      'a[href="#login"]',
+      'a[href="#signup"]',
+      'a[data-auth-open]',
+      'a[href="#auth"]'
+    ];
 
-        const authLink =
-          event.target.closest(
-            '#openAuth, #mobileOpenAuth, a[data-auth-open], .header-actions a[data-love-auth-status="1"], .actions a[data-love-auth-status="1"]'
-          );
+    document
+      .querySelectorAll(selectors.join(','))
+      .forEach(function(a) {
 
-        if (!authLink) {
+        if (a.dataset.loveAuthBound) {
           return;
         }
 
-        const isCustomerCenter =
-          authLink.classList.contains('kakao-btn') ||
-          authLink.classList.contains('mobile-kakao');
+        a.dataset.loveAuthBound = '1';
 
-        if (isCustomerCenter) {
-          return;
-        }
+        a.addEventListener(
+          'click',
+          function(event) {
 
-        event.preventDefault();
-        event.stopImmediatePropagation();
+            event.preventDefault();
 
-        if (
-          currentSession &&
-          currentSession.user
-        ) {
-          openMemberMenu();
-        } else {
-          show('login');
-        }
+            if (
+              currentSession &&
+              currentSession.user
+            ) {
+              openMemberMenu();
+              return;
+            }
 
-      },
-      true
-    );
+            show('login');
+
+          }
+        );
+
+      });
 
   }
 
