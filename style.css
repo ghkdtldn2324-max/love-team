@@ -5068,3 +5068,18 @@ select{
     text-overflow:ellipsis!important;
   }
 }
+
+
+/* HERO TITLE — subtle dark outline for stronger readability */
+.home-page .lt-hero h1{
+  text-shadow:
+    -1px -1px 0 rgba(0,0,0,.62),
+     1px -1px 0 rgba(0,0,0,.62),
+    -1px  1px 0 rgba(0,0,0,.62),
+     1px  1px 0 rgba(0,0,0,.62),
+     0 8px 24px rgba(0,0,0,.34)!important;
+}
+.home-page .lt-hero h1 span{
+  -webkit-text-stroke:.35px rgba(0,0,0,.42);
+  paint-order:stroke fill;
+}
