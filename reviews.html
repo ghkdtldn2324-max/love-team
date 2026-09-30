@@ -1063,7 +1063,27 @@ render();
   }
 
 
-  updateReviewWriter();
+  async function syncReviewSession(){
+    const client = window.LoveTeamAuth?.client;
+
+    if(!client){
+      updateReviewWriter();
+      return;
+    }
+
+    try{
+      const result = await client.auth.getSession();
+      window.LoveTeamSession =
+        result?.data?.session || null;
+    }catch(error){
+      console.error('후기 로그인 상태 확인 실패:',error);
+    }
+
+    updateReviewWriter();
+  }
+
+
+  syncReviewSession();
 
 
 
