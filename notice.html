@@ -288,7 +288,7 @@
       </div>
       <span class="notice-author">관리자</span>
       <span class="notice-date">2026.10.01</span>
-      <span class="notice-views">-</span>
+      <span class="notice-views" data-notice-views="3">0</span>
     </a>
 
     <a class="notice-item" href="notice-detail.html?id=2">
@@ -299,7 +299,7 @@
       </div>
       <span class="notice-author">관리자</span>
       <span class="notice-date">2026.09.29</span>
-      <span class="notice-views">-</span>
+      <span class="notice-views" data-notice-views="2">0</span>
     </a>
 
     <a class="notice-item" href="notice-detail.html?id=1">
@@ -310,7 +310,7 @@
       </div>
       <span class="notice-author">관리자</span>
       <span class="notice-date">2026.09.28</span>
-      <span class="notice-views">-</span>
+      <span class="notice-views" data-notice-views="1">0</span>
     </a>
   </section>
 
@@ -318,5 +318,23 @@
 
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
 <script src="script.js?v=20260930-11"></script><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20260930-21"></script>
+<script>
+(async function(){
+  const client = window.LoveTeamSupabase || window.supabaseClient;
+  if(!client) return;
+  try{
+    const { data, error } = await client
+      .from('notice_view_counts')
+      .select('notice_id,views');
+    if(error) throw error;
+    (data || []).forEach(function(row){
+      const el=document.querySelector('[data-notice-views="' + row.notice_id + '"]');
+      if(el) el.textContent=Number(row.views || 0).toLocaleString('ko-KR');
+    });
+  }catch(error){
+    console.error('공지사항 조회수 불러오기 실패:',error);
+  }
+})();
+</script>
 </body>
 </html>
