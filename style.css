@@ -6,7 +6,7 @@ a{color:inherit}
 button{font-family:inherit}
 .top-notice{height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#7043dc,#a14cff);color:#fff;font-size:13px;font-weight:700;letter-spacing:.2px}
 .header{position:relative;z-index:1000;height:82px;background:#07070a;color:#fff;border-bottom:1px solid #22232b;display:flex;align-items:center;padding:0 34px;gap:28px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:184px}.logo-mark{width:46px;height:46px;flex:0 0 46px;position:relative;display:block;border:0;background:transparent;box-shadow:none;transform:none;overflow:visible}.logo-text{display:flex;flex-direction:column;line-height:1;justify-content:center;gap:0}.logo-text strong{font-size:21px;font-weight:900;letter-spacing:3px}.logo-text small{font-size:6px;font-weight:800;letter-spacing:5.5px;color:#b993f7;margin-top:4px}
+.logo{text-decoration:none}
 .nav{display:flex;align-items:center;justify-content:center;gap:28px;flex:1}.nav a{color:#ddd;text-decoration:none;font-size:14px;font-weight:700;white-space:nowrap}.nav a:hover{color:#b38aff}
 .header-actions{display:flex;align-items:center;gap:15px;white-space:nowrap}.header-actions>a{font-size:13px;text-decoration:none;color:#eee;font-weight:700}.kakao-btn{background:#ffe600;color:#111!important;padding:12px 16px;border-radius:14px;font-weight:900!important}
 .mobile-menu-btn{display:none}.mobile-menu{display:none}
@@ -23,11 +23,11 @@ main{background:#fff}.section,.page-only{max-width:1100px;margin:0 auto;padding:
 footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-size:12px}footer strong{color:#fff;font-size:15px}
 /* Auth modal compatibility: keeps existing auth.js modal within the phone viewport */
 .auth-modal,.auth-overlay,[data-auth-modal]{max-width:calc(100vw - 24px)!important}.auth-modal .auth-box,.auth-modal .modal-content,[data-auth-modal] .auth-box{max-width:420px!important;width:calc(100vw - 28px)!important;max-height:calc(100vh - 28px)!important;overflow:auto!important}
-@media(max-width:900px){.header{padding:0 20px}.nav{gap:16px}.header-actions{gap:8px}.logo{min-width:150px}.rank-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.header{padding:0 20px}.nav{gap:16px}.header-actions{gap:8px}.rank-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){
- body{width:100%;min-width:0}.top-notice{height:36px;font-size:12px}.header{height:68px;min-height:68px;padding:0 14px 0 12px;gap:0;position:sticky;top:0;overflow:visible}.logo{min-width:0;gap:8px}.logo-mark{width:42px;height:42px;font-size:19px}.logo-text strong{font-size:22px}.logo-text small{font-size:8px;letter-spacing:3px}.nav{display:none!important}.header-actions{margin-left:auto;margin-right:54px}.header-actions>a:first-child,.header-actions .kakao-btn{display:none!important}.header-actions>a#openAuth{display:inline-flex!important;color:#fff;font-size:13px;font-weight:900;white-space:nowrap}.mobile-menu-btn{display:flex;position:absolute;right:12px;top:12px;width:44px;height:44px;border:1px solid #393943;border-radius:12px;background:#111116;color:#fff;align-items:center;justify-content:center;font-size:24px;line-height:1;z-index:100000;cursor:pointer;pointer-events:auto;touch-action:manipulation}.mobile-menu{position:absolute;left:0;right:0;top:68px;background:#09090c;border-top:1px solid #292a33;border-bottom:1px solid #2d2e38;box-shadow:0 16px 35px rgba(0,0,0,.35);z-index:99998;display:none;flex-direction:column;pointer-events:auto;touch-action:manipulation}.mobile-menu.active{display:flex}.mobile-menu>a{min-height:50px;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid #24252d;color:#fff;text-decoration:none;font-size:14px;font-weight:800;pointer-events:auto;touch-action:manipulation}.mobile-menu>a:last-child{border-bottom:0}.mobile-menu .mobile-kakao{background:#ffe600;color:#111;justify-content:center}.section,.page-only{padding:62px 16px 80px}.hero{min-height:520px}.hero h1{font-size:36px}.hero-copy{font-size:15px}.section-heading h2,.pricing-hero h2{font-size:31px}.section-heading>p:last-child{font-size:14px}.notice-card{padding:18px;align-items:flex-start;flex-direction:column}.notice-card .date{align-self:flex-end}.pricing-section{padding:62px 14px 80px}.pricing-tabs{grid-template-columns:repeat(2,1fr);border-radius:18px}.pricing-tab{min-height:50px}.pricing-tab:last-child{grid-column:1/-1}.pricing-info{padding:24px 16px}.pricing-info strong{font-size:25px}.rank-grid{grid-template-columns:repeat(2,1fr);gap:10px}.rank-card{min-height:150px;border-radius:17px}.rank-icon{font-size:36px}.rank-price{font-size:16px}.lesson-grid{grid-template-columns:1fr}.page-card,.faq-list,.work-status-list,.review-list{border-radius:18px;padding:8px}.question{min-height:74px;padding:15px 14px;font-size:15px;border-radius:13px}.qmark{font-size:18px}.toggle{font-size:26px}.answer.open .answer-inner{padding:19px 16px 21px}.answer p{font-size:13px}.works-page,.reviews-page{padding:62px 14px 80px}.works-head h1,.reviews-head h1{font-size:31px}.work-status-row{min-height:82px;padding:14px 12px}.work-left{gap:9px}.work-user{font-size:14px}.work-detail{font-size:12px}.work-status{font-size:11px}.review-row{padding:21px 12px}.review-user{font-size:15px}.stars{font-size:16px}.review-date{font-size:10px}.review-text{font-size:13px}.floating-chat{right:15px;bottom:15px}.to-top{right:15px;bottom:77px}
+ body{width:100%;min-width:0}.top-notice{height:36px;font-size:12px}.header{height:68px;min-height:68px;padding:0 14px 0 12px;gap:0;position:sticky;top:0;overflow:visible}.nav{display:none!important}.header-actions{margin-left:auto;margin-right:54px}.header-actions>a:first-child,.header-actions .kakao-btn{display:none!important}.header-actions>a#openAuth{display:inline-flex!important;color:#fff;font-size:13px;font-weight:900;white-space:nowrap}.mobile-menu-btn{display:flex;position:absolute;right:12px;top:12px;width:44px;height:44px;border:1px solid #393943;border-radius:12px;background:#111116;color:#fff;align-items:center;justify-content:center;font-size:24px;line-height:1;z-index:100000;cursor:pointer;pointer-events:auto;touch-action:manipulation}.mobile-menu{position:absolute;left:0;right:0;top:68px;background:#09090c;border-top:1px solid #292a33;border-bottom:1px solid #2d2e38;box-shadow:0 16px 35px rgba(0,0,0,.35);z-index:99998;display:none;flex-direction:column;pointer-events:auto;touch-action:manipulation}.mobile-menu.active{display:flex}.mobile-menu>a{min-height:50px;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid #24252d;color:#fff;text-decoration:none;font-size:14px;font-weight:800;pointer-events:auto;touch-action:manipulation}.mobile-menu>a:last-child{border-bottom:0}.mobile-menu .mobile-kakao{background:#ffe600;color:#111;justify-content:center}.section,.page-only{padding:62px 16px 80px}.hero{min-height:520px}.hero h1{font-size:36px}.hero-copy{font-size:15px}.section-heading h2,.pricing-hero h2{font-size:31px}.section-heading>p:last-child{font-size:14px}.notice-card{padding:18px;align-items:flex-start;flex-direction:column}.notice-card .date{align-self:flex-end}.pricing-section{padding:62px 14px 80px}.pricing-tabs{grid-template-columns:repeat(2,1fr);border-radius:18px}.pricing-tab{min-height:50px}.pricing-tab:last-child{grid-column:1/-1}.pricing-info{padding:24px 16px}.pricing-info strong{font-size:25px}.rank-grid{grid-template-columns:repeat(2,1fr);gap:10px}.rank-card{min-height:150px;border-radius:17px}.rank-icon{font-size:36px}.rank-price{font-size:16px}.lesson-grid{grid-template-columns:1fr}.page-card,.faq-list,.work-status-list,.review-list{border-radius:18px;padding:8px}.question{min-height:74px;padding:15px 14px;font-size:15px;border-radius:13px}.qmark{font-size:18px}.toggle{font-size:26px}.answer.open .answer-inner{padding:19px 16px 21px}.answer p{font-size:13px}.works-page,.reviews-page{padding:62px 14px 80px}.works-head h1,.reviews-head h1{font-size:31px}.work-status-row{min-height:82px;padding:14px 12px}.work-left{gap:9px}.work-user{font-size:14px}.work-detail{font-size:12px}.work-status{font-size:11px}.review-row{padding:21px 12px}.review-user{font-size:15px}.stars{font-size:16px}.review-date{font-size:10px}.review-text{font-size:13px}.floating-chat{right:15px;bottom:15px}.to-top{right:15px;bottom:77px}
 }
-@media(max-width:380px){.header-actions{margin-right:52px}.header-actions>a#openAuth{font-size:11px}.mobile-menu-btn{right:9px;width:42px;height:42px}.logo-text strong{font-size:20px}.hero h1{font-size:32px}.rank-grid{grid-template-columns:1fr 1fr}.work-status-row{padding-left:8px;padding-right:8px}.work-detail{max-width:110px}}
+@media(max-width:380px){.header-actions{margin-right:52px}.header-actions>a#openAuth{font-size:11px}.mobile-menu-btn{right:9px;width:42px;height:42px}.hero h1{font-size:32px}.rank-grid{grid-template-columns:1fr 1fr}.work-status-row{padding-left:8px;padding-right:8px}.work-detail{max-width:110px}}
 
 /* 모든 페이지 공통 구분선 */
 .page-divider{width:100%;height:0;border-top:1px dashed #d9d3e8;background:#fff}
@@ -977,13 +977,15 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
 }
 /* =====================================================
-   LOVE TEAM - FOX ESPORTS EMBLEM / WORDMARK REBUILD
-   CSS only / 얇은 여우 윤곽 + 날렵한 커스텀 워드마크
+   LOVE TEAM - FOX ESPORTS EMBLEM / WORDMARK
+   단일 로고 규칙 / PC + MOBILE 동일 디자인
 ===================================================== */
 .logo{
-  min-width:172px!important;
-  gap:1px!important;
+  display:flex!important;
   align-items:center!important;
+  gap:1px!important;
+  min-width:172px!important;
+  text-decoration:none!important;
 }
 .logo-mark{
   width:50px!important;
@@ -1002,13 +1004,7 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   position:absolute!important;
   inset:3px 2px 2px!important;
   background:linear-gradient(145deg,#ead8ff 0%,#a96bff 42%,#7046e8 72%,#d35cff 100%)!important;
-  clip-path:polygon(
-    4% 18%, 18% 25%, 14% 2%, 34% 14%,
-    50% 8%, 66% 14%, 86% 2%, 82% 25%,
-    96% 18%, 89% 48%, 82% 68%, 70% 83%,
-    58% 91%, 50% 97%, 42% 91%, 30% 83%,
-    18% 68%, 11% 48%
-  )!important;
+  clip-path:polygon(4% 18%,18% 25%,14% 2%,34% 14%,50% 8%,66% 14%,86% 2%,82% 25%,96% 18%,89% 48%,82% 68%,70% 83%,58% 91%,50% 97%,42% 91%,30% 83%,18% 68%,11% 48%)!important;
   filter:drop-shadow(0 0 6px rgba(157,92,255,.52))!important;
 }
 .logo-mark::after{
@@ -1019,14 +1015,8 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   width:30px!important;
   height:28px!important;
   background:#08080c!important;
-  clip-path:polygon(
-    6% 19%, 27% 30%, 24% 17%, 42% 27%,
-    50% 34%, 58% 27%, 76% 17%, 73% 30%,
-    94% 19%, 84% 49%, 78% 63%, 65% 77%,
-    50% 90%, 35% 77%, 22% 63%, 16% 49%
-  )!important;
+  clip-path:polygon(6% 19%,27% 30%,24% 17%,42% 27%,50% 34%,58% 27%,76% 17%,73% 30%,94% 19%,84% 49%,78% 63%,65% 77%,50% 90%,35% 77%,22% 63%,16% 49%)!important;
 }
-/* 실제 여우 눈매 */
 .logo-mark .fox-eye-left,
 .logo-mark .fox-eye-right{
   position:absolute!important;
@@ -1046,7 +1036,6 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   right:13px!important;
   clip-path:polygon(0 0,100% 48%,82% 83%,45% 100%,16% 72%)!important;
 }
-/* 코와 주둥이의 작은 각을 추가해 단순 가면 느낌 제거 */
 .logo-mark i::after{
   content:""!important;
   position:absolute!important;
@@ -1102,10 +1091,22 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   padding-left:1px!important;
 }
 @media(max-width:600px){
-  .logo{min-width:0!important;gap:0!important}
-  .logo-mark{width:43px!important;height:41px!important;flex-basis:43px!important}
+  .logo{
+    min-width:0!important;
+    gap:0!important;
+  }
+  .logo-mark{
+    width:43px!important;
+    height:41px!important;
+    flex-basis:43px!important;
+  }
   .logo-mark::before{inset:3px 1px 2px!important}
-  .logo-mark::after{left:8px!important;top:12px!important;width:27px!important;height:26px!important}
+  .logo-mark::after{
+    left:8px!important;
+    top:12px!important;
+    width:27px!important;
+    height:26px!important;
+  }
   .logo-mark .fox-eye-left,
   .logo-mark .fox-eye-right{
     top:24px!important;
@@ -1114,12 +1115,22 @@ footer{background:#08080b;color:#aaa;text-align:center;padding:28px 20px;font-si
   }
   .logo-mark .fox-eye-left{left:11px!important}
   .logo-mark .fox-eye-right{right:11px!important}
-  .logo-text{margin-left:-3px!important}
+  .logo-text{
+    margin-left:-3px!important;
+  }
   .logo-text strong{
     font-size:18px!important;
     letter-spacing:-.9px!important;
     transform:skewX(-14deg) scaleX(.87)!important;
   }
-  .logo-text strong::after{width:34px!important;height:1.5px!important;margin-top:4px!important}
-  .logo-text small{font-size:4.7px!important;letter-spacing:3px!important;margin-top:2px!important}
+  .logo-text strong::after{
+    width:34px!important;
+    height:1.5px!important;
+    margin-top:4px!important;
+  }
+  .logo-text small{
+    font-size:4.7px!important;
+    letter-spacing:3px!important;
+    margin-top:2px!important;
+  }
 }
