@@ -48,7 +48,7 @@ h1{margin:0;font-size:32px}
 </main>
 <script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="auth.js?v=20260930-12"></script>
+<script src="auth.js?v=20260930-13"></script>
 <script>
 const client=window.LoveTeamSupabase || supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
 const list=document.getElementById('list');
@@ -74,9 +74,14 @@ async function callAdmin(body){
 async function load(){
  list.innerHTML='<div class="empty">후기 목록을 불러오는 중입니다.</div>';
  try{
-  const sessionResult=await client.auth.getSession();
-  const session=sessionResult?.data?.session || null;
-  window.LoveTeamSession=session;
+  let session = null;
+  if(window.LoveTeamAuth?.getSession){
+    session = await window.LoveTeamAuth.getSession();
+  }else{
+    const sessionResult=await client.auth.getSession();
+    session=sessionResult?.data?.session || null;
+    window.LoveTeamSession=session;
+  }
   if(!session?.user) throw new Error('로그인이 필요합니다.');
   const data=await callAdmin({action:'list'});
   const rows=Array.isArray(data.reviews)?data.reviews:[];
@@ -117,7 +122,11 @@ list.addEventListener('click',async function(e){
 
 async function start(){
  try{
-  await client.auth.getSession();
+  if(window.LoveTeamAuth?.getSession){
+    await window.LoveTeamAuth.getSession();
+  }else{
+    await client.auth.getSession();
+  }
  }catch(_){}
  await load();
 }
