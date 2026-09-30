@@ -37,6 +37,7 @@ export default {
         }
 
         const body = await req.json().catch(() => ({}));
+        const action = String(body?.action || "clear").trim();
         const userId = String(body?.user_id || "").trim();
 
         if (!userId) {
@@ -44,6 +45,36 @@ export default {
             { ok: false, message: "회원 정보를 확인할 수 없습니다." },
             { status: 400 }
           );
+        }
+
+        if (action === "status") {
+          const { data, error } = await ctx.supabaseAdmin
+            .from("review_write_limits")
+            .select("blocked_until")
+            .eq("user_id", userId)
+            .maybeSingle();
+
+          if (error) {
+            console.error("review limit status error:", error);
+            return Response.json(
+              { ok: false, message: "후기 작성 제한 상태 확인에 실패했습니다." },
+              { status: 500 }
+            );
+          }
+
+          const blockedUntil = data?.blocked_until || null;
+          const isBlocked =
+            !!blockedUntil &&
+            new Date(blockedUntil).getTime() > Date.now();
+
+          return Response.json({
+            ok: true,
+            blocked: isBlocked,
+            blocked_until: isBlocked ? blockedUntil : null,
+            message: isBlocked
+              ? "후기 작성 제한 중입니다."
+              : "현재 후기 작성 제한이 없습니다."
+          });
         }
 
         const { error } = await ctx.supabaseAdmin
