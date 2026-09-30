@@ -714,6 +714,16 @@
 
       <button
         type="button"
+        class="love-admin-menu-btn"
+        id="loveAdminMenuButton"
+        style="display:none;"
+        onclick="window.location.href='admin.html'"
+      >
+        🛡️ 관리자 페이지
+      </button>
+
+      <button
+        type="button"
         id="lovePasswordChange"
       >
         비밀번호 변경
@@ -2139,33 +2149,46 @@
       targets.push(link);
     });
 
-    const mobileMenu = document.getElementById('mobileMenu');
-    if(mobileMenu){
-      let link = mobileMenu.querySelector('.love-admin-link');
-      if(!link){
-        link = document.createElement('a');
-        link.className = 'love-admin-link';
-        link.href = 'admin.html';
-        link.textContent = '🛡️ 관리자 페이지';
-        link.setAttribute('aria-label','관리자 페이지');
-        const kakao = mobileMenu.querySelector('.mobile-kakao');
-        mobileMenu.insertBefore(link, kakao || null);
-      }
-      targets.push(link);
+    const memberAdminButton =
+      document.getElementById('loveAdminMenuButton');
+
+    if(memberAdminButton){
+      targets.push(memberAdminButton);
     }
 
-    targets.forEach(function(link){
-      link.style.display = 'none';
+    document.querySelectorAll('.mobile-menu .love-admin-link').forEach(function(link){
+      link.remove();
+    });
+
+    targets.forEach(function(target){
+      target.style.display = 'none';
     });
 
     if(!session?.user || !supabase) return;
 
     try{
-      const result = await supabase.functions.invoke('admin-check',{body:{}});
-      if(result.error || !result.data?.ok || result.data.admin !== true) return;
-      targets.forEach(function(link){
+      const result =
+        await supabase.functions.invoke('admin-check',{body:{}});
+
+      if(
+        result.error ||
+        !result.data?.ok ||
+        result.data.admin !== true
+      ){
+        return;
+      }
+
+      const desktopLinks =
+        document.querySelectorAll('.header-actions .love-admin-link');
+
+      desktopLinks.forEach(function(link){
         link.style.display = 'flex';
       });
+
+      if(memberAdminButton){
+        memberAdminButton.style.display = 'block';
+      }
+
     }catch(error){
       console.error('관리자 UI 확인 실패:', error);
     }
