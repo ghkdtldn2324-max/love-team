@@ -374,7 +374,7 @@
       <h2 class="notice-board-title">공지사항</h2>
       <p class="notice-board-desc">LOVE TEAM의 주요 소식과 이용 안내입니다.</p>
     </div>
-    <span class="notice-board-badge">TOTAL 3</span>
+    <span class="notice-board-badge" id="noticeTotal">TOTAL 0</span>
   </div>
 
   <section class="notice-table" aria-label="공지사항 목록">
@@ -441,30 +441,21 @@ window.addEventListener('pageshow',function(){
   }
 })();
 </script>
-</body>
-</html<script>
+<script>
 async function loadNotices(){
   const client=window.LoveTeamSupabase||window.supabaseClient;
   const list=document.getElementById('noticeList'), total=document.getElementById('noticeTotal');
   if(!client){list.innerHTML='<div class="notice-empty">공지사항을 불러오지 못했습니다.</div>';return;}
   try{
     const r=await client.from('notices').select('id,title,summary,author,published_at').order('published_at',{ascending:false}).order('id',{ascending:false});
-    if(r.error) throw r.error;
+    if(r.error)throw r.error;
     const vr=await client.from('notice_view_counts').select('notice_id,views');
-    const views={};
-    (vr.data||[]).forEach(x=>views[String(x.notice_id)]=Number(x.views||0));
-    const data=r.data||[];
-    total.textContent='TOTAL '+data.length.toLocaleString('ko-KR');
+    const views={};(vr.data||[]).forEach(x=>views[String(x.notice_id)]=Number(x.views||0));
+    const data=r.data||[]; total.textContent='TOTAL '+data.length.toLocaleString('ko-KR');
     if(!data.length){list.innerHTML='<div class="notice-empty">등록된 공지사항이 없습니다.</div>';return;}
     list.innerHTML=data.map(function(n,i){
       const date=String(n.published_at||'').replace(/-/g,'.');
-      return '<a class="notice-item" href="notice-detail.html?id='+encodeURIComponent(n.id)+'">'+
-        '<span class="notice-no">'+escapeHtml(n.id)+'</span>'+
-        '<div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong>'+
-        '<span>'+escapeHtml(n.summary||'')+'</span></div>'+
-        '<span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span>'+
-        '<span class="notice-date">'+escapeHtml(date)+'</span>'+
-        '<span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
+      return '<a class="notice-item" href="notice-detail.html?id='+encodeURIComponent(n.id)+'"><span class="notice-no">'+escapeHtml(n.id)+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
     }).join('');
     document.querySelectorAll('.notice-item').forEach(function(item){
       item.addEventListener('pointerenter',function(ev){if(ev.pointerType==='mouse')item.classList.add('is-hover');});
@@ -472,12 +463,9 @@ async function loadNotices(){
       item.addEventListener('pointercancel',function(){item.classList.remove('is-hover');item.blur();});
       item.addEventListener('click',function(){item.classList.remove('is-hover');item.blur();});
     });
-  }catch(err){
-    console.error('공지사항 불러오기 실패:',err);
-    total.textContent='TOTAL -';
-    list.innerHTML='<div class="notice-empty">공지사항을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</div>';
-  }
+  }catch(err){console.error('공지사항 불러오기 실패:',err);total.textContent='TOTAL -';list.innerHTML='<div class="notice-empty">공지사항을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</div>';}
 }
 function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 loadNotices();
-</script>>
+</script>
+</body>
