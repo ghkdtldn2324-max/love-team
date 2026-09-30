@@ -101,6 +101,16 @@ async function load(){
     window.LoveTeamSession=session;
   }
   if(!session?.user) throw new Error('로그인이 필요합니다.');
+
+  const adminCheck=await client.functions.invoke('admin-check',{body:{}});
+  if(
+    adminCheck.error ||
+    adminCheck.data?.ok !== true ||
+    adminCheck.data?.admin !== true
+  ){
+    throw new Error(adminCheck.data?.message || '관리자 권한이 없습니다.');
+  }
+
   const data=await callAdmin({action:'list'});
   const rows=Array.isArray(data.reviews)?data.reviews:[];
   count.textContent='등록 후기 '+rows.length+'개';
