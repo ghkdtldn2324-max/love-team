@@ -136,27 +136,41 @@
     box-shadow .2s ease;
 }
 .notice-item{
-  background:#fff;
-  box-shadow:none;
-  outline:none;
+  background:#fff !important;
+  box-shadow:none !important;
+  outline:none !important;
+  border-left:0 !important;
+  -webkit-tap-highlight-color:transparent;
 }
 .notice-item:hover,
 .notice-item:focus,
 .notice-item:focus-visible,
-.notice-item:active{
-  outline:none;
+.notice-item:active,
+.notice-item:visited{
+  outline:none !important;
 }
-@media (hover:hover) and (pointer:fine){
-  .notice-item:hover{
-    background:linear-gradient(90deg,#faf8ff,#fff);
-    box-shadow:inset 4px 0 0 #7048ee;
+.notice-item.is-hover{
+  background:linear-gradient(90deg,#faf8ff,#fff) !important;
+  box-shadow:inset 4px 0 0 #7048ee !important;
+}
+.notice-item.is-hover .notice-main strong{
+  color:#7048ee;
+}
+.notice-item .notice-main strong{
+  color:#171722;
+}
+@media (hover:none), (pointer:coarse){
+  .notice-item,
+  .notice-item:hover,
+  .notice-item:focus,
+  .notice-item:focus-visible,
+  .notice-item:active,
+  .notice-item.is-hover{
+    background:#fff !important;
+    box-shadow:none !important;
+    outline:none !important;
+    border-left:0 !important;
   }
-}
-.notice-item:focus:not(:hover),
-.notice-item:focus-visible:not(:hover),
-.notice-item:active:not(:hover){
-  background:#fff;
-  box-shadow:none;
 }
 .notice-item:visited{
   color:#171722;
@@ -332,10 +346,31 @@
 // 마우스를 올렸을 때만 강조 효과를 허용하고,
 // 클릭/포커스가 남아 있어도 강조 상태가 고정되지 않도록 초기화합니다.
 document.querySelectorAll('.notice-item').forEach(function(item){
-  item.addEventListener('click',function(){
+  item.addEventListener('pointerenter',function(event){
+    if(event.pointerType === 'mouse'){
+      item.classList.add('is-hover');
+    }
+  });
+  item.addEventListener('pointerleave',function(){
+    item.classList.remove('is-hover');
     item.blur();
   });
-  item.addEventListener('mouseleave',function(){
+  item.addEventListener('pointercancel',function(){
+    item.classList.remove('is-hover');
+    item.blur();
+  });
+  item.addEventListener('click',function(){
+    item.classList.remove('is-hover');
+    item.blur();
+  });
+  item.addEventListener('focus',function(){
+    item.classList.remove('is-hover');
+    item.blur();
+  });
+});
+window.addEventListener('pageshow',function(){
+  document.querySelectorAll('.notice-item').forEach(function(item){
+    item.classList.remove('is-hover');
     item.blur();
   });
 });
