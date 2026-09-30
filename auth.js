@@ -2171,12 +2171,16 @@
       desktopLinks.push(link);
     });
 
+    const isMobileViewport =
+      window.matchMedia &&
+      window.matchMedia('(max-width:760px)').matches;
+
     desktopLinks.forEach(function(link){
-      link.style.display = 'none';
+      link.style.setProperty('display','none','important');
     });
 
     if(mobileAdminLink){
-      mobileAdminLink.style.display = 'none';
+      mobileAdminLink.style.setProperty('display','none','important');
     }
 
     if(!session?.user || !supabase){
@@ -2218,11 +2222,19 @@
       }
 
       desktopLinks.forEach(function(link){
-        link.style.display = 'flex';
+        if(isMobileViewport){
+          link.style.setProperty('display','none','important');
+        }else{
+          link.style.setProperty('display','flex','important');
+        }
       });
 
       if(mobileAdminLink){
-        mobileAdminLink.style.display = 'flex';
+        if(isMobileViewport){
+          mobileAdminLink.style.setProperty('display','flex','important');
+        }else{
+          mobileAdminLink.style.setProperty('display','none','important');
+        }
       }
 
     }catch(error){
