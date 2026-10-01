@@ -130,6 +130,35 @@
   }
 }
 </style>
+
+<style id="lt-pricing-mobile-hero-fill">
+@media(max-width:760px){
+  body.lt-pricing-page .pricing-section,
+  body.lt-pricing-page .pricing-panel,
+  body.lt-pricing-page .pricing-tabs,
+  body.lt-pricing-page .rank-grid{
+    background:transparent!important;
+  }
+  body.lt-pricing-page .pricing-tabs{
+    border-color:rgba(255,255,255,.16)!important;
+    box-shadow:none!important;
+  }
+  body.lt-pricing-page .pricing-tab{
+    background:rgba(255,255,255,.10)!important;
+    color:#fff!important;
+    border:1px solid rgba(255,255,255,.10)!important;
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+  }
+  body.lt-pricing-page .pricing-tab.active{
+    background:linear-gradient(135deg,#4f83ff,#9a48e9)!important;
+    color:#fff!important;
+    border-color:transparent!important;
+  }
+  body.lt-pricing-page .pricing-panel{
+    padding-bottom:0!important;
+  }
+}
+</style>
 </head><body class="lt-pricing-page"><header class="header"><a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
   <img class="logo-image" src="assets/love-team-logo-transparent.png?v=20261001-transparent" alt="LOVE TEAM">
 </a><nav class="nav"><a class="home-nav" href="index.html">홈</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div><button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button><div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div></header><div class="page-divider" aria-hidden="true"></div><main class="pricing-section"><div class="pricing-hero"><p class="eyebrow">LOVE TEAM PRICE</p><h2>한 눈에 보는 가격표</h2><p>서비스별 가격과 안내 내용을 확인해보세요.</p></div><div class="pricing-tabs" role="tablist" aria-label="가격표 종류"><button class="pricing-tab active" data-tab="win" role="tab" aria-selected="true">승리</button><button class="pricing-tab" data-tab="duo" role="tab" aria-selected="false">듀오</button><button class="pricing-tab" data-tab="tier" role="tab" aria-selected="false">티어</button><button class="pricing-tab" data-tab="placement" role="tab" aria-selected="false">배치 고사</button><button class="pricing-tab" data-tab="lesson" role="tab" aria-selected="false">1:1 강의</button></div><div class="pricing-panel"><div class="pricing-info"><span class="info-kicker">LOVE TEAM SERVICE GUIDE</span><strong id="info-title">승당제 강의</strong><span id="info-copy"></span></div><div id="pricing-grid" class="rank-grid"></div></div></main><footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script src="script.js?v=20260930-11"></script><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20261001-26"></script>
