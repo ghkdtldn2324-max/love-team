@@ -95,42 +95,16 @@
   white-space:pre-wrap;
 }
 .notice-detail-content .content-intro{
-  margin:0 0 28px;
-  padding:18px 20px;
-  border:1px solid #e2dcf4;
-  border-left:4px solid #7957ef;
-  border-radius:14px;
-  background:linear-gradient(90deg,#f7f4ff,#fcfbff);
-  color:#3d3850;
-  font-weight:800;
+  display:none;
 }
 .notice-detail-content .content-block{
-  margin:0 0 22px;
-  padding:21px 22px;
-  border:1px solid #ece9f3;
-  border-radius:15px;
-  background:#fff;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
 }
-.notice-detail-content .content-block:last-child{
-  margin-bottom:0;
-}
-.notice-detail-content .content-label{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:9px;
-  color:#7048ee;
-  font-size:13px;
-  font-weight:900;
-}
-.notice-detail-content .content-label::before{
-  content:"";
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#5d7cff,#b24cff);
-  box-shadow:0 0 0 5px rgba(112,72,238,.08);
-}
+
 .notice-detail-content p{
   margin:0;
   line-height:1.85;
@@ -265,34 +239,12 @@ const contentEl=document.getElementById('content');
 
 function renderContent(raw){
   contentEl.innerHTML='';
-  const blocks=String(raw||'').split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
-  if(!blocks.length){
-    contentEl.innerHTML='<p class="content-intro">등록된 공지사항 내용이 없습니다.</p>';
-    return;
-  }
-  const intro=document.createElement('p');
-  intro.className='content-intro';
-  intro.textContent=blocks.shift();
-  contentEl.appendChild(intro);
-  blocks.forEach(function(block){
-    const lines=block.split(/\n/);
-    const first=(lines[0]||'').trim();
-    const match=first.match(/^\[([^\]]+)\]\s*$/);
-    const section=document.createElement('section');
-    section.className='content-block';
-    let body=block;
-    if(match){
-      const label=document.createElement('div');
-      label.className='content-label';
-      label.textContent=match[1];
-      section.appendChild(label);
-      body=lines.slice(1).join('\n').trim();
-    }
-    const p=document.createElement('p');
-    p.textContent=body;
-    section.appendChild(p);
-    contentEl.appendChild(section);
-  });
+  const article=document.createElement('div');
+  article.className='content-block';
+  const p=document.createElement('p');
+  p.textContent=String(raw||'') || '등록된 공지사항 내용이 없습니다.';
+  article.appendChild(p);
+  contentEl.appendChild(article);
 }
 
 function formatNoticeDate(value){
