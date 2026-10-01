@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LOVE TEAM | 후기</title>
+<link rel="stylesheet" href="style.css?v=20261002-mobile-cache-v2">
+<style>
+.review-detail-page{background:#fff;min-height:calc(100vh - 118px);padding:70px 20px 100px;color:#171722}
+.review-detail-wrap{max-width:1000px;margin:0 auto}
+.review-detail-card{background:#fff;border-top:1px solid #e3e3e3}
+.review-detail-user{display:flex;align-items:center;gap:14px;padding:28px 8px 22px}
+.review-detail-avatar{width:56px;height:56px;border-radius:50%;background:#ececf0;display:grid;place-items:center;color:#aaa;font-size:26px}
+.review-detail-user-name{font-size:19px;font-weight:800}
+.review-detail-meta{display:flex;gap:15px;margin-top:5px;color:#777;font-size:13px}
+.review-detail-body{padding:42px 8px 36px;border-bottom:1px solid #ddd}
+.review-detail-body p{margin:0;white-space:pre-line;font-size:17px;line-height:2;color:#222}
+.review-detail-comments{padding:28px 8px;border-bottom:1px solid #ddd;font-size:15px}
+.review-detail-comments span{font-size:28px;vertical-align:-3px;margin-right:6px}
+.review-detail-login{margin:50px 0 28px;border:1px solid #dedde5;border-radius:12px;min-height:180px;padding:28px;background:#fff;color:#aaa;display:flex;flex-direction:column;justify-content:space-between}
+.review-detail-login p{margin:0;font-size:20px;color:#aaa}
+.review-detail-login button{align-self:flex-end;border:0;background:linear-gradient(100deg,#5d7cff,#9d4ee8);color:#fff;min-width:90px;min-height:46px;border-radius:7px;font-weight:800;cursor:pointer}
+.review-detail-next{border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 8px}
+.review-detail-next a{display:block;color:#171722;text-decoration:none;font-size:17px}
+.review-detail-next small{display:block;color:#888;margin-bottom:8px}
+.review-detail-actions{display:flex;justify-content:space-between;gap:12px;padding:24px 0}
+.review-detail-actions a,.review-detail-actions button{min-width:110px;min-height:48px;padding:0 18px;border:0;border-radius:7px;background:#7a6fe5;color:#fff;text-decoration:none;font-weight:800;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.review-detail-actions .secondary{background:#eeeaf9;color:#5f4bc7}
+
+@media(max-width:760px){
+  html,body{background:#fff!important}
+  body.lt-review-detail-page{background:#fff!important;color:#171722!important;overflow-x:hidden}
+  body.lt-review-detail-page .header{position:sticky!important;top:0!important;z-index:10000!important}
+  body.lt-review-detail-page .page-divider{display:none!important}
+  body.lt-review-detail-page main{background:#fff!important}
+  body.lt-review-detail-page .review-detail-page{
+    padding:0 16px 70px!important;
+    min-height:calc(100vh - 68px)!important;
+    background:#fff!important;
+  }
+  body.lt-review-detail-page .review-detail-wrap{max-width:none!important}
+  body.lt-review-detail-page .review-detail-user{padding:28px 0 22px!important;gap:14px!important}
+  body.lt-review-detail-page .review-detail-avatar{width:58px!important;height:58px!important;font-size:27px!important;background:#e6e6e9!important;color:#aaa!important}
+  body.lt-review-detail-page .review-detail-user-name{font-size:20px!important;font-weight:500!important}
+  body.lt-review-detail-page .review-detail-meta{font-size:14px!important;gap:13px!important;color:#686868!important}
+  body.lt-review-detail-page .review-detail-body{padding:48px 0 38px!important}
+  body.lt-review-detail-page .review-detail-body p{font-size:19px!important;line-height:1.8!important;letter-spacing:-.35px!important}
+  body.lt-review-detail-page .review-detail-comments{padding:28px 0!important;font-size:15px!important}
+  body.lt-review-detail-page .review-detail-comments span{font-size:31px!important}
+  body.lt-review-detail-page .review-detail-login{
+    margin:42px 0 34px!important;
+    min-height:185px!important;
+    padding:26px!important;
+    border-radius:10px!important;
+    box-shadow:none!important;
+  }
+  body.lt-review-detail-page .review-detail-login p{font-size:20px!important}
+  body.lt-review-detail-page .review-detail-login button{min-width:92px!important;min-height:48px!important}
+  body.lt-review-detail-page .review-detail-next{padding:22px 0!important}
+  body.lt-review-detail-page .review-detail-next a{font-size:17px!important;line-height:1.5!important}
+  body.lt-review-detail-page .review-detail-actions{padding:24px 0 0!important}
+  body.lt-review-detail-page .review-detail-actions a{min-width:110px!important}
+}
+</style>
+</head>
+<body class="lt-review-detail-page">
+<header class="header">
+  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+    <img class="logo-image" src="assets/love-team-logo-transparent.png?v=20261001-transparent" alt="LOVE TEAM">
+  </a>
+  <nav class="nav">
+    <a class="home-nav" href="index.html">홈</a>
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+  </nav>
+  <div class="header-actions">
+    <a href="#login" id="openAuth" data-auth-open="1">로그인 / 회원가입</a>
+    <a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">고객센터</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+    <a href="#login" id="mobileOpenAuth" data-auth-open="1">로그인 / 회원가입</a>
+    <a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">고객센터</a>
+  </div>
+</header>
+<main>
+<section class="review-detail-page">
+<div class="review-detail-wrap" id="reviewDetail">
+  <div class="review-detail-card">후기를 불러오는 중입니다.</div>
+</div>
+</section>
+</main>
+<script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=20261001-26"></script>
+<script src="script.js?v=20260930-11"></script>
+<script>
+(function(){
+  const client=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+  const root=document.getElementById('reviewDetail');
+  const id=new URLSearchParams(location.search).get('id');
+
+  function esc(v){
+    return String(v??'').replace(/[&<>"']/g,function(ch){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+    });
+  }
+  function formatDate(v){
+    const d=new Date(v);
+    return Number.isNaN(d.getTime()) ? '-' : d.toLocaleDateString('ko-KR');
+  }
+  function titleFromText(v){
+    const s=String(v||'').trim().replace(/\s+/g,' ');
+    return s.length>54 ? s.slice(0,54)+'…' : s;
+  }
+
+  async function load(){
+    if(!root||!client||!id){
+      root.innerHTML='<div class="review-detail-card">후기 정보를 찾을 수 없습니다.</div>';
+      return;
+    }
+
+    const result=await client.from('reviews')
+      .select('id,display_name,content,service,created_at')
+      .eq('id',id)
+      .maybeSingle();
+
+    if(result.error||!result.data){
+      root.innerHTML='<div class="review-detail-card">후기 정보를 찾을 수 없습니다.</div>';
+      return;
+    }
+
+    const row=result.data;
+    let views=0;
+    try{
+      const viewResult=await client.rpc('increment_review_view',{target_review_id:row.id});
+      if(!viewResult.error) views=Number(viewResult.data)||0;
+    }catch(_){
+      try{
+        const viewResult=await client.from('review_view_counts').select('view_count').eq('review_id',row.id).maybeSingle();
+        if(!viewResult.error) views=Number(viewResult.data?.view_count)||0;
+      }catch(__){}
+    }
+
+    let next=null;
+    try{
+      const nextResult=await client.from('reviews')
+        .select('id,display_name,content,service,created_at')
+        .order('created_at',{ascending:false})
+        .limit(50);
+      if(!nextResult.error){
+        const rows=nextResult.data||[];
+        const idx=rows.findIndex(function(x){return x.id===row.id;});
+        next=idx>=0 ? (rows[idx+1]||null) : null;
+      }
+    }catch(_){}
+
+    root.innerHTML=
+      '<article class="review-detail-card">'+
+        '<div class="review-detail-user">'+
+          '<div class="review-detail-avatar" aria-hidden="true">●</div>'+
+          '<div>'+
+            '<div class="review-detail-user-name">'+esc(row.display_name)+'</div>'+
+            '<div class="review-detail-meta"><span>REVIEW</span><span>'+esc(formatDate(row.created_at))+'</span><span>조회수 '+esc(views)+'</span></div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="review-detail-body"><p>'+esc(row.content)+'</p></div>'+
+        '<div class="review-detail-comments"><span>◯</span>0</div>'+
+      '</article>'+
+      '<div class="review-detail-login" id="reviewDetailLogin">'+
+        '<p>로그인이 필요합니다.</p>'+
+        '<button type="button" id="reviewDetailLoginButton">작성</button>'+
+      '</div>'+
+      (next ? '<div class="review-detail-next"><small>다음 후기</small><a href="review-detail.html?id='+encodeURIComponent(next.id)+'">'+esc(titleFromText(next.content))+'</a></div>' : '')+
+      '<div class="review-detail-actions">'+
+        '<a class="secondary" href="reviews.html">목록</a>'+
+        '<a href="reviews.html#reviewWriteArea">글쓰기</a>'+
+      '</div>';
+
+    const loginButton=document.getElementById('reviewDetailLoginButton');
+    if(loginButton){
+      loginButton.addEventListener('click',function(){
+        if(window.LoveTeamAuth?.open) window.LoveTeamAuth.open('login');
+      });
+    }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>
