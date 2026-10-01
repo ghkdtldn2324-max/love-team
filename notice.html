@@ -513,7 +513,7 @@ async function loadNotices(){
     if(!data.length){list.innerHTML='<div class="notice-empty">등록된 공지사항이 없습니다.</div>';return;}
     list.innerHTML=data.map(function(n,i){
       const date=formatNoticeDate(n.published_at);
-      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="notice-detail.html?id='+encodeURIComponent(n.id)+'"><span class="notice-no">'+(n.id==='love-team-event-10plus1'?'1':escapeHtml(n.id))+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml('로브팀')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
+      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="notice-detail.html?id='+encodeURIComponent(n.id)+'"><span class="notice-no">'+(data.length-i)+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml('로브팀')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
     }).join('');
     document.querySelectorAll('.notice-item').forEach(function(item){
       item.addEventListener('pointerenter',function(ev){if(ev.pointerType==='mouse')item.classList.add('is-hover');});
