@@ -13,84 +13,100 @@
 <section id="content" style="display:none"><div class="card"><h2>새 작업 등록</h2><p>새 작업은 이 페이지에서 등록됩니다.</p><input class="input" id="name" maxlength="40" placeholder="관리자 이름"><input class="input" id="title" maxlength="100" placeholder="게시글 제목"><textarea class="textarea" id="detail" maxlength="2000" placeholder="게시글 내용을 입력해주세요."></textarea><select class="select" id="state"><option value="progress">진행중</option><option value="done">작업완료</option></select><div class="actions"><button class="btn" id="create">작업 내역 등록</button><a class="btn" href="admin.html">관리자 페이지</a><a class="btn" href="works.html">공개 페이지</a></div><div class="result" id="result"></div></div>
 <div class="card"><h2>기존 작업 수정 / 삭제</h2><p>최근 5개씩 표시되며 페이지 번호로 이전 작업을 확인할 수 있습니다.</p><div id="list">작업 내역을 불러오는 중입니다...</div></div></section>
 <section class="deny" id="deny"><strong>관리자 권한이 없습니다.</strong><p id="dm">관리자 계정으로 로그인해주세요.</p></section></div></main><footer class="footer"><div class="footer-inner"><strong>LOVE TEAM</strong><p>VALORANT 작업 전문 서비스</p></div></footer>
-<script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20260930-24"></script><script>
-const client=window.LoveTeamSupabase;
+<script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20261001-work-authfix"></script><script>
+const client=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
 (()=>{const $=id=>document.getElementById(id),content=$("content"),deny=$("deny"),st=$("st"),list=$("list"),name=$("name"),title=$("title"),detail=$("detail"),state=$("state"),result=$("result");let rows=[],page=1;const size=5;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
-async function check(){
+async function checkAdmin(){
   try{
-    if(!client){
-      throw new Error("인증 시스템을 불러오지 못했습니다.");
+    if(!window.LoveTeamAuth?.client){
+      setTimeout(checkAdmin,300);
+      return;
     }
 
-    /*
-      이 페이지는 브라우저의 getSession() 결과만으로 접근을 차단하지 않습니다.
-      실제 로그인 토큰을 사용하는 admin-check Edge Function을 먼저 호출해
-      서버에서 관리자 권한을 확인합니다.
-    */
-    let session=null;
+    const supabase=window.LoveTeamAuth.client;
+    const {data:sessionData,error:sessionError}=await supabase.auth.getSession();
 
-    try{
-      if(window.LoveTeamAuth?.getSession){
-        session=await window.LoveTeamAuth.getSession();
-      }else{
-        const result=await client.auth.getSession();
-        session=result?.data?.session||null;
-      }
-    }catch(error){
-      console.warn("로컬 세션 확인 실패:",error);
+    if(sessionError){
+      console.error("work-management session error:",sessionError);
+      showAuthError("로그인 상태를 확인하지 못했습니다.");
+      return;
     }
 
-    const adminCheck=await client.functions.invoke("admin-check",{body:{}});
-
-    if(
-      adminCheck.error ||
-      adminCheck.data?.ok !== true ||
-      adminCheck.data?.admin !== true
-    ){
-      const message=
-        adminCheck.data?.message ||
-        (adminCheck.error?.message||"관리자 권한이 없습니다.");
-
-      if(!session?.user && /unauth|not.?authenticated|로그인|auth/i.test(message)){
-        throw new Error("로그인이 필요합니다.");
-      }
-
-      throw new Error(message);
+    const session=sessionData?.session;
+    if(!session){
+      showLoginRequired();
+      return;
     }
 
-    if(session?.user){
-      window.LoveTeamSession=session;
+    const {data,error}=await supabase.functions.invoke("admin-check",{body:{}});
+
+    console.log("work-management admin-check:",data,error);
+
+    if(error){
+      console.error("work-management admin-check error:",error);
+      showAuthError(error.message||"관리자 인증에 실패했습니다.");
+      return;
     }
 
-    content.style.display="block";
-    deny.style.display="none";
-    st.textContent="관리자 인증 성공";
-    await load();
+    if(data?.ok===true && data?.admin===true){
+      content.style.display="block";
+      deny.style.display="none";
+      st.textContent="관리자 인증 성공";
+      await load();
+      return;
+    }
+
+    if(data?.code==="NOT_ADMIN"){
+      showNotAdmin(data?.message||"관리자 권한이 없습니다.");
+      return;
+    }
+
+    showAuthError(data?.message||"관리자 인증에 실패했습니다.");
   }catch(err){
     console.error("work management auth error:",err);
-    content.style.display="none";
-    deny.style.display="block";
-
-    if(err.message==="로그인이 필요합니다."){
-      st.textContent="로그인 필요";
-    }else if(err.message==="관리자 권한이 없습니다."){
-      st.textContent="관리자 권한 없음";
-    }else{
-      st.textContent="관리자 인증 실패";
-    }
-
-    $("dm").textContent=
-      err.message ||
-      "관리자 인증에 실패했습니다.";
+    showAuthError(err?.message||"관리자 인증에 실패했습니다.");
   }
 }
 
-async function start(){
-  await check();
+function showLoginRequired(){
+  content.style.display="none";
+  deny.style.display="block";
+  st.textContent="로그인 필요";
+  $("dm").textContent="관리자 계정으로 로그인해주세요.";
 }
+
+function showNotAdmin(message){
+  content.style.display="none";
+  deny.style.display="block";
+  st.textContent="관리자 권한 없음";
+  $("dm").textContent=message;
+}
+
+function showAuthError(message){
+  content.style.display="none";
+  deny.style.display="block";
+  st.textContent="관리자 인증 실패";
+  $("dm").textContent=message||"관리자 인증에 실패했습니다.";
+}
+
+function start(){
+  if(window.LoveTeamAuth?.client){
+    checkAdmin();
+  }else{
+    setTimeout(start,300);
+  }
+}
+
+window.addEventListener("love-auth-state",function(event){
+  if(event.detail?.session){
+    setTimeout(checkAdmin,500);
+  }else{
+    showLoginRequired();
+  }
+});
 
 async function load(){const s=client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
 function render(){if(!rows.length){list.textContent="등록된 작업 내역이 없습니다.";return}const pages=Math.ceil(rows.length/size),part=rows.slice((page-1)*size,page*size);list.innerHTML=part.map(r=>{let d={};try{d=JSON.parse(r.detail||"{}")}catch(e){d={title:r.detail||"작업 내역",content:""}}return `<div class="row"><div class="rowmain"><div><div class="name">${esc(d.title)}</div><div class="detail">${esc(r.display_name)} · ${r.status==="done"?"작업완료":"진행중"}</div></div><span class="statusText">${r.status==="done"?"작업완료":"진행중"}</span></div><div class="detail">${esc(d.content)}</div><div class="actions"><button class="btn" data-e="${r.id}">수정</button><button class="btn" data-d="${r.id}">삭제</button></div><div class="edit" data-editor="${r.id}"><input class="input" data-n value="${esc(r.display_name)}"><input class="input" data-t value="${esc(d.title)}"><textarea class="textarea" data-c>${esc(d.content)}</textarea><select class="select" data-s><option value="progress" ${r.status==="progress"?"selected":""}>진행중</option><option value="done" ${r.status==="done"?"selected":""}>작업완료</option></select><div class="actions"><button class="btn" data-save>저장</button><button class="btn" data-cancel>취소</button></div></div></div>`}).join("");list.querySelectorAll("[data-e]").forEach(b=>b.onclick=function(){
