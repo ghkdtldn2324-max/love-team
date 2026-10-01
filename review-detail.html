@@ -317,7 +317,7 @@
     }
 
     const result=await client.from('reviews')
-      .select('id,display_name,content,service,created_at')
+      .select('id,display_name,title,content,service,created_at')
       .eq('id',id)
       .maybeSingle();
 
@@ -360,7 +360,7 @@
             '<div class="review-detail-meta"><span>REVIEW</span><span>'+esc(formatDate(row.created_at))+'</span><span>조회수 '+esc(views)+'</span></div>'+
           '</div>'+
         '</div>'+
-        '<div class="review-detail-body"><p>'+esc(row.content)+'</p></div>'+
+        '<div class="review-detail-body"><h1 class="review-detail-title">'+esc(row.title || titleFromText(row.content))+'</h1><p>'+esc(row.content)+'</p></div>'+
         '<div class="review-detail-comments"><span>◯</span>0</div>'+
       '</article>'+
       '<div class="review-detail-login" id="reviewDetailLogin">'+
@@ -479,5 +479,11 @@
   body.lt-review-detail-page .review-detail-page{min-height:calc(100vh - 68px)!important;}
   body.lt-review-detail-page .review-detail-card{background:rgba(255,255,255,.96)!important;}
   body.lt-review-detail-page .review-detail-login{background:rgba(250,249,253,.96)!important;}
+}
+</style>
+<style id="lt-review-detail-title-v1">
+.review-detail-title{margin:0 0 24px;font-size:28px;line-height:1.4;font-weight:900;color:#171722;letter-spacing:-.6px;}
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-title{font-size:21px!important;line-height:1.45!important;margin-bottom:16px!important;letter-spacing:-.4px!important;}
 }
 </style>
