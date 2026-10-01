@@ -2196,9 +2196,13 @@
 
       if(isMobileViewport){
         if(mobileAdminLink){
-          mobileAdminLink.style.setProperty('display','flex','important');
           mobileAdminLink.hidden = false;
           mobileAdminLink.removeAttribute('hidden');
+          mobileAdminLink.classList.add('love-admin-visible');
+          mobileAdminLink.style.setProperty('display','flex','important');
+          mobileAdminLink.style.setProperty('visibility','visible','important');
+          mobileAdminLink.style.setProperty('opacity','1','important');
+          mobileAdminLink.style.setProperty('pointer-events','auto','important');
         }
         return;
       }
