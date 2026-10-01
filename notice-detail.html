@@ -300,7 +300,7 @@ async function loadNotice(){
 
     const notice=result.data;
     titleEl.textContent=notice.title||'';
-    authorEl.textContent=notice.author||'관리자';
+    authorEl.textContent='로브팀';
     dateEl.textContent=formatNoticeDate(notice.published_at);
     viewsEl.textContent='집계 중';
     renderContent(notice.content);
