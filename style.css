@@ -6462,3 +6462,27 @@ select{
     color:rgba(255,255,255,.78)!important;
   }
 }
+
+/* MOBILE SUBPAGE MAIN HEADINGS — keep titles readable over mobile backgrounds */
+@media(max-width:760px){
+  body.lt-notice-page .notice-hero h1,
+  body.lt-faq-page .section-heading h2,
+  body.lt-pricing-page .pricing-hero h2,
+  body.lt-works-page .works-head h1,
+  body.lt-reviews-page .reviews-head h1,
+  body.lt-notice-page .notice-detail-head h1,
+  body.lt-work-detail-page .work-detail-head h1{
+    color:#fff!important;
+    text-shadow:0 3px 16px rgba(0,0,0,.42)!important;
+  }
+
+  body.lt-notice-page .notice-hero h1 *,
+  body.lt-faq-page .section-heading h2 *,
+  body.lt-pricing-page .pricing-hero h2 *,
+  body.lt-works-page .works-head h1 *,
+  body.lt-reviews-page .reviews-head h1 *,
+  body.lt-notice-page .notice-detail-head h1 *,
+  body.lt-work-detail-page .work-detail-head h1 *{
+    color:inherit!important;
+  }
+}
