@@ -19,48 +19,28 @@ const client=window.LoveTeamSupabase;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
-async function getReadySession(){
-  for(let i=0;i<12;i++){
-    try{
-      if(window.LoveTeamSession?.user){
-        return window.LoveTeamSession;
-      }
-
-      if(window.LoveTeamAuth?.getSession){
-        const session=await window.LoveTeamAuth.getSession();
-        if(session?.user){
-          return session;
-        }
-      }else if(client){
-        const {data}=await client.auth.getSession();
-        if(data?.session?.user){
-          window.LoveTeamSession=data.session;
-          return data.session;
-        }
-      }
-    }catch(error){
-      console.warn("work management session retry:",error);
-    }
-
-    await new Promise(resolve=>setTimeout(resolve,500));
-  }
-
-  return null;
-}
-
-async function check(sessionOverride=null){
+async function check(){
   try{
     if(!client){
       throw new Error("인증 시스템을 불러오지 못했습니다.");
     }
 
-    const session=
-      sessionOverride?.user
-        ? sessionOverride
-        : await getReadySession();
+    /*
+      이 페이지는 브라우저의 getSession() 결과만으로 접근을 차단하지 않습니다.
+      실제 로그인 토큰을 사용하는 admin-check Edge Function을 먼저 호출해
+      서버에서 관리자 권한을 확인합니다.
+    */
+    let session=null;
 
-    if(!session?.user){
-      throw new Error("로그인이 필요합니다.");
+    try{
+      if(window.LoveTeamAuth?.getSession){
+        session=await window.LoveTeamAuth.getSession();
+      }else{
+        const result=await client.auth.getSession();
+        session=result?.data?.session||null;
+      }
+    }catch(error){
+      console.warn("로컬 세션 확인 실패:",error);
     }
 
     const adminCheck=await client.functions.invoke("admin-check",{body:{}});
@@ -70,10 +50,19 @@ async function check(sessionOverride=null){
       adminCheck.data?.ok !== true ||
       adminCheck.data?.admin !== true
     ){
-      throw new Error(
+      const message=
         adminCheck.data?.message ||
-        "관리자 권한이 없습니다."
-      );
+        (adminCheck.error?.message||"관리자 권한이 없습니다.");
+
+      if(!session?.user && /unauth|not.?authenticated|로그인|auth/i.test(message)){
+        throw new Error("로그인이 필요합니다.");
+      }
+
+      throw new Error(message);
+    }
+
+    if(session?.user){
+      window.LoveTeamSession=session;
     }
 
     content.style.display="block";
