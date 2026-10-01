@@ -232,6 +232,7 @@
   body.lt-review-detail-page .review-detail-next small{margin-bottom:6px!important;font-size:11px!important;}
   body.lt-review-detail-page .review-detail-next a{font-size:14px!important;line-height:1.5!important;}
   body.lt-review-detail-page .review-detail-actions{padding-top:18px!important;gap:7px!important;}
+  body.lt-review-detail-page .review-detail-login.auth-hidden{display:none!important;}
   body.lt-review-detail-page .review-detail-actions a{min-height:42px!important;font-size:14px!important;border-radius:7px!important;}
 }
 </style>
@@ -357,6 +358,22 @@
         '<a class="secondary" href="reviews.html">목록</a>'+
         '<a href="reviews.html#reviewWriteArea">글쓰기</a>'+
       '</div>';
+
+    const loginBox=document.getElementById('reviewDetailLogin');
+    async function syncLoginBox(){
+      if(!loginBox) return;
+      let session=window.LoveTeamSession || null;
+      try{
+        if(window.LoveTeamAuth?.getSession){
+          session=await window.LoveTeamAuth.getSession();
+        }
+      }catch(_){}
+      loginBox.classList.toggle('auth-hidden',!!session);
+    }
+
+    syncLoginBox();
+    window.addEventListener('love-auth-state',syncLoginBox);
+    window.addEventListener('love-auth-changed',syncLoginBox);
 
     const loginButton=document.getElementById('reviewDetailLoginButton');
     if(loginButton){
