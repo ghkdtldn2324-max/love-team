@@ -400,6 +400,7 @@
   load();
 })();
 </script>
+<a class="lt-mobile-floating-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅으로 이동"><span class="kakao-talk-icon" aria-hidden="true"></span></a>
 </body>
 </html>
 <style id="lt-review-detail-mobile-compact-v5">
@@ -431,4 +432,23 @@
 <style id="lt-review-detail-login-pc-fix-v1">
 /* 로그인 상태에서는 PC에서도 로그인 안내 영역을 표시하지 않음 */
 .review-detail-login.auth-hidden{display:none!important;}
+</style>
+<style id="lt-mobile-floating-kakao-v1">
+@media(max-width:760px){
+  .lt-mobile-floating-kakao{
+    position:fixed!important;right:16px!important;bottom:16px!important;
+    width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    border-radius:50%!important;background:#fee500!important;color:#111!important;
+    text-decoration:none!important;box-shadow:0 8px 22px rgba(0,0,0,.24)!important;
+    z-index:100001!important;-webkit-tap-highlight-color:transparent!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon{
+    width:29px!important;height:25px!important;flex:0 0 29px!important;margin:0!important;
+    border-radius:9px!important;background:#111!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::before{color:#fee500!important;font-size:8px!important;}
+  .lt-mobile-floating-kakao .kakao-talk-icon::after{background:#111!important;left:5px!important;bottom:-4px!important;width:7px!important;height:7px!important;}
+  .lt-mobile-floating-kakao .kakao-talk-icon i{display:none!important;}
+}
 </style>
