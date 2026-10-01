@@ -1002,30 +1002,6 @@ const fallback = [
 ];
 
 
-async function getReviews(){
-  try{
-    const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
-    if(!client) return fallback;
-    const result = await client.from('reviews')
-      .select('display_name,content,service,created_at')
-      .order('created_at',{ascending:false});
-    if(result.error) throw result.error;
-    const rows = result.data || [];
-    if(rows.length === 0) return fallback;
-    return rows.map(function(r){
-      return {
-        name:r.display_name,
-        text:r.content,
-        date:new Date(r.created_at).toLocaleDateString('ko-KR'),
-        service:r.service
-      };
-    });
-  }catch(error){
-    console.error('review load error:',error);
-    return fallback;
-  }
-}
-
 let currentReviewRows = [];
 
 async function getReviews(){
