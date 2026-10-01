@@ -19,7 +19,34 @@ const client=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
-async function load(){const s=client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
+async function load(){
+  list.textContent="작업 내역을 불러오는 중입니다...";
+  try{
+    const s=window.LoveTeamSupabase||window.LoveTeamAuth?.client||client;
+    if(!s){
+      list.textContent="Supabase 연결을 확인하지 못했습니다.";
+      return;
+    }
+    const query=s.from("work_history")
+      .select("id,display_name,detail,status")
+      .order("created_at",{ascending:false});
+    const q=await Promise.race([
+      query,
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error("작업 내역 조회 시간이 초과되었습니다.")),8000))
+    ]);
+    if(q.error){
+      console.error("work-history list error:",q.error);
+      list.textContent="작업 내역을 불러오지 못했습니다.";
+      return;
+    }
+    rows=q.data||[];
+    page=1;
+    render();
+  }catch(err){
+    console.error("work-history list load error:",err);
+    list.textContent=err?.message||"작업 내역을 불러오지 못했습니다.";
+  }
+}
 function render(){if(!rows.length){list.textContent="등록된 작업 내역이 없습니다.";return}const pages=Math.ceil(rows.length/size),part=rows.slice((page-1)*size,page*size);list.innerHTML=part.map(r=>{let d={};try{d=JSON.parse(r.detail||"{}")}catch(e){d={title:r.detail||"작업 내역",content:""}}return `<div class="row"><div class="rowmain"><div><div class="name">${esc(d.title)}</div><div class="detail">${esc(r.display_name)} · ${r.status==="done"?"작업완료":"진행중"}</div></div><span class="statusText">${r.status==="done"?"작업완료":"진행중"}</span></div><div class="detail">${esc(d.content)}</div><div class="actions"><button class="btn" data-e="${r.id}">수정</button><button class="btn" data-d="${r.id}">삭제</button></div><div class="edit" data-editor="${r.id}"><input class="input" data-n value="${esc(r.display_name)}"><input class="input" data-t value="${esc(d.title)}"><textarea class="textarea" data-c>${esc(d.content)}</textarea><select class="select" data-s><option value="progress" ${r.status==="progress"?"selected":""}>진행중</option><option value="done" ${r.status==="done"?"selected":""}>작업완료</option></select><div class="actions"><button class="btn" data-save>저장</button><button class="btn" data-cancel>취소</button></div></div></div>`}).join("");list.querySelectorAll("[data-e]").forEach(b=>b.onclick=function(){
   list.querySelectorAll(".edit.active").forEach(x=>x.classList.remove("active"));
   const editor=list.querySelector(".edit[data-editor=\""+String(b.getAttribute("data-e")||"")+""]");
