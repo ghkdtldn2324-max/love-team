@@ -6486,3 +6486,10 @@ select{
     color:inherit!important;
   }
 }
+
+@media(max-width:760px){
+  .notice-detail-title h1{
+    color:#fff!important;
+    text-shadow:0 2px 14px rgba(0,0,0,.42)!important;
+  }
+}
