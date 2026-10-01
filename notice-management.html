@@ -57,7 +57,7 @@ h1{margin:0;font-size:32px}.sub{margin:8px 0 0;color:#999;line-height:1.6}
 <h2 id="formTitle">새 공지 등록</h2>
 <div class="form">
 <input id="title" maxlength="120" placeholder="공지 제목">
-<div class="row"><input id="publishedAt" type="date"><input id="author" maxlength="30" value="관리자" placeholder="작성자"></div>
+<div class="row"><input id="publishedAt" type="date"><input id="author" maxlength="30" value="로브팀" placeholder="작성자"></div>
 <input id="summary" maxlength="300" placeholder="목록에 표시할 요약">
 <textarea id="content" maxlength="10000" placeholder="공지사항 본문을 입력하세요."></textarea>
 <div class="form-actions"><button class="btn primary" id="save" type="button">공지 등록</button><button class="btn" id="cancel" type="button" style="display:none">수정 취소</button></div>
@@ -86,7 +86,7 @@ async function ensureAdmin(){
  const r=await client.functions.invoke('admin-check',{body:{}});
  if(r.error||r.data?.admin!==true)throw new Error(r.data?.message||'관리자 권한이 없습니다.');
 }
-function resetForm(){editingId=null;$('formTitle').textContent='새 공지 등록';$('save').textContent='공지 등록';$('cancel').style.display='none';$('title').value='';$('summary').value='';$('content').value='';$('author').value='관리자';$('publishedAt').value=new Date().toISOString().slice(0,10);}
+function resetForm(){editingId=null;$('formTitle').textContent='새 공지 등록';$('save').textContent='공지 등록';$('cancel').style.display='none';$('title').value='';$('summary').value='';$('content').value='';$('author').value='로브팀';$('publishedAt').value=new Date().toISOString().slice(0,10);}
 function startEdit(n){editingId=n.id;$('formTitle').textContent='공지 수정';$('save').textContent='수정 저장';$('cancel').style.display='inline-flex';$('title').value=n.title||'';$('summary').value=n.summary||'';$('content').value=n.content||'';$('author').value=n.author||'관리자';$('publishedAt').value=n.published_at||'';window.scrollTo({top:0,behavior:'smooth'});}
 async function load(){
  $('list').innerHTML='<div class="empty">공지사항을 불러오는 중입니다.</div>';
@@ -106,7 +106,7 @@ async function load(){
   $('list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';
  }
 }
-$('save').onclick=async()=>{ $('message').textContent='처리 중...'; try{const body={action:editingId?'update':'create',title:$('title').value,summary:$('summary').value,content:$('content').value,author:$('author').value,published_at:$('publishedAt').value};if(editingId)body.id=editingId;const r=await call(body);$('message').textContent=r.message;resetForm();await load();}catch(e){$('message').textContent=e.message;}};
+$('save').onclick=async()=>{ $('message').textContent='처리 중...'; try{const body={action:editingId?'update':'create',title:$('title').value,summary:$('summary').value,content:$('content').value,author:'로브팀',published_at:$('publishedAt').value};if(editingId)body.id=editingId;const r=await call(body);$('message').textContent=r.message;resetForm();await load();}catch(e){$('message').textContent=e.message;}};
 $('cancel').onclick=resetForm;
 $('list').onclick=async e=>{const edit=e.target.closest('[data-edit]');const del=e.target.closest('[data-delete]');if(edit){const n=(window.noticeRows||[]).find(x=>String(x.id)===edit.dataset.edit);if(n)startEdit(n);return;}if(del){const id=Number(del.dataset.delete);if(!confirm('이 공지사항을 삭제할까요?'))return;del.disabled=true;try{const r=await call({action:'delete',id});$('message').textContent=r.message;await load();}catch(err){alert(err.message);del.disabled=false;}}};
 async function start(){try{await ensureAdmin();resetForm();await load();}catch(e){$('message').textContent=e.message;$('list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';}}
