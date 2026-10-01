@@ -22,28 +22,27 @@ function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").
 async function check(){
   try{
     let session=null;
-
-    for(let attempt=0;attempt<5;attempt++){
-      try{
-        if(window.LoveTeamAuth?.getSession){
-          session=await window.LoveTeamAuth.getSession();
-        }else{
-          const sessionResult=await client.auth.getSession();
-          session=sessionResult?.data?.session||null;
-        }
-      }catch(_){
-        session=null;
-      }
-
-      if(session?.user) break;
-      await new Promise(resolve=>setTimeout(resolve,350));
+    if(window.LoveTeamAuth?.getSession){
+      session=await window.LoveTeamAuth.getSession();
+    }else{
+      const sessionResult=await client.auth.getSession();
+      session=sessionResult?.data?.session||null;
     }
 
-    if(!session?.user) throw new Error("로그인이 필요합니다.");
+    if(!session?.user){
+      throw new Error("로그인이 필요합니다.");
+    }
 
     const adminCheck=await client.functions.invoke("admin-check",{body:{}});
-    if(adminCheck.error||adminCheck.data?.ok!==true||adminCheck.data?.admin!==true){
-      throw new Error(adminCheck.data?.message||"관리자 권한이 없습니다.");
+    if(
+      adminCheck.error ||
+      adminCheck.data?.ok !== true ||
+      adminCheck.data?.admin !== true
+    ){
+      throw new Error(
+        adminCheck.data?.message ||
+        "관리자 권한이 없습니다."
+      );
     }
 
     content.style.display="block";
@@ -54,8 +53,13 @@ async function check(){
     console.error("work management auth error:",err);
     content.style.display="none";
     deny.style.display="block";
-    st.textContent=err.message==="로그인이 필요합니다."?"로그인 필요":"관리자 권한 없음";
-    $("dm").textContent=err.message||"관리자 인증에 실패했습니다.";
+    st.textContent=
+      err.message==="로그인이 필요합니다."
+        ?"로그인 필요"
+        :"관리자 권한 없음";
+    $("dm").textContent=
+      err.message ||
+      "관리자 인증에 실패했습니다.";
   }
 }
 
@@ -148,5 +152,9 @@ $("create").onclick=async()=>{
     b.disabled=false;
     b.textContent="작업 내역 등록";
   }
-};window.addEventListener("love-auth-state",e=>{if(e.detail?.session)check();});if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",check);}else{check();}const mb=$("mb"),mm=$("mm");mb.onclick=()=>{const o=mm.classList.toggle("active");mb.textContent=o?"✕":"☰"};})();
+};if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",check,{once:true});
+}else{
+  check();
+}const mb=$("mb"),mm=$("mm");mb.onclick=()=>{const o=mm.classList.toggle("active");mb.textContent=o?"✕":"☰"};})();
 </script></body></html>
