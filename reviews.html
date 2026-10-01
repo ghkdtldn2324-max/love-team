@@ -1310,6 +1310,8 @@
   ></div>
 
 
+  <nav id="reviewPagination" class="review-pagination" aria-label="후기 페이지 이동"></nav>
+
   <p class="reviews-note">
     ※ 고객 이름은 개인정보 보호를 위해 일부만 공개됩니다.
   </p>
@@ -1394,6 +1396,8 @@ const fallback = [
 
 
 let currentReviewRows = [];
+let currentReviewPage = 1;
+const REVIEWS_PER_PAGE = 10;
 
 async function getReviews(){
   try{
@@ -1451,19 +1455,49 @@ function escReview(value){
   });
 }
 
+function renderPagination(total){
+  const pagination=document.getElementById('reviewPagination');
+  if(!pagination) return;
+  const pageCount=Math.ceil(total/REVIEWS_PER_PAGE);
+  if(pageCount<=1){
+    pagination.innerHTML='';
+    return;
+  }
+  let html='';
+  for(let i=1;i<=pageCount;i++){
+    html+='<button type="button" class="'+(i===currentReviewPage?'active':'')+'" data-review-page="'+i+'">'+i+'</button>';
+  }
+  pagination.innerHTML=html;
+  pagination.querySelectorAll('[data-review-page]').forEach(function(button){
+    button.addEventListener('click',function(){
+      currentReviewPage=Number(button.dataset.reviewPage)||1;
+      renderReviewRows(window.currentFilteredReviews || currentReviewRows);
+      const top=document.querySelector('.review-mobile-board-title') || document.getElementById('reviewList');
+      if(top) top.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
 function renderReviewRows(reviews){
   const list = document.getElementById('reviewList');
   const count = document.getElementById('reviewMobileCount');
   if(!list) return;
 
+  window.currentFilteredReviews=reviews;
   if(count) count.textContent = String(currentReviewRows.length || reviews.length);
 
   if(!reviews.length){
     list.innerHTML='<div class="review-mobile-empty">검색 결과가 없습니다.</div>';
+    renderPagination(0);
     return;
   }
 
-  list.innerHTML = reviews.map(function(r){
+  const pageCount=Math.ceil(reviews.length/REVIEWS_PER_PAGE);
+  if(currentReviewPage>pageCount) currentReviewPage=pageCount;
+  const start=(currentReviewPage-1)*REVIEWS_PER_PAGE;
+  const pageRows=reviews.slice(start,start+REVIEWS_PER_PAGE);
+
+  list.innerHTML = pageRows.map(function(r){
     const title=reviewTitle(r.text);
     const meta='<span>'+escReview(r.name)+'</span>'+
       '<span>'+escReview(r.date)+'</span>'+
@@ -1481,9 +1515,13 @@ function renderReviewRows(reviews){
       '<div class="review-mobile-row-meta">'+meta+'</div>'+
     '</article>';
   }).join('');
+
+  renderPagination(reviews.length);
 }
 async function render(){
   currentReviewRows = await getReviews();
+  currentReviewPage = 1;
+  window.currentFilteredReviews = currentReviewRows;
   renderReviewRows(currentReviewRows);
 }
 
@@ -1499,9 +1537,11 @@ render();
     input.addEventListener('input',function(){
       const q=input.value.trim().toLowerCase();
       if(!q){
+        currentReviewPage=1;
         renderReviewRows(currentReviewRows);
         return;
       }
+      currentReviewPage=1;
       renderReviewRows(currentReviewRows.filter(function(r){
         return [r.name,r.text,r.service,r.date].join(' ').toLowerCase().includes(q);
       }));
@@ -2300,5 +2340,15 @@ render();
   body.lt-reviews-page .review-mobile-row{padding:11px 7px 12px!important;}
   body.lt-reviews-page .review-mobile-row-title{font-size:13px!important;line-height:1.4!important;margin-bottom:5px!important;color:#44444d!important;}
   body.lt-reviews-page .review-mobile-row-meta{font-size:10px!important;line-height:1.3!important;}
+}
+</style>
+
+<style id="lt-reviews-pagination-v1">
+.review-pagination{display:flex;justify-content:center;align-items:center;gap:7px;margin:24px 0 0;flex-wrap:wrap;}
+.review-pagination button{width:36px;height:36px;border:1px solid #ddd9e8;border-radius:7px;background:#fff;color:#666;cursor:pointer;font-size:13px;font-weight:700;}
+.review-pagination button.active{border-color:#7866e8;background:linear-gradient(135deg,#6b78ff,#9b55e8);color:#fff;}
+@media(max-width:760px){
+  body.lt-reviews-page .review-pagination{gap:5px;margin:18px 0 0;}
+  body.lt-reviews-page .review-pagination button{width:32px;height:32px;border-radius:6px;font-size:12px;}
 }
 </style>
