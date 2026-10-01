@@ -6493,3 +6493,14 @@ select{
     text-shadow:0 2px 14px rgba(0,0,0,.42)!important;
   }
 }
+
+
+/* MOBILE — remove the dashed line directly under the header */
+@media(max-width:760px){
+  .page-divider{
+    display:none!important;
+    height:0!important;
+    border:0!important;
+    background:transparent!important;
+  }
+}
