@@ -6275,3 +6275,103 @@ select{
   .work-detail-content{padding-top:22px;font-size:12px;line-height:1.9}
   .work-detail-back{margin-top:28px}
 }
+
+
+/* WORKS — FINAL BOARD COLUMNS / 20261001 */
+.works-page .work-post-board{
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.works-page .work-post-header,
+.works-page .work-post{
+  display:grid;
+  grid-template-columns:72px 96px minmax(260px,1fr) 150px 140px 90px;
+  align-items:center;
+}
+.works-page .work-post-header{
+  min-height:42px;
+  padding:0 24px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  background:rgba(8,8,15,.55);
+  color:rgba(255,255,255,.38);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1.8px;
+}
+.works-page .work-post-header span:nth-child(3){padding-left:24px}
+.works-page .work-post{
+  grid-template-columns:72px 96px minmax(260px,1fr) 150px 140px 90px!important;
+}
+.works-page .work-post-admin,
+.works-page .work-post-date,
+.works-page .work-post-views{
+  color:rgba(255,255,255,.48);
+  font-size:10px;
+  white-space:nowrap;
+}
+.works-page .work-post-views{
+  text-align:right;
+  color:rgba(255,255,255,.62);
+  font-variant-numeric:tabular-nums;
+}
+.works-page .work-post-title{padding:0 24px!important}
+.works-page .work-post-meta{display:none!important}
+@media(max-width:760px){
+  .works-page .work-post-board{
+    border-top:0;
+  }
+  .works-page .work-post-header{
+    display:none;
+  }
+  .works-page .work-post{
+    grid-template-columns:38px 76px minmax(0,1fr)!important;
+    grid-template-rows:auto auto;
+    gap:0;
+    min-height:0!important;
+    padding:14px 12px 13px!important;
+  }
+  .works-page .work-post-no{
+    grid-row:1;
+    font-size:9px;
+  }
+  .works-page .work-post-status{
+    grid-row:1;
+    align-self:start;
+    font-size:8px;
+    padding:5px 7px;
+  }
+  .works-page .work-post-title{
+    grid-row:1;
+    padding:0 0 0 8px!important;
+    align-self:start;
+  }
+  .works-page .work-post-title a{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:12px!important;
+  }
+  .works-page .work-post-admin{
+    grid-column:2;
+    grid-row:2;
+    padding-top:9px;
+    font-size:8px;
+  }
+  .works-page .work-post-date{
+    grid-column:3;
+    grid-row:2;
+    padding:9px 0 0 8px;
+    font-size:8px;
+  }
+  .works-page .work-post-views{
+    grid-column:1 / 4;
+    grid-row:2;
+    justify-self:end;
+    padding-top:9px;
+    font-size:8px;
+  }
+  .works-page .work-post-views::before{
+    content:"조회 ";
+    color:rgba(255,255,255,.3);
+  }
+}
