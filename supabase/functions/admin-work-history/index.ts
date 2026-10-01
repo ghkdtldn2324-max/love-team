@@ -93,7 +93,7 @@ export default {
           });
         }
 
-        const displayName = "로브팀";
+        const displayName = String(body?.display_name || "").trim();
         const detail = String(body?.detail || "").trim();
         const status = String(body?.status || "").trim();
 
