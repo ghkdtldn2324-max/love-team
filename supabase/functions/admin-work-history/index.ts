@@ -37,11 +37,31 @@ export default {
         const body = await req.json().catch(() => ({}));
         const action = String(body?.action || "").trim();
 
-        if (!["create", "update", "delete"].includes(action)) {
+        if (!["list", "create", "update", "delete"].includes(action)) {
           return Response.json(
             { ok: false, message: "올바른 작업 요청이 아닙니다." },
             { status: 400 }
           );
+        }
+
+        if (action === "list") {
+          const { data, error } = await ctx.supabaseAdmin
+            .from("work_history")
+            .select("id,display_name,detail,status,created_at,updated_at")
+            .order("created_at", { ascending: false });
+
+          if (error) {
+            console.error("work list error:", error.message);
+            return Response.json(
+              { ok: false, message: "작업 내역을 불러오지 못했습니다." },
+              { status: 500 }
+            );
+          }
+
+          return Response.json({
+            ok: true,
+            works: data || []
+          });
         }
 
         if (action === "delete") {
