@@ -39,13 +39,11 @@ async function checkAdmin(){
 
     if(!error && data?.ok===true && data?.admin===true){
       st.textContent="관리자 인증 성공";
-      return;
+    }else{
+      console.warn("work-management admin-check failed:",error||data);
+      st.textContent="작업 내역 관리";
     }
-
-    // 인증 실패 시에도 페이지는 열어둔다.
-    // CRUD 요청은 서버의 admin-work-history에서 거부되므로 보안상 권한 우회가 아니다.
-    console.warn("work-management admin-check failed:",error||data);
-    st.textContent="관리자 인증을 확인하지 못했습니다. 작업 저장 시 서버에서 다시 확인합니다.";
+    return;
   }catch(err){
     console.error("work management auth error:",err);
     st.textContent="관리자 인증을 확인하지 못했습니다. 작업 저장 시 서버에서 다시 확인합니다.";
