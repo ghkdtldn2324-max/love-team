@@ -22,13 +22,6 @@ function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").
 async function load(){
   list.textContent="작업 내역을 불러오는 중입니다...";
   try{
-    const s=window.LoveTeamSupabase||window.LoveTeamAuth?.client||client;
-    if(!s){
-      list.textContent="Supabase 연결을 확인하지 못했습니다.";
-      return;
-    }
-
-    // 다른 관리자 페이지와 동일하게 세션을 먼저 동기화한 뒤 목록을 조회합니다.
     if(window.LoveTeamAuth?.getSession){
       const session=await window.LoveTeamAuth.getSession();
       if(!session?.user){
@@ -37,19 +30,18 @@ async function load(){
       }
     }
 
-    const query=s.from("work_history")
-      .select("id,display_name,detail,status,created_at")
-      .order("created_at",{ascending:false});
-    const q=await Promise.race([
-      query,
-      new Promise((_,reject)=>setTimeout(()=>reject(new Error("작업 내역 조회 시간이 초과되었습니다.")),8000))
-    ]);
+    const q=await client.functions.invoke("admin-work-history",{body:{action:"list"}});
     if(q.error){
-      console.error("work-history list error:",q.error);
-      list.textContent="작업 내역을 불러오지 못했습니다.";
+      console.error("admin-work-history list error:",q.error);
+      const message=q.data?.message||q.error.message||"작업 내역을 불러오지 못했습니다.";
+      list.textContent=message;
       return;
     }
-    rows=q.data||[];
+    if(!q.data?.ok){
+      list.textContent=q.data?.message||"작업 내역을 불러오지 못했습니다.";
+      return;
+    }
+    rows=q.data.works||[];
     page=1;
     render();
   }catch(err){
