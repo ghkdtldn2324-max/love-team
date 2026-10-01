@@ -5618,3 +5618,37 @@ select{
     height:0!important;
   }
 }
+
+
+/* PC 서브페이지 헤더 최종 정리: 경계선 제거 + 스크롤 시 콘텐츠 비침 방지 */
+@media(min-width:761px){
+  body.lt-notice-page .header,
+  body.lt-faq-page .header,
+  body.lt-pricing-page .header,
+  body.lt-works-page .header,
+  body.lt-reviews-page .header{
+    z-index:9999!important;
+    border:0!important;
+    border-bottom:0!important;
+    outline:0!important;
+  }
+  body.lt-notice-page .page-divider,
+  body.lt-faq-page .page-divider,
+  body.lt-pricing-page .page-divider,
+  body.lt-works-page .page-divider,
+  body.lt-reviews-page .page-divider{
+    display:none!important;
+    visibility:hidden!important;
+    border:0!important;
+    background:transparent!important;
+  }
+  body.lt-notice-page .header.page-scrolled,
+  body.lt-faq-page .header.page-scrolled,
+  body.lt-pricing-page .header.page-scrolled,
+  body.lt-works-page .header.page-scrolled,
+  body.lt-reviews-page .header.page-scrolled{
+    background:rgba(7,7,10,.94)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+  }
+}
