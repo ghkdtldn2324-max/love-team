@@ -1065,7 +1065,7 @@ function renderReviewRows(reviews){
   const count = document.getElementById('reviewMobileCount');
   if(!list) return;
 
-  if(count) count.textContent = String(reviews.length);
+  if(count) count.textContent = String(currentReviewRows.length || reviews.length);
 
   if(!reviews.length){
     list.innerHTML='<div class="review-mobile-empty">검색 결과가 없습니다.</div>';
@@ -1255,7 +1255,9 @@ render();
       if(loginNotice){
 
         loginNotice.style.display =
-          'block';
+          window.matchMedia('(max-width:760px)').matches
+            ? 'none'
+            : 'block';
 
       }
 
