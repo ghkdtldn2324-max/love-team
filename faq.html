@@ -132,7 +132,8 @@
 강사님의 일정과 예약 상황을 확인한 뒤 가능한 범위에서 희망하시는 강사님으로 배정해드립니다.</p></div></div></div>
 <div class="faq-item"><button class="question" type="button" data-target="a6"><span class="qmark">Q.</span><span class="qtext">진행 시간과 세션 일정은 어떻게 맞추나요?</span><span class="toggle">+</span></button><div id="a6" class="answer"><div class="answer-inner"><p><strong class="amark">A.</strong> 상담은 24시간 가능하며 세션 시간도 일정에 맞춰 조율할 수 있습니다.
 원하시는 시간대를 말씀해주시면 가능한 일정에 맞춰 예약을 도와드립니다.</p></div></div></div>
-</div></main><footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script src="script.js?v=20260930-11"></script><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20261001-26"></script>
+</div></main><a class="lt-mobile-floating-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅으로 이동"><span class="kakao-talk-icon" aria-hidden="true"></span></a>
+<footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer><script src="script.js?v=20260930-11"></script><script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20261001-26"></script>
 <script>
 (function(){
   var header=document.querySelector('.header');
@@ -142,4 +143,47 @@
   sync();
 })();
 </script>
-</body></html>
+</body><style id="lt-mobile-floating-kakao-v1">
+@media(max-width:760px){
+  .lt-mobile-floating-kakao{
+    position:fixed!important;
+    right:16px!important;
+    bottom:16px!important;
+    width:54px!important;
+    height:54px!important;
+    min-width:54px!important;
+    min-height:54px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border-radius:50%!important;
+    background:#fee500!important;
+    color:#111!important;
+    text-decoration:none!important;
+    box-shadow:0 8px 22px rgba(0,0,0,.24)!important;
+    z-index:100001!important;
+    -webkit-tap-highlight-color:transparent!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon{
+    width:29px!important;
+    height:25px!important;
+    flex:0 0 29px!important;
+    margin:0!important;
+    border-radius:9px!important;
+    background:#111!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::before{
+    color:#fee500!important;
+    font-size:8px!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::after{
+    background:#111!important;
+    left:5px!important;
+    bottom:-4px!important;
+    width:7px!important;
+    height:7px!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon i{display:none!important;}
+}
+</style>
+</html>
