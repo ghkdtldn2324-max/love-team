@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>LOVE TEAM | 작업 내역</title>
-<link rel="stylesheet" href="style.css?v=20261001-works-cache-final">
+<link rel="stylesheet" href="style.css?v=20261001-works-posts-final">
 <style>
 /* 작업 내역 모바일 가독성 개선 */
 @media(max-width:600px){
@@ -197,7 +197,7 @@
 <div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 고객센터</a></div>
 </header>
 <div class="page-divider" aria-hidden="true"></div>
-<main class="works-page"><div class="works-wrap"><div class="works-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>작업 내역</h1><p>진행 중인 작업과 완료된 작업을 익명으로 안내합니다.</p></div><div id="workList" class="work-status-list" aria-label="작업 내역 목록"></div><p class="works-note">※ 고객 이름은 일부만 공개되며, 1:1 강의 작업은 작업 내역에 표시하지 않습니다.</p></div></main>
+<main class="works-page"><div class="works-wrap"><div class="works-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>작업 내역</h1><p>로브팀의 진행 및 완료 작업을 게시글 형태로 확인하실 수 있습니다.</p></div><div id="workList" class="work-post-list"></div></div></main>
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
 <script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -205,69 +205,21 @@
 <script src="script.js?v=20260930-11"></script>
 <script>
 (function(){
-  const list=document.getElementById("workList");
-  const fallback=[
-    {display_name:"Gh***",detail:"승당 3판 진행 중",status:"progress"},
-    {display_name:"Ab***",detail:"플레티넘 → 다이아몬드",status:"done"},
-    {display_name:"Lo***",detail:"듀오 5판 진행 중",status:"progress"},
-    {display_name:"Ki***",detail:"배치고사 4판 진행 중",status:"progress"},
-    {display_name:"Mi***",detail:"승당 7판 완료",status:"done"},
-    {display_name:"Se***",detail:"골드 → 플래티넘",status:"done"}
-  ];
-
-  function escapeHtml(value){
-    return String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-  }
-
-  function render(rows){
-    list.innerHTML=(rows||[]).map(function(x){
-      return '<div class="work-status-row"><div class="work-left"><span class="work-user">'+
-        escapeHtml(x.display_name)+' 님</span><span class="work-detail">'+
-        escapeHtml(x.detail)+'</span></div><span class="work-status '+
-        (x.status==="done"?"done":"progress")+'">'+
-        (x.status==="done"?"완료":"진행 중")+
-        '</span></div>';
-    }).join("");
-
-    if(!rows || !rows.length){
-      list.innerHTML='<div class="work-status-row"><div class="work-left"><span class="work-detail">현재 등록된 작업 내역이 없습니다.</span></div></div>';
-    }
-  }
-
-  async function load(){
-    try{
-      if(!window.supabase || typeof window.supabase.createClient!=="function"){
-        render(fallback);
-        return;
-      }
-
-      const client=window.LoveTeamAuth && window.LoveTeamAuth.client;
-      if(!client){
-        render(fallback);
-        return;
-      }
-
-      const {data,error}=await client
-        .from("work_history")
-        .select("display_name,detail,status,created_at")
-        .order("created_at",{ascending:false});
-
-      if(error){
-        console.error("work_history 조회 오류:",error);
-        render(fallback);
-        return;
-      }
-
-      render(data || []);
-    }catch(error){
-      console.error("작업 내역 불러오기 오류:",error);
-      render(fallback);
-    }
-  }
-
-  load();
+ const list=document.getElementById("workList");
+ const esc=v=>String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+ const parse=v=>{try{return JSON.parse(v||"{}")}catch(e){return {title:v||"작업 내역",content:""}}};
+ const fmt=v=>{const d=new Date(v);return v&&!Number.isNaN(d.getTime())?d.toLocaleDateString("ko-KR"):"-"};
+ async function load(){
+  const client=window.LoveTeamAuth&&window.LoveTeamAuth.client;
+  if(!client){list.innerHTML="<div class=\"work-empty\">작업 내역을 불러올 수 없습니다.</div>";return;}
+  const q=await client.from("work_history").select("id,display_name,detail,status,created_at").order("created_at",{ascending:false});
+  if(q.error){list.innerHTML="<div class=\"work-empty\">작업 내역을 불러오지 못했습니다.</div>";return;}
+  const rows=q.data||[];
+  list.innerHTML=rows.length?rows.map((r,i)=>{const d=parse(r.detail);return "<article class=\"work-post\"><span class=\"work-post-no\">"+(rows.length-i)+"</span><span class=\"work-post-status "+(r.status==="done"?"done":"progress")+"\">"+(r.status==="done"?"작업완료":"진행중")+"</span><div class=\"work-post-title\">"+esc(d.title)+"</div><div class=\"work-post-meta\"><span>"+esc(r.display_name||"관리자")+"</span><span>"+fmt(r.created_at)+"</span><span>조회수 관리</span></div><div class=\"work-post-body\">"+esc(d.content)+"</div></article>"}).join(""):"<div class=\"work-empty\">등록된 작업 내역이 없습니다.</div>";
+ }
+ load();
 })();
-</script>
+</script>>
 
 <script>
 (function(){
