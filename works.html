@@ -215,7 +215,7 @@
   const q=await client.from("work_history").select("id,display_name,detail,status,created_at").order("created_at",{ascending:false});
   if(q.error){list.innerHTML="<div class=\"work-empty\">작업 내역을 불러오지 못했습니다.</div>";return;}
   const rows=q.data||[];
-  list.innerHTML=rows.length?rows.map((r,i)=>{const d=parse(r.detail);return "<article class=\"work-post\"><span class=\"work-post-no\">"+(rows.length-i)+"</span><span class=\"work-post-status "+(r.status==="done"?"done":"progress")+"\">"+(r.status==="done"?"작업완료":"진행중")+"</span><div class=\"work-post-title\">"+esc(d.title)+"</div><div class=\"work-post-meta\"><span>"+esc(r.display_name||"관리자")+"</span><span>"+fmt(r.created_at)+"</span><span>조회수 관리</span></div><div class=\"work-post-body\">"+esc(d.content)+"</div></article>"}).join(""):"<div class=\"work-empty\">등록된 작업 내역이 없습니다.</div>";
+  list.innerHTML=rows.length?rows.map((r,i)=>{const d=parse(r.detail);return "<article class=\"work-post\"><span class=\"work-post-no\">"+(rows.length-i)+"</span><span class=\"work-post-status "+(r.status==="done"?"done":"progress")+"\">"+(r.status==="done"?"작업완료":"진행중")+"</span><div class=\"work-post-title\">"+esc(d.title)+"</div><div class=\"work-post-meta\"><span>"+esc(r.display_name||"관리자")+"</span><span>"+fmt(r.created_at)+"</span><span>조회 0</span></div><div class=\"work-post-body\">"+esc(d.content)+"</div></article>"}).join(""):"<div class=\"work-empty\">등록된 작업 내역이 없습니다.</div>";
  }
  load();
 })();
