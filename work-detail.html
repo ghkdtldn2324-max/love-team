@@ -198,8 +198,25 @@
     }
   }
   load();
-  const mb=document.getElementById("mb"),mm=document.getElementById("mm");
-  if(mb&&mm)mb.onclick=()=>{const o=mm.classList.toggle("active");mb.textContent=o?"✕":"☰"};
+  const mb=document.getElementById("mobileMenuBtn"),mm=document.getElementById("mobileMenu");
+  if(mb&&mm){
+    mb.addEventListener("click",function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const o=mm.classList.toggle("active");
+      mb.textContent=o?"✕":"☰";
+      mb.setAttribute("aria-label",o?"메뉴 닫기":"메뉴 열기");
+    });
+    mm.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click",function(){
+        if(a.id!=="mobileOpenAuth"){
+          mm.classList.remove("active");
+          mb.textContent="☰";
+          mb.setAttribute("aria-label","메뉴 열기");
+        }
+      });
+    });
+  }
 })();
 </script>
 <script>
