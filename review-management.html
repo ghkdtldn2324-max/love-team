@@ -61,6 +61,84 @@ h1{margin:0;font-size:32px}
 /* MOBILE LOGO CACHE BUST 20261001 */
 @media(max-width:700px){.header .logo{padding-left:0!important;margin-left:0!important}.header .logo-image{transform:translate3d(-12px,0,0)!important}}
 </style>
+
+<style id="lt-review-management-mobile-board-v1">
+@media(max-width:700px){
+  body{background:#fff!important;color:#171722!important;}
+  .header{background:#fff!important;border-bottom:1px solid #e5e5e5!important;}
+  .wrap{padding:28px 16px 70px!important;}
+  .head{margin-bottom:22px!important;}
+  h1{font-size:29px!important;color:#171722!important;font-weight:500!important;letter-spacing:-1.2px!important;}
+  .sub{color:#888!important;font-size:13px!important;}
+  .actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;}
+  .btn{min-height:46px!important;border:0!important;border-radius:7px!important;background:linear-gradient(135deg,#6b78ff,#9b55e8)!important;color:#fff!important;}
+  .count{
+    margin:12px 0 16px!important;
+    font-size:15px!important;
+    color:#777!important;
+  }
+  .list{gap:0!important;border-top:2px solid #dedede!important;}
+  .card{
+    padding:22px 12px 24px!important;
+    border:0!important;
+    border-bottom:2px solid #dedede!important;
+    border-radius:0!important;
+    background:#fff!important;
+  }
+  .mobile-review-title{
+    margin:0 0 10px!important;
+    font-size:19px!important;
+    line-height:1.5!important;
+    font-weight:500!important;
+    color:#171722!important;
+  }
+  .mobile-review-meta{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    color:#707070!important;
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+  .mobile-review-meta span+span::before{
+    content:""!important;
+    display:inline-block!important;
+    width:1px!important;
+    height:12px!important;
+    margin:0 10px!important;
+    background:#d5d5d5!important;
+    vertical-align:-2px!important;
+  }
+  .mobile-review-service{
+    display:inline-flex!important;
+    margin-top:10px!important;
+    padding:4px 8px!important;
+    border-radius:999px!important;
+    background:#f1edff!important;
+    color:#6d55d7!important;
+    font-size:11px!important;
+    font-weight:800!important;
+  }
+  .mobile-review-actions{
+    display:flex!important;
+    justify-content:flex-end!important;
+    margin-top:14px!important;
+  }
+  .mobile-review-actions .delete{
+    min-height:40px!important;
+    padding:0 15px!important;
+    border-radius:7px!important;
+    background:#f5efff!important;
+    border:1px solid #d8cef8!important;
+    color:#6b4fd0!important;
+  }
+  .empty,.error{
+    border:1px solid #e5e5e5!important;
+    border-radius:10px!important;
+    background:#fff!important;
+    color:#888!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
@@ -126,16 +204,52 @@ async function load(){
 
   const data=await callAdmin({action:'list'});
   const rows=Array.isArray(data.reviews)?data.reviews:[];
+
+  let viewMap={};
+  try{
+    const ids=rows.map(function(r){return r.id;}).filter(Boolean);
+    if(ids.length){
+      const viewResult=await client.from('review_view_counts')
+        .select('review_id,view_count')
+        .in('review_id',ids);
+      if(!viewResult.error){
+        (viewResult.data||[]).forEach(function(v){
+          viewMap[v.review_id]=Number(v.view_count)||0;
+        });
+      }
+    }
+  }catch(_){}
+
   count.textContent='등록 후기 '+rows.length+'개';
   if(!rows.length){
    list.innerHTML='<div class="empty">등록된 후기가 없습니다.</div>';
    return;
   }
+
+  const isMobile=window.matchMedia('(max-width:700px)').matches;
   list.innerHTML=rows.map(function(r){
    const stars='★'.repeat(Math.max(0,Math.min(5,Number(r.stars)||0)));
+   const date=esc(new Date(r.created_at).toLocaleDateString('ko-KR'));
+   const views=viewMap[r.id]||0;
+   const title=String(r.content||'').trim().replace(/\s+/g,' ');
+   const shortTitle=title.length>54 ? title.slice(0,54)+'…' : title;
+
+   if(isMobile){
+     return '<article class="card">'+
+       '<p class="mobile-review-title">'+esc(shortTitle)+'</p>'+
+       '<div class="mobile-review-meta">'+
+         '<span>'+esc(r.display_name)+'</span>'+
+         '<span>'+date+'</span>'+
+         '<span>조회수 '+esc(views)+'</span>'+
+       '</div>'+
+       '<span class="mobile-review-service">'+esc(r.service||'서비스')+'</span>'+
+       '<div class="mobile-review-actions"><button class="delete" data-id="'+esc(r.id)+'">삭제</button></div>'+
+     '</article>';
+   }
+
    return '<article class="card">'+
     '<div class="top"><div><span class="user">'+esc(r.display_name)+'</span><span class="stars">'+stars+'</span></div>'+
-    '<span class="date">'+esc(new Date(r.created_at).toLocaleDateString('ko-KR'))+'</span></div>'+
+    '<span class="date">'+date+'</span></div>'+
     '<p class="text">'+esc(r.content)+'</p>'+
     '<div class="meta"><span class="service">'+esc(r.service)+'</span>'+
     '<button class="delete" data-id="'+esc(r.id)+'">삭제</button></div>'+
