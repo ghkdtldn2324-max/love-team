@@ -27,8 +27,18 @@ async function load(){
       list.textContent="Supabase 연결을 확인하지 못했습니다.";
       return;
     }
+
+    // 다른 관리자 페이지와 동일하게 세션을 먼저 동기화한 뒤 목록을 조회합니다.
+    if(window.LoveTeamAuth?.getSession){
+      const session=await window.LoveTeamAuth.getSession();
+      if(!session?.user){
+        list.textContent="관리자 계정으로 로그인해주세요.";
+        return;
+      }
+    }
+
     const query=s.from("work_history")
-      .select("id,display_name,detail,status")
+      .select("id,display_name,detail,status,created_at")
       .order("created_at",{ascending:false});
     const q=await Promise.race([
       query,
