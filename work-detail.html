@@ -97,7 +97,7 @@
       if(q.error||!q.data){el.innerHTML='<div class="work-detail-empty">작업 내역을 찾을 수 없습니다.</div>';return}
       const r=q.data,d=parse(r.detail);
       let views=0;
-      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>상태 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>관리자 <strong>'+esc(r.display_name||"관리자")+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article><section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a>';
+      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>상태 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>관리자 <strong>'+esc(r.display_name||"관리자")+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article><section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section><div class="work-detail-actions"><a class="work-detail-consult" href="https://open.kakao.com/" target="_blank" rel="noopener">💬 상담 바로가기</a><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
 
       try{
         const viewResult=await client.rpc("increment_work_view",{p_work_id:r.id});
