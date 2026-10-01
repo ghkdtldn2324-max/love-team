@@ -5575,14 +5575,13 @@ select{
     right:12px!important;
     transform:translateY(-50%)!important;
     margin:0!important;
+    padding:0!important;
+    line-height:1!important;
+    font-family:Arial,"Noto Sans KR",sans-serif!important;
+    text-align:center!important;
   }
 }
 
-/* MOBILE HEADER LOGO — flush left */
-@media(max-width:760px){
-  .header{padding-left:0!important;}
-  .header .logo{margin-left:0!important;}
-}
 
 
 /* MOBILE HEADER LOGO — visible edge alignment */
