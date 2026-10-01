@@ -5604,3 +5604,17 @@ select{
     -webkit-backdrop-filter:blur(14px)!important;
   }
 }
+
+
+/* PC 서브페이지 헤더 아래 흰색/점선 디바이더 제거 */
+@media(min-width:761px){
+  body.lt-notice-page .page-divider,
+  body.lt-faq-page .page-divider,
+  body.lt-pricing-page .page-divider,
+  body.lt-works-page .page-divider,
+  body.lt-reviews-page .page-divider{
+    display:none!important;
+    border:0!important;
+    height:0!important;
+  }
+}
