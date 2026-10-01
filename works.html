@@ -271,6 +271,7 @@
  const list=document.getElementById("workList");
  const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
  const parse=v=>{try{const x=JSON.parse(v||"{}");return {title:x.title||"작업 내역",content:x.content||""}}catch(e){return {title:v||"작업 내역",content:""}}};
+ const workAuthorName=v=>{const name=String(v||"").trim();return name.toLowerCase()==="qxazrty@love-team.local"?"로브팀":(name||"관리자")};
  const fmt=v=>{const d=new Date(v);return v&&!Number.isNaN(d.getTime())?d.toLocaleDateString("ko-KR"):"-"};
  async function load(){
   const client=window.LoveTeamAuth&&window.LoveTeamAuth.client;
