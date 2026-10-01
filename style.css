@@ -5574,3 +5574,33 @@ select{
 @media(max-width:760px){
   .header .logo-image{transform:translateX(-12px)!important;}
 }
+
+
+/* PC 서브페이지: 초기에는 배경이 헤더까지 이어지고, 스크롤 시 블러 고정 헤더 */
+@media(min-width:761px){
+  body.lt-notice-page .header,
+  body.lt-faq-page .header,
+  body.lt-pricing-page .header,
+  body.lt-works-page .header,
+  body.lt-reviews-page .header{
+    position:sticky!important;
+    top:0!important;
+    background:transparent!important;
+    border-bottom-color:transparent!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    transition:background .28s ease,border-color .28s ease,box-shadow .28s ease,backdrop-filter .28s ease;
+  }
+  body.lt-notice-page .header.page-scrolled,
+  body.lt-faq-page .header.page-scrolled,
+  body.lt-pricing-page .header.page-scrolled,
+  body.lt-works-page .header.page-scrolled,
+  body.lt-reviews-page .header.page-scrolled{
+    background:rgba(7,7,10,.72)!important;
+    border-bottom-color:rgba(255,255,255,.12)!important;
+    box-shadow:0 8px 28px rgba(0,0,0,.24)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+  }
+}
