@@ -22,18 +22,45 @@ function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").
 async function load(){
   list.textContent="작업 내역을 불러오는 중입니다...";
   try{
+    let session=null;
     if(window.LoveTeamAuth?.getSession){
-      const session=await window.LoveTeamAuth.getSession();
-      if(!session?.user){
-        list.textContent="관리자 계정으로 로그인해주세요.";
-        return;
-      }
+      session=await window.LoveTeamAuth.getSession();
+    }else{
+      const sessionResult=await client.auth.getSession();
+      session=sessionResult?.data?.session||null;
+    }
+    if(!session?.user){
+      list.textContent="관리자 계정으로 로그인해주세요.";
+      return;
     }
 
-    const q=await client.functions.invoke("admin-work-history",{body:{action:"list"}});
+    const adminCheck=await Promise.race([
+      client.functions.invoke("admin-check",{body:{}}),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error("관리자 권한 확인 시간이 초과되었습니다.")),8000))
+    ]);
+    if(
+      adminCheck.error ||
+      adminCheck.data?.ok !== true ||
+      adminCheck.data?.admin !== true
+    ){
+      list.textContent=adminCheck.data?.message||"관리자 권한이 없습니다.";
+      console.error("admin-check error:",adminCheck.error,adminCheck.data);
+      return;
+    }
+
+    const q=await Promise.race([
+      client.functions.invoke("admin-work-history",{body:{action:"list"}}),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error("작업 내역 조회 시간이 초과되었습니다.")),10000))
+    ]);
     if(q.error){
       console.error("admin-work-history list error:",q.error);
-      const message=q.data?.message||q.error.message||"작업 내역을 불러오지 못했습니다.";
+      let message=q.data?.message||q.error.message||"작업 내역을 불러오지 못했습니다.";
+      try{
+        if(q.error.context){
+          const body=await q.error.context.clone().json();
+          message=body?.message||message;
+        }
+      }catch(_){}
       list.textContent=message;
       return;
     }
