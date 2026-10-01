@@ -2396,3 +2396,32 @@ render();
   body.lt-reviews-page .review-pagination button{width:32px;height:32px;border-radius:6px;font-size:12px;}
 }
 </style>
+
+<style id="lt-reviews-mobile-bg-restore-v1">
+@media(max-width:760px){
+  html,body{background:#080912!important;}
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912!important;
+    overflow-x:hidden!important;
+  }
+  body.lt-reviews-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.16) 0%,rgba(5,6,14,.30) 55%,rgba(5,6,14,.48) 100%),
+      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-reviews-mobile-restore') center center/cover no-repeat!important;
+  }
+  body.lt-reviews-page>header,
+  body.lt-reviews-page>main,
+  body.lt-reviews-page>footer{position:relative!important;z-index:1!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:transparent!important;}
+  body.lt-reviews-page .reviews-page{min-height:calc(100vh - 68px)!important;}
+  body.lt-reviews-page .review-list{background:rgba(255,255,255,.96)!important;}
+}
+</style>
