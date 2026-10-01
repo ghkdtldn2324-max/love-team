@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="LOVE TEAM 공지사항 상세">
 <title>LOVE TEAM | 공지사항</title>
-<link rel="stylesheet" href="style.css?v=20261001-notice-detail-fix2" data-cache="1" data-old="20260930-3">
+<link rel="stylesheet" href="style.css?v=20261001-notice-detail-viewfix" data-cache="1" data-old="20260930-3">
 <style>
 /* =========================================================
    LOVE TEAM 공지사항 상세
@@ -292,9 +292,43 @@ async function loadNotice(){
     dateEl.textContent=formatNoticeDate(notice.published_at);
     viewsEl.textContent='집계 중';
     renderContent(notice.content);
+    // 조회수 증가: RPC를 우선 사용하고, 함수가 없거나 실패하면
+    // notice_view_counts 테이블을 직접 갱신하는 fallback을 사용합니다.
     const viewResult=await client.rpc('increment_notice_view',{p_notice_id:id});
-    if(viewResult.error) throw viewResult.error;
-    viewsEl.textContent=Number(viewResult.data||0).toLocaleString('ko-KR');
+    if(!viewResult.error){
+      const rpcValue=Array.isArray(viewResult.data)
+        ? (viewResult.data[0]?.views ?? viewResult.data[0]?.increment_notice_view ?? viewResult.data[0])
+        : viewResult.data;
+      if(rpcValue !== null && rpcValue !== undefined && rpcValue !== ''){
+        viewsEl.textContent=Number(rpcValue||0).toLocaleString('ko-KR');
+        return;
+      }
+    }
+
+    const countResult=await client
+      .from('notice_view_counts')
+      .select('notice_id,views')
+      .eq('notice_id',id)
+      .maybeSingle();
+    if(countResult.error) throw countResult.error;
+
+    const currentViews=Number(countResult.data?.views||0);
+    const nextViews=currentViews+1;
+
+    if(countResult.data){
+      const updateResult=await client
+        .from('notice_view_counts')
+        .update({views:nextViews})
+        .eq('notice_id',id);
+      if(updateResult.error) throw updateResult.error;
+    }else{
+      const insertResult=await client
+        .from('notice_view_counts')
+        .insert({notice_id:id,views:1});
+      if(insertResult.error) throw insertResult.error;
+    }
+
+    viewsEl.textContent=nextViews.toLocaleString('ko-KR');
   }catch(error){
     console.error('공지사항 상세 처리 실패:',error);
     viewsEl.textContent='-';
