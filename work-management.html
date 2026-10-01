@@ -18,7 +18,55 @@
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
-async function check(){const s=window.LoveTeamAuth&&window.LoveTeamAuth.client;if(!s){setTimeout(check,300);return}const q=await s.auth.getSession();if(!q.data?.session){deny.style.display="block";return}const a=await s.functions.invoke("admin-check",{body:{}});if(a.data?.ok&&a.data.admin){content.style.display="block";st.textContent="관리자 인증 성공";load()}else{deny.style.display="block";st.textContent="관리자 권한 없음";$("dm").textContent=a.data?.message||"관리자 권한이 없습니다."}}
+let checking=false,authorized=false;
+async function check(attempt=0){
+  if(authorized||checking)return;
+  const s=window.LoveTeamAuth&&window.LoveTeamAuth.client;
+  if(!s){
+    if(attempt<20)setTimeout(()=>check(attempt+1),300);
+    return;
+  }
+  checking=true;
+  try{
+    const q=await s.auth.getSession();
+    const session=q.data?.session||null;
+    if(!session){
+      checking=false;
+      if(attempt<12){
+        setTimeout(()=>check(attempt+1),500);
+        return;
+      }
+      deny.style.display="block";
+      st.textContent="로그인 필요";
+      $("dm").textContent="관리자 계정으로 로그인해주세요.";
+      return;
+    }
+    const a=await s.functions.invoke("admin-check",{body:{}});
+    if(a.data?.ok&&a.data.admin){
+      authorized=true;
+      content.style.display="block";
+      deny.style.display="none";
+      st.textContent="관리자 인증 성공";
+      await load();
+      checking=false;
+      return;
+    }
+    checking=false;
+    deny.style.display="block";
+    st.textContent="관리자 권한 없음";
+    $("dm").textContent=a.data?.message||"관리자 권한이 없습니다.";
+  }catch(err){
+    console.error("work management auth check error:",err);
+    checking=false;
+    if(attempt<6){
+      setTimeout(()=>check(attempt+1),500);
+      return;
+    }
+    deny.style.display="block";
+    st.textContent="관리자 인증 실패";
+    $("dm").textContent="관리자 인증 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
+  }
+}
 async function load(){const s=window.LoveTeamAuth.client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
 function render(){if(!rows.length){list.textContent="등록된 작업 내역이 없습니다.";return}const pages=Math.ceil(rows.length/size),part=rows.slice((page-1)*size,page*size);list.innerHTML=part.map(r=>{let d={};try{d=JSON.parse(r.detail||"{}")}catch(e){d={title:r.detail||"작업 내역",content:""}}return `<div class="row"><div class="rowmain"><div><div class="name">${esc(d.title)}</div><div class="detail">${esc(r.display_name)} · ${r.status==="done"?"작업완료":"진행중"}</div></div><span class="statusText">${r.status==="done"?"작업완료":"진행중"}</span></div><div class="detail">${esc(d.content)}</div><div class="actions"><button class="btn" data-e="${r.id}">수정</button><button class="btn" data-d="${r.id}">삭제</button></div><div class="edit" data-editor="${r.id}"><input class="input" data-n value="${esc(r.display_name)}"><input class="input" data-t value="${esc(d.title)}"><textarea class="textarea" data-c>${esc(d.content)}</textarea><select class="select" data-s><option value="progress" ${r.status==="progress"?"selected":""}>진행중</option><option value="done" ${r.status==="done"?"selected":""}>작업완료</option></select><div class="actions"><button class="btn" data-save>저장</button><button class="btn" data-cancel>취소</button></div></div></div>`}).join("");list.querySelectorAll("[data-e]").forEach(b=>b.onclick=function(){
   list.querySelectorAll(".edit.active").forEach(x=>x.classList.remove("active"));
