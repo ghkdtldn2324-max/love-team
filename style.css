@@ -5880,3 +5880,52 @@ select{
     margin-top:8px!important;
   }
 }
+
+
+/* HOMEPAGE — hero → signature visual bridge */
+.home-page .lt-signature{
+  margin-top:0!important;
+  padding-top:132px!important;
+  background:
+    radial-gradient(ellipse 70% 42% at 50% 0%,rgba(142,88,255,.28) 0%,rgba(91,72,190,.14) 35%,transparent 72%),
+    linear-gradient(180deg,#161124 0%,#0c0b15 24%,#0d0b18 58%,#090911 100%)!important;
+}
+.home-page .lt-signature::after{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  left:50%!important;
+  width:min(920px,78%)!important;
+  height:1px!important;
+  transform:translateX(-50%)!important;
+  background:linear-gradient(90deg,transparent,rgba(177,139,255,.52),rgba(255,255,255,.22),rgba(177,139,255,.52),transparent)!important;
+  box-shadow:0 0 28px rgba(139,93,255,.32)!important;
+  pointer-events:none!important;
+}
+.home-page .lt-signature::before{
+  opacity:.72!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(194,93,255,.13),transparent 38%),
+    linear-gradient(90deg,transparent 0,transparent calc(50% - 560px),rgba(255,255,255,.045) calc(50% - 560px),rgba(255,255,255,.045) calc(50% - 559px),transparent calc(50% - 559px),transparent calc(50% + 559px),rgba(255,255,255,.045) calc(50% + 559px),rgba(255,255,255,.045) calc(50% + 560px),transparent calc(50% + 560px),transparent 100%),
+    linear-gradient(180deg,transparent 0,rgba(255,255,255,.02) 50%,transparent 100%)!important;
+}
+.home-page .lt-signature-inner{
+  position:relative!important;
+}
+.home-page .lt-signature-head,
+.home-page .lt-signature-grid,
+.home-page .lt-signature-bottom{
+  position:relative!important;
+}
+@media(max-width:760px){
+  .home-page .lt-signature{
+    padding-top:92px!important;
+    background:
+      radial-gradient(ellipse 120% 28% at 50% 0%,rgba(142,88,255,.25) 0%,rgba(91,72,190,.12) 38%,transparent 72%),
+      linear-gradient(180deg,#151023 0%,#0d0b16 25%,#090911 100%)!important;
+  }
+  .home-page .lt-signature::after{
+    width:72%!important;
+    box-shadow:0 0 18px rgba(139,93,255,.28)!important;
+  }
+}
