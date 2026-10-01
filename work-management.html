@@ -32,7 +32,6 @@
 .badge{flex:none;padding:6px 9px;border-radius:999px;background:#261b3e;color:#cbb8ff;font-size:12px;font-weight:800}
 .badge.done{background:#18342b;color:#9de3c0}
 .work-content{margin-top:14px;color:#ccc;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
-.work-content-hidden{color:#777;font-size:13px}
 .item-actions{display:flex;gap:8px;margin-top:15px}
 .edit-box{display:none;margin-top:15px;padding-top:15px;border-top:1px solid #292932}
 .edit-box.active{display:grid;gap:11px}
@@ -245,7 +244,6 @@ function render(){
     '<div class="work-meta">'+esc(r.display_name||"관리자")+' · '+esc(formatDate(r.created_at))+'</div></div>'+
     '<span class="badge '+(done?"done":"")+'">'+(done?"작업완료":"진행중")+'</span>'+
    '</div>'+
-   '<div class="work-content work-content-hidden">세부 내용은 수정 버튼을 눌러 확인 및 수정할 수 있습니다.</div>'+
    '<div class="item-actions">'+
     '<button class="btn" data-edit="'+esc(r.id)+'">수정</button>'+
     '<button class="btn danger" data-delete="'+esc(r.id)+'">삭제</button>'+
