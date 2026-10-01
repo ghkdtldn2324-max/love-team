@@ -6497,10 +6497,19 @@ select{
 
 /* MOBILE — remove the dashed line directly under the header */
 @media(max-width:760px){
-  .page-divider{
+  body .page-divider,
+  body.lt-notice-page .page-divider,
+  body.lt-faq-page .page-divider,
+  body.lt-pricing-page .page-divider,
+  body.lt-works-page .page-divider,
+  body.lt-reviews-page .page-divider{
     display:none!important;
+    width:0!important;
     height:0!important;
+    min-height:0!important;
     border:0!important;
-    background:transparent!important;
+    background:none!important;
+    margin:0!important;
+    padding:0!important;
   }
 }
