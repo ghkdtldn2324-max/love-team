@@ -1253,12 +1253,27 @@
 
     <label class="review-write-label">
 
-      후기 내용
+      제목
+
+      <input
+        type="text"
+        id="reviewTitle"
+        maxlength="80"
+        placeholder="후기 제목을 입력해주세요."
+        autocomplete="off"
+      >
+
+    </label>
+
+
+    <label class="review-write-label">
+
+      세부 내용
 
       <textarea
         id="reviewText"
         maxlength="300"
-        placeholder="이용 후기를 작성해주세요."
+        placeholder="이용 후기를 자세히 작성해주세요."
       ></textarea>
 
     </label>
@@ -1406,7 +1421,7 @@ async function getReviews(){
     if(!client) return fallback.map(function(r){ return {...r,id:null,views:0}; });
 
     const result = await client.from('reviews')
-      .select('id,display_name,content,service,created_at')
+      .select('id,display_name,title,content,service,created_at')
       .order('created_at',{ascending:false});
     if(result.error) throw result.error;
 
@@ -1433,6 +1448,7 @@ async function getReviews(){
       return {
         id:r.id,
         name:r.display_name,
+        title:r.title || (r.content ? String(r.content).slice(0,40) : '후기'),
         text:r.content,
         date:new Date(r.created_at).toLocaleDateString('ko-KR'),
         service:r.service,
@@ -1898,6 +1914,12 @@ render();
             .getElementById('reviewService')
             .value;
 
+        const title =
+          document
+            .getElementById('reviewTitle')
+            .value
+            .trim();
+
         const text =
           document
             .getElementById(
@@ -1908,10 +1930,10 @@ render();
 
 
 
-        if(!text){
+        if(!title){
 
           showMessage(
-            '후기 내용을 입력해주세요.',
+            '후기 제목을 입력해주세요.',
             true
           );
 
@@ -1976,6 +1998,7 @@ render();
                 body:{
                   user_id: session.user.id,
                   stars: 5,
+                  title: title,
                   content: text,
                   service: service
                 }
@@ -1995,6 +2018,7 @@ render();
                 user_id: session.user.id,
                 display_name: displayName,
                 stars: 5,
+                title: title,
                 content: text,
                 service: service
               });
@@ -2048,6 +2072,10 @@ render();
         }
 
 
+
+        document
+          .getElementById('reviewTitle')
+          .value = '';
 
         document
           .getElementById(
@@ -2423,5 +2451,16 @@ render();
   body.lt-reviews-page .reviews-page{background:transparent!important;}
   body.lt-reviews-page .reviews-page{min-height:calc(100vh - 68px)!important;}
   body.lt-reviews-page .review-list{background:rgba(255,255,255,.96)!important;}
+}
+</style>
+<style id="lt-review-write-title-detail-v1">
+.review-write-area .review-write-label input[type="text"]{
+  width:100%;min-height:46px;padding:0 14px;border:1px solid #ddd9e8;border-radius:9px;
+  background:#fff;color:#222;outline:none;font:inherit;box-sizing:border-box;
+}
+.review-write-area .review-write-label input[type="text"]:focus,
+.review-write-area .review-write-label textarea:focus{border-color:#8a72e8;box-shadow:0 0 0 3px rgba(122,103,220,.10);}
+@media(max-width:760px){
+  body.lt-reviews-page .review-write-area .review-write-label input[type="text"]{min-height:42px;font-size:14px;padding:0 11px;}
 }
 </style>
