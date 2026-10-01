@@ -227,7 +227,7 @@
       "<span class=\"work-post-no\">"+String(rows.length-i).padStart(2,"0")+"</span>"+
       "<span class=\"work-post-status "+(r.status==="done"?"done":"progress")+"\">"+(r.status==="done"?"작업완료":"진행중")+"</span>"+
       "<div class=\"work-post-title\"><a href=\"work-detail.html?id="+encodeURIComponent(r.id)+"\">"+esc(d.title)+"</a></div>"+
-      "<div class=\"work-post-admin\">"+"로브팀"+"</div>"+
+      "<div class=\"work-post-admin\">"+esc(r.display_name||"관리자")+"</div>"+
       "<div class=\"work-post-date\">"+fmt(r.created_at)+"</div>"+
       "<div class=\"work-post-views\">"+(counts[r.id]||0).toLocaleString("ko-KR")+"</div>"+
     "</article>";
