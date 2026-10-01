@@ -6513,3 +6513,32 @@ select{
     padding:0!important;
   }
 }
+
+
+/* =====================================================
+   MOBILE — ALL PAGES STICKY HEADER
+   20261002
+   Includes list/detail pages and admin-facing mobile pages.
+   PC layout remains unchanged.
+===================================================== */
+@media(max-width:760px){
+  .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:100000!important;
+    overflow:visible!important;
+  }
+
+  .mobile-menu-btn{
+    z-index:100001!important;
+  }
+
+  .mobile-menu{
+    z-index:100000!important;
+  }
+
+  /* Keep the page content from being painted above the sticky header. */
+  body > .header{
+    isolation:isolate;
+  }
+}
