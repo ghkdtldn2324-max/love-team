@@ -257,63 +257,22 @@ function formatNoticeDate(value){
 async function loadNotice(){
   const client=window.LoveTeamSupabase||window.supabaseClient;
   const eventTitle='[이벤트] 맡김 랭크 10+1 서비스 진행';
-  const eventContent='안녕하세요! 로브팀 입니다.\\n\\n저희 로브팀을 이용해주시는 고객님들께 대리랭크 10승 진행하시면 1승을 서비스 차원에서 무료로 진행해드립니다!\\n\\n아래 진행 중인 다른 이벤트를 참고하여 주시고 많은 참여와 관심 부탁 드려요.\\n\\n오늘도 찾아주셔서 감사합니다. 고객님 입장에서 언제나 최선을 다하겠습니다.\\n\\n카드결제,문상결제,휴대폰결제 가능\\n신규 고객, 단골 고객 10% 할인\\n승당제강의 10+1승 서비스 진행\\n듀오제강의 10+1판 서비스 진행\\n후기 작성 후 다음 진행 시 2,000원 할인\\n\\n발로란트 대리\\n발로란트 듀오\\n발로란트 강의\\n발로란트 배치\\n발로란트 맡김\\n발로 대리';
 
   try{
-    // 고정 이벤트 공지는 DB 등록 여부와 관계없이 먼저 정상 표시합니다.
+    // 구형 이벤트 링크(slug)도 실제 DB 공지 ID로 해석합니다.
     if(isEventNotice){
-      let eventRow=null;
-      if(client){
-        const eventResult=await client.from('notices')
-          .select('id,title,content,author,published_at')
-          .eq('title',eventTitle)
-          .order('id',{ascending:false})
-          .limit(1)
-          .maybeSingle();
-        if(!eventResult.error) eventRow=eventResult.data||null;
+      if(!client) throw new Error('Supabase 연결을 확인할 수 없습니다.');
+      const eventResult=await client.from('notices')
+        .select('id')
+        .eq('title',eventTitle)
+        .order('id',{ascending:false})
+        .limit(1)
+        .maybeSingle();
+      if(eventResult.error) throw eventResult.error;
+      if(!eventResult.data){
+        throw new Error('이벤트 공지가 아직 등록되지 않았습니다.');
       }
-
-      titleEl.textContent=eventRow?.title||eventTitle;
-      authorEl.textContent=eventRow?.author||'LOVE TEAM';
-      dateEl.textContent=eventRow?.published_at
-        ? formatNoticeDate(eventRow.published_at)
-        : '이벤트 공지';
-      renderContent(eventRow?.content||eventContent);
-
-      if(eventRow?.id && client){
-        const viewResult=await client.rpc('increment_notice_view',{p_notice_id:eventRow.id});
-        if(!viewResult.error){
-          const rpcValue=Array.isArray(viewResult.data)
-            ? (viewResult.data[0]?.views ?? viewResult.data[0]?.increment_notice_view ?? viewResult.data[0])
-            : viewResult.data;
-          if(rpcValue!==null&&rpcValue!==undefined&&rpcValue!==''){
-            viewsEl.textContent=Number(rpcValue||0).toLocaleString('ko-KR');
-            return;
-          }
-        }
-        const countResult=await client.from('notice_view_counts')
-          .select('notice_id,views')
-          .eq('notice_id',eventRow.id)
-          .maybeSingle();
-        if(!countResult.error){
-          const nextViews=Number(countResult.data?.views||0)+1;
-          const writeResult=countResult.data
-            ? await client.from('notice_view_counts').update({views:nextViews}).eq('notice_id',eventRow.id)
-            : await client.from('notice_view_counts').insert({notice_id:eventRow.id,views:1});
-          if(!writeResult.error){
-            viewsEl.textContent=nextViews.toLocaleString('ko-KR');
-            return;
-          }
-        }
-      }
-
-      // 아직 관리자 페이지에서 DB 공지로 등록되지 않은 구버전 환경도
-      // 페이지가 멈추지 않도록 브라우저별 임시 조회수를 표시합니다.
-      const localKey='love-team-event-10plus1-views';
-      const localViews=Number(localStorage.getItem(localKey)||0)+1;
-      localStorage.setItem(localKey,String(localViews));
-      viewsEl.textContent=localViews.toLocaleString('ko-KR');
-      return;
+      id=Number(eventResult.data.id);
     }
 
     if(!client||!Number.isInteger(id)||id<1){
@@ -346,6 +305,7 @@ async function loadNotice(){
     viewsEl.textContent='집계 중';
     renderContent(notice.content);
 
+    // 모든 공지는 동일한 조회수 로직을 사용합니다.
     const viewResult=await client.rpc('increment_notice_view',{p_notice_id:id});
     if(!viewResult.error){
       const rpcValue=Array.isArray(viewResult.data)
@@ -363,8 +323,7 @@ async function loadNotice(){
       .maybeSingle();
     if(countResult.error) throw countResult.error;
 
-    const currentViews=Number(countResult.data?.views||0);
-    const nextViews=currentViews+1;
+    const nextViews=Number(countResult.data?.views||0)+1;
     const writeResult=countResult.data
       ? await client.from('notice_view_counts').update({views:nextViews}).eq('notice_id',id)
       : await client.from('notice_view_counts').insert({notice_id:id,views:1});
@@ -372,18 +331,12 @@ async function loadNotice(){
     viewsEl.textContent=nextViews.toLocaleString('ko-KR');
   }catch(error){
     console.error('공지사항 상세 처리 실패:',error);
-    // 오류가 발생해도 상세 본문이 빈 화면으로 남지 않도록 합니다.
+    viewsEl.textContent='-';
     if(isEventNotice){
       titleEl.textContent=eventTitle;
       authorEl.textContent='LOVE TEAM';
-      dateEl.textContent='이벤트 공지';
-      renderContent(eventContent);
-      const localKey='love-team-event-10plus1-views';
-      const localViews=Number(localStorage.getItem(localKey)||0)+1;
-      localStorage.setItem(localKey,String(localViews));
-      viewsEl.textContent=localViews.toLocaleString('ko-KR');
-    }else{
-      viewsEl.textContent='-';
+      dateEl.textContent='-';
+      renderContent('이벤트 공지를 불러오지 못했습니다. 관리자 페이지에서 실제 공지 등록 상태를 확인해주세요.');
     }
   }
 }
