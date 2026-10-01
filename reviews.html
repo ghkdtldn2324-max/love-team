@@ -449,68 +449,7 @@
 }
 </style>
 
-<style id="love-mobile-bg-v2">
-@media(max-width:760px){
-  html,body{background:#080912!important;}
-  body{position:relative;min-height:100vh;background-image:none!important;overflow-x:hidden;}
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
-    background:
-      linear-gradient(180deg,rgba(5,6,14,.20),rgba(5,6,14,.38)),
-      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261001-mobile-bg-v2') center center/cover no-repeat;
-  }
-  body>*{position:relative;z-index:1;}
-  .header{
-    background:rgba(7,8,18,.76)!important;
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-  }
-  .page-divider{background:rgba(255,255,255,.10)!important;}
-  .mobile-menu{
-    background:rgba(8,9,18,.96)!important;
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-  }
-
-  .notice-page,
-  .pricing-section,
-  .reviews-page,
-  .works-page,
-  .section,
-  .notice-detail-page,
-  .work-detail-page{
-    background:transparent!important;
-  }
-
-  .notice-hero,
-  .pricing-hero{
-    background:linear-gradient(180deg,rgba(8,9,18,.12),rgba(8,9,18,.30))!important;
-  }
-
-  .notice-table,
-  .pricing-panel,
-  .pricing-tabs,
-  .faq-list,
-  .work-post-board,
-  .work-detail-wrap,
-  .notice-detail-card,
-  .reviews-list,
-  .review-form{
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
-  }
-
-  footer{
-    background:rgba(5,6,14,.78)!important;
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-  }
-}
-<style id="lt-reviews-mobile-hero-bg-fix">
+<style id="love-mobile-bg-v3">
 @media(max-width:760px){
   html,body{
     background:#080912!important;
@@ -523,28 +462,55 @@
   }
   body.lt-reviews-page::before{
     content:""!important;
-    display:block!important;
     position:fixed!important;
     inset:0!important;
     z-index:0!important;
     pointer-events:none!important;
     background:
-      linear-gradient(180deg,rgba(5,6,14,.18) 0%,rgba(5,6,14,.30) 52%,rgba(5,6,14,.46) 100%),
-      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-reviews-mobile-full') center center/cover no-repeat!important;
+      linear-gradient(180deg,rgba(5,6,14,.16) 0%,rgba(5,6,14,.28) 52%,rgba(5,6,14,.44) 100%),
+      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-reviews-mobile-v3') center center/cover no-repeat!important;
   }
-  body.lt-reviews-page>*{
+
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{
+    background:transparent!important;
+  }
+
+  body.lt-reviews-page main{
     position:relative!important;
     z-index:1!important;
   }
+
   body.lt-reviews-page .reviews-page{
+    position:relative!important;
+    z-index:1!important;
     min-height:calc(100vh - 68px)!important;
+  }
+
+  body.lt-reviews-page .review-list{
     background:transparent!important;
   }
+
+  body.lt-reviews-page .review-write-area{
+    background:rgba(255,255,255,.94)!important;
+  }
+
+  body.lt-reviews-page .review-login-notice{
+    background:rgba(247,245,251,.92)!important;
+  }
+
+  body.lt-reviews-page .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:10000!important;
+  }
+
   body.lt-reviews-page footer{
+    position:relative!important;
+    z-index:1!important;
     background:rgba(5,6,14,.58)!important;
   }
 }
-</style>
 </style>
 </head>
 
