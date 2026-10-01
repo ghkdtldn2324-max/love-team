@@ -5652,3 +5652,231 @@ select{
     -webkit-backdrop-filter:blur(14px)!important;
   }
 }
+
+
+/* =========================================================
+   HOMEPAGE — ROVE TEAM SIGNATURE SECTION
+   ========================================================= */
+.home-page .lt-signature{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:118px 32px 104px!important;
+  color:#fff!important;
+  background:
+    radial-gradient(circle at 12% 18%,rgba(111,91,255,.18),transparent 30%),
+    radial-gradient(circle at 88% 22%,rgba(190,71,255,.14),transparent 30%),
+    linear-gradient(180deg,#090a12 0%,#0d0b18 52%,#090911 100%)!important;
+}
+.home-page .lt-signature::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  pointer-events:none!important;
+  opacity:.55!important;
+  background:
+    linear-gradient(90deg,transparent 0,transparent calc(50% - 560px),rgba(255,255,255,.055) calc(50% - 560px),rgba(255,255,255,.055) calc(50% - 559px),transparent calc(50% - 559px),transparent calc(50% + 559px),rgba(255,255,255,.055) calc(50% + 559px),rgba(255,255,255,.055) calc(50% + 560px),transparent calc(50% + 560px)),
+    linear-gradient(180deg,transparent 0,rgba(255,255,255,.025) 50%,transparent 100%)!important;
+}
+.home-page .lt-signature-inner{
+  position:relative!important;
+  z-index:1!important;
+  width:min(1180px,100%)!important;
+  margin:0 auto!important;
+}
+.home-page .lt-signature-head{
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:space-between!important;
+  gap:50px!important;
+}
+.home-page .lt-signature-kicker{
+  margin:0 0 16px!important;
+  color:#a88cff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:4px!important;
+}
+.home-page .lt-signature-head h2{
+  margin:0!important;
+  font-size:52px!important;
+  line-height:1.12!important;
+  letter-spacing:-2.5px!important;
+  font-weight:900!important;
+}
+.home-page .lt-signature-head h2 span{
+  background:linear-gradient(90deg,#8d7aff,#d06cff)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+}
+.home-page .lt-signature-copy{
+  margin:0 0 5px!important;
+  color:rgba(255,255,255,.52)!important;
+  font-size:13px!important;
+  line-height:1.85!important;
+  letter-spacing:-.2px!important;
+  text-align:right!important;
+}
+.home-page .lt-signature-line{
+  width:100%!important;
+  height:1px!important;
+  margin:58px 0 0!important;
+  background:linear-gradient(90deg,rgba(164,137,255,.65),rgba(255,255,255,.10),transparent)!important;
+}
+.home-page .lt-signature-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  margin-top:0!important;
+  border-left:1px solid rgba(255,255,255,.08)!important;
+}
+.home-page .lt-signature-card{
+  position:relative!important;
+  min-height:275px!important;
+  padding:28px 26px 24px!important;
+  border-right:1px solid rgba(255,255,255,.08)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012))!important;
+  box-sizing:border-box!important;
+  transition:transform .25s ease,background .25s ease,border-color .25s ease!important;
+}
+.home-page .lt-signature-card:hover{
+  transform:translateY(-5px)!important;
+  background:linear-gradient(180deg,rgba(145,117,255,.12),rgba(255,255,255,.025))!important;
+  border-color:rgba(166,137,255,.28)!important;
+}
+.home-page .lt-signature-top{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-bottom:62px!important;
+}
+.home-page .lt-signature-top span{
+  color:#9f8aff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:2px!important;
+}
+.home-page .lt-signature-top b{
+  color:rgba(255,255,255,.34)!important;
+  font-size:9px!important;
+  letter-spacing:2.5px!important;
+}
+.home-page .lt-signature-card h3{
+  margin:0 0 13px!important;
+  color:#fff!important;
+  font-size:18px!important;
+  line-height:1.4!important;
+  letter-spacing:-.7px!important;
+  word-break:keep-all!important;
+}
+.home-page .lt-signature-card p{
+  margin:0!important;
+  color:rgba(255,255,255,.52)!important;
+  font-size:11px!important;
+  line-height:1.8!important;
+  letter-spacing:-.2px!important;
+  word-break:keep-all!important;
+}
+.home-page .lt-signature-mark{
+  position:absolute!important;
+  left:26px!important;
+  bottom:23px!important;
+  color:rgba(255,255,255,.22)!important;
+  font-size:8px!important;
+  font-weight:800!important;
+  letter-spacing:2px!important;
+}
+.home-page .lt-signature-bottom{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  padding-top:24px!important;
+  color:rgba(255,255,255,.28)!important;
+}
+.home-page .lt-signature-bottom span{
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:4px!important;
+}
+.home-page .lt-signature-bottom strong{
+  font-size:9px!important;
+  letter-spacing:2.5px!important;
+}
+
+@media(max-width:760px){
+  .home-page .lt-signature{
+    padding:78px 18px 70px!important;
+  }
+  .home-page .lt-signature-head{
+    display:block!important;
+  }
+  .home-page .lt-signature-kicker{
+    margin-bottom:12px!important;
+    font-size:8px!important;
+    letter-spacing:3px!important;
+  }
+  .home-page .lt-signature-head h2{
+    font-size:34px!important;
+    line-height:1.18!important;
+    letter-spacing:-1.7px!important;
+  }
+  .home-page .lt-signature-copy{
+    margin:20px 0 0!important;
+    font-size:10px!important;
+    line-height:1.75!important;
+    text-align:left!important;
+  }
+  .home-page .lt-signature-line{
+    margin-top:36px!important;
+  }
+  .home-page .lt-signature-grid{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .home-page .lt-signature-card{
+    min-height:220px!important;
+    padding:20px 15px 22px!important;
+  }
+  .home-page .lt-signature-card:hover{
+    transform:none!important;
+  }
+  .home-page .lt-signature-top{
+    margin-bottom:42px!important;
+  }
+  .home-page .lt-signature-top span{
+    font-size:8px!important;
+    letter-spacing:1.5px!important;
+  }
+  .home-page .lt-signature-top b{
+    font-size:7px!important;
+    letter-spacing:1.5px!important;
+  }
+  .home-page .lt-signature-card h3{
+    margin-bottom:9px!important;
+    font-size:14px!important;
+    line-height:1.4!important;
+  }
+  .home-page .lt-signature-card p{
+    font-size:9px!important;
+    line-height:1.65!important;
+  }
+  .home-page .lt-signature-mark{
+    left:15px!important;
+    bottom:16px!important;
+    font-size:7px!important;
+    letter-spacing:1.5px!important;
+  }
+  .home-page .lt-signature-bottom{
+    display:block!important;
+    padding-top:20px!important;
+  }
+  .home-page .lt-signature-bottom span,
+  .home-page .lt-signature-bottom strong{
+    display:block!important;
+    font-size:7px!important;
+    letter-spacing:2px!important;
+  }
+  .home-page .lt-signature-bottom strong{
+    margin-top:8px!important;
+  }
+}
