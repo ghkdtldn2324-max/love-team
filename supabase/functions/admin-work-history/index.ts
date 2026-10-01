@@ -60,7 +60,7 @@ export default {
 
           return Response.json({
             ok: true,
-            works: (data || []).map((work) => ({ ...work, display_name: "로브팀" }))
+            works: data || []
           });
         }
 
