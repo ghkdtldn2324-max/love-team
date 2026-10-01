@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="LOVE TEAM 공지사항">
 <title>LOVE TEAM | 공지사항</title>
-<link rel="stylesheet" href="style.css?v=20261001-notice-event-fix1">
+<link rel="stylesheet" href="style.css?v=20261001-notice-detail-fix2">
 <style>
 /* =========================================================
    LOVE TEAM 공지사항
@@ -517,7 +517,7 @@ async function loadNotices(){
     if(!data.length){list.innerHTML='<div class="notice-empty">등록된 공지사항이 없습니다.</div>';return;}
     list.innerHTML=data.map(function(n,i){
       const date=String(n.published_at||'').replace(/-/g,'.');
-      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="'+(n.id==='love-team-event-10plus1'?'#':'notice-detail.html?id='+encodeURIComponent(n.id))+'"><span class="notice-no">'+(n.id==='love-team-event-10plus1'?'1':escapeHtml(n.id))+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
+      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="notice-detail.html?id="+encodeURIComponent(n.id)><span class="notice-no">'+(n.id==='love-team-event-10plus1'?'1':escapeHtml(n.id))+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
     }).join('');
     document.querySelectorAll('.notice-item').forEach(function(item){
       item.addEventListener('pointerenter',function(ev){if(ev.pointerType==='mouse')item.classList.add('is-hover');});
@@ -541,15 +541,6 @@ loadNotices();
 })();
 </script>
 
-<script id="lt-notice-event-detail">
-(function(){
-  document.addEventListener('click',function(e){
-    var item=e.target.closest('.notice-item');
-    if(!item || item.dataset.noticeId!=='love-team-event-10plus1') return;
-    e.preventDefault();
-    alert('안녕하세요! 로브팀 입니다.\n\n저희 로브팀을 이용해주시는 고객님들께 대리랭크 10승 진행하시면 1승을 서비스 차원에서 무료로 진행해드립니다!\n\n아래 진행 중인 다른 이벤트를 참고하여 주시고 많은 참여와 관심 부탁 드려요.\n\n오늘도 찾아주셔서 감사합니다. 고객님 입장에서 언제나 최선을 다하겠습니다.\n\n카드결제,문상결제,휴대폰결제 가능\n신규 고객, 단골 고객 10% 할인\n승당제강의 10+1승 서비스 진행\n듀오제강의 10+1판 서비스 진행\n후기 작성 후 다음 진행 시 2,000원 할인\n\n발로란트 대리\n발로란트 듀오\n발로란트 강의\n발로란트 배치\n발로란트 맡김\n발로 대리');
-  });
-})();
-</script>
+
 </body>
 </html>
