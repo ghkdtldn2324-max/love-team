@@ -8,7 +8,7 @@
 
 <title>LOVE TEAM | 후기</title>
 
-<link rel="stylesheet" href="style.css?v=20261001-header-final7">
+<link rel="stylesheet" href="style.css?v=20261001-reviews-complete8">
 
 <style>
 
@@ -670,22 +670,30 @@ async function render(){
 
   const reviews = await getReviews();
 
-  list.innerHTML = reviews.map(function(r){
-    return `
-      <article class="review-row">
-        <div class="review-top">
-          <div>
-            <span class="review-user">${r.name} 님</span>
-          </div>
-          <span class="review-date">${r.date}</span>
-        </div>
-        <p class="review-text">${r.text}</p>
-        <div class="review-meta">
-          <span class="review-service">${r.service}</span>
-        </div>
-      </article>
-    `;
-  }).join('');
+  function escReview(value){
+    return String(value ?? '').replace(/[&<>"']/g,function(ch){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+    });
+  }
+
+  list.innerHTML = reviews.length
+    ? reviews.map(function(r){
+        return `
+          <article class="review-row">
+            <div class="review-top">
+              <div>
+                <span class="review-user">${escReview(r.name)} 님</span>
+              </div>
+              <span class="review-date">${escReview(r.date)}</span>
+            </div>
+            <p class="review-text">${escReview(r.text)}</p>
+            <div class="review-meta">
+              <span class="review-service">${escReview(r.service || '서비스')}</span>
+            </div>
+          </article>
+        `;
+      }).join('')
+    : '<div class="review-login-notice">등록된 후기가 없습니다.</div>';
 }
 
 render();
