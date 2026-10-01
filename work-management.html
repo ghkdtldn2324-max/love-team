@@ -105,6 +105,7 @@
 <h2>기존 작업</h2>
 <p class="card-desc">최신 작업부터 5개씩 표시합니다. 페이지 번호를 눌러 이전 작업을 확인할 수 있습니다.</p>
 <div id="list" class="work-list"><div class="loading">작업 내역을 불러오는 중입니다...</div></div>
+<div id="diagnostic" style="margin-top:14px;padding:12px;border:1px solid #3a3a45;border-radius:10px;background:#0b0b10;color:#aaa;font:12px/1.6 monospace;white-space:pre-wrap;display:none;"></div>
 </section>
 </div>
 </main>
@@ -118,7 +119,13 @@
 (function(){
 const $=id=>document.getElementById(id);
 const client=window.LoveTeamAuth?.client||window.LoveTeamSupabase;
-const list=$("list"),message=$("message"),title=$("title"),content=$("content"),status=$("status");
+const list=$("list"),message=$("message"),title=$("title"),content=$("content"),status=$("status"),diagnostic=$("diagnostic");
+function diag(text){
+ if(!diagnostic)return;
+ diagnostic.style.display="block";
+ diagnostic.textContent=text;
+}
+
 let rows=[],page=1;
 const PAGE_SIZE=5;
 
@@ -151,22 +158,38 @@ async function getSession(){
 }
 
 async function adminRequest(body){
+ diag("요청 중...\\n"+JSON.stringify(body,null,2));
  const r=await Promise.race([
   client.functions.invoke("admin-work-history",{body}),
   new Promise((_,reject)=>setTimeout(()=>reject(new Error("관리자 작업 요청 시간이 초과되었습니다.")),12000))
  ]);
  if(r.error){
   let msg=r.data?.message||r.error.message||"관리자 작업 요청에 실패했습니다.";
+  let detail="";
   try{
    if(r.error.context){
     const clone=r.error.context.clone();
-    const body=await clone.json();
-    msg=body?.message||msg;
+    const raw=await clone.text();
+    detail=raw;
+    try{
+      const json=JSON.parse(raw);
+      msg=json?.message||msg;
+    }catch(_){}
    }
   }catch(_){}
+  diag(
+   "Edge Function 응답 오류\\n"+
+   "message: "+msg+"\\n"+
+   "status: "+(r.error.status||"알 수 없음")+"\\n"+
+   "details: "+(detail||"없음")
+  );
   throw new Error(msg);
  }
- if(!r.data?.ok) throw new Error(r.data?.message||"관리자 작업 요청에 실패했습니다.");
+ if(!r.data?.ok){
+  diag("서버가 ok=false를 반환했습니다.\\n"+JSON.stringify(r.data,null,2));
+  throw new Error(r.data?.message||"관리자 작업 요청에 실패했습니다.");
+ }
+ diag("Edge Function 정상 응답\\n"+JSON.stringify(r.data,null,2));
  return r.data;
 }
 
@@ -175,9 +198,11 @@ async function load(){
  try{
   const session=await getSession();
   if(!session?.user){
+   diag("로그인 세션 없음\\nLoveTeamAuth.getSession()에서 session.user를 찾지 못했습니다.");
    list.innerHTML='<div class="empty">관리자 계정으로 로그인해주세요.</div>';
    return;
   }
+  diag("로그인 세션 확인됨\\nuser.id: "+(session.user.id||"없음")+"\\nemail: "+(session.user.email||"없음")+"\\nEdge Function 호출 준비");
 
   // 관리자 페이지의 기존 작업 목록은 공개 페이지의 조회 방식과 분리하지 않고,
   // 동일한 work_history를 서버 관리자 함수에서 읽습니다.
