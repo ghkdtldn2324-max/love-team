@@ -9,19 +9,19 @@
 </style>
 </head><body>
 <header class="header"><a class="logo" href="index.html" aria-label="LOVE TEAM 홈"><img class="logo-image" src="assets/love-team-logo-transparent.png?v=20261001-transparent" alt="LOVE TEAM"></a><nav class="nav"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav><div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a><a href="#login" data-auth-open="1">로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank">💬 고객센터</a></div><button class="mobile-menu-btn" id="mb">☰</button><div class="mobile-menu" id="mm"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#login" data-auth-open="1">로그인 / 회원가입</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank">💬 고객센터</a></div></header>
-<main class="admin-page"><div class="admin-wrap"><div class="admin-head"><h1>작업 내역 관리</h1><p>새 작업 등록과 기존 작업 수정·삭제를 별도 페이지에서 관리합니다.</p><div class="status" id="st">로그인 필요</div></div>
+<main class="admin-page"><div class="admin-wrap"><div class="admin-head"><h1>작업 내역 관리</h1><p>새 작업 등록과 기존 작업 수정·삭제를 별도 페이지에서 관리합니다.</p><div class="status" id="st">관리자 인증 확인 중...</div></div>
 <section id="content" style="display:block"><div class="card"><h2>새 작업 등록</h2><p>새 작업은 이 페이지에서 등록됩니다.</p><input class="input" id="name" maxlength="40" placeholder="관리자 이름"><input class="input" id="title" maxlength="100" placeholder="게시글 제목"><textarea class="textarea" id="detail" maxlength="2000" placeholder="게시글 내용을 입력해주세요."></textarea><select class="select" id="state"><option value="progress">진행중</option><option value="done">작업완료</option></select><div class="actions"><button class="btn" id="create">작업 내역 등록</button><a class="btn" href="admin.html">관리자 페이지</a><a class="btn" href="works.html">공개 페이지</a></div><div class="result" id="result"></div></div>
 <div class="card"><h2>기존 작업 수정 / 삭제</h2><p>최근 5개씩 표시되며 페이지 번호로 이전 작업을 확인할 수 있습니다.</p><div id="list">작업 내역을 불러오는 중입니다...</div></div></section>
 <section class="deny" id="deny" style="display:none"><strong>관리자 권한이 없습니다.</strong><p id="dm">관리자 계정으로 로그인해주세요.</p></section></div></main><footer class="footer"><div class="footer-inner"><strong>LOVE TEAM</strong><p>VALORANT 작업 전문 서비스</p></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js?v=20261001-work-authfix2"></script><script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth.js?v=20261001-work-authfix3"></script><script>
 const client=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
 (()=>{const $=id=>document.getElementById(id),content=$("content"),deny=$("deny"),st=$("st"),list=$("list"),name=$("name"),title=$("title"),detail=$("detail"),state=$("state"),result=$("result");let rows=[],page=1;const size=5;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
 async function checkAdmin(){
-  // 이 페이지의 화면 자체는 클라이언트 인증 결과에 막히지 않게 연다.
-  // 실제 등록/수정/삭제 권한은 admin-work-history Edge Function이 서버에서 최종 검증한다.
+  // 페이지 진입 자체는 로그인 상태 확인 때문에 차단하지 않습니다.
+  // 실제 생성/수정/삭제 권한은 admin-work-history Edge Function이 서버에서 최종 검증합니다.
   content.style.display="block";
   deny.style.display="none";
   st.textContent="관리자 인증 확인 중...";
@@ -53,24 +53,22 @@ async function checkAdmin(){
 }
 
 function showLoginRequired(){
-  content.style.display="none";
-  deny.style.display="block";
-  st.textContent="로그인 필요";
-  $("dm").textContent="관리자 계정으로 로그인해주세요.";
+  // 인증 상태가 아직 준비되지 않은 순간에도 페이지를 잠그지 않습니다.
+  content.style.display="block";
+  deny.style.display="none";
+  st.textContent="관리자 인증 확인 중...";
 }
 
 function showNotAdmin(message){
-  content.style.display="none";
-  deny.style.display="block";
-  st.textContent="관리자 권한 없음";
-  $("dm").textContent=message;
+  content.style.display="block";
+  deny.style.display="none";
+  st.textContent=message||"관리자 권한을 확인할 수 없습니다. 저장 시 서버에서 다시 확인합니다.";
 }
 
 function showAuthError(message){
-  content.style.display="none";
-  deny.style.display="block";
-  st.textContent="관리자 인증 실패";
-  $("dm").textContent=message||"관리자 인증에 실패했습니다.";
+  content.style.display="block";
+  deny.style.display="none";
+  st.textContent=message||"관리자 인증을 확인할 수 없습니다. 저장 시 서버에서 다시 확인합니다.";
 }
 
 function start(){
