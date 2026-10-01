@@ -6419,3 +6419,46 @@ select{
 .floating-chat .kakao-talk-icon i{width:3px;height:3px}
 .work-detail-consult{gap:0;background:#fee500;color:#111}
 .lt-hero-btn .kakao-talk-icon,.lt-closing-btn .kakao-talk-icon{margin-right:8px}
+
+
+/* SUBPAGES — MOBILE MAIN HEADINGS VISIBILITY 20261002 */
+@media(max-width:760px){
+  body.lt-notice-page .notice-hero-kicker,
+  body.lt-notice-page .notice-hero h1,
+  body.lt-notice-page .notice-hero-copy,
+  body.lt-faq-page .section-heading>p:first-child,
+  body.lt-faq-page .section-heading h2,
+  body.lt-faq-page .section-heading>p:last-child,
+  body.lt-pricing-page .pricing-hero .eyebrow,
+  body.lt-pricing-page .pricing-hero h2,
+  body.lt-pricing-page .pricing-hero>p:last-child,
+  body.lt-works-page .works-head .eyebrow,
+  body.lt-works-page .works-head h1,
+  body.lt-works-page .works-head>p:last-child,
+  body.lt-reviews-page .reviews-head .eyebrow,
+  body.lt-reviews-page .reviews-head h1,
+  body.lt-reviews-page .reviews-head>p:last-child,
+  body.lt-notice-detail-page .notice-detail-title h1,
+  body.lt-work-detail-page .work-detail-head .eyebrow,
+  body.lt-work-detail-page .work-detail-head h1{
+    color:#fff!important;
+    text-shadow:0 2px 14px rgba(0,0,0,.42)!important;
+  }
+
+  body.lt-notice-page .notice-hero-kicker,
+  body.lt-faq-page .section-heading>p:first-child,
+  body.lt-pricing-page .pricing-hero .eyebrow,
+  body.lt-works-page .works-head .eyebrow,
+  body.lt-reviews-page .reviews-head .eyebrow,
+  body.lt-work-detail-page .work-detail-head .eyebrow{
+    color:#b99cff!important;
+  }
+
+  body.lt-notice-page .notice-hero-copy,
+  body.lt-faq-page .section-heading>p:last-child,
+  body.lt-pricing-page .pricing-hero>p:last-child,
+  body.lt-works-page .works-head>p:last-child,
+  body.lt-reviews-page .reviews-head>p:last-child{
+    color:rgba(255,255,255,.78)!important;
+  }
+}
