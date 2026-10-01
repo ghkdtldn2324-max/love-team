@@ -87,7 +87,7 @@ async function ensureAdmin(){
  if(r.error||r.data?.admin!==true)throw new Error(r.data?.message||'관리자 권한이 없습니다.');
 }
 function resetForm(){editingId=null;$('formTitle').textContent='새 공지 등록';$('save').textContent='공지 등록';$('cancel').style.display='none';$('title').value='';$('summary').value='';$('content').value='';$('author').value='로브팀';$('publishedAt').value=new Date().toISOString().slice(0,10);}
-function startEdit(n){editingId=n.id;$('formTitle').textContent='공지 수정';$('save').textContent='수정 저장';$('cancel').style.display='inline-flex';$('title').value=n.title||'';$('summary').value=n.summary||'';$('content').value=n.content||'';$('author').value=n.author||'관리자';$('publishedAt').value=n.published_at||'';window.scrollTo({top:0,behavior:'smooth'});}
+function startEdit(n){editingId=n.id;$('formTitle').textContent='공지 수정';$('save').textContent='수정 저장';$('cancel').style.display='inline-flex';$('title').value=n.title||'';$('summary').value=n.summary||'';$('content').value=n.content||'';$('author').value='로브팀';$('publishedAt').value=n.published_at||'';window.scrollTo({top:0,behavior:'smooth'});}
 async function load(){
  $('list').innerHTML='<div class="empty">공지사항을 불러오는 중입니다.</div>';
  try{
