@@ -487,12 +487,29 @@
     min-height:calc(100vh - 68px)!important;
   }
 
+  /* 후기 목록 패널은 히어로 배경과 분리 */
   body.lt-reviews-page .review-list{
-    background:transparent!important;
+    background:rgba(255,255,255,.96)!important;
+    border:1px solid rgba(232,229,239,.96)!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    box-shadow:0 10px 30px rgba(40,30,70,.05)!important;
+  }
+
+  body.lt-reviews-page .review-row{
+    background:rgba(255,255,255,.96)!important;
+  }
+
+  body.lt-reviews-page .review-row:last-child{
+    border-bottom:0!important;
+  }
+
+  body.lt-reviews-page .review-login-notice{
+    background:rgba(247,245,251,.96)!important;
   }
 
   body.lt-reviews-page .review-write-area{
-    background:rgba(255,255,255,.94)!important;
+    background:rgba(255,255,255,.96)!important;
   }
 
   body.lt-reviews-page .review-login-notice{
