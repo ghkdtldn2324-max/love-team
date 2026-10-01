@@ -19,20 +19,28 @@ const client=window.LoveTeamSupabase;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
-async function check(){
+async function check(sessionOverride=null){
   try{
     if(!client){
       throw new Error("인증 시스템을 불러오지 못했습니다.");
     }
 
-    const {data,error}=await client.auth.getSession();
+    let session=sessionOverride;
 
-    if(error){
-      console.error("work management session error:",error);
-      throw new Error("로그인 상태를 확인하지 못했습니다.");
+    if(!session?.user && window.LoveTeamSession?.user){
+      session=window.LoveTeamSession;
     }
 
-    const session=data?.session||null;
+    if(!session?.user){
+      const {data,error}=await client.auth.getSession();
+
+      if(error){
+        console.error("work management session error:",error);
+        throw new Error("로그인 상태를 확인하지 못했습니다.");
+      }
+
+      session=data?.session||null;
+    }
 
     if(!session?.user){
       throw new Error("로그인이 필요합니다.");
@@ -72,6 +80,36 @@ async function check(){
       err.message ||
       "관리자 인증에 실패했습니다.";
   }
+}
+
+function start(){
+  const current=window.LoveTeamSession;
+  if(current?.user){
+    check(current);
+    return;
+  }
+
+  let started=false;
+
+  const runOnce=session=>{
+    if(started)return;
+    started=true;
+    window.removeEventListener("love-auth-state",onAuthState);
+    check(session||null);
+  };
+
+  const onAuthState=e=>{
+    if(e.detail?.session?.user){
+      runOnce(e.detail.session);
+    }
+  };
+
+  window.addEventListener("love-auth-state",onAuthState);
+
+  setTimeout(()=>{
+    if(started)return;
+    runOnce(window.LoveTeamSession||null);
+  },1500);
 }
 
 async function load(){const s=client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
@@ -164,8 +202,8 @@ $("create").onclick=async()=>{
     b.textContent="작업 내역 등록";
   }
 };if(document.readyState==="loading"){
-  document.addEventListener("DOMContentLoaded",check,{once:true});
+  document.addEventListener("DOMContentLoaded",start,{once:true});
 }else{
-  check();
+  start();
 }const mb=$("mb"),mm=$("mm");mb.onclick=()=>{const o=mm.classList.toggle("active");mb.textContent=o?"✕":"☰"};})();
 </script></body></html>
