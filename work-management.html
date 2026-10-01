@@ -148,7 +148,13 @@ function parseDetail(value){
  return {title:String(value||"작업 내역"),content:""};
 }
 function getDisplayName(session){
- return "로브팀";
+ const user=session?.user;
+ return String(
+  user?.user_metadata?.name||
+  user?.user_metadata?.full_name||
+  user?.email||
+  "관리자"
+ ).trim();
 }
 
 async function getSession(){
