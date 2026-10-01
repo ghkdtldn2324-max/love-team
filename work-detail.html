@@ -81,9 +81,22 @@
   }
   body>*{position:relative;z-index:1;}
   .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:100000!important;
     background:rgba(7,8,18,.76)!important;
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
+  }
+  .mobile-menu-btn{
+    z-index:100001!important;
+    pointer-events:auto!important;
+    touch-action:manipulation!important;
+  }
+  .mobile-menu{
+    z-index:100000!important;
+    pointer-events:auto!important;
+    touch-action:manipulation!important;
   }
   .page-divider{background:rgba(255,255,255,.10)!important;}
   .mobile-menu{
