@@ -179,31 +179,12 @@ async function load(){
    return;
   }
 
-  let loaded=false;
-
-  // 공개 작업 내역과 동일하게 work_history를 직접 조회합니다.
-  // 관리자 함수가 지연되거나 배포 상태와 무관하게 기존 작업 목록은 바로 표시할 수 있습니다.
-  if(client?.from){
-    try{
-      const q=await Promise.race([
-        client.from("work_history")
-          .select("id,display_name,detail,status,created_at,updated_at")
-          .order("created_at",{ascending:false}),
-        new Promise((_,reject)=>setTimeout(()=>reject(new Error("direct-list-timeout")),8000))
-      ]);
-      if(!q.error){
-        rows=Array.isArray(q.data)?q.data:[];
-        loaded=true;
-      }
-    }catch(_){}
-  }
-
-  // 직접 조회가 RLS 등으로 막힌 경우 관리자 Edge Function을 보조 경로로 사용합니다.
-  if(!loaded){
-    const data=await adminRequest({action:"list"});
-    rows=Array.isArray(data.works)?data.works:[];
-  }
-
+  // 관리자 페이지의 기존 작업 목록은 공개 페이지의 조회 방식과 분리하지 않고,
+  // 동일한 work_history를 서버 관리자 함수에서 읽습니다.
+  // 클라이언트 RLS 조회를 먼저 시도하면 권한 정책 때문에 불필요하게 대기할 수 있으므로
+  // 관리자 CRUD와 동일한 Edge Function을 단일 경로로 사용합니다.
+  const data=await adminRequest({action:"list"});
+  rows=Array.isArray(data.works)?data.works:[];
   page=1;
   render();
  }catch(e){
@@ -211,7 +192,6 @@ async function load(){
   list.innerHTML='<div class="empty">'+esc(e.message||"작업 내역을 불러오지 못했습니다.")+'</div>';
  }
 }
-
 function render(){
  if(!rows.length){
   list.innerHTML='<div class="empty">등록된 작업 내역이 없습니다.</div>';
