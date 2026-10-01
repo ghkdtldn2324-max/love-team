@@ -6071,3 +6071,153 @@ select{
     line-height:1.65!important;
   }
 }
+
+
+/* HOMEPAGE — BRAND CLOSING */
+.home-page .lt-closing{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:130px 32px 82px!important;
+  color:#fff!important;
+  text-align:center!important;
+  background:
+    radial-gradient(ellipse 55% 70% at 50% 28%,rgba(145,83,255,.22),transparent 68%),
+    linear-gradient(180deg,#090911 0%,#07070d 100%)!important;
+}
+.home-page .lt-closing::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  pointer-events:none!important;
+  background:
+    radial-gradient(circle at 50% 0,rgba(209,104,255,.1),transparent 25%),
+    linear-gradient(90deg,transparent,rgba(255,255,255,.025),transparent)!important;
+}
+.home-page .lt-closing-inner{
+  position:relative!important;
+  z-index:1!important;
+  width:min(760px,100%)!important;
+  margin:0 auto!important;
+}
+.home-page .lt-closing-line{
+  display:block!important;
+  width:80px!important;
+  height:2px!important;
+  margin:0 auto 30px!important;
+  background:linear-gradient(90deg,#8d72ff,#d26cff)!important;
+  box-shadow:0 0 22px rgba(151,103,255,.5)!important;
+}
+.home-page .lt-closing-kicker{
+  margin:0 0 20px!important;
+  color:#a68cff!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:4px!important;
+}
+.home-page .lt-closing h2{
+  margin:0!important;
+  color:#fff!important;
+  font-size:50px!important;
+  line-height:1.15!important;
+  font-weight:900!important;
+  letter-spacing:-2.5px!important;
+}
+.home-page .lt-closing h2 span{
+  background:linear-gradient(90deg,#947dff,#d66cff)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+}
+.home-page .lt-closing-copy{
+  margin:25px 0 31px!important;
+  color:rgba(255,255,255,.46)!important;
+  font-size:12px!important;
+  line-height:1.9!important;
+  letter-spacing:-.2px!important;
+}
+.home-page .lt-closing-btn{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:18px!important;
+  min-width:190px!important;
+  height:48px!important;
+  padding:0 22px!important;
+  box-sizing:border-box!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-size:11px!important;
+  font-weight:800!important;
+  letter-spacing:-.2px!important;
+  border:1px solid rgba(177,143,255,.55)!important;
+  border-radius:999px!important;
+  background:linear-gradient(100deg,rgba(126,95,255,.28),rgba(205,91,255,.2))!important;
+  box-shadow:0 0 28px rgba(133,89,255,.12),inset 0 0 20px rgba(255,255,255,.03)!important;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease!important;
+}
+.home-page .lt-closing-btn:hover{
+  transform:translateY(-3px)!important;
+  border-color:rgba(210,177,255,.9)!important;
+  box-shadow:0 0 35px rgba(151,103,255,.28),inset 0 0 22px rgba(255,255,255,.05)!important;
+}
+.home-page .lt-closing-btn span{
+  color:#c9a7ff!important;
+  font-size:17px!important;
+  line-height:1!important;
+}
+.home-page .lt-closing-sign{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin-top:96px!important;
+  padding-top:20px!important;
+  border-top:1px solid rgba(255,255,255,.08)!important;
+  color:rgba(255,255,255,.24)!important;
+}
+.home-page .lt-closing-sign span{
+  font-size:8px!important;
+  font-weight:900!important;
+  letter-spacing:4px!important;
+}
+.home-page .lt-closing-sign b{
+  font-size:8px!important;
+  letter-spacing:2.5px!important;
+}
+@media(max-width:760px){
+  .home-page .lt-closing{
+    padding:92px 18px 58px!important;
+  }
+  .home-page .lt-closing-line{
+    margin-bottom:22px!important;
+  }
+  .home-page .lt-closing-kicker{
+    margin-bottom:14px!important;
+    font-size:7px!important;
+    letter-spacing:3px!important;
+  }
+  .home-page .lt-closing h2{
+    font-size:34px!important;
+    letter-spacing:-1.7px!important;
+  }
+  .home-page .lt-closing-copy{
+    margin:20px 0 25px!important;
+    font-size:10px!important;
+  }
+  .home-page .lt-closing-btn{
+    min-width:175px!important;
+    height:44px!important;
+    font-size:10px!important;
+  }
+  .home-page .lt-closing-sign{
+    display:block!important;
+    margin-top:65px!important;
+  }
+  .home-page .lt-closing-sign span,
+  .home-page .lt-closing-sign b{
+    display:block!important;
+    font-size:7px!important;
+  }
+  .home-page .lt-closing-sign b{
+    margin-top:9px!important;
+  }
+}
