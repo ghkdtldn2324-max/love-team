@@ -6221,3 +6221,25 @@ select{
     margin-top:9px!important;
   }
 }
+
+/* WORKS — POST LIST */
+.works-page .work-status-list{display:none!important}
+.works-page .work-post-list{border-top:1px solid rgba(255,255,255,.14);background:rgba(7,7,13,.28)}
+.works-page .work-post{position:relative;display:grid;grid-template-columns:72px 100px minmax(260px,1fr) 300px;align-items:center;min-height:86px;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(7,7,13,.22);transition:background .2s ease}
+.works-page .work-post:hover{background:rgba(104,72,180,.13)}
+.works-page .work-post-no{font-size:12px;font-weight:900;letter-spacing:2px;color:#a98cff}
+.works-page .work-post-status{justify-self:start;padding:6px 10px;border:1px solid rgba(165,135,255,.3);border-radius:4px;font-size:10px;font-weight:800;color:#bba5ff}
+.works-page .work-post-status.done{color:#8ee1bd;border-color:rgba(102,210,164,.28)}
+.works-page .work-post-title{min-width:0;padding:0 24px;border-left:1px solid rgba(255,255,255,.08)}
+.works-page .work-post-title a,.works-page .work-post-title{color:#fff;text-decoration:none;font-size:14px;font-weight:800;letter-spacing:-.3px}
+.works-page .work-post-meta{display:flex;justify-content:flex-end;gap:18px;color:rgba(255,255,255,.4);font-size:10px;white-space:nowrap}
+.works-page .work-post-body{grid-column:3 / 5;padding:0 24px 22px 24px;color:rgba(255,255,255,.55);font-size:12px;line-height:1.8;white-space:pre-line}
+.works-page .work-empty{padding:70px 20px;text-align:center;color:rgba(255,255,255,.45);border-bottom:1px solid rgba(255,255,255,.12)}
+@media(max-width:760px){
+ .works-page .work-post{grid-template-columns:42px 82px 1fr;min-height:92px;padding:0 12px}
+ .works-page .work-post-no{font-size:10px}
+ .works-page .work-post-status{font-size:9px;padding:5px 7px}
+ .works-page .work-post-title{padding:0 10px;font-size:12px}
+ .works-page .work-post-meta{grid-column:2 / 4;justify-content:flex-start;gap:10px;padding:0 10px 12px;font-size:8px}
+ .works-page .work-post-body{grid-column:1 / 4;padding:0 0 18px;color:rgba(255,255,255,.5);font-size:10px}
+}
