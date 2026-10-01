@@ -493,6 +493,12 @@ window.addEventListener('pageshow',function(){
 })();
 </script>
 <script>
+function formatNoticeDate(value){
+  if(!value) return '-';
+  const date=new Date(value);
+  if(Number.isNaN(date.getTime())) return String(value).replace(/-/g,'.');
+  return date.toLocaleString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
 async function loadNotices(){
   const client=window.LoveTeamSupabase||window.supabaseClient;
   const list=document.getElementById('noticeList'), total=document.getElementById('noticeTotal');
@@ -516,8 +522,8 @@ async function loadNotices(){
     total.textContent='TOTAL '+data.length.toLocaleString('ko-KR');
     if(!data.length){list.innerHTML='<div class="notice-empty">등록된 공지사항이 없습니다.</div>';return;}
     list.innerHTML=data.map(function(n,i){
-      const date=String(n.published_at||'').replace(/-/g,'.');
-      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="notice-detail.html?id="+encodeURIComponent(n.id)><span class="notice-no">'+(n.id==='love-team-event-10plus1'?'1':escapeHtml(n.id))+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
+      const date=formatNoticeDate(n.published_at);
+      return '<a class="notice-item" data-notice-id="'+escapeHtml(n.id)+'" href="notice-detail.html?id='+encodeURIComponent(n.id)+'"><span class="notice-no">'+(n.id==='love-team-event-10plus1'?'1':escapeHtml(n.id))+'</span><div class="notice-main"><strong>'+escapeHtml(n.title)+(i===0?' <span class="notice-new">NEW</span>':'')+'</strong><span>'+escapeHtml(n.summary||'')+'</span></div><span class="notice-author">'+escapeHtml(n.author||'관리자')+'</span><span class="notice-date">'+escapeHtml(date)+'</span><span class="notice-views">'+(views[String(n.id)]||0).toLocaleString('ko-KR')+'</span></a>';
     }).join('');
     document.querySelectorAll('.notice-item').forEach(function(item){
       item.addEventListener('pointerenter',function(ev){if(ev.pointerType==='mouse')item.classList.add('is-hover');});
