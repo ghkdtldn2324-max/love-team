@@ -2186,3 +2186,99 @@ render();
   body.lt-reviews-page .review-mobile-empty{padding:42px 10px!important;text-align:center!important;font-size:14px!important;line-height:1.6!important;color:#888891!important;}
 }
 </style>
+
+<style id="lt-reviews-bg-readability-fix-v3">
+/* 후기 히어로 배경 복구 + 가독성 확대 */
+@media(min-width:761px){
+  html,body{background:#080912!important;color:#171722!important;}
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261002-reviews-bg-fix') center top/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.28) 0%,rgba(8,7,18,.42) 55%,rgba(5,5,12,.58) 100%),
+      radial-gradient(circle at 20% 20%,rgba(78,125,255,.10),transparent 34%),
+      radial-gradient(circle at 82% 18%,rgba(177,70,255,.10),transparent 34%)!important;
+  }
+  body.lt-reviews-page>header,
+  body.lt-reviews-page>main,
+  body.lt-reviews-page>footer{position:relative!important;z-index:1!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:transparent!important;}
+  body.lt-reviews-page .reviews-page{
+    min-height:calc(100vh - 174px)!important;
+    padding:46px 24px 90px!important;
+  }
+  body.lt-reviews-page .reviews-wrap{max-width:1100px!important;}
+  body.lt-reviews-page .review-mobile-board-title{
+    margin-bottom:22px!important;
+    min-height:54px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    font-size:32px!important;
+    line-height:1.3!important;
+    letter-spacing:-1px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{font-size:25px!important;}
+  body.lt-reviews-page .review-mobile-board-write{
+    min-width:108px!important;
+    height:50px!important;
+    padding:0 18px!important;
+    border-radius:9px!important;
+    font-size:16px!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    margin-bottom:18px!important;
+    gap:8px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:34px!important;
+    letter-spacing:-1.2px!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{font-size:19px!important;}
+  body.lt-reviews-page .review-mobile-search{margin-bottom:20px!important;}
+  body.lt-reviews-page .review-mobile-search input{
+    height:56px!important;
+    padding:0 50px 0 10px!important;
+    font-size:18px!important;
+    border-bottom-width:2px!important;
+  }
+  body.lt-reviews-page .review-mobile-search::after{font-size:32px!important;}
+  body.lt-reviews-page .review-list{border-top-width:2px!important;}
+  body.lt-reviews-page .review-mobile-row{
+    padding:24px 10px 25px!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin-bottom:11px!important;
+    font-size:20px!important;
+    line-height:1.65!important;
+    letter-spacing:-.4px!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    font-size:14px!important;
+    line-height:1.55!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    height:13px!important;
+    margin:0 10px!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:25px!important;line-height:1.35!important;}
+  body.lt-reviews-page .review-mobile-board-write{min-width:92px!important;height:44px!important;font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:30px!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:17px!important;}
+  body.lt-reviews-page .review-mobile-search input{height:50px!important;font-size:16px!important;}
+  body.lt-reviews-page .review-mobile-search::after{font-size:29px!important;}
+  body.lt-reviews-page .review-mobile-row{padding:19px 8px 20px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:18px!important;line-height:1.6!important;margin-bottom:8px!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:13px!important;line-height:1.5!important;}
+}
+</style>
