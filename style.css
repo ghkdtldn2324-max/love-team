@@ -6269,7 +6269,7 @@ select{
  .work-detail-content{margin-top:22px;padding:24px 28px;background:rgba(255,255,255,.96);border:1px solid rgba(28,24,48,.1);border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.14);color:#111;font-size:15px;line-height:2.05;white-space:pre-line;word-break:keep-all}
 .work-detail-content-text{white-space:pre-line;word-break:keep-all}
 .work-detail-actions{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
-.work-detail-consult{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:9px;background:#111;color:#fff;text-decoration:none;font-size:12px;font-weight:800;transition:opacity .2s,transform .2s}
+.work-detail-consult{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:9px;background:#fee500;color:#111;text-decoration:none;font-size:12px;font-weight:900;transition:opacity .2s,transform .2s;box-shadow:0 6px 18px rgba(254,229,0,.22)}
 .work-detail-consult:hover{opacity:.86;transform:translateY(-1px)}
 .work-detail-back{display:inline-flex;align-items:center;margin-top:38px;padding:10px 16px;border:1px solid #dfdce7;border-radius:8px;color:#555;text-decoration:none;font-size:11px;font-weight:800;background:#fff}
 .work-detail-empty{color:#92929e;padding:70px 0;text-align:center}
@@ -6389,5 +6389,5 @@ select{
 .floating-chat .kakao-talk-icon{width:28px;height:25px;flex-basis:28px;border-radius:9px;margin:0;vertical-align:0}
 .floating-chat .kakao-talk-icon::after{left:6px;bottom:-4px;width:7px;height:7px}
 .floating-chat .kakao-talk-icon i{width:3px;height:3px}
-.work-detail-consult{gap:0}
+.work-detail-consult{gap:0;background:#fee500;color:#111}
 .lt-hero-btn .kakao-talk-icon,.lt-closing-btn .kakao-talk-icon{margin-right:8px}
