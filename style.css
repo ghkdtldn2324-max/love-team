@@ -5576,9 +5576,24 @@ select{
     transform:translateY(-50%)!important;
     margin:0!important;
     padding:0!important;
-    line-height:1!important;
-    font-family:Arial,"Noto Sans KR",sans-serif!important;
-    text-align:center!important;
+    font-size:0!important;
+    line-height:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  body.lt-notice-page .mobile-menu-btn::before,
+  body.lt-faq-page .mobile-menu-btn::before,
+  body.lt-pricing-page .mobile-menu-btn::before,
+  body.lt-works-page .mobile-menu-btn::before,
+  body.lt-reviews-page .mobile-menu-btn::before{
+    content:"☰";
+    display:block;
+    font-family:Arial,"Noto Sans KR",sans-serif;
+    font-size:24px;
+    line-height:1;
+    height:24px;
+    transform:translateY(-2px);
   }
 }
 
