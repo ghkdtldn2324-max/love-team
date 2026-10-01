@@ -1463,37 +1463,25 @@ function renderReviewRows(reviews){
     return;
   }
 
-  const isMobile = window.matchMedia('(max-width:760px)').matches;
-
   list.innerHTML = reviews.map(function(r){
-    if(isMobile){
-      const title=reviewTitle(r.text);
-      const meta='<span>'+escReview(r.name)+'</span>'+
-        '<span>'+escReview(r.date)+'</span>'+
-        '<span>조회수 '+escReview(r.views || 0)+'</span>';
-      if(r.id){
-        return '<a class="review-mobile-row" href="review-detail.html?id='+encodeURIComponent(r.id)+'">'+
-          '<p class="review-mobile-row-title">'+escReview(title)+'</p>'+
-          '<div class="review-mobile-row-meta">'+meta+'</div>'+
-        '</a>';
-      }
-      return '<article class="review-mobile-row">'+
+    const title=reviewTitle(r.text);
+    const meta='<span>'+escReview(r.name)+'</span>'+
+      '<span>'+escReview(r.date)+'</span>'+
+      '<span>조회수 '+escReview(r.views || 0)+'</span>';
+
+    if(r.id){
+      return '<a class="review-mobile-row" href="review-detail.html?id='+encodeURIComponent(r.id)+'">'+
         '<p class="review-mobile-row-title">'+escReview(title)+'</p>'+
         '<div class="review-mobile-row-meta">'+meta+'</div>'+
-      '</article>';
+      '</a>';
     }
 
-    return '<article class="review-row">'+
-      '<div class="review-top">'+
-        '<div><span class="review-user">'+escReview(r.name)+' 님</span></div>'+
-        '<span class="review-date">'+escReview(r.date)+'</span>'+
-      '</div>'+
-      '<p class="review-text">'+escReview(r.text)+'</p>'+
-      '<div class="review-meta"><span class="review-service">'+escReview(r.service || '서비스')+'</span></div>'+
+    return '<article class="review-mobile-row">'+
+      '<p class="review-mobile-row-title">'+escReview(title)+'</p>'+
+      '<div class="review-mobile-row-meta">'+meta+'</div>'+
     '</article>';
   }).join('');
 }
-
 async function render(){
   currentReviewRows = await getReviews();
   renderReviewRows(currentReviewRows);
@@ -2113,5 +2101,88 @@ render();
   .review-mobile-row-title{font-size:14px!important;line-height:1.45!important;letter-spacing:-.3px!important;margin-bottom:6px!important;}
   .review-mobile-row-meta{font-size:11px!important;line-height:1.35!important;}
   .review-mobile-row-meta span+span::before{margin-left:6px!important;margin-right:6px!important;}
+}
+</style>
+
+<style id="lt-reviews-pc-match-mobile-v2">
+@media(min-width:761px){
+  html,body{background:#fff!important;color:#171722!important;}
+  body.lt-reviews-page{background:#fff!important;min-height:100vh!important;}
+  body.lt-reviews-page::before{display:none!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:#fff!important;}
+  body.lt-reviews-page .reviews-page{
+    min-height:calc(100vh - 174px)!important;
+    padding:20px 16px 68px!important;
+    color:#22222a!important;
+  }
+  body.lt-reviews-page .reviews-wrap{width:100%!important;max-width:1000px!important;margin:0 auto!important;}
+  body.lt-reviews-page .reviews-head{display:none!important;}
+  body.lt-reviews-page .review-mobile-board-title{
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    gap:12px!important;margin:0 0 16px!important;min-height:42px!important;padding:0 4px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    margin:0!important;font-size:24px!important;line-height:1.35!important;font-weight:700!important;
+    letter-spacing:-.7px!important;color:#202028!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{font-size:19px!important;margin-right:3px!important;}
+  body.lt-reviews-page .review-mobile-board-write{
+    flex:0 0 auto!important;min-width:88px!important;height:42px!important;padding:0 14px!important;
+    border:0!important;border-radius:7px!important;background:linear-gradient(135deg,#6b78ff,#9b55e8)!important;
+    color:#fff!important;font-size:14px!important;font-weight:700!important;cursor:pointer!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    display:flex!important;align-items:baseline!important;gap:5px!important;
+    margin:0 0 14px!important;padding:0 4px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:28px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-1px!important;color:#24242d!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{font-size:16px!important;line-height:1.2!important;font-weight:700!important;color:#7569dd!important;}
+  body.lt-reviews-page .review-mobile-search{position:relative!important;margin-bottom:14px!important;}
+  body.lt-reviews-page .review-mobile-search input{
+    width:100%!important;height:48px!important;box-sizing:border-box!important;padding:0 44px 0 8px!important;
+    border:0!important;border-bottom:1.5px solid #3d3d46!important;border-radius:0!important;outline:none!important;
+    background:#fff!important;color:#303039!important;font-size:15px!important;
+  }
+  body.lt-reviews-page .review-mobile-search::after{font-size:27px!important;right:5px!important;color:#777780!important;}
+  body.lt-reviews-page .review-list{
+    width:100%!important;border:0!important;border-top:1px solid #d8d8df!important;border-radius:0!important;
+    overflow:visible!important;background:#fff!important;box-shadow:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:block!important;padding:18px 8px 19px!important;min-height:0!important;
+    border-bottom:1px solid #dedee4!important;background:#fff!important;color:#171722!important;text-decoration:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin:0 0 9px!important;max-width:100%!important;font-size:17px!important;line-height:1.65!important;
+    font-weight:600!important;letter-spacing:-.25px!important;color:#202028!important;word-break:keep-all!important;overflow-wrap:anywhere!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:0!important;
+    font-size:12.5px!important;line-height:1.5!important;color:#777780!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span{white-space:nowrap!important;}
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    width:1px!important;height:10px!important;margin:0 8px!important;background:#d1d1d7!important;
+  }
+  body.lt-reviews-page .review-row,body.lt-reviews-page .reviews-note{display:none!important;}
+  body.lt-reviews-page .review-write-area{
+    display:none!important;margin:0 0 16px!important;padding:16px!important;border:1px solid #dedde5!important;
+    border-radius:10px!important;background:#fff!important;box-shadow:0 5px 16px rgba(35,28,70,.06)!important;
+  }
+  body.lt-reviews-page .review-write-area.mobile-open{display:block!important;}
+  body.lt-reviews-page .review-login-notice{display:none!important;}
+  body.lt-reviews-page .review-write-head h2{font-size:18px!important;}
+  body.lt-reviews-page .review-write-head p:last-child{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label select,body.lt-reviews-page .review-write-label textarea{
+    font-size:14px!important;line-height:1.55!important;padding:10px!important;
+  }
+  body.lt-reviews-page .review-write-label select{height:44px!important;}
+  body.lt-reviews-page .review-write-label textarea{min-height:120px!important;}
+  body.lt-reviews-page .review-submit{min-height:44px!important;font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-empty{padding:42px 10px!important;text-align:center!important;font-size:14px!important;line-height:1.6!important;color:#888891!important;}
 }
 </style>
