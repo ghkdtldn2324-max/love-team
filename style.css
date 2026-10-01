@@ -5929,3 +5929,145 @@ select{
     box-shadow:0 0 18px rgba(139,93,255,.28)!important;
   }
 }
+
+
+/* HOMEPAGE — PLAYBOOK SECTION */
+.home-page .lt-proof{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:112px 32px 118px!important;
+  color:#fff!important;
+  background:
+    radial-gradient(ellipse 55% 60% at 84% 42%,rgba(143,83,255,.14),transparent 70%),
+    linear-gradient(180deg,#090911 0%,#0b0a13 100%)!important;
+}
+.home-page .lt-proof::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  pointer-events:none!important;
+  background:linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)!important;
+  background-size:25% 100%!important;
+  opacity:.35!important;
+}
+.home-page .lt-proof-inner{
+  position:relative!important;
+  z-index:1!important;
+  width:min(1180px,100%)!important;
+  margin:0 auto!important;
+}
+.home-page .lt-proof-head{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  align-items:end!important;
+  gap:30px!important;
+  padding-bottom:38px!important;
+  border-bottom:1px solid rgba(255,255,255,.1)!important;
+}
+.home-page .lt-proof-head p{
+  margin:0 0 15px!important;
+  color:#a58aff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:3.5px!important;
+}
+.home-page .lt-proof-head h2{
+  margin:0!important;
+  color:#fff!important;
+  font-size:46px!important;
+  line-height:1.12!important;
+  letter-spacing:-2px!important;
+}
+.home-page .lt-proof-head h2 span{
+  color:#b68aff!important;
+}
+.home-page .lt-proof-head>span{
+  color:rgba(255,255,255,.25)!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  letter-spacing:2px!important;
+}
+.home-page .lt-proof-list{
+  border-left:1px solid rgba(255,255,255,.1)!important;
+}
+.home-page .lt-proof-list article{
+  display:grid!important;
+  grid-template-columns:70px 1fr 130px!important;
+  align-items:center!important;
+  min-height:112px!important;
+  padding:0 28px!important;
+  border-right:1px solid rgba(255,255,255,.1)!important;
+  border-bottom:1px solid rgba(255,255,255,.1)!important;
+  transition:background .25s ease,padding .25s ease!important;
+}
+.home-page .lt-proof-list article:hover{
+  padding-left:36px!important;
+  background:linear-gradient(90deg,rgba(145,106,255,.11),rgba(145,106,255,.025),transparent)!important;
+}
+.home-page .lt-proof-index{
+  color:#9b83ff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:2px!important;
+}
+.home-page .lt-proof-list strong{
+  display:block!important;
+  margin-bottom:7px!important;
+  color:#fff!important;
+  font-size:17px!important;
+  letter-spacing:-.5px!important;
+}
+.home-page .lt-proof-list p{
+  margin:0!important;
+  color:rgba(255,255,255,.43)!important;
+  font-size:10px!important;
+  line-height:1.7!important;
+  word-break:keep-all!important;
+}
+.home-page .lt-proof-list article>b{
+  color:rgba(255,255,255,.18)!important;
+  font-size:9px!important;
+  letter-spacing:2.5px!important;
+  text-align:right!important;
+}
+@media(max-width:760px){
+  .home-page .lt-proof{
+    padding:78px 18px 82px!important;
+  }
+  .home-page .lt-proof-head{
+    display:block!important;
+    padding-bottom:28px!important;
+  }
+  .home-page .lt-proof-head p{
+    margin-bottom:12px!important;
+    font-size:8px!important;
+  }
+  .home-page .lt-proof-head h2{
+    font-size:32px!important;
+    letter-spacing:-1.5px!important;
+  }
+  .home-page .lt-proof-head>span{
+    display:block!important;
+    margin-top:15px!important;
+    font-size:7px!important;
+  }
+  .home-page .lt-proof-list article{
+    grid-template-columns:38px 1fr!important;
+    min-height:104px!important;
+    padding:0 14px!important;
+  }
+  .home-page .lt-proof-list article:hover{
+    padding-left:14px!important;
+  }
+  .home-page .lt-proof-list article>b{
+    display:none!important;
+  }
+  .home-page .lt-proof-list strong{
+    font-size:14px!important;
+    margin-bottom:6px!important;
+  }
+  .home-page .lt-proof-list p{
+    font-size:9px!important;
+    line-height:1.65!important;
+  }
+}
