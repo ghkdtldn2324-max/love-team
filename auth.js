@@ -2114,6 +2114,13 @@
 
     if (!user) return '회원';
 
+    if (
+      String(user.email || '').trim().toLowerCase() ===
+      'qxazrty@love-team.local'
+    ) {
+      return '로브팀';
+    }
+
     const metadata =
       user.user_metadata || {};
 
