@@ -1515,7 +1515,7 @@ function renderReviewRows(reviews){
   const pageRows=reviews.slice(start,start+REVIEWS_PER_PAGE);
 
   list.innerHTML = pageRows.map(function(r){
-    const title=reviewTitle(r.text);
+    const title=String(r.title || '').trim() || reviewTitle(r.text);
     const meta='<span>'+escReview(r.name)+'</span>'+
       '<span>'+escReview(r.date)+'</span>'+
       '<span>조회수 '+escReview(r.views || 0)+'</span>';
@@ -1560,7 +1560,7 @@ render();
       }
       currentReviewPage=1;
       renderReviewRows(currentReviewRows.filter(function(r){
-        return [r.name,r.text,r.service,r.date].join(' ').toLowerCase().includes(q);
+        return [r.title,r.name,r.text,r.service,r.date].join(' ').toLowerCase().includes(q);
       }));
     });
   }
