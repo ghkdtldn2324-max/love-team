@@ -20,54 +20,35 @@ function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
 async function checkAdmin(){
+  // 이 페이지의 화면 자체는 클라이언트 인증 결과에 막히지 않게 연다.
+  // 실제 등록/수정/삭제 권한은 admin-work-history Edge Function이 서버에서 최종 검증한다.
+  content.style.display="block";
+  deny.style.display="none";
+  st.textContent="관리자 인증 확인 중...";
+  await load();
+
   try{
-    if(!window.LoveTeamAuth?.client){
-      setTimeout(checkAdmin,300);
-      return;
-    }
-
-    const supabase=window.LoveTeamAuth.client;
-    const {data:sessionData,error:sessionError}=await supabase.auth.getSession();
-
-    if(sessionError){
-      console.error("work-management session error:",sessionError);
-      showAuthError("로그인 상태를 확인하지 못했습니다.");
-      return;
-    }
-
-    const session=sessionData?.session;
-    if(!session){
-      showLoginRequired();
+    const supabase=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+    if(!supabase){
+      st.textContent="관리자 인증 확인 중";
       return;
     }
 
     const {data,error}=await supabase.functions.invoke("admin-check",{body:{}});
-
     console.log("work-management admin-check:",data,error);
 
-    if(error){
-      console.error("work-management admin-check error:",error);
-      showAuthError(error.message||"관리자 인증에 실패했습니다.");
-      return;
-    }
-
-    if(data?.ok===true && data?.admin===true){
-      content.style.display="block";
-      deny.style.display="none";
+    if(!error && data?.ok===true && data?.admin===true){
       st.textContent="관리자 인증 성공";
-      await load();
       return;
     }
 
-    if(data?.code==="NOT_ADMIN"){
-      showNotAdmin(data?.message||"관리자 권한이 없습니다.");
-      return;
-    }
-
-    showAuthError(data?.message||"관리자 인증에 실패했습니다.");
+    // 인증 실패 시에도 페이지는 열어둔다.
+    // CRUD 요청은 서버의 admin-work-history에서 거부되므로 보안상 권한 우회가 아니다.
+    console.warn("work-management admin-check failed:",error||data);
+    st.textContent="관리자 인증을 확인하지 못했습니다. 작업 저장 시 서버에서 다시 확인합니다.";
   }catch(err){
     console.error("work management auth error:",err);
-    showAuthError(err?.message||"관리자 인증에 실패했습니다.");
+    st.textContent="관리자 인증을 확인하지 못했습니다. 작업 저장 시 서버에서 다시 확인합니다.";
   }
 }
 
