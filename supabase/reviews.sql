@@ -8,6 +8,23 @@ create table if not exists public.reviews (
   created_at timestamptz not null default now()
 );
 
+-- 후기 제목 필드
+alter table public.reviews
+add column if not exists title text;
+
+update public.reviews
+set title = case
+  when title is null or btrim(title) = '' then left(content, 40)
+  else title
+end
+where title is null or btrim(title) = '';
+
+alter table public.reviews
+alter column title set default '후기';
+
+alter table public.reviews
+alter column title set not null;
+
 alter table public.reviews enable row level security;
 
 drop policy if exists "Public can view reviews" on public.reviews;
