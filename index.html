@@ -491,3 +491,28 @@
   window.addEventListener('love-auth-state',loadHomeReviews);
 })();
 </script></body></html>
+
+<style id="lt-home-mobile-review-quote-fix-v1">
+@media(max-width:760px){
+  /* 후기 우측 쌍따옴표 영역은 텍스트가 절대 침범하지 않도록 별도 공간 확보 */
+  .home-page .home-hero-review-list article{position:relative!important;padding-right:7px!important;}
+  .home-page .home-hero-review-list article::before{
+    right:7px!important;
+    top:4px!important;
+    font-size:27px!important;
+    z-index:2!important;
+    pointer-events:none!important;
+  }
+  .home-page .home-hero-review-list article p{
+    width:calc(100% - 22px)!important;
+    max-width:calc(100% - 22px)!important;
+    margin:0!important;
+    padding-right:0!important;
+    box-sizing:border-box!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+}
+</style>
