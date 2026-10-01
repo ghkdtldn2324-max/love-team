@@ -6381,3 +6381,13 @@ select{
     color:rgba(255,255,255,.3);
   }
 }
+
+/* KakaoTalk 상담 버튼 아이콘 */
+.kakao-talk-icon{display:inline-flex;position:relative;width:20px;height:18px;flex:0 0 20px;align-items:center;justify-content:center;gap:2px;border-radius:6px;background:#fee500;vertical-align:-4px;margin-right:7px;box-sizing:border-box}
+.kakao-talk-icon::after{content:"";position:absolute;left:4px;bottom:-3px;width:5px;height:5px;background:#fee500;clip-path:polygon(0 0,100% 0,0 100%)}
+.kakao-talk-icon i{display:block;width:2.5px;height:2.5px;border-radius:50%;background:#111;position:relative;z-index:1}
+.floating-chat .kakao-talk-icon{width:28px;height:25px;flex-basis:28px;border-radius:9px;margin:0;vertical-align:0}
+.floating-chat .kakao-talk-icon::after{left:6px;bottom:-4px;width:7px;height:7px}
+.floating-chat .kakao-talk-icon i{width:3px;height:3px}
+.work-detail-consult{gap:0}
+.lt-hero-btn .kakao-talk-icon,.lt-closing-btn .kakao-talk-icon{margin-right:8px}
