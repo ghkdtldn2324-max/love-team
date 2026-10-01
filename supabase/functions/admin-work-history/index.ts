@@ -60,7 +60,7 @@ export default {
 
           return Response.json({
             ok: true,
-            works: data || []
+            works: (data || []).map((work) => ({ ...work, display_name: "로브팀" }))
           });
         }
 
@@ -93,7 +93,7 @@ export default {
           });
         }
 
-        const displayName = String(body?.display_name || "").trim();
+        const displayName = "로브팀";
         const detail = String(body?.detail || "").trim();
         const status = String(body?.status || "").trim();
 
