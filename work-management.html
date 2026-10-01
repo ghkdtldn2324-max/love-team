@@ -14,26 +14,31 @@
 <div class="card"><h2>기존 작업 수정 / 삭제</h2><p>최근 5개씩 표시되며 페이지 번호로 이전 작업을 확인할 수 있습니다.</p><div id="list">작업 내역을 불러오는 중입니다...</div></div></section>
 <section class="deny" id="deny"><strong>관리자 권한이 없습니다.</strong><p id="dm">관리자 계정으로 로그인해주세요.</p></section></div></main><footer class="footer"><div class="footer-inner"><strong>LOVE TEAM</strong><p>VALORANT 작업 전문 서비스</p></div></footer>
 <script src="supabase-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auth.js?v=20260930-24"></script><script>
-const client=window.LoveTeamSupabase||supabase.createClient(window.LOVE_TEAM_SUPABASE_URL,window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY);
+const client=supabase.createClient(
+  window.LOVE_TEAM_SUPABASE_URL,
+  window.LOVE_TEAM_SUPABASE_PUBLISHABLE_KEY
+);
 (()=>{const $=id=>document.getElementById(id),content=$("content"),deny=$("deny"),st=$("st"),list=$("list"),name=$("name"),title=$("title"),detail=$("detail"),state=$("state"),result=$("result");let rows=[],page=1;const size=5;
 function mask(v){v=String(v||"").trim();if(!v)return"";if(v.length<=2)return"*".repeat(v.length);if(v.length===3)return v[0]+"*"+v[2];if(v.length===4)return v.slice(0,2)+"**";return v.slice(0,2)+"***"+v.slice(-2)}
 function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/\x27/g,"&#039;")}
 
 async function check(){
   try{
-    let session=null;
-    if(window.LoveTeamAuth?.getSession){
-      session=await window.LoveTeamAuth.getSession();
-    }else{
-      const sessionResult=await client.auth.getSession();
-      session=sessionResult?.data?.session||null;
+    const {data,error}=await client.auth.getSession();
+
+    if(error){
+      console.error("work management session error:",error);
+      throw new Error("로그인 상태를 확인하지 못했습니다.");
     }
+
+    const session=data?.session||null;
 
     if(!session?.user){
       throw new Error("로그인이 필요합니다.");
     }
 
     const adminCheck=await client.functions.invoke("admin-check",{body:{}});
+
     if(
       adminCheck.error ||
       adminCheck.data?.ok !== true ||
@@ -53,17 +58,22 @@ async function check(){
     console.error("work management auth error:",err);
     content.style.display="none";
     deny.style.display="block";
-    st.textContent=
-      err.message==="로그인이 필요합니다."
-        ?"로그인 필요"
-        :"관리자 권한 없음";
+
+    if(err.message==="로그인이 필요합니다."){
+      st.textContent="로그인 필요";
+    }else if(err.message==="관리자 권한이 없습니다."){
+      st.textContent="관리자 권한 없음";
+    }else{
+      st.textContent="관리자 인증 실패";
+    }
+
     $("dm").textContent=
       err.message ||
       "관리자 인증에 실패했습니다.";
   }
 }
 
-async function load(){const s=window.LoveTeamAuth.client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
+async function load(){const s=client;const q=await s.from("work_history").select("id,display_name,detail,status").order("created_at",{ascending:false});if(q.error){list.textContent="작업 내역을 불러오지 못했습니다.";return}rows=q.data||[];page=1;render()}
 function render(){if(!rows.length){list.textContent="등록된 작업 내역이 없습니다.";return}const pages=Math.ceil(rows.length/size),part=rows.slice((page-1)*size,page*size);list.innerHTML=part.map(r=>{let d={};try{d=JSON.parse(r.detail||"{}")}catch(e){d={title:r.detail||"작업 내역",content:""}}return `<div class="row"><div class="rowmain"><div><div class="name">${esc(d.title)}</div><div class="detail">${esc(r.display_name)} · ${r.status==="done"?"작업완료":"진행중"}</div></div><span class="statusText">${r.status==="done"?"작업완료":"진행중"}</span></div><div class="detail">${esc(d.content)}</div><div class="actions"><button class="btn" data-e="${r.id}">수정</button><button class="btn" data-d="${r.id}">삭제</button></div><div class="edit" data-editor="${r.id}"><input class="input" data-n value="${esc(r.display_name)}"><input class="input" data-t value="${esc(d.title)}"><textarea class="textarea" data-c>${esc(d.content)}</textarea><select class="select" data-s><option value="progress" ${r.status==="progress"?"selected":""}>진행중</option><option value="done" ${r.status==="done"?"selected":""}>작업완료</option></select><div class="actions"><button class="btn" data-save>저장</button><button class="btn" data-cancel>취소</button></div></div></div>`}).join("");list.querySelectorAll("[data-e]").forEach(b=>b.onclick=function(){
   list.querySelectorAll(".edit.active").forEach(x=>x.classList.remove("active"));
   const editor=list.querySelector(".edit[data-editor=\""+String(b.getAttribute("data-e")||"")+""]");
@@ -111,7 +121,7 @@ function render(){if(!rows.length){list.textContent="등록된 작업 내역이 
 });list.querySelectorAll("[data-d]").forEach(b=>b.onclick=async()=>{if(confirm("이 작업 게시글을 삭제할까요?"))await act({action:"delete",id:b.dataset.d})});if(pages>1){const p=document.createElement("div");p.className="pagination";for(let i=1;i<=pages;i++){const b=document.createElement("button");b.textContent=i;b.className=i===page?"active":"";b.onclick=()=>{page=i;render()};p.appendChild(b)}list.appendChild(p)}}
 async function act(body){
   result.textContent="처리 중입니다...";
-  const s=window.LoveTeamAuth.client;
+  const s=client;
   const q=await s.functions.invoke("admin-work-history",{body});
   if(q.error){
     const serverMessage=q.data?.message||q.error.message||"서버에서 요청을 처리하지 못했습니다.";
