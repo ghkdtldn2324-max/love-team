@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghkdtldn2324-max.github.io/love-team/sitemap.xml
