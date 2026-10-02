@@ -1555,7 +1555,6 @@
           return;
         }
 
-        const href = a.getAttribute('href') || '';
         if (href === 'login.html' || href === 'signup.html') {
           return;
         }
