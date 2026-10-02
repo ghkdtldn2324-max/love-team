@@ -259,6 +259,14 @@
   }
 }
 </style>
+<style id="lt-breadcrumb-v1">
+.lt-breadcrumb{max-width:1080px;margin:0 auto;padding:0 24px 14px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.68)}
+.lt-breadcrumb a{color:inherit;text-decoration:none}
+.lt-breadcrumb a:hover{text-decoration:underline}
+.lt-breadcrumb .sep{opacity:.45}
+.lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.lt-breadcrumb{padding:0 16px 10px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
+</style>
 </head>
 <body class="lt-works-page">
 <header class="header">
@@ -271,6 +279,7 @@
 <div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth" data-auth-open data-auth-mode="login">로그인</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div>
 </header>
 <div class="page-divider" aria-hidden="true"></div>
+<div class="lt-breadcrumb" aria-label="페이지 경로"><a href="index.html">홈</a><span class="sep" aria-hidden="true">›</span><span class="current">작업 내역</span></div>
 <main class="works-page"><div class="works-wrap"><div class="works-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>작업 내역</h1><p>로브팀의 진행 및 완료 작업을 게시글 형태로 확인하실 수 있습니다.</p></div><div class="work-post-board"><div class="work-post-header"><span>No</span><span>상태</span><span>제목</span><span>글쓴이</span><span>작성일</span><span>조회수</span></div><div id="workList" class="work-post-list"></div></div></div></main>
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
 <script src="supabase-config.js"></script>
@@ -321,6 +330,7 @@
   sync();
 })();
 </script>
+<script type="application/ld+json" id="lt-breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":"작업 내역","item":"https://ghkdtldn2324-max.github.io/love-team/works.html"}]}</script>
 </body>
 <style id="lt-mobile-floating-kakao-v1">
 @media(max-width:760px){
