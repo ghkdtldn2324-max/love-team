@@ -1967,19 +1967,8 @@ render();
         const meta =
           session.user?.user_metadata || {};
 
-        const username =
-          String(meta.username || '회원').trim() || '회원';
-
-        const memberName =
-          String(meta.name || '회원').trim() || '회원';
-
-        const maskedUsername =
-          username.length > 2
-            ? username.slice(0,2) + '***'
-            : username + '***';
-
         const displayName =
-          'ID:' + maskedUsername + ' > ' + memberName;
+          String(meta.name || '회원').trim() || '회원';
 
         if(!client){
           showMessage(
