@@ -415,12 +415,12 @@
 
   body.lt-review-detail-page .review-detail-page{
     min-height:calc(100vh - 118px)!important;
-    padding:48px 20px 80px!important;
+    padding:44px 24px 76px!important;
   }
 
   body.lt-review-detail-page .review-detail-wrap{
     width:100%!important;
-    max-width:930px!important;
+    max-width:1100px!important;
     margin:0 auto!important;
   }
 
@@ -437,7 +437,7 @@
   body.lt-review-detail-page .review-detail-section-label{
     display:block!important;
     margin:0!important;
-    padding:0 0 18px!important;
+    padding:0 0 19px!important;
     font-size:16px!important;
     line-height:1.4!important;
     font-weight:800!important;
@@ -449,7 +449,7 @@
     margin:0!important;
     padding:0 0 18px!important;
     border-bottom:1px solid #e7e7eb!important;
-    font-size:18px!important;
+    font-size:20px!important;
     line-height:1.55!important;
     font-weight:700!important;
     letter-spacing:-.25px!important;
@@ -459,9 +459,9 @@
   body.lt-review-detail-page .review-detail-user{
     display:flex!important;
     align-items:center!important;
-    gap:11px!important;
+    gap:13px!important;
     margin:0!important;
-    padding:15px 0 14px!important;
+    padding:17px 0 16px!important;
     min-height:0!important;
     border-bottom:1px solid #e7e7eb!important;
     background:#fff!important;
@@ -470,9 +470,9 @@
   body.lt-review-detail-page .review-detail-avatar{
     position:relative!important;
     display:block!important;
-    width:46px!important;
-    height:46px!important;
-    flex:0 0 46px!important;
+    width:48px!important;
+    height:48px!important;
+    flex:0 0 48px!important;
     overflow:hidden!important;
     border:0!important;
     border-radius:50%!important;
@@ -509,7 +509,7 @@
 
   body.lt-review-detail-page .review-detail-user-name{
     margin:0!important;
-    font-size:13px!important;
+    font-size:14px!important;
     line-height:1.4!important;
     font-weight:700!important;
     letter-spacing:-.1px!important;
@@ -527,7 +527,7 @@
     flex-wrap:wrap!important;
     gap:0!important;
     margin-top:4px!important;
-    font-size:10px!important;
+    font-size:11px!important;
     line-height:1.4!important;
     color:#777780!important;
   }
@@ -549,7 +549,7 @@
 
   body.lt-review-detail-page .review-detail-body{
     margin:0!important;
-    padding:28px 0 30px!important;
+    padding:34px 0 38px!important;
     border-bottom:1px solid #dedee4!important;
     background:#fff!important;
   }
@@ -565,32 +565,39 @@
     white-space:pre-line!important;
     word-break:keep-all!important;
     overflow-wrap:anywhere!important;
-    font-size:14px!important;
-    line-height:1.85!important;
+    font-size:15px!important;
+    line-height:1.9!important;
     letter-spacing:-.12px!important;
     color:#33333b!important;
   }
 
   body.lt-review-detail-page .review-detail-comments{
     margin:0!important;
-    padding:15px 0!important;
+    padding:17px 0!important;
     border-bottom:1px solid #dedee4!important;
     background:#fff!important;
     color:#55555e!important;
-    font-size:12px!important;
+    font-size:13px!important;
   }
 
   body.lt-review-detail-page .review-detail-comments span{
     margin-right:5px!important;
-    font-size:17px!important;
-    vertical-align:-2px!important;
+    font-size:0!important;
+    position:relative!important;
+    display:inline-block!important;
+    width:15px!important;
+    height:11px!important;
+    margin-right:8px!important;
+    vertical-align:-1px!important;
+    border:1.6px solid #66666e!important;
+    border-radius:7px!important;
   }
 
   body.lt-review-detail-page .review-detail-login{
     width:100%!important;
     box-sizing:border-box!important;
     margin:30px 0 22px!important;
-    min-height:105px!important;
+    min-height:118px!important;
     padding:17px 20px!important;
     border:1px solid #dedee4!important;
     border-radius:0!important;
@@ -662,7 +669,20 @@
     line-height:1!important;
   }
 }
-</style>
+
+
+  body.lt-review-detail-page .review-detail-comments span::after{
+    content:""!important;
+    position:absolute!important;
+    left:1px!important;
+    bottom:-4px!important;
+    width:5px!important;
+    height:5px!important;
+    background:#fff!important;
+    border-left:1.6px solid #66666e!important;
+    border-bottom:1.6px solid #66666e!important;
+    transform:skewX(-28deg) rotate(-8deg)!important;
+  }</style>
 </html>
 <style id="lt-review-detail-mobile-compact-v5">
 @media(max-width:760px){
