@@ -255,12 +255,12 @@
   <img class="logo-image" src="assets/love-team-logo-transparent.png?v=20261001-transparent" alt="LOVE TEAM">
 </a>
 <nav class="nav"><a class="home-nav" href="index.html">홈</a><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a></nav>
-<div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div>
+<div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">글쓴이 페이지</a><a href="#" id="openAuth" data-auth-open>로그인 / 회원가입</a><a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div>
 <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
-<div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div>
+<div class="mobile-menu" id="mobileMenu"><a href="notice.html">공지사항</a><a href="faq.html">자주 묻는 질문</a><a href="pricing.html">가격표</a><a href="works.html">작업 내역</a><a href="reviews.html">후기</a><a href="#" id="mobileOpenAuth">로그인 / 회원가입</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 글쓴이 페이지</a><a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a></div>
 </header>
 <div class="page-divider" aria-hidden="true"></div>
-<main class="works-page"><div class="works-wrap"><div class="works-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>작업 내역</h1><p>로브팀의 진행 및 완료 작업을 게시글 형태로 확인하실 수 있습니다.</p></div><div class="work-post-board"><div class="work-post-header"><span>번호</span><span>상태</span><span>제목</span><span>관리자</span><span>작성시간</span><span>조회수</span></div><div id="workList" class="work-post-list"></div></div></div></main>
+<main class="works-page"><div class="works-wrap"><div class="works-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>작업 내역</h1><p>로브팀의 진행 및 완료 작업을 게시글 형태로 확인하실 수 있습니다.</p></div><div class="work-post-board"><div class="work-post-header"><span>번호</span><span>상태</span><span>제목</span><span>글쓴이</span><span>작성시간</span><span>조회수</span></div><div id="workList" class="work-post-list"></div></div></div></main>
 <a class="lt-mobile-floating-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅으로 이동"><span class="kakao-talk-icon" aria-hidden="true"></span></a>
 <footer><strong>LOVE TEAM</strong><p>© 2026 LOVE TEAM. All rights reserved.</p></footer>
 <script src="supabase-config.js"></script>
@@ -272,7 +272,7 @@
  const list=document.getElementById("workList");
  const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
  const parse=v=>{try{const x=JSON.parse(v||"{}");return {title:x.title||"작업 내역",content:x.content||""}}catch(e){return {title:v||"작업 내역",content:""}}};
- const workAuthorName=v=>{const name=String(v||"").trim();return name.toLowerCase()==="qxazrty@love-team.local"?"로브팀":(name||"관리자")};
+ const workAuthorName=v=>{const name=String(v||"").trim();return name.toLowerCase()==="qxazrty@love-team.local"?"로브팀":(name||"글쓴이")};
  const fmt=v=>{const d=new Date(v);return v&&!Number.isNaN(d.getTime())?d.toLocaleDateString("ko-KR"):"-"};
  async function load(){
   const client=window.LoveTeamAuth&&window.LoveTeamAuth.client;
