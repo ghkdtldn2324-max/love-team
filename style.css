@@ -6332,6 +6332,7 @@ select{
   letter-spacing:1.8px;
 }
 .works-page .work-post-header span:nth-child(3){padding-left:24px}
+.works-page .work-post-header span:nth-child(6){text-align:right;padding-right:0;}
 .works-page .work-post{
   grid-template-columns:72px 96px minmax(260px,1fr) 150px 140px 90px!important;
 }
