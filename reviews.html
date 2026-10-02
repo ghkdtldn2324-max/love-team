@@ -1319,6 +1319,14 @@
 
   <!-- 후기 목록 -->
 
+  <div class="review-board-head" aria-hidden="true">
+    <span>No</span>
+    <span>제목</span>
+    <span>글쓴이</span>
+    <span>작성일</span>
+    <span>조회수</span>
+  </div>
+
   <div
     id="reviewList"
     class="review-list"
@@ -1514,23 +1522,23 @@ function renderReviewRows(reviews){
   const start=(currentReviewPage-1)*REVIEWS_PER_PAGE;
   const pageRows=reviews.slice(start,start+REVIEWS_PER_PAGE);
 
-  list.innerHTML = pageRows.map(function(r){
+  list.innerHTML = pageRows.map(function(r,index){
     const title=String(r.title || '').trim() || reviewTitle(r.text);
-    const meta='<span>'+escReview(r.name)+'</span>'+
-      '<span>'+escReview(r.date)+'</span>'+
-      '<span>조회수 '+escReview(r.views || 0)+'</span>';
+    const no=start+index+1;
+    const author=String(r.name || '').trim() || '회원';
+    const date=String(r.date || '').trim() || '-';
+    const views=Number(r.views || 0).toLocaleString('ko-KR');
+    const cells='<span class="review-no">'+no+'</span>'+
+      '<div class="review-row-title"><strong>'+escReview(title)+'</strong></div>'+
+      '<span class="review-row-author">'+escReview(author)+'</span>'+
+      '<span class="review-row-date">'+escReview(date)+'</span>'+
+      '<span class="review-row-views">'+views+'</span>';
 
     if(r.id){
-      return '<a class="review-mobile-row" href="review-detail.html?id='+encodeURIComponent(r.id)+'">'+
-        '<p class="review-mobile-row-title">'+escReview(title)+'</p>'+
-        '<div class="review-mobile-row-meta">'+meta+'</div>'+
-      '</a>';
+      return '<a class="review-mobile-row" href="review-detail.html?id='+encodeURIComponent(r.id)+'">'+cells+'</a>';
     }
 
-    return '<article class="review-mobile-row">'+
-      '<p class="review-mobile-row-title">'+escReview(title)+'</p>'+
-      '<div class="review-mobile-row-meta">'+meta+'</div>'+
-    '</article>';
+    return '<article class="review-mobile-row">'+cells+'</article>';
   }).join('');
 
   renderPagination(reviews.length);
@@ -2416,7 +2424,67 @@ render();
 </style>
 
 <style id="lt-reviews-pagination-v1">
+.review-board-head{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+  align-items:center;
+  gap:12px;
+  min-height:46px;
+  padding:0 10px;
+  border-top:1px solid #d8d8df;
+  border-bottom:1px solid #d8d8df;
+  background:rgba(250,249,253,.96);
+  color:#777780;
+  font-size:12px;
+  font-weight:800;
+  text-align:center;
+}
+.review-board-head span:nth-child(2){text-align:left;}
 .review-pagination{display:flex;justify-content:center;align-items:center;gap:7px;margin:24px 0 0;flex-wrap:wrap;}
+@media(min-width:761px){
+  body.lt-reviews-page .review-board-head{
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+    min-height:44px;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+    align-items:center!important;
+    gap:12px!important;
+    min-height:48px!important;
+    padding:8px 10px!important;
+    box-sizing:border-box!important;
+  }
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    display:block!important;
+    text-align:center!important;
+    color:#777780!important;
+    font-size:12px!important;
+    white-space:nowrap!important;
+  }
+  body.lt-reviews-page .review-row-title{min-width:0!important;text-align:left!important;}
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:14px!important;
+    line-height:1.4!important;
+    font-weight:600!important;
+    color:#3f3f49!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-reviews-page .review-board-head{display:none!important;}
+  body.lt-reviews-page .review-mobile-row{display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;}
+  body.lt-reviews-page .review-no{display:flex!important;align-items:center!important;justify-content:center!important;color:#777780!important;font-size:11px!important;}
+  body.lt-reviews-page .review-row-title{min-width:0!important;}
+  body.lt-reviews-page .review-row-title strong{display:block!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:13px!important;line-height:1.4!important;color:#44444d!important;}
+  body.lt-reviews-page .review-row-author,body.lt-reviews-page .review-row-date,body.lt-reviews-page .review-row-views{display:none!important;}
+}
 .review-pagination button{width:36px;height:36px;border:1px solid #ddd9e8;border-radius:7px;background:#fff;color:#666;cursor:pointer;font-size:13px;font-weight:700;}
 .review-pagination button.active{border-color:#7866e8;background:linear-gradient(135deg,#6b78ff,#9b55e8);color:#fff;}
 @media(max-width:760px){
