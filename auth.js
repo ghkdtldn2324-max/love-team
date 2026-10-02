@@ -1506,13 +1506,20 @@
           'click',
           function(event) {
 
-            event.preventDefault();
-
-              const requestedMode =
+            const requestedMode =
               a.dataset.authMode ||
               (a.getAttribute('href') || '').replace('#','') ||
               'login';
 
+            const href = a.getAttribute('href') || '';
+            const isSeparateAuthPage =
+              href === 'login.html' || href === 'signup.html';
+
+            if (isSeparateAuthPage) {
+              return;
+            }
+
+            event.preventDefault();
             show(requestedMode === 'signup' ? 'signup' : 'login');
 
           }
@@ -1552,6 +1559,11 @@
           href !== 'https://open.kakao.com/';
 
         if (!isAuthButton) {
+          return;
+        }
+
+        const href = a.getAttribute('href') || '';
+        if (href === 'login.html' || href === 'signup.html') {
           return;
         }
 
