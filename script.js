@@ -330,10 +330,11 @@
 
     if (menuBtn && menu) {
 
-      menuBtn.addEventListener('click', function (e) {
-
-        e.preventDefault();
-        e.stopPropagation();
+      function toggleMobileMenu(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
 
         menu.classList.toggle('active');
 
@@ -347,7 +348,13 @@
           'aria-label',
           open ? '메뉴 닫기' : '메뉴 열기'
         );
+      }
 
+      menuBtn.addEventListener('click', toggleMobileMenu);
+      menuBtn.addEventListener('pointerup', function(e) {
+        if (e.pointerType === 'touch') {
+          toggleMobileMenu(e);
+        }
       });
 
 
