@@ -32,6 +32,7 @@
 .badge{flex:none;padding:6px 9px;border-radius:999px;background:#261b3e;color:#cbb8ff;font-size:12px;font-weight:800}
 .badge.done{background:#18342b;color:#9de3c0}
 .work-content{margin-top:14px;color:#ccc;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+.work-fixed-note{padding:11px 12px;border:1px solid #30303a;border-radius:9px;background:#0d0d12;color:#aaa;font-size:12px;line-height:1.55}
 .item-actions{display:flex;gap:8px;margin-top:15px}
 .edit-box{display:none;margin-top:15px;padding-top:15px;border-top:1px solid #292932}
 .edit-box.active{display:grid;gap:11px}
@@ -84,10 +85,9 @@
 
 <section class="card">
 <h2>새 작업 등록</h2>
-<p class="card-desc">게시글 제목, 게시글 내용, 작업 상태를 입력해주세요.</p>
+<p class="card-desc">게시글 제목과 작업 상태만 입력해주세요. <strong>진행중</strong>으로 등록하면 로브팀 고정 안내문 + 이미지 + 카카오톡 상담 버튼이 자동으로 생성됩니다. 작업완료는 제목만 표시됩니다.</p>
 <div class="form-grid">
 <input class="input" id="title" maxlength="100" placeholder="게시글 제목">
-<textarea class="textarea" id="content" maxlength="2000" placeholder="게시글 내용을 입력해주세요."></textarea>
 <select class="select" id="status">
 <option value="progress">진행중</option>
 <option value="done">작업완료</option>
@@ -119,7 +119,7 @@
 (function(){
 const $=id=>document.getElementById(id);
 const client=window.LoveTeamAuth?.client||window.LoveTeamSupabase;
-const list=$("list"),message=$("message"),title=$("title"),content=$("content"),status=$("status"),diagnostic=$("diagnostic");
+const list=$("list"),message=$("message"),title=$("title"),status=$("status"),diagnostic=$("diagnostic");
 function diag(text){
  if(!diagnostic)return;
  diagnostic.style.display="block";
@@ -142,10 +142,10 @@ function parseDetail(value){
  try{
   const d=JSON.parse(value||"{}");
   if(d&&typeof d==="object"&&!Array.isArray(d)){
-   return {title:String(d.title||"").trim(),content:String(d.content||"").trim()};
+   return {title:String(d.title||"").trim(),content:String(d.content||"").trim(),layout:String(d.layout||"").trim()};
   }
  }catch(_){}
- return {title:String(value||"작업 내역"),content:""};
+ return {title:String(value||"작업 내역"),content:"",layout:""};
 }
 function getDisplayName(session){
  const user=session?.user;
@@ -314,10 +314,9 @@ function bindListEvents(){
    const box=btn.closest(".edit-box");
    const id=box?.dataset.editor;
    const t=box?.querySelector("[data-title]")?.value.trim();
-   const c=box?.querySelector("[data-content]")?.value.trim();
    const s=box?.querySelector("[data-status]")?.value;
-   if(!id||!t||!c){
-    message.textContent="게시글 제목과 내용을 모두 입력해주세요.";
+   if(!id||!t){
+    message.textContent="게시글 제목을 입력해주세요.";
     return;
    }
    btn.disabled=true;
@@ -327,7 +326,7 @@ function bindListEvents(){
      action:"update",
      id,
      display_name:getDisplayName(window.LoveTeamSession),
-     detail:JSON.stringify({title:t,content:c}),
+     detail:JSON.stringify({title:t}),
      status:s
     });
     message.textContent=data.message||"수정되었습니다.";
@@ -342,10 +341,9 @@ function bindListEvents(){
 
 $("create").onclick=async()=>{
  const t=title.value.trim();
- const c=content.value.trim();
  const s=status.value;
- if(!t||!c){
-  message.textContent="게시글 제목과 내용을 모두 입력해주세요.";
+ if(!t){
+  message.textContent="게시글 제목을 입력해주세요.";
   return;
  }
 
@@ -364,11 +362,10 @@ $("create").onclick=async()=>{
   const data=await adminRequest({
    action:"create",
    display_name:getDisplayName(session),
-   detail:JSON.stringify({title:t,content:c}),
+   detail:JSON.stringify({title:t}),
    status:s
   });
   title.value="";
-  content.value="";
   status.value="progress";
   message.textContent=data.message||"작업 내역이 등록되었습니다.";
   await load();
