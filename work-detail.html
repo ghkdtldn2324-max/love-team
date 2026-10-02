@@ -512,7 +512,7 @@ LOVE TEAM
     if(old)old.remove();
     var s=document.createElement("script");
     s.type="application/ld+json";s.id="lt-breadcrumb-jsonld";
-    s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":category,"item":"https://ghkdtldn2324-max.github.io/love-team/work-detail.html"},{"@type":"ListItem","position":3,"name":title}]});
+    s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":category,"item":new URL("works.html",location.href).href},{"@type":"ListItem","position":3,"name":title}]});
     document.head.appendChild(s);
     var cur=document.querySelector(".lt-breadcrumb .current"); if(cur)cur.textContent=title;
   }
