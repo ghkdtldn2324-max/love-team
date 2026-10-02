@@ -2559,3 +2559,101 @@ render();
   body.lt-reviews-page .review-write-area .review-write-label input[type="text"]{min-height:42px;font-size:14px;padding:0 11px;}
 }
 </style>
+
+<style id="lt-reviews-board-column-align-v1">
+/* 후기 헤더/게시글 열 위치 최종 정렬 20261002 */
+.review-board-head,
+body.lt-reviews-page .review-mobile-row{
+  box-sizing:border-box!important;
+  align-items:center!important;
+}
+
+.review-board-head > span,
+body.lt-reviews-page .review-mobile-row > span,
+body.lt-reviews-page .review-mobile-row > .review-row-title{
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+
+.review-board-head > span:nth-child(2),
+body.lt-reviews-page .review-mobile-row > .review-row-title{
+  text-align:left!important;
+}
+
+@media(min-width:761px){
+  body.lt-reviews-page .review-board-head,
+  body.lt-reviews-page .review-mobile-row{
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px!important;
+    column-gap:12px!important;
+    width:100%!important;
+  }
+
+  body.lt-reviews-page .review-board-head{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    width:100%!important;
+    text-align:center!important;
+    justify-self:stretch!important;
+  }
+
+  body.lt-reviews-page .review-row-title{
+    width:100%!important;
+    justify-self:stretch!important;
+    padding:0!important;
+  }
+}
+
+@media(max-width:760px){
+  body.lt-reviews-page .review-board-head,
+  body.lt-reviews-page .review-mobile-row{
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    column-gap:5px!important;
+    width:100%!important;
+  }
+
+  body.lt-reviews-page .review-board-head{
+    padding-left:6px!important;
+    padding-right:6px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    padding-left:6px!important;
+    padding-right:6px!important;
+  }
+
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    width:100%!important;
+    text-align:center!important;
+    justify-self:stretch!important;
+  }
+
+  body.lt-reviews-page .review-row-title{
+    width:100%!important;
+    justify-self:stretch!important;
+    padding:0!important;
+  }
+
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+  }
+}
+</style>
+
