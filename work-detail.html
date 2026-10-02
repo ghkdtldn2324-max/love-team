@@ -210,7 +210,7 @@
       if(q.error||!q.data){el.innerHTML='<div class="work-detail-empty">작업 내역을 찾을 수 없습니다.</div>';return}
       const r=q.data,d=parse(r.detail);
       let views=0;
-      const progressLayout=r.status==="progress" && d.layout==="love-progress-v1";
+      const progressLayout=d.layout==="love-progress-v1";
       const bodyHtml=progressLayout
         ? '<section class="work-progress-template">'+
             d.images.map(src=>'<img class="work-progress-image" src="'+esc(src)+'" alt="로브팀 작업 안내 이미지">').join("")+
