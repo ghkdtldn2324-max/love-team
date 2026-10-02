@@ -580,17 +580,30 @@
     font-size:13px!important;
   }
 
+  body.lt-review-detail-page .review-detail-comments{
+    display:flex!important;
+    align-items:center!important;
+    min-height:46px!important;
+  }
+
   body.lt-review-detail-page .review-detail-comments span{
-    margin-right:5px!important;
-    font-size:0!important;
     position:relative!important;
     display:inline-block!important;
+    flex:0 0 15px!important;
     width:15px!important;
     height:11px!important;
-    margin-right:8px!important;
-    vertical-align:-1px!important;
+    margin:0 7px 0 0!important;
+    padding:0!important;
+    font-size:0!important;
+    line-height:0!important;
+    vertical-align:middle!important;
     border:1.6px solid #66666e!important;
     border-radius:7px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments span + *{
+    vertical-align:middle!important;
   }
 
   body.lt-review-detail-page .review-detail-login{
