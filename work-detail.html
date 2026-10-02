@@ -164,6 +164,10 @@
 .work-progress-banner{width:min(72%,720px);max-width:720px;margin:0 auto 28px;}
 .work-progress-poster{width:min(30%,360px);max-width:360px;margin:30px auto 30px;}
 .work-progress-copy-intro{max-width:760px;margin:0 auto 18px;text-align:center;}
+.work-progress-intro-emphasis{font-weight:900;color:#171722;letter-spacing:-.25px;}
+@media(max-width:760px){
+ .work-progress-intro-emphasis{font-weight:900;color:#171722;}
+}
 .work-progress-copy{max-width:760px;margin-left:auto;margin-right:auto;text-align:center;white-space:normal;font-size:15px;line-height:1.9;color:#2a2933;overflow-wrap:anywhere;}
 .work-progress-section{max-width:760px;margin:0 auto 34px;text-align:center;}
 .work-progress-section h2{margin:0 0 12px;font-size:22px;line-height:1.35;font-weight:900;color:#171722;letter-spacing:-.5px;}
@@ -283,7 +287,7 @@ LOVE TEAM
       const bodyHtml=progressLayout
         ? '<section class="work-progress-template">'+
             '<img class="work-progress-image work-progress-banner" src="'+esc(progressBanner)+'" alt="네온 크리스탈 발로란트 러브팀 배너">'+
-            '<div class="work-progress-copy work-progress-copy-intro">안녕하십니까, 신속 · 안전 · 정확의 대명사 로브팀입니다.<br><br>발로란트 대리, 발로란트 듀오, 발로란트 맡김, 발로란트 강의, 랭크 코칭, 실력 향상 코칭 등<br>발로란트 관련 다양한 서비스를 진행하고 있습니다.<br><br>아래의 카카오톡으로 연락 주시면 빠르고 친절하게 안내 도와드리겠습니다.</div>'+
+            '<div class="work-progress-copy work-progress-copy-intro"><strong class="work-progress-intro-emphasis">안녕하십니까, 신속 · 안전 · 정확의 대명사 로브팀입니다.</strong><br><br>발로란트 대리, 발로란트 듀오, 발로란트 맡김, 발로란트 강의, 랭크 코칭, 실력 향상 코칭 등<br>발로란트 관련 다양한 서비스를 진행하고 있습니다.<br><br>아래의 카카오톡으로 연락 주시면 빠르고 친절하게 안내 도와드리겠습니다.</div>'+
             '<img class="work-progress-image work-progress-poster" src="'+esc(progressPoster)+'" alt="2026 진행 중인 이벤트 포스터">'+
             '<div class="work-progress-section">'+
               '<h2>365일 항시 진행중인 이벤트</h2>'+
