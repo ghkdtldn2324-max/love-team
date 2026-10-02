@@ -194,6 +194,34 @@
 .work-progress-copy strong{font-weight:900;}
 .work-progress-kakao{display:flex;align-items:center;justify-content:center;gap:8px;width:min(100%,360px);min-height:50px;margin:28px auto 0;border-radius:12px;background:#fee500;color:#111!important;text-decoration:none!important;font-weight:900;font-size:15px;box-shadow:0 8px 18px rgba(0,0,0,.12);}
 .work-progress-empty{padding:28px;border-radius:18px;background:rgba(255,255,255,.96);color:#333;}
+.work-complete-template{margin-top:0;padding:28px;border-radius:18px;background:rgba(255,255,255,.97);color:#171722;box-shadow:0 16px 40px rgba(0,0,0,.08);}
+.work-complete-intro,.work-complete-contact{text-align:center;max-width:760px;margin:0 auto;}
+.work-complete-intro{font-size:15px;line-height:1.9;color:#2a2933;}
+.work-complete-intro p{margin:0 0 18px;}
+.work-complete-intro strong{font-weight:900;color:#171722;}
+.work-complete-image{display:block;width:min(72%,720px);height:auto;margin:28px auto 26px;border-radius:14px;}
+.work-complete-contact{font-size:15px;line-height:1.9;color:#2a2933;}
+.work-complete-contact p{margin:0 0 10px;}
+.work-complete-contact .work-progress-kakao{margin:18px auto 0;}
+.work-complete-brand{text-align:center;margin:54px auto 38px;}
+.work-complete-brand-title{font-family:"Arial Rounded MT Bold","Noto Sans KR",sans-serif;font-size:clamp(58px,8vw,92px);line-height:1;font-weight:900;letter-spacing:-3px;color:#171722;}
+.work-complete-copy{max-width:760px;margin:0 auto;text-align:center;color:#4b4a55;font-size:14px;line-height:1.9;}
+.work-complete-copy h2{margin:38px 0 14px;font-size:22px;line-height:1.35;font-weight:900;color:#171722;letter-spacing:-.5px;}
+.work-complete-copy h3{margin:30px 0 10px;font-size:18px;line-height:1.4;font-weight:900;color:#25242d;}
+.work-complete-copy p{margin:0 0 18px;}
+.work-complete-final{margin-top:34px!important;font-size:15px;color:#25242d;}
+@media(max-width:760px){
+ .work-complete-template{padding:18px 16px;border-radius:14px;}
+ .work-complete-intro,.work-complete-contact{font-size:13px;line-height:1.8;}
+ .work-complete-image{width:100%;max-width:100%;margin:22px auto 20px;border-radius:10px;}
+ .work-complete-brand{margin:40px auto 28px;}
+ .work-complete-brand-title{font-size:48px;letter-spacing:-2px;}
+ .work-complete-copy{font-size:12.5px;line-height:1.8;}
+ .work-complete-copy h2{font-size:19px;margin:30px 0 10px;}
+ .work-complete-copy h3{font-size:16px;margin:24px 0 8px;}
+ .work-complete-copy p{margin-bottom:15px;}
+ .work-complete-final{font-size:13px;}
+}
 @media(max-width:760px){
  .work-progress-template{padding:16px;border-radius:14px;}
  .work-progress-image{border-radius:10px;margin-bottom:16px;}
@@ -303,7 +331,63 @@ LOVE TEAM
             '<a class="work-progress-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>카카오톡 오픈채팅 상담</a>'+
           '</section>'
         : (r.status==="done"
-          ? '<section class="work-progress-empty"><div class="work-detail-content-text">작업이 완료되었습니다.</div></section>'
+          ? '<section class="work-complete-template">'+
+  '<div class="work-complete-intro">'+
+    '<p>안녕하십니까, 국내 최고 발로란트 서비스 제공 업체 <strong>로브팀</strong>입니다.</p>'+
+    '<p>발로란트 KOR 서버 랭크 · 발로란트 대리 · 듀오 · 강의 · 랭크 코칭 및 실력 향상 코칭까지 다양한 서비스를 진행하고 있습니다.</p>'+
+    '<p>불법적인 대리가 아닌, 투명하고 안전한 고객님의 실력 향상을 위한 체계적인 코칭 기반 서비스를 제공하고 있습니다.</p>'+
+    '<p>※ 로브팀 카피(유사) 업체에 주의하시길 바라며, 사칭 및 사기 피해 등 각종 사건·사고에 주의하시기 바랍니다.<br>※ 로브팀은 해당 공식 홈페이지를 통해서만 운영하고 있습니다.</p>'+
+  '</div>'+
+  '<img class="work-complete-image" src="assets/ChatGPT%20Image%202026%EB%85%84%2010%EC%9B%94%202%EC%EC%9D%BC%20%EC%98%A4%EC%A0%84%2009_46_05.png" alt="로브팀 발로란트 서비스 안내">'+
+  '<div class="work-complete-contact">'+
+    '<p>365일 연중무휴로 친절한 전문 상담원이 대기중이며 빠른 답변을 받아보실 수 있습니다.</p>'+
+    '<p>아래 아이콘을 누르면 자동으로 상담 연결됩니다. (카카오톡 오픈채팅 연결)</p>'+
+    '<a class="work-progress-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>카카오톡 오픈채팅 상담하기</a>'+
+  '</div>'+
+  '<div class="work-complete-brand"><div class="work-complete-brand-title">LOVE TEAM</div></div>'+
+  '<div class="work-complete-copy">'+
+    '<h2>로브팀 발로란트 서비스 안내 및 설명</h2>'+
+    '<p>저희 로브팀을 이용해주시는 고객님들께 제공하고 있는 서비스에 대해 간략하게 안내드리겠습니다.</p>'+
+    '<p>로브팀은 단순히 과거의 실력이나 경력에만 머무르는 것이 아닌, 현재의 실력과 게임 이해도 및 최신 메타 적응력을 중요하게 생각합니다.</p>'+
+    '<p>발로란트 각 포지션과 다양한 티어 환경에 대한 이해도를 갖춘 전문 인력을 중심으로 서비스를 진행하며, 엄격한 기준을 바탕으로 구성된 전문 인력을 통해 고객님께 보다 안정적이고 만족도 높은 서비스를 제공하기 위해 노력하고 있습니다.</p>'+
+    '<p>발로란트 대리, 듀오, 강의, 랭크 코칭 및 실력 향상 코칭 등 다양한 서비스를 지원하고 있으며, 보다 나은 품질과 고객 만족도를 위해 지속적으로 부족한 부분을 개선하고 발전해 나가고 있습니다.</p>'+
+    '<p>또한 고객님의 소중한 계정과 개인정보 보호를 중요하게 생각하며, 1:1 상담 및 맞춤형 진행을 통해 안전한 서비스 환경을 유지하고 있습니다.</p>'+
+    '<h2>신청 방법 · 진행 순서</h2>'+
+    '<p>발로란트 대리, 듀오, 강의 및 랭크 코칭을 포함한 다양한 서비스를 이용하시려면 카카오톡 오픈채팅 상담을 통해 문의해주시면 됩니다.</p>'+
+    '<p>상담을 통해 고객님께서 원하시는 서비스와 목표 티어 및 진행 방향을 확인한 후, 서비스에 대한 자세한 안내와 견적을 안내해드립니다.</p>'+
+    '<p>상담 및 결제가 완료되면 안내받으신 내용에 따라 고객님의 요청사항에 맞는 전문 인력이 1:1로 매칭되어 서비스를 진행합니다.</p>'+
+    '<p>서비스 진행 과정에서는 고객님의 요청사항을 최대한 반영하여 체계적으로 진행하며, 작업이 완료된 이후에는 진행 결과 및 작업 내용을 확인하실 수 있도록 안내해드립니다.</p>'+
+    '<p>로브팀은 고객님께서 원하시는 목표와 방향에 맞춰 안전하고 체계적인 발로란트 서비스를 제공해드리겠습니다.</p>'+
+    '<h2>로브팀이 고객님께 드리는 3가지 약속</h2>'+
+    '<p>로브팀을 찾아주시는 고객님께서 안심하고 서비스를 이용하실 수 있도록 세 가지 약속을 중요하게 생각하고 있습니다.</p>'+
+    '<h3>첫 번째 약속 · 계정 및 개인정보 보호</h3>'+
+    '<p>고객님의 아이디와 개인정보는 서비스 이용에 있어 가장 중요하게 보호되어야 할 부분이라고 생각합니다.</p>'+
+    '<p>로브팀은 고객님의 소중한 계정과 개인정보가 불필요하게 노출되지 않도록 관리하며, 서비스 진행 과정에서도 개인정보 보호와 계정 보안 유지를 중요하게 생각하고 있습니다.</p>'+
+    '<p>서비스 진행에 필요한 정보 외에는 불필요한 정보를 요구하지 않으며, 고객님께서 안심하고 서비스를 이용하실 수 있도록 개인정보 보호를 최우선으로 관리하고 있습니다.</p>'+
+    '<h3>두 번째 약속 · 신규 및 기존 고객님을 위한 혜택</h3>'+
+    '<p>로브팀은 처음 이용하시는 신규 고객님뿐만 아니라 지속적으로 찾아주시는 기존 및 단골 고객님들께도 만족스러운 서비스를 제공하기 위해 다양한 이벤트와 혜택을 준비하고 있습니다.</p>'+
+    '<p>고객님들의 소중한 의견과 피드백을 적극적으로 반영하여 서비스의 부족한 부분을 개선하고, 보다 편리하고 만족도 높은 이용 환경을 만들어 나가겠습니다.</p>'+
+    '<p>처음 이용하시는 고객님도 부담 없이 상담받으실 수 있도록 친절하고 자세한 상담을 제공해드리겠습니다.</p>'+
+    '<h3>세 번째 약속 · 지속적인 서비스 품질 개선</h3>'+
+    '<p>로브팀은 한 번의 서비스에 만족하는 것에서 그치지 않고, 지속적으로 더 나은 서비스를 제공하는 것을 목표로 하고 있습니다.</p>'+
+    '<p>발로란트의 게임 환경과 메타는 계속해서 변화하기 때문에 이에 맞춰 서비스 방식과 진행 과정을 지속적으로 점검하고 있습니다.</p>'+
+    '<p>고객님들의 의견을 소중하게 받아들이며, 보다 높은 수준의 서비스와 만족도를 제공할 수 있도록 꾸준히 개선해 나가겠습니다.</p>'+
+    '<h2>로브팀의 전문적인 서비스 진행</h2>'+
+    '<p>발로란트는 에임뿐만 아니라 포지셔닝, 맵 이해도, 유틸리티 활용, 교전 판단, 라운드 운영 등 다양한 요소가 중요한 게임입니다.</p>'+
+    '<p>로브팀은 이러한 다양한 요소를 고려하여 고객님께서 원하시는 목표와 현재 실력에 맞춰 서비스를 진행하고 있습니다.</p>'+
+    '<p>특히 강의 및 코칭 서비스의 경우 단순히 게임을 함께하는 것에 그치지 않고, 에임, 포지셔닝, 교전 판단, 유틸리티 활용, 라운드 운영 등 실력 향상에 필요한 부분을 체계적으로 안내해드리는 것을 목표로 합니다.</p>'+
+    '<p>또한 듀오 및 랭크 관련 서비스 역시 고객님의 요청사항과 목표에 맞춰 안정적으로 진행될 수 있도록 관리하고 있습니다.</p>'+
+    '<h2>진행 과정 및 작업 안내</h2>'+
+    '<p>서비스가 진행되는 동안 고객님께서는 상담을 통해 안내받은 진행 방식에 따라 작업 내용을 확인하실 수 있습니다.</p>'+
+    '<p>작업이 완료된 이후에는 해당 작업에 대한 진행 결과 및 작업 내역을 확인하실 수 있으며, 고객님께서 보다 편리하게 서비스 진행 상황을 확인할 수 있도록 관리하고 있습니다.</p>'+
+    '<p>또한 실제 이용 고객님들의 소중한 후기와 작업 내역을 통해 로브팀의 서비스를 직접 확인하실 수 있습니다.</p>'+
+    '<h2>차별화된 발로란트 서비스를 원하신다면</h2>'+
+    '<p>보다 체계적인 발로란트 서비스와 친절한 상담을 원하신다면 카카오톡 오픈채팅을 통해 편하게 문의해주세요.</p>'+
+    '<p>처음 이용하시는 고객님도 궁금하신 부분이나 서비스 진행 방식에 대해 부담 없이 상담받으실 수 있도록 자세하게 안내해드리겠습니다.</p>'+
+    '<p>로브팀은 고객님의 만족도 높은 서비스 이용을 위해 상담부터 진행 과정까지 세심하게 관리하겠습니다.</p>'+
+    '<p class="work-complete-final"><strong>발로 대리 · 발로듀오 · 발로강의 · 랭크 코칭 · 실력 향상 코칭,<br>신속하고 안전한 서비스를 원하신다면 로브팀과 함께하세요.</strong></p>'+
+  '</div>'+
+'</section>'
           : '<section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section>');
       el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>상태 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>관리자 <strong>'+esc(workAuthorName(r.display_name))+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article>'+bodyHtml+'<div class="work-detail-actions"><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
 
