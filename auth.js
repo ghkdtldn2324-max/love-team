@@ -2447,8 +2447,11 @@
         const href = authLink.getAttribute('href') || '';
 
         const isSeparateAuthPage =
-          href === 'login.html' ||
-          href === 'signup.html';
+          authLink.id !== 'mobileOpenAuth' &&
+          (
+            href === 'login.html' ||
+            href === 'signup.html'
+          );
 
         const isAuthLink =
           !isSeparateAuthPage &&
