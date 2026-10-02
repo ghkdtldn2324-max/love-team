@@ -1512,15 +1512,8 @@
               'login';
 
             const href = a.getAttribute('href') || '';
-            const isSeparateAuthPage =
-              href === 'login.html' || href === 'signup.html';
-
-            if (isSeparateAuthPage) {
-              return;
-            }
-
             event.preventDefault();
-            show(requestedMode === 'signup' ? 'signup' : 'login');
+            show(requestedMode === 'signup' || href === 'signup.html' ? 'signup' : 'login');
 
           }
         );
@@ -2458,24 +2451,16 @@
         const text = (authLink.textContent || '').trim();
         const href = authLink.getAttribute('href') || '';
 
-        const isSeparateAuthPage =
-          authLink.id !== 'mobileOpenAuth' &&
-          (
-            href === 'login.html' ||
-            href === 'signup.html'
-          );
-
         const isAuthLink =
-          !isSeparateAuthPage &&
-          (
-            authLink.id === 'mobileOpenAuth' ||
-            authLink.hasAttribute('data-auth-open') ||
-            text.includes('로그인') ||
-            text.includes('회원가입') ||
-            text.includes('님') ||
-            href === '#member' ||
-            href === '#login'
-          );
+          authLink.id === 'mobileOpenAuth' ||
+          authLink.hasAttribute('data-auth-open') ||
+          text.includes('로그인') ||
+          text.includes('회원가입') ||
+          text.includes('님') ||
+          href === '#member' ||
+          href === '#login' ||
+          href === 'login.html' ||
+          href === 'signup.html';
 
         if (isAuthLink && !text.includes('고객센터')) {
           event.preventDefault();
@@ -2496,7 +2481,10 @@
           if (currentSession && currentSession.user) {
             openMemberMenu();
           } else {
-            show('login');
+            const mode =
+              authLink.dataset.authMode ||
+              (href === 'signup.html' ? 'signup' : 'login');
+            show(mode === 'signup' ? 'signup' : 'login');
           }
 
           return;
