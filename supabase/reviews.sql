@@ -126,4 +126,5 @@ begin
 end;
 $$;
 
+revoke all on function public.increment_review_view(uuid) from public;
 grant execute on function public.increment_review_view(uuid) to anon, authenticated;
