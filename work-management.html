@@ -310,7 +310,7 @@ function render(){
    '</div>'+
    '<div class="edit-box" data-editor="'+esc(r.id)+'">'+
     '<input class="input" data-title maxlength="100" value="'+esc(d.title)+'" placeholder="게시글 제목">'+
-    '<textarea class="textarea" data-content maxlength="2000" placeholder="게시글 내용">'+esc(d.content)+'</textarea>'+
+    '<div class="work-fixed-note">본문은 로브팀 고정 템플릿으로 자동 생성됩니다. 이미지 2장 + 발로란트 안내문 + 이벤트 안내 + 카카오톡 오픈채팅 상담 버튼이 포함됩니다.</div>'+
     '<select class="select" data-status>'+
       '<option value="progress" '+(!done?"selected":"")+'>진행중</option>'+
       '<option value="done" '+(done?"selected":"")+'>작업완료</option>'+
