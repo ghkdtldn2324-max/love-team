@@ -161,6 +161,13 @@
 <style id="lt-work-progress-template-v1">
 .work-progress-template{margin-top:0;padding:28px;border-radius:18px;background:rgba(255,255,255,.97);color:#171722;box-shadow:0 16px 40px rgba(0,0,0,.08);}
 .work-progress-image{display:block;width:100%;height:auto;border-radius:14px;margin:0 auto 24px;}
+.work-progress-banner{width:min(72%,760px);max-width:760px;}
+.work-progress-poster{width:min(48%,520px);max-width:520px;margin-top:26px;}
+.work-progress-copy-intro{margin-bottom:4px;}
+@media(max-width:760px){
+ .work-progress-banner{width:92%;max-width:none;}
+ .work-progress-poster{width:76%;max-width:none;margin-top:18px;}
+}
 .work-progress-copy{white-space:pre-line;font-size:15px;line-height:1.9;color:#2a2933;overflow-wrap:anywhere;}
 .work-progress-copy strong{font-weight:900;}
 .work-progress-kakao{display:flex;align-items:center;justify-content:center;gap:8px;width:min(100%,360px);min-height:50px;margin:28px auto 0;border-radius:12px;background:#fee500;color:#111!important;text-decoration:none!important;font-weight:900;font-size:15px;box-shadow:0 8px 18px rgba(0,0,0,.12);}
@@ -252,15 +259,15 @@ LOVE TEAM
 궁금하신 사항이 있으시다면 편하게 문의 부탁드립니다.
 
 아래 아이콘을 누르면 자동으로 상담 연결됩니다. (카카오톡 오픈채팅 연결)`;
-      const progressImages=[
-        "assets/ChatGPT%20Image%202026%EB%85%84%2010%EC%9B%94%202%EC%9D%BC%20%EC%98%A4%EC%A0%84%2009_07_37.png",
-        "assets/2026%20%EC%A7%84%ED%96%89%20%EC%A4%91%EC%9D%B8%20%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%ED%8F%AC%EC%8A%A4%ED%84%B0.png"
-      ];
+      const progressBanner="assets/%EB%84%A4%EC%98%A8%20%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%83%88%20%EB%B0%9C%EB%A1%9C%EB%9E%80%ED%8A%B8%20%EB%9F%AC%EB%B8%8C%ED%8C%80%20%EB%B0%B0%EB%84%88.png";
+      const progressPoster="assets/2026%20%EC%A7%84%ED%96%89%20%EC%A4%91%EC%9D%B8%20%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%ED%8F%AC%EC%8A%A4%ED%84%B0.png";
       const progressLayout=r.status==="progress";
       const bodyHtml=progressLayout
         ? '<section class="work-progress-template">'+
-            progressImages.map(src=>'<img class="work-progress-image" src="'+esc(src)+'" alt="로브팀 작업 안내 이미지">').join("")+
-            '<div class="work-progress-copy">'+esc(progressContent)+'</div>'+
+            '<img class="work-progress-image work-progress-banner" src="'+esc(progressBanner)+'" alt="네온 크리스탈 발로란트 러브팀 배너">'+
+            '<div class="work-progress-copy work-progress-copy-intro">'+esc(progressContent.split("365일 항시 진행중인 이벤트")[0])+'</div>'+
+            '<img class="work-progress-image work-progress-poster" src="'+esc(progressPoster)+'" alt="2026 진행 중인 이벤트 포스터">'+
+            '<div class="work-progress-copy">'+esc("365일 항시 진행중인 이벤트\n\n"+progressContent.split("365일 항시 진행중인 이벤트").slice(1).join("365일 항시 진행중인 이벤트"))+'</div>'+
             '<a class="work-progress-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>카카오톡 오픈채팅 상담</a>'+
           '</section>'
         : (r.status==="done"
