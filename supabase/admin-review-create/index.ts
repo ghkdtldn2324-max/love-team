@@ -37,6 +37,7 @@ export default {
 
         const body = await req.json().catch(() => ({}));
         const stars = Number(body?.stars);
+        const title = String(body?.title || "").trim();
         const content = String(body?.content || "").trim();
         const service = String(body?.service || "").trim();
         const userId = String(body?.user_id || "").trim();
@@ -51,6 +52,13 @@ export default {
         if (!Number.isInteger(stars) || stars < 1 || stars > 5) {
           return Response.json(
             { ok: false, message: "별점은 1~5점만 가능합니다." },
+            { status: 400 }
+          );
+        }
+
+        if (!title || title.length > 120) {
+          return Response.json(
+            { ok: false, message: "후기 제목은 1~120자로 작성해주세요." },
             { status: 400 }
           );
         }
@@ -70,11 +78,7 @@ export default {
         }
 
         const meta = user.user_metadata || {};
-        const username = String(meta.username || "회원");
-        const displayName =
-          username.length > 2
-            ? username.slice(0, 2) + "***"
-            : username + "***";
+        const displayName = String(meta.name || "회원").trim() || "회원";
 
         // 관리자 계정은 기존 1시간 제한 기록이 있어도 이번 작성은 허용하고,
         // 작성 직후 제한 기록을 제거하여 다음 관리자 후기에도 제한이 걸리지 않게 한다.
@@ -89,10 +93,11 @@ export default {
             user_id: user.id,
             display_name: displayName,
             stars,
+            title,
             content,
             service
           })
-          .select("id,display_name,stars,content,service,created_at")
+          .select("id,display_name,stars,title,content,service,created_at")
           .single();
 
         if (error) {
