@@ -40,7 +40,7 @@ export default {
         if (action === "list") {
           const { data, error } = await ctx.supabaseAdmin
             .from("reviews")
-            .select("id,display_name,stars,content,service,created_at")
+            .select("id,display_name,stars,title,content,service,created_at")
             .order("created_at", { ascending: false });
 
           if (error) {
