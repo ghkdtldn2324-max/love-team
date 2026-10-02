@@ -628,7 +628,7 @@
               class="love-auth-label"
               for="loveSignupName"
             >
-              이름
+              닉네임
             </label>
 
             <input
@@ -636,7 +636,7 @@
               class="love-auth-input"
               type="text"
               autocomplete="name"
-              placeholder="이름을 입력해주세요"
+              placeholder="닉네임을 입력해주세요"
             >
 
           </div>
@@ -1909,7 +1909,7 @@
 
         setMessage(
           signupMessage,
-          '이름을 입력해주세요.',
+          '닉네임을 입력해주세요.',
           'error'
         );
 
