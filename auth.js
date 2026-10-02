@@ -947,7 +947,7 @@
   }
 
   function passwordIsStrong(password) {
-    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/.test(
       password
     );
   }
@@ -1923,7 +1923,7 @@
 
         setMessage(
           signupMessage,
-          '비밀번호는 영문, 숫자, 특수문자를 포함해 8자 이상이어야 합니다.',
+          '비밀번호는 영문, 숫자, 특수문자를 포함한 8~72자여야 합니다.',
           'error'
         );
 
