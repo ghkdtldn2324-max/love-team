@@ -74,23 +74,33 @@ export default {
 
         const email = username + "@love-team.local";
 
-        const { data, error } =
-          await ctx.supabaseAdmin.auth.admin.listUsers({
-            page: 1,
-            perPage: 1000
-          });
+        // Supabase Admin API는 한 번에 최대 1000명까지만 반환할 수 있으므로,
+        // 회원 수가 1000명을 넘어도 정확한 ID 검색이 가능하도록 페이지를 순회합니다.
+        const perPage = 1000;
+        let user = null;
 
-        if (error) {
-          console.error("listUsers error:", error);
-          return Response.json({
-            ok: false,
-            message: "회원 정보를 조회하지 못했습니다."
-          }, { status: 500 });
+        for (let page = 1; page <= 100; page += 1) {
+          const { data, error } =
+            await ctx.supabaseAdmin.auth.admin.listUsers({
+              page,
+              perPage
+            });
+
+          if (error) {
+            console.error("listUsers error:", error);
+            return Response.json({
+              ok: false,
+              message: "회원 정보를 조회하지 못했습니다."
+            }, { status: 500 });
+          }
+
+          const users = data?.users || [];
+          user = users.find(
+            (item) => String(item.email || "").toLowerCase() === email
+          ) || null;
+
+          if (user || users.length < perPage) break;
         }
-
-        const user = (data?.users || []).find(
-          (item) => String(item.email || "").toLowerCase() === email
-        );
 
         if (!user) {
           return Response.json({
