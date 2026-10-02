@@ -264,7 +264,7 @@
         <p class="notice-detail-kicker">OFFICIAL NOTICE</p>
         <h1 id="title"></h1>
         <div class="notice-detail-meta">
-          <span>작성자 <strong id="author"></strong></span>
+          <span>글쓴이 <strong id="author"></strong></span>
           <span>작성일 <strong id="date"></strong></span>
           <span>조회수 <strong id="views">0</strong></span>
         </div>
@@ -315,7 +315,7 @@ function formatNoticeDate(value){
   if(!value) return '-';
   const date=new Date(value);
   if(Number.isNaN(date.getTime())) return String(value).replace(/-/g,'.');
-  return date.toLocaleString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  return date.toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'});
 }
 
 async function loadNotice(){
