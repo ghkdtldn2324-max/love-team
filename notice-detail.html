@@ -252,6 +252,14 @@
   }
 }
 </style>
+<style id="lt-breadcrumb-v1">
+.lt-breadcrumb{max-width:1080px;margin:0 auto;padding:0 24px 14px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.68)}
+.lt-breadcrumb a{color:inherit;text-decoration:none}
+.lt-breadcrumb a:hover{text-decoration:underline}
+.lt-breadcrumb .sep{opacity:.45}
+.lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.lt-breadcrumb{padding:0 16px 10px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
+</style>
 </head>
 <body>
 <header class="header">
@@ -267,7 +275,7 @@
 
 <main class="notice-detail-page">
   <div class="notice-detail-wrap">
-    <div class="notice-detail-crumb"><span>LOVE TEAM NOTICE</span><span>›</span><span>상세보기</span></div>
+    <nav class="notice-detail-crumb lt-breadcrumb-detail" aria-label="페이지 경로"><a href="index.html">홈</a><span>›</span><a href="notice.html">공지사항</a><span>›</span><span id="noticeBreadcrumbTitle">상세보기</span></nav>
 
     <article class="notice-detail-card">
       <header class="notice-detail-title">
@@ -415,6 +423,34 @@ async function loadNotice(){
   }
 }
 loadNotice();
+</script>
+<script id="lt-breadcrumb-dynamic-v1">
+(function(){
+  var category="공지사항";
+  var pageUrl="https://ghkdtldn2324-max.github.io/love-team/notice-detail.html";
+  var root=document.body;
+  function esc(v){return String(v==null?"":v).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]||c;});}
+  function upsert(title){
+    title=String(title||"").trim();
+    if(!title)return;
+    var old=document.getElementById("lt-breadcrumb-jsonld");
+    if(old)old.remove();
+    var s=document.createElement("script");
+    s.type="application/ld+json";s.id="lt-breadcrumb-jsonld";
+    s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":category,"item":"https://ghkdtldn2324-max.github.io/love-team/notice-detail.html"},{"@type":"ListItem","position":3,"name":title}]});
+    document.head.appendChild(s);
+    var cur=document.querySelector(".lt-breadcrumb .current,#noticeBreadcrumbTitle"); if(cur)cur.textContent=title;
+  }
+  function findTitle(){
+    if("notice-detail.html"==="notice-detail.html"){var e=document.getElementById("title");return e&&e.textContent;}
+    if("notice-detail.html"==="work-detail.html"){var e=document.querySelector("#detail h1,#detail h2,.work-detail-title");return e&&e.textContent;}
+    var e=document.querySelector(".review-detail-title");return e&&e.textContent;
+  }
+  function sync(){var t=findTitle();if(t)upsert(t);}
+  new MutationObserver(sync).observe(root,{subtree:true,childList:true,characterData:true});
+  document.addEventListener("DOMContentLoaded",sync);
+  setTimeout(sync,500);setTimeout(sync,1500);
+})();
 </script>
 </body>
 <style id="lt-mobile-floating-kakao-v1">
