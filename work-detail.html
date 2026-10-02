@@ -158,6 +158,20 @@
   }
 }
 </style>
+<style id="lt-work-progress-template-v1">
+.work-progress-template{margin-top:0;padding:28px;border-radius:18px;background:rgba(255,255,255,.97);color:#171722;box-shadow:0 16px 40px rgba(0,0,0,.08);}
+.work-progress-image{display:block;width:100%;height:auto;border-radius:14px;margin:0 auto 24px;}
+.work-progress-copy{white-space:pre-line;font-size:15px;line-height:1.9;color:#2a2933;overflow-wrap:anywhere;}
+.work-progress-copy strong{font-weight:900;}
+.work-progress-kakao{display:flex;align-items:center;justify-content:center;gap:8px;width:min(100%,360px);min-height:50px;margin:28px auto 0;border-radius:12px;background:#fee500;color:#111!important;text-decoration:none!important;font-weight:900;font-size:15px;box-shadow:0 8px 18px rgba(0,0,0,.12);}
+.work-progress-empty{padding:28px;border-radius:18px;background:rgba(255,255,255,.96);color:#333;}
+@media(max-width:760px){
+ .work-progress-template{padding:16px;border-radius:14px;}
+ .work-progress-image{border-radius:10px;margin-bottom:16px;}
+ .work-progress-copy{font-size:13px;line-height:1.75;}
+ .work-progress-kakao{min-height:46px;margin-top:22px;font-size:14px;}
+}
+</style>
 </head>
 <body class="lt-works-page">
 <header class="header">
@@ -180,7 +194,7 @@
 (function(){
   const el=document.getElementById("detail");
   const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-  const parse=v=>{try{const x=JSON.parse(v||"{}");return {title:x.title||"작업 내역",content:x.content||""}}catch(e){return {title:v||"작업 내역",content:""}}};
+  const parse=v=>{try{const x=JSON.parse(v||"{}");return {title:x.title||"작업 내역",content:x.content||"",layout:x.layout||"",images:Array.isArray(x.images)?x.images:[],kakaoUrl:x.kakaoUrl||""}}catch(e){return {title:v||"작업 내역",content:"",layout:"",images:[],kakaoUrl:""}}};
   const workAuthorName=v=>{
     const name=String(v||"").trim();
     return name.toLowerCase()==="qxazrty@love-team.local" ? "로브팀" : (name||"관리자");
@@ -196,7 +210,17 @@
       if(q.error||!q.data){el.innerHTML='<div class="work-detail-empty">작업 내역을 찾을 수 없습니다.</div>';return}
       const r=q.data,d=parse(r.detail);
       let views=0;
-      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>상태 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>관리자 <strong>'+esc(workAuthorName(r.display_name))+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article><section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section><div class="work-detail-actions"><a class="work-detail-consult" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>상담 바로가기</a><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
+      const progressLayout=r.status==="progress" && d.layout==="love-progress-v1";
+      const bodyHtml=progressLayout
+        ? '<section class="work-progress-template">'+
+            d.images.map(src=>'<img class="work-progress-image" src="'+esc(src)+'" alt="로브팀 작업 안내 이미지">').join("")+
+            '<div class="work-progress-copy">'+esc(d.content)+'</div>'+
+            (d.kakaoUrl?'<a class="work-progress-kakao" href="'+esc(d.kakaoUrl)+'" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>카카오톡 오픈채팅 상담</a>':"")+
+          '</section>'
+        : (r.status==="done"
+          ? '<section class="work-progress-empty"><div class="work-detail-content-text">'+(d.content&&d.content!=="작업완료"?esc(d.content):"작업이 완료되었습니다.")+'</div></section>'
+          : '<section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section>');
+      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>상태 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>관리자 <strong>'+esc(workAuthorName(r.display_name))+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article>'+bodyHtml+'<div class="work-detail-actions"><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
 
       try{
         const viewResult=await client.rpc("increment_work_view",{p_work_id:r.id});
