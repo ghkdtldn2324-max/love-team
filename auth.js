@@ -1877,6 +1877,34 @@
       }
 
 
+      if (id.length > 30) {
+
+        setMessage(
+          signupMessage,
+          '아이디는 30자 이하로 입력해주세요.',
+          'error'
+        );
+
+        signupId.focus();
+
+        return;
+      }
+
+
+      if (/\\s/.test(id)) {
+
+        setMessage(
+          signupMessage,
+          '아이디에는 공백을 사용할 수 없습니다.',
+          'error'
+        );
+
+        signupId.focus();
+
+        return;
+      }
+
+
       if (!name) {
 
         setMessage(
