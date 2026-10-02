@@ -330,6 +330,8 @@
 
     if (menuBtn && menu) {
 
+      let skipNextMenuClick = false;
+
       function toggleMobileMenu(e) {
         if (e) {
           e.preventDefault();
@@ -350,9 +352,19 @@
         );
       }
 
-      menuBtn.addEventListener('click', toggleMobileMenu);
+      menuBtn.addEventListener('click', function(e) {
+        if (skipNextMenuClick) {
+          skipNextMenuClick = false;
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        toggleMobileMenu(e);
+      });
+
       menuBtn.addEventListener('pointerup', function(e) {
         if (e.pointerType === 'touch') {
+          skipNextMenuClick = true;
           toggleMobileMenu(e);
         }
       });
