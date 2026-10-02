@@ -266,6 +266,13 @@
   body.lt-works-page .work-complete-intro p:first-child strong{display:block!important;text-align:center!important;}
 }
 </style>
+<style id="lt-works-complete-mobile-intro-inline-v1">
+.lt-mobile-work-intro-break{display:none!important;}
+@media(max-width:760px){
+  body.lt-works-page .work-complete-intro p:first-child .lt-mobile-work-intro-break{display:inline!important;}
+  body.lt-works-page .work-complete-intro p:first-child strong{display:inline!important;text-align:center!important;}
+}
+</style>
 </head>
 <body class="lt-works-page">
 <header class="header">
@@ -371,7 +378,7 @@ LOVE TEAM
         : (r.status==="done"
           ? '<section class="work-complete-template">'+
   '<div class="work-complete-intro">'+
-    '<p>안녕하십니까, 국내 최고 발로란트 서비스 제공 업체 <strong>로브팀</strong>입니다.</p>'+
+    '<p>안녕하십니까, 국내 최고 발로란트 서비스 제공 업체<span class="lt-mobile-work-intro-break"><br></span><strong>로브팀입니다.</strong></p>'+
     '<p>발로란트 KOR 서버 랭크 · 발로란트 대리 · 듀오 · 강의 · 랭크 코칭 및 실력 향상 코칭까지 다양한 서비스를 진행하고 있습니다.</p>'+
     '<p>불법적인 대리가 아닌, 투명하고 안전한 고객님의 실력 향상을 위한 체계적인 코칭 기반 서비스를 제공하고 있습니다.</p>'+
     '<p>※ 로브팀 카피(유사) 업체에 주의하시길 바라며, 사칭 및 사기 피해 등 각종 사건·사고에 주의하시기 바랍니다.<br>※ 로브팀은 해당 공식 홈페이지를 통해서만 운영하고 있습니다.</p>'+
