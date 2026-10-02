@@ -286,7 +286,7 @@
  const workAuthorName=v=>{const name=String(v||"").trim();return name.toLowerCase()==="qxazrty@love-team.local"?"로브팀":(name||"글쓴이")};
  const fmt=v=>{const d=new Date(v);return v&&!Number.isNaN(d.getTime())?d.toLocaleDateString("ko-KR"):"-"};
  async function load(){
-  const client=window.LoveTeamAuth&&window.LoveTeamAuth.client;
+  const client=(window.LoveTeamAuth&&window.LoveTeamAuth.client)||window.LoveTeamSupabase;
   if(!client){list.innerHTML="<div class=\"work-empty\">작업 내역을 불러올 수 없습니다.</div>";return;}
   const q=await client.from("work_history").select("id,display_name,detail,status,created_at").order("created_at",{ascending:false});
   if(q.error){list.innerHTML="<div class=\"work-empty\">작업 내역을 불러오지 못했습니다.</div>";return;}
