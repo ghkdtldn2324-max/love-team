@@ -62,6 +62,13 @@ export default {
           }, { status: 400 });
         }
 
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/.test(newPassword)) {
+          return Response.json({
+            ok: false,
+            message: "새 비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다."
+          }, { status: 400 });
+        }
+
         if (newPassword.length > 72) {
           return Response.json({
             ok: false,
