@@ -2478,12 +2478,44 @@ render();
   }
 }
 @media(max-width:760px){
-  body.lt-reviews-page .review-board-head{display:none!important;}
-  body.lt-reviews-page .review-mobile-row{display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;}
-  body.lt-reviews-page .review-no{display:flex!important;align-items:center!important;justify-content:center!important;color:#777780!important;font-size:11px!important;}
-  body.lt-reviews-page .review-row-title{min-width:0!important;}
-  body.lt-reviews-page .review-row-title strong{display:block!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:13px!important;line-height:1.4!important;color:#44444d!important;}
-  body.lt-reviews-page .review-row-author,body.lt-reviews-page .review-row-date,body.lt-reviews-page .review-row-views{display:none!important;}
+  body.lt-reviews-page .review-board-head{
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    gap:5px!important;
+    min-height:42px!important;
+    padding:0 6px!important;
+    font-size:11px!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    gap:5px!important;
+    align-items:center!important;
+    min-height:44px!important;
+    padding:7px 6px!important;
+    box-sizing:border-box!important;
+  }
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    display:block!important;
+    text-align:center!important;
+    color:#777780!important;
+    font-size:10px!important;
+    white-space:nowrap!important;
+  }
+  body.lt-reviews-page .review-row-title{min-width:0!important;text-align:left!important;}
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+    font-weight:600!important;
+    color:#44444d!important;
+  }
 }
 .review-pagination button{width:36px;height:36px;border:1px solid #ddd9e8;border-radius:7px;background:#fff;color:#666;cursor:pointer;font-size:13px;font-weight:700;}
 .review-pagination button.active{border-color:#7866e8;background:linear-gradient(135deg,#6b78ff,#9b55e8);color:#fff;}
