@@ -67,6 +67,10 @@ as $$
 declare
   current_blocked_until timestamptz;
 begin
+  -- 동시 요청이 들어와도 1시간 작성 제한이 우회되지 않도록
+  -- 사용자별 트랜잭션 advisory lock을 먼저 획득합니다.
+  perform pg_advisory_xact_lock(hashtext(new.user_id::text));
+
   select blocked_until into current_blocked_until
   from public.review_write_limits
   where user_id = new.user_id
