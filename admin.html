@@ -895,7 +895,7 @@
               minlength="8"
               maxlength="72"
               autocomplete="new-password"
-              placeholder="새 비밀번호 8자 이상"
+              placeholder="영문·숫자·특수문자 포함 8~72자"
             >
             <button
               class="admin-btn"
@@ -1599,6 +1599,12 @@
         if (newPassword.length > 72) {
           resetResult.textContent =
             "새 비밀번호는 72자 이하로 입력해주세요.";
+          return;
+        }
+
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,72}$/.test(newPassword)) {
+          resetResult.textContent =
+            "새 비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.";
           return;
         }
 
