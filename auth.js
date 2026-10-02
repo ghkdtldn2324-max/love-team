@@ -1891,7 +1891,7 @@
       }
 
 
-      if (/\\s/.test(id)) {
+      if (/\s/.test(id)) {
 
         setMessage(
           signupMessage,
