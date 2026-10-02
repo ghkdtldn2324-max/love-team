@@ -417,7 +417,7 @@ LOVE TEAM
   '</div>'+
 '</section>'
           : '<section class="work-detail-content"><div class="work-detail-content-text">'+esc(d.content)+'</div></section>');
-      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>강의 작업 현황 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>글쓴이 <strong>'+esc(workAuthorName(r.display_name))+'</strong></span><span>작성일 <strong>'+fmt(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article>'+bodyHtml+'<div class="work-detail-actions"><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
+      el.innerHTML='<article class="work-detail-head"><p class="eyebrow">LOVE TEAM WORKS</p><h1>'+esc(d.title)+'</h1><div class="work-detail-meta"><span>강의 작업 현황 <strong>'+(r.status==="done"?"작업완료":"진행중")+'</strong></span><span>글쓴이 <strong>'+esc(workAuthorName(r.display_name))+'</strong></span><span>작성일 <strong>'+fmtDateOnly(r.created_at)+'</strong></span><span>조회수 <strong id="workDetailViews">0</strong></span></div></article>'+bodyHtml+'<div class="work-detail-actions"><a class="work-detail-back" href="works.html">← 작업 내역으로 돌아가기</a></div>';
 
       try{
         const viewResult=await client.rpc("increment_work_view",{p_work_id:r.id});
