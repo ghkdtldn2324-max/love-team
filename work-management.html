@@ -147,6 +147,66 @@ function parseDetail(value){
  }catch(_){}
  return {title:String(value||"작업 내역"),content:"",layout:""};
 }
+const PROGRESS_CONTENT = `안녕하십니까, 신속 · 안전 · 정확의 대명사 로브팀입니다.
+
+발로란트 대리, 발로란트 듀오, 발로란트 맡김, 발로란트 강의, 랭크 코칭, 실력 향상 코칭 등
+발로란트 관련 다양한 서비스를 진행하고 있습니다.
+
+아래의 카카오톡으로 연락 주시면 빠르고 친절하게 안내 도와드리겠습니다.
+
+
+365일 항시 진행중인 이벤트
+
+듀오제 10+1
+
+로브팀만의 체계적인 발로란트 듀오 서비스를 제공해드리고 있습니다.
+원하시는 티어와 플레이 방향에 맞춰 함께 게임을 진행하며, 보다 편안하고 안정적인 게임 환경을 경험하실 수 있습니다.
+
+승당제 10+1
+
+발로란트 랭크 게임을 중심으로 고객님의 목표 티어에 맞춘 맞춤형 서비스를 제공합니다.
+현재 티어와 목표 티어를 기준으로 상담을 진행하며, 안전하고 체계적인 진행을 도와드립니다.
+
+프리미엄 강의 3시간 + 1
+
+로브팀의 발로란트 전문 코칭 서비스입니다.
+에임, 포지셔닝, 맵 이해도, 유틸리티 활용, 교전 판단, 라운드 운영 등 실력 향상에 필요한 핵심 요소를 체계적으로 코칭해드립니다.
+
+신규 고객 및 기존 · 단골 고객 혜택
+
+서비스의 품질은 높게, 이용에 대한 부담은 낮출 수 있도록
+로브팀을 처음 이용하시는 신규 고객님부터 기존 · 단골 고객님까지 다양한 혜택과 이벤트를 준비하고 있습니다.
+
+LOVE TEAM
+
+로브팀은 발로란트 서비스를 이용하시는 고객님들께 보다 높은 수준의 서비스와 케어를 제공하기 위해 운영되는 프리미엄 팀입니다.
+
+실력이면 실력, 서비스면 서비스, 상담부터 진행 과정까지 모든 부분에서 높은 수준의 퀄리티를 제공하는 것을 목표로 하고 있습니다.
+
+로브팀은 단순한 게임 서비스가 아닌, 차별화된 발로란트 서비스를 원하는 고객님들을 위한 맞춤형 케어에 중점을 두고 있습니다.
+
+특히 소중한 고객님의 계정과 개인정보 보호를 최우선으로 생각하며, 안전한 서비스 이용과 보안 유지를 중요하게 관리하고 있습니다.
+
+또한 발로란트의 최신 게임 환경과 정책 변화에 맞춰 서비스 방식을 지속적으로 점검하고 있으며, 고객님께서 보다 안전하고 체계적인 환경에서 서비스를 이용하실 수 있도록 관리하고 있습니다.
+
+개인정보 노출이나 계정 보안 문제 때문에 이용을 망설이고 계신 분들도 걱정하지 마시고 문의해 주세요.
+
+로브팀 담당 상담사가 서비스 진행 방식과 보안 관련 사항을 상세하게 안내해드리겠습니다.
+궁금하신 사항이 있으시다면 편하게 문의 부탁드립니다.
+
+아래 아이콘을 누르면 자동으로 상담 연결됩니다. (카카오톡 오픈채팅 연결)`;
+
+const PROGRESS_IMAGES = [
+ "assets/ChatGPT%20Image%202026%EB%85%84%2010%EC%9B%94%202%EC%9D%BC%20%EC%98%A4%EC%A0%84%2009_07_37.png",
+ "assets/2026%20%EC%A7%84%ED%96%89%20%EC%A4%91%EC%9D%B8%20%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%ED%8F%AC%EC%8A%A4%ED%84%B0.png"
+];
+
+function buildDetail(title,status){
+ return status==="progress"
+  ? {layout:"love-progress-v1",title,content:PROGRESS_CONTENT,images:PROGRESS_IMAGES,kakaoUrl:"https://open.kakao.com/"}
+  : {layout:"plain",title,content:"작업완료",images:[],kakaoUrl:""};
+}
+
 function getDisplayName(session){
  const user=session?.user;
  return String(
@@ -326,7 +386,7 @@ function bindListEvents(){
      action:"update",
      id,
      display_name:getDisplayName(window.LoveTeamSession),
-     detail:JSON.stringify({title:t}),
+     detail:JSON.stringify(buildDetail(t,s)),
      status:s
     });
     message.textContent=data.message||"수정되었습니다.";
@@ -362,7 +422,7 @@ $("create").onclick=async()=>{
   const data=await adminRequest({
    action:"create",
    display_name:getDisplayName(session),
-   detail:JSON.stringify({title:t}),
+   detail:JSON.stringify(buildDetail(t,s)),
    status:s
   });
   title.value="";
