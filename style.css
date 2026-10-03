@@ -6599,4 +6599,4 @@ body:not(.home-page) .logo-image{
 }
 
 /* LOGO CHECKERBOARD — COLOR-SEPARATION FILTER */
-.logo-image,.home-page .lt-hero-brand img{filter:url("#lt-logo-clean")!important;}
+.logo-image,.home-page .lt-hero-brand img{filter:url("index.html#lt-logo-clean")!important;-webkit-filter:url("index.html#lt-logo-clean")!important;}
