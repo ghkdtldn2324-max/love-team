@@ -19,7 +19,7 @@ jobs:
           python - <<'PY'
           from PIL import Image
           import numpy as np
-          src="assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png"
+          src="assets/love-team-main-logo-clean.webp"
           dst="assets/love-team-main-logo-transparent-final.png"
           im=Image.open(src).convert("RGBA")
           a=np.array(im)
