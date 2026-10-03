@@ -476,6 +476,12 @@
     document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]').forEach(function(m){m.setAttribute("content",seoTitle);});
     var old=document.getElementById("lt-breadcrumb-jsonld");
     if(old)old.remove();
+    var pageSchema=document.getElementById("lt-detail-webpage-jsonld");
+    if(pageSchema)pageSchema.remove();
+    var ws=document.createElement("script");
+    ws.type="application/ld+json";ws.id="lt-detail-webpage-jsonld";
+    ws.textContent=JSON.stringify({"@context":"https://schema.org","@type":"WebPage","name":seoTitle,"description":seoDescription,"url":location.href,"isPartOf":{"@type":"WebSite","name":"로브팀","url":"https://ghkdtldn2324-max.github.io/love-team/"}});
+    document.head.appendChild(ws);
     var s=document.createElement("script");
     s.type="application/ld+json";s.id="lt-breadcrumb-jsonld";
     s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":category,"item":new URL("reviews.html",location.href).href},{"@type":"ListItem","position":3,"name":title}]});
