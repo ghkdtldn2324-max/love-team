@@ -318,23 +318,7 @@
 </script>
 </head><body class="home-page">
 <!-- LOGO CHECKERBOARD FILTER: code-only, does not modify the PNG -->
-<svg aria-hidden="true" focusable="false" width="0" height="0" viewBox="0 0 1 1" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none">
-  <defs>
-    <filter id="lt-logo-clean" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox">
-      <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="lt-gray"/>
-      <feBlend in="SourceGraphic" in2="lt-gray" mode="difference" result="lt-color"/>
-      <feColorMatrix in="lt-color" values="
-        0 0 0 0 0
-        0 0 0 0 0
-        0 0 0 0 0
-        .333 .333 .333 0 0" result="lt-mask"/>
-      <feComponentTransfer in="lt-mask" result="lt-mask-threshold">
-        <feFuncA type="linear" slope="7" intercept="-.035"/>
-      </feComponentTransfer>
-      <feComposite in="SourceGraphic" in2="lt-mask-threshold" operator="in"/>
-    </filter>
-  </defs>
-</svg>
+
 
 <div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
 <header class="header">
