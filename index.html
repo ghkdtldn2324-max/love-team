@@ -317,6 +317,20 @@
 }
 </script>
 </head><body class="home-page">
+<svg aria-hidden="true" focusable="false" width="0" height="0" viewBox="0 0 1 1" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none">
+  <defs>
+    <filter id="lt-remove-checkerboard" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="lt-gray"/>
+      <feBlend in="SourceGraphic" in2="lt-gray" mode="difference" result="lt-color-difference"/>
+      <feColorMatrix in="lt-color-difference" values="
+        0 0 0 0 1
+        0 0 0 0 1
+        0 0 0 0 1
+        .333 .333 .333 0 -.03" result="lt-mask"/>
+      <feComposite in="SourceGraphic" in2="lt-mask" operator="in"/>
+    </filter>
+  </defs>
+</svg>
 <div class="top-notice">아시아서버 추가 비용 없이 이용가능</div>
 <header class="header">
 <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
