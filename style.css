@@ -6557,6 +6557,11 @@ select{
 
 
 
+/* HOMEPAGE HEADER LOGO — use uploaded transparent logo without screen blending */
+.home-page .logo-image{
+  mix-blend-mode:normal!important;
+}
+
 /* HOMEPAGE CENTER LOGO — preserve source resolution; no destructive filter/crop */
 .home-page .lt-hero-brand{
   overflow:visible!important;
