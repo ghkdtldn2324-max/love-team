@@ -6656,3 +6656,18 @@ body:not(.home-page) .header .logo-image{
     width:104px!important;
   }
 }
+
+
+/* WORKS PAGE HEADER LOGO — align upward and reduce 15% */
+@media(min-width:761px){
+  body.lt-works-page .header .logo-image{
+    width:100px!important;
+    transform:translateY(-4px)!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-works-page .header .logo-image{
+    width:88px!important;
+    transform:translate(-12px,-3px)!important;
+  }
+}
