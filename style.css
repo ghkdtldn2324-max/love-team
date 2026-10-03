@@ -6554,7 +6554,7 @@ select{
   }
 }
 
-/* HOMEPAGE — center logo outer checkerboard crop */
+/* HOMEPAGE — remove baked checkerboard + crop outer margin without editing the image */
 .home-page .lt-hero-brand{
   aspect-ratio:1451 / 880!important;
   overflow:hidden!important;
@@ -6563,9 +6563,10 @@ select{
   width:115.23%!important;
   max-width:none!important;
   transform:translate(-7.36%,-3.61%)!important;
+  filter:url("#lt-remove-checkerboard")!important;
 }
 
-/* MOBILE HOMEPAGE — crop logo outer white area */
+/* MOBILE HOMEPAGE — same checkerboard removal on the header logo */
 .home-page .logo{
   overflow:hidden!important;
 }
@@ -6574,4 +6575,5 @@ select{
   max-width:none!important;
   height:auto!important;
   transform:translate(-7.36%,-3.61%)!important;
+  filter:url("#lt-remove-checkerboard")!important;
 }
