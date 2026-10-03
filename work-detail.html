@@ -321,6 +321,12 @@
       const q=await client.from("work_history").select("id,display_name,detail,status,created_at").eq("id",id).maybeSingle();
       if(q.error||!q.data){el.innerHTML='<div class="work-detail-empty">작업 내역을 찾을 수 없습니다.</div>';return}
       const r=q.data,d=parse(r.detail);
+      var seoArticle=document.getElementById("lt-article-jsonld");
+      if(seoArticle)seoArticle.remove();
+      seoArticle=document.createElement("script");
+      seoArticle.type="application/ld+json";seoArticle.id="lt-article-jsonld";
+      seoArticle.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":String(d.title||r.detail?.title||"작업 내역").trim(),"author":{"@type":"Person","name":String(r.display_name||"로브팀").trim()},"datePublished":r.created_at||undefined,"mainEntityOfPage":{"@type":"WebPage","@id":location.href}});
+      document.head.appendChild(seoArticle);
       let views=0;
       const progressContent=`안녕하십니까, 신속 · 안전 · 정확의 대명사 로브팀입니다.
 
