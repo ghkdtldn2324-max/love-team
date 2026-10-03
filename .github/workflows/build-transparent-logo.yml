@@ -1,0 +1,42 @@
+name: Build transparent LOVE TEAM logo
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  clean-logo:
+    if: contains(github.event.head_commit.message, 'Build transparent LOVE TEAM logo') == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate transparent logo
+        run: |
+          python -m pip install --quiet pillow opencv-python-headless numpy
+          python - <<'PY'
+          from PIL import Image
+          import numpy as np
+          src="assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png"
+          dst="assets/love-team-main-logo-transparent-final.png"
+          im=Image.open(src).convert("RGBA")
+          a=np.array(im)
+          rgb=a[:,:,:3].astype(np.float32)/255.0
+          mx=rgb.max(2); mn=rgb.min(2)
+          sat=np.divide(mx-mn,mx,out=np.zeros_like(mx),where=mx>1e-6)
+          val=mx
+          alpha=a[:,:,3].astype(np.float32)/255.0
+          keep=(sat>0.22)|(val<0.35)
+          a[:,:,3]=np.rint(alpha*keep*255).astype(np.uint8)
+          Image.fromarray(a,"RGBA").save(dst,optimize=True)
+          PY
+      - name: Commit logo and remove workflow
+        run: |
+          rm -f .github/workflows/build-transparent-logo.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/love-team-main-logo-transparent-final.png .github/workflows/build-transparent-logo.yml
+          git commit -m "Build transparent LOVE TEAM logo [skip ci]"
+          git push
