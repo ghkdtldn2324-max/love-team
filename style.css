@@ -6595,7 +6595,7 @@ select{
 
 /* CENTRAL LOGO — cleaned transparent source, no compositing/filter artifacts */
 .home-page .lt-hero-brand{
-  width:min(390px,30vw)!important;
+  width:min(507px,39vw)!important;
   overflow:visible!important;
   background:transparent!important;
 }
