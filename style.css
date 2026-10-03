@@ -6619,3 +6619,40 @@ select{
     width:245px!important;
   }
 }
+
+/* INNER-PAGE HEADER LOGO — current logo, flush to top-left on desktop/mobile */
+body:not(.home-page) .header{
+  padding-left:0!important;
+  padding-right:12px!important;
+}
+body:not(.home-page) .header .logo{
+  margin-left:0!important;
+  padding-left:0!important;
+  justify-content:flex-start!important;
+  transform:none!important;
+}
+body:not(.home-page) .header .logo-image{
+  width:118px!important;
+  max-width:none!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+  margin-left:0!important;
+  transform:none!important;
+  mix-blend-mode:normal!important;
+  filter:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
+@media(max-width:760px){
+  body:not(.home-page) .header{
+    padding-left:0!important;
+    padding-right:8px!important;
+  }
+  body:not(.home-page) .header .logo{
+    margin-left:0!important;
+  }
+  body:not(.home-page) .header .logo-image{
+    width:104px!important;
+  }
+}
