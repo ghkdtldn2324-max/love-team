@@ -6597,3 +6597,6 @@ body:not(.home-page) .logo-image{
   clip-path:inset(3.5% 7% 3% 7%)!important;
   -webkit-clip-path:inset(3.5% 7% 3% 7%)!important;
 }
+
+/* LOGO CHECKERBOARD — COLOR-SEPARATION FILTER */
+.logo-image,.home-page .lt-hero-brand img{filter:url("#lt-logo-clean")!important;}
