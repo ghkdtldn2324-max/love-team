@@ -192,8 +192,7 @@
       <feComponentTransfer in="lt-mask" result="lt-mask-threshold">
         <feFuncA type="linear" slope="7" intercept="-.035"/>
       </feComponentTransfer>
-      <feMorphology in="lt-mask-threshold" operator="dilate" radius=".012" result="lt-mask-expanded"/>
-      <feComposite in="SourceGraphic" in2="lt-mask-expanded" operator="in"/>
+      <feComposite in="SourceGraphic" in2="lt-mask-threshold" operator="in"/>
     </filter>
   </defs>
 </svg><header class="header"><a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
