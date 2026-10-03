@@ -6593,50 +6593,29 @@ select{
   -webkit-clip-path:none!important;
 }
 
-/* CENTRAL LOGO CLARITY REFINEMENT — 2026-10-04 */
+/* CENTRAL LOGO — cleaned transparent source, no compositing/filter artifacts */
 .home-page .lt-hero-brand{
   width:min(390px,30vw)!important;
+  overflow:visible!important;
+  background:transparent!important;
 }
 .home-page .lt-hero-brand img{
   width:100%!important;
   max-width:100%!important;
   height:auto!important;
   image-rendering:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
   filter:none!important;
   -webkit-filter:none!important;
   transform:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
 }
 @media(max-width:760px){
   .home-page .lt-hero-brand{
     width:245px!important;
-  }
-}
-
-
-/* CENTRAL LOGO HIGHLIGHT RECOVERY — 2026-10-04
-   Preserve the bright LOVE TEAM artwork while visually suppressing
-   the dark/checkerboard field baked into the source image. */
-.home-page .lt-hero-brand{
-  background:transparent!important;
-}
-.home-page .lt-hero-brand img{
-  mix-blend-mode:screen!important;
-  image-rendering:auto!important;
-  object-fit:contain!important;
-  object-position:center!important;
-  opacity:1!important;
-  filter:
-    brightness(1.10) contrast(1.10) saturate(1.10)
-    drop-shadow(0 0 3px rgba(255,255,255,.22))
-    drop-shadow(0 0 10px rgba(72,86,255,.70))
-    drop-shadow(0 0 22px rgba(174,72,255,.36))!important;
-}
-@media(max-width:760px){
-  .home-page .lt-hero-brand img{
-    filter:
-      brightness(1.08) contrast(1.08) saturate(1.08)
-      drop-shadow(0 0 3px rgba(255,255,255,.18))
-      drop-shadow(0 0 9px rgba(72,86,255,.64))
-      drop-shadow(0 0 18px rgba(174,72,255,.32))!important;
   }
 }
