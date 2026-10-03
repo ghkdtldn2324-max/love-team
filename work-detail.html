@@ -509,7 +509,9 @@ LOVE TEAM
     title=String(title||"").trim();
     if(!title)return;
     var seoTitle=title+" | 로브팀";
+    var seoDescription=title+" - 발로란트 작업 내역 | 로브팀";
     document.title=seoTitle;
+    document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').forEach(function(m){m.setAttribute("content",seoDescription);});
     document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]').forEach(function(m){m.setAttribute("content",seoTitle);});
     var old=document.getElementById("lt-breadcrumb-jsonld");
     if(old)old.remove();
