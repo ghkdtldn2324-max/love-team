@@ -6601,3 +6601,18 @@ body:not(.home-page) .logo-image{
 /* LOGO CHECKERBOARD — COLOR-SEPARATION FILTER */
 .logo-image,.home-page .lt-hero-brand img{filter:url("index.html#lt-logo-clean")!important;-webkit-filter:url("index.html#lt-logo-clean")!important;}
 
+
+/* HOMEPAGE CENTER LOGO — use clean transparent asset at native proportions; disable legacy crop/filter */
+.home-page .lt-hero-brand{
+  overflow:visible!important;
+}
+.home-page .lt-hero-brand img{
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  transform:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+}
