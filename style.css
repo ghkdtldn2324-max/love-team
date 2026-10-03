@@ -6564,3 +6564,14 @@ select{
   max-width:none!important;
   transform:translate(-7.36%,-3.61%)!important;
 }
+
+/* MOBILE HOMEPAGE — crop logo outer white area */
+.home-page .logo{
+  overflow:hidden!important;
+}
+.home-page .logo-image{
+  width:115.23%!important;
+  max-width:none!important;
+  height:auto!important;
+  transform:translate(-7.36%,-3.61%)!important;
+}
