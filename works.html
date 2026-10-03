@@ -267,6 +267,60 @@
 .lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:760px){.lt-breadcrumb{margin:0 0 12px;padding:0 16px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
 </style>
+<style id="works-header-logo-final-v5">
+/* WORKS PAGE — force the same home-link logo size/position as every other page */
+@media(min-width:761px){
+  body.lt-works-page .header .logo{
+    width:100px!important;
+    min-width:100px!important;
+    height:62px!important;
+    margin-left:0!important;
+    padding-left:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+  body.lt-works-page .header .logo-image{
+    width:100px!important;
+    max-width:none!important;
+    height:auto!important;
+    margin-left:0!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+    transform:translateY(-6px)!important;
+    mix-blend-mode:normal!important;
+    filter:none!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-works-page .header .logo{
+    flex:0 0 88px!important;
+    width:88px!important;
+    min-width:88px!important;
+    height:48px!important;
+    margin-left:0!important;
+    padding-left:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+  body.lt-works-page .header .logo-image{
+    width:88px!important;
+    max-width:none!important;
+    height:auto!important;
+    margin-left:0!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+    transform:translateY(-4px)!important;
+    mix-blend-mode:normal!important;
+    filter:none!important;
+  }
+}
+</style>
 </head>
 <body class="lt-works-page">
 <!-- LOGO CHECKERBOARD FILTER: code-only, does not modify the PNG -->
