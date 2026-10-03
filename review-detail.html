@@ -378,6 +378,12 @@
     }
 
     const row=result.data;
+    var seoArticle=document.getElementById("lt-article-jsonld");
+    if(seoArticle)seoArticle.remove();
+    seoArticle=document.createElement("script");
+    seoArticle.type="application/ld+json";seoArticle.id="lt-article-jsonld";
+    seoArticle.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":String(row.title||"후기").trim(),"author":{"@type":"Person","name":String(row.display_name||"익명").trim()},"datePublished":row.created_at||undefined,"mainEntityOfPage":{"@type":"WebPage","@id":location.href}});
+    document.head.appendChild(seoArticle);
     let views=0;
     try{
       const viewResult=await client.rpc('increment_review_view',{target_review_id:row.id});
