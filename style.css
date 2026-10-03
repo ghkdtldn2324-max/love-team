@@ -6563,7 +6563,6 @@ select{
   width:115.23%!important;
   max-width:none!important;
   transform:translate(-7.36%,-3.61%)!important;
-  filter:url("#lt-remove-checkerboard")!important;
 }
 
 /* MOBILE HOMEPAGE — same checkerboard removal on the header logo */
@@ -6575,5 +6574,4 @@ select{
   max-width:none!important;
   height:auto!important;
   transform:translate(-7.36%,-3.61%)!important;
-  filter:url("#lt-remove-checkerboard")!important;
 }
