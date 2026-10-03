@@ -381,6 +381,12 @@ async function loadNotice(){
     }
 
     const notice=result.data;
+    var seoArticle=document.getElementById("lt-article-jsonld");
+    if(seoArticle)seoArticle.remove();
+    seoArticle=document.createElement("script");
+    seoArticle.type="application/ld+json";seoArticle.id="lt-article-jsonld";
+    seoArticle.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":String(notice.title||"").trim(),"author":{"@type":"Organization","name":"로브팀","url":"https://ghkdtldn2324-max.github.io/love-team/"},"datePublished":notice.published_at||undefined,"mainEntityOfPage":{"@type":"WebPage","@id":location.href}});
+    document.head.appendChild(seoArticle);
     titleEl.textContent=notice.title||'';
     authorEl.textContent='로브팀';
     dateEl.textContent=formatNoticeDate(notice.published_at);
