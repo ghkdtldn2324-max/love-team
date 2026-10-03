@@ -6599,18 +6599,5 @@ body:not(.home-page) .logo-image{
 }
 
 /* LOGO CHECKERBOARD — COLOR-SEPARATION FILTER */
-.logo-image{filter:url("index.html#lt-logo-clean")!important;-webkit-filter:url("index.html#lt-logo-clean")!important;}
+.logo-image,.home-page .lt-hero-brand img{filter:url("index.html#lt-logo-clean")!important;-webkit-filter:url("index.html#lt-logo-clean")!important;}
 
-
-/* HOMEPAGE CENTER LOGO — clean asset, no crop/filter scaling */
-.home-page .lt-hero-brand img{
-  width:100%!important;
-  max-width:100%!important;
-  height:auto!important;
-  transform:none!important;
-  clip-path:none!important;
-  -webkit-clip-path:none!important;
-  filter:drop-shadow(0 12px 18px rgba(0,0,0,.62)) drop-shadow(0 0 26px rgba(81,72,255,.42))!important;
-  -webkit-filter:drop-shadow(0 12px 18px rgba(0,0,0,.62)) drop-shadow(0 0 26px rgba(81,72,255,.42))!important;
-  image-rendering:auto!important;
-}
