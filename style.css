@@ -6592,3 +6592,22 @@ select{
   clip-path:none!important;
   -webkit-clip-path:none!important;
 }
+
+/* CENTRAL LOGO CLARITY REFINEMENT — 2026-10-04 */
+.home-page .lt-hero-brand{
+  width:min(390px,30vw)!important;
+}
+.home-page .lt-hero-brand img{
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  image-rendering:auto!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  transform:none!important;
+}
+@media(max-width:760px){
+  .home-page .lt-hero-brand{
+    width:245px!important;
+  }
+}
