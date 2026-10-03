@@ -6553,3 +6553,14 @@ select{
     display:none!important;
   }
 }
+
+/* HOMEPAGE — center logo outer checkerboard crop */
+.home-page .lt-hero-brand{
+  aspect-ratio:1451 / 880!important;
+  overflow:hidden!important;
+}
+.home-page .lt-hero-brand img{
+  width:115.23%!important;
+  max-width:none!important;
+  transform:translate(-7.36%,-3.61%)!important;
+}
