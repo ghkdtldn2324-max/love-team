@@ -6575,3 +6575,25 @@ select{
   height:auto!important;
   transform:translate(-7.36%,-3.61%)!important;
 }
+
+/* LOGO CHECKERBOARD OUTER-EDGE CROP — all non-home pages */
+/* 이미지 파일은 그대로 두고, 바깥쪽 체크보드 영역만 화면에서 잘라냅니다. */
+body:not(.home-page) .logo{
+  overflow:hidden!important;
+}
+body:not(.home-page) .logo-image{
+  clip-path:inset(3.5% 7% 3% 7%)!important;
+  -webkit-clip-path:inset(3.5% 7% 3% 7%)!important;
+}
+
+/* 홈페이지 중앙 로고도 동일하게 바깥 체크보드만 제거합니다. */
+.home-page .lt-hero-brand img{
+  clip-path:inset(3.5% 7% 3% 7%)!important;
+  -webkit-clip-path:inset(3.5% 7% 3% 7%)!important;
+}
+
+/* 홈페이지 상단 로고 */
+.home-page .logo-image{
+  clip-path:inset(3.5% 7% 3% 7%)!important;
+  -webkit-clip-path:inset(3.5% 7% 3% 7%)!important;
+}
