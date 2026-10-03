@@ -6577,3 +6577,18 @@ select{
   filter:none!important;
   -webkit-filter:none!important;
 }
+
+/* HOMEPAGE HEADER LOGO — final source-image preservation */
+.home-page .logo-image{
+  width:118px!important;
+  max-width:100%!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  mix-blend-mode:normal!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  transform:none!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+}
