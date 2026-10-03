@@ -433,6 +433,9 @@ loadNotice();
   function upsert(title){
     title=String(title||"").trim();
     if(!title)return;
+    var seoTitle=title+" | 로브팀";
+    document.title=seoTitle;
+    document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]').forEach(function(m){m.setAttribute("content",seoTitle);});
     var old=document.getElementById("lt-breadcrumb-jsonld");
     if(old)old.remove();
     var s=document.createElement("script");
