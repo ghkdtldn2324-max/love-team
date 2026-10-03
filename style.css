@@ -6706,3 +6706,69 @@ body:not(.home-page) .header .logo-image{
     transform:translate(-12px,-7px)!important;
   }
 }
+
+/* =====================================================
+   ALL PAGE HOME-LINK LOGO — FINAL UNIFIED SIZE/POSITION
+   Homepage + every subpage use the same header logo scale/alignment.
+===================================================== */
+@media(min-width:761px){
+  .header{
+    padding-left:0!important;
+  }
+  .header .logo{
+    width:100px!important;
+    min-width:100px!important;
+    height:62px!important;
+    margin-left:0!important;
+    padding-left:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+  .header .logo-image{
+    width:100px!important;
+    max-width:none!important;
+    height:auto!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+    margin-left:0!important;
+    transform:translateY(-6px)!important;
+    mix-blend-mode:normal!important;
+    filter:none!important;
+    clip-path:none!important;
+    -webkit-clip-path:none!important;
+  }
+}
+@media(max-width:760px){
+  .header{
+    padding-left:0!important;
+  }
+  .header .logo{
+    flex:0 0 88px!important;
+    width:88px!important;
+    min-width:88px!important;
+    height:48px!important;
+    margin-left:0!important;
+    padding-left:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    overflow:visible!important;
+    transform:none!important;
+  }
+  .header .logo-image{
+    width:88px!important;
+    max-width:none!important;
+    height:auto!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+    margin-left:0!important;
+    transform:translateY(-4px)!important;
+    mix-blend-mode:normal!important;
+    filter:none!important;
+    clip-path:none!important;
+    -webkit-clip-path:none!important;
+  }
+}
