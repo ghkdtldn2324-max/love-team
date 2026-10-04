@@ -6771,3 +6771,58 @@ body:not(.home-page) .header .logo-image{
     -webkit-clip-path:none!important;
   }
 }
+
+
+/* =====================================================
+   HOMEPAGE FINAL POLISH — 20261004
+   Visual-only, homepage-scoped. No functional changes.
+===================================================== */
+@media (min-width:761px){
+  .home-page .lt-hero h1{
+    text-wrap:balance;
+  }
+  .home-page .lt-hero-btn{
+    position:relative;
+    overflow:hidden;
+  }
+  .home-page .lt-hero-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.16) 50%,transparent 75%);
+    transform:translateX(-120%);
+    transition:transform .65s ease;
+    pointer-events:none;
+  }
+  .home-page .lt-hero-btn:hover::before{
+    transform:translateX(120%);
+  }
+  .home-page .home-hero-benefits article{
+    transition:transform .22s ease,background .22s ease;
+    border-radius:10px;
+  }
+  .home-page .home-hero-benefits article:hover{
+    transform:translateX(3px);
+    background:rgba(142,101,235,.08);
+  }
+}
+.home-page .home-hero-event>strong{
+  background:linear-gradient(90deg,#c39aff,#f08aff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.home-page .lt-closing h2{
+  text-wrap:balance;
+}
+@media(max-width:760px){
+  .home-page .lt-hero h1{
+    text-wrap:balance;
+  }
+  .home-page .home-hero-event>strong{
+    background:linear-gradient(90deg,#b987ff,#ee78ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+}
