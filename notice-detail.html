@@ -258,6 +258,33 @@
 .lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:760px){.lt-breadcrumb{margin:-28px 0 12px;padding:0 16px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
 </style>
+<style id="lt-notice-detail-hero-bg-v1">
+html,body{background:#080711!important;}
+body{position:relative;min-height:100vh;overflow-x:hidden;background-image:none!important;}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(5,4,12,.72) 0%,rgba(7,5,17,.48) 42%,rgba(10,6,24,.34) 70%,rgba(8,5,18,.60) 100%),
+    linear-gradient(180deg,rgba(7,4,15,.20) 0%,rgba(7,4,15,.30) 48%,rgba(7,4,15,.72) 100%),
+    url('assets/05DE61AF-8FFA-4C8C-AA36-982D963CB8DF.png?v=20261001-hero') center center/cover no-repeat;
+}
+body>*{position:relative;z-index:1;}
+.notice-detail-page{background:transparent!important;}
+.notice-detail-card{background:rgba(255,255,255,.96);}
+@media(max-width:760px){
+  body::before{
+    background:
+      linear-gradient(180deg,rgba(7,5,16,.36) 0%,rgba(8,5,18,.50) 38%,rgba(9,5,20,.86) 100%),
+      linear-gradient(90deg,rgba(7,5,16,.50),rgba(10,6,25,.36)),
+      url('assets/0B0871E2-5B09-48AD-A3F4-3F4D8C9EC523.png?v=20261001-mobile') center center/cover no-repeat;
+  }
+  .notice-detail-page{background:transparent!important;}
+}
+</style>
 </head>
 <body>
 <!-- LOGO CHECKERBOARD FILTER: code-only, does not modify the PNG -->
