@@ -8,11 +8,1058 @@
 <meta property="og:site_name" content="로브팀">
 <meta property="og:title" content="LOVE TEAM | 후기">
 <meta property="og:description" content="LOVE TEAM 발로란트 서비스 이용 후기의 상세 내용을 확인하세요.">
-<meta property="og:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/love-team-logo-clean-transparent.webp">
+<meta property="og:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LOVE TEAM | 후기">
 <meta name="twitter:description" content="LOVE TEAM 발로란트 서비스 이용 후기의 상세 내용을 확인하세요.">
-<meta name="twitter:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/love-team-logo-clean-transparent.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="style.css?v=20261004-unified-inner-logo-v6">
+<meta name="twitter:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png">
+<link rel="stylesheet" href="style.css?v=20261004-unified-inner-logo-v6">
+<style>
+.review-detail-page{background:#fff;min-height:calc(100vh - 118px);padding:70px 20px 100px;color:#171722}
+.review-detail-wrap{max-width:1000px;margin:0 auto}
+.review-detail-card{background:#fff;border-top:1px solid #e3e3e3}
+.review-detail-user{display:flex;align-items:center;gap:14px;padding:28px 8px 22px}
+.review-detail-avatar{width:56px;height:56px;border-radius:50%;background:#ececf0;display:grid;place-items:center;color:#aaa;font-size:26px}
+.review-detail-user-name{font-size:19px;font-weight:800}
+.review-detail-meta{display:flex;gap:15px;margin-top:5px;color:#777;font-size:13px}
+.review-detail-body{padding:42px 8px 36px;border-bottom:1px solid #ddd}
+.review-detail-body p{margin:0;white-space:pre-line;font-size:17px;line-height:2;color:#222}
+.review-detail-comments{padding:28px 8px;border-bottom:1px solid #ddd;font-size:15px}
+.review-detail-comments span{font-size:28px;vertical-align:-3px;margin-right:6px}
+.review-detail-login{margin:50px 0 28px;border:1px solid #dedde5;border-radius:12px;min-height:180px;padding:28px;background:#fff;color:#aaa;display:flex;flex-direction:column;justify-content:space-between}
+.review-detail-login p{margin:0;font-size:20px;color:#aaa}
+.review-detail-login button{align-self:flex-end;border:0;background:linear-gradient(100deg,#5d7cff,#9d4ee8);color:#fff;min-width:90px;min-height:46px;border-radius:7px;font-weight:800;cursor:pointer}
+.review-detail-next{border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:22px 8px}
+.review-detail-next a{display:block;color:#171722;text-decoration:none;font-size:17px}
+.review-detail-next small{display:block;color:#888;margin-bottom:8px}
+.review-detail-actions{display:flex;justify-content:space-between;gap:12px;padding:24px 0}
+.review-detail-actions a,.review-detail-actions button{min-width:110px;min-height:48px;padding:0 18px;border:0;border-radius:7px;background:#7a6fe5;color:#fff;text-decoration:none;font-weight:800;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.review-detail-actions .secondary{background:#eeeaf9;color:#5f4bc7}
+
+@media(max-width:760px){
+  html,body{background:#fff!important}
+  body.lt-review-detail-page{background:#fff!important;color:#171722!important;overflow-x:hidden}
+  body.lt-review-detail-page .header{position:sticky!important;top:0!important;z-index:10000!important}
+  body.lt-review-detail-page .page-divider{display:none!important}
+  body.lt-review-detail-page main{background:#fff!important}
+  body.lt-review-detail-page .review-detail-page{
+    padding:0 16px 70px!important;
+    min-height:calc(100vh - 68px)!important;
+    background:#fff!important;
+  }
+  body.lt-review-detail-page .review-detail-wrap{max-width:none!important}
+  body.lt-review-detail-page .review-detail-user{padding:28px 0 22px!important;gap:14px!important}
+  body.lt-review-detail-page .review-detail-avatar{width:58px!important;height:58px!important;font-size:27px!important;background:#e6e6e9!important;color:#aaa!important}
+  body.lt-review-detail-page .review-detail-user-name{font-size:20px!important;font-weight:500!important}
+  body.lt-review-detail-page .review-detail-meta{font-size:14px!important;gap:13px!important;color:#686868!important}
+  body.lt-review-detail-page .review-detail-body{padding:48px 0 38px!important}
+  body.lt-review-detail-page .review-detail-body p{font-size:19px!important;line-height:1.8!important;letter-spacing:-.35px!important}
+  body.lt-review-detail-page .review-detail-comments{padding:28px 0!important;font-size:15px!important}
+  body.lt-review-detail-page .review-detail-comments span{font-size:31px!important}
+  body.lt-review-detail-page .review-detail-login{
+    margin:42px 0 34px!important;
+    min-height:185px!important;
+    padding:26px!important;
+    border-radius:10px!important;
+    box-shadow:none!important;
+  }
+  body.lt-review-detail-page .review-detail-login p{font-size:20px!important}
+  body.lt-review-detail-page .review-detail-login button{min-width:92px!important;min-height:48px!important}
+  body.lt-review-detail-page .review-detail-next{padding:22px 0!important}
+  body.lt-review-detail-page .review-detail-next a{font-size:17px!important;line-height:1.5!important}
+  body.lt-review-detail-page .review-detail-actions{padding:24px 0 0!important}
+  body.lt-review-detail-page .review-detail-actions a{min-width:110px!important}
+}
+</style>
+
+<style id="lt-review-detail-pc-hero-bg-v1">
+@media(min-width:761px){
+  html,body{
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261003-review-detail-pc-bg') center top/cover fixed no-repeat!important;
+  }
+  body.lt-review-detail-page{
+    background:transparent!important;
+  }
+  body.lt-review-detail-page .header{
+    position:relative!important;
+    z-index:10000!important;
+    background:transparent!important;
+    background-color:transparent!important;
+    border-bottom:0!important;
+    box-shadow:none!important;
+  }
+  body.lt-review-detail-page main{
+    background:transparent!important;
+  }
+  body.lt-review-detail-page .review-detail-page{
+    background:transparent!important;
+  }
+}
+</style>
+
+<style id="lt-review-detail-mobile-readability-v2">
+@media(max-width:760px){
+  html,body{background:#fff!important;color:#171722!important;}
+  body.lt-review-detail-page main{background:#fff!important;}
+  body.lt-review-detail-page .review-detail-page{
+    padding:0 16px 82px!important;
+    background:#fff!important;
+  }
+  body.lt-review-detail-page .review-detail-card{
+    border-top:2px solid #dedee4!important;
+  }
+  body.lt-review-detail-page .review-detail-user{
+    padding:25px 0 20px!important;
+    gap:13px!important;
+    border-bottom:1px solid #e5e5e9!important;
+  }
+  body.lt-review-detail-page .review-detail-avatar{
+    width:52px!important;
+    height:52px!important;
+    flex:0 0 52px!important;
+    font-size:0!important;
+    background:#ececf0!important;
+    position:relative!important;
+  }
+  body.lt-review-detail-page .review-detail-avatar::before{
+    content:""!important;
+    position:absolute!important;
+    width:15px!important;
+    height:15px!important;
+    top:10px!important;
+    left:50%!important;
+    transform:translateX(-50%)!important;
+    border-radius:50%!important;
+    background:#b6b6bc!important;
+  }
+  body.lt-review-detail-page .review-detail-avatar::after{
+    content:""!important;
+    position:absolute!important;
+    width:29px!important;
+    height:15px!important;
+    left:50%!important;
+    bottom:8px!important;
+    transform:translateX(-50%)!important;
+    border-radius:18px 18px 9px 9px!important;
+    background:#b6b6bc!important;
+  }
+  body.lt-review-detail-page .review-detail-user-name{
+    font-size:18px!important;
+    line-height:1.4!important;
+    font-weight:700!important;
+    color:#22222b!important;
+  }
+  body.lt-review-detail-page .review-detail-meta{
+    margin-top:6px!important;
+    gap:0!important;
+    flex-wrap:wrap!important;
+    font-size:13px!important;
+    line-height:1.5!important;
+    color:#777780!important;
+  }
+  body.lt-review-detail-page .review-detail-meta span+span::before{
+    content:""!important;
+    display:inline-block!important;
+    width:1px!important;
+    height:11px!important;
+    margin:0 9px!important;
+    background:#d2d2d8!important;
+    vertical-align:-1px!important;
+  }
+  body.lt-review-detail-page .review-detail-body{
+    padding:34px 0 34px!important;
+    border-bottom:1px solid #dedee4!important;
+  }
+  body.lt-review-detail-page .review-detail-body::before{
+    content:"후기 내용"!important;
+    display:block!important;
+    margin-bottom:17px!important;
+    font-size:13px!important;
+    font-weight:800!important;
+    color:#7864d9!important;
+    letter-spacing:.2px!important;
+  }
+  body.lt-review-detail-page .review-detail-body p{
+    font-size:18px!important;
+    line-height:1.9!important;
+    letter-spacing:-.3px!important;
+    color:#22222a!important;
+    word-break:keep-all!important;
+    overflow-wrap:anywhere!important;
+  }
+  body.lt-review-detail-page .review-detail-comments{
+    padding:20px 0!important;
+    border-bottom:1px solid #dedee4!important;
+    font-size:15px!important;
+    color:#55555e!important;
+  }
+  body.lt-review-detail-page .review-detail-comments span{
+    font-size:25px!important;
+    margin-right:7px!important;
+  }
+  body.lt-review-detail-page .review-detail-login{
+    margin:30px 0 28px!important;
+    min-height:150px!important;
+    padding:22px!important;
+    border:1px solid #dedde5!important;
+    border-radius:11px!important;
+    background:#faf9fd!important;
+  }
+  body.lt-review-detail-page .review-detail-login p{
+    font-size:16px!important;
+    line-height:1.6!important;
+    color:#777780!important;
+  }
+  body.lt-review-detail-page .review-detail-login button{
+    min-width:90px!important;
+    min-height:46px!important;
+    font-size:14px!important;
+  }
+  body.lt-review-detail-page .review-detail-next{
+    padding:19px 0!important;
+    border-top:1px solid #dedee4!important;
+    border-bottom:1px solid #dedee4!important;
+  }
+  body.lt-review-detail-page .review-detail-next small{
+    margin-bottom:8px!important;
+    font-size:12px!important;
+    color:#8a8a93!important;
+  }
+  body.lt-review-detail-page .review-detail-next a{
+    font-size:16px!important;
+    line-height:1.55!important;
+    color:#25252e!important;
+  }
+  body.lt-review-detail-page .review-detail-actions{
+    padding:22px 0 0!important;
+    gap:9px!important;
+  }
+  body.lt-review-detail-page .review-detail-actions a{
+    min-width:0!important;
+    flex:1!important;
+    min-height:48px!important;
+    font-size:15px!important;
+    border-radius:8px!important;
+  }
+}
+</style>
+
+<style id="lt-review-detail-mobile-readability-v3">
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-page{padding:0 16px 65px!important;}
+  body.lt-review-detail-page .review-detail-user{padding:20px 0 16px!important;gap:11px!important;}
+  body.lt-review-detail-page .review-detail-avatar{width:46px!important;height:46px!important;flex-basis:46px!important;}
+  body.lt-review-detail-page .review-detail-avatar::before{width:13px!important;height:13px!important;top:9px!important;}
+  body.lt-review-detail-page .review-detail-avatar::after{width:25px!important;height:13px!important;bottom:7px!important;}
+  body.lt-review-detail-page .review-detail-user-name{font-size:16px!important;line-height:1.35!important;}
+  body.lt-review-detail-page .review-detail-meta{margin-top:4px!important;font-size:12px!important;line-height:1.4!important;}
+  body.lt-review-detail-page .review-detail-meta span+span::before{margin:0 7px!important;height:10px!important;}
+  body.lt-review-detail-page .review-detail-body{padding:26px 0 27px!important;}
+  body.lt-review-detail-page .review-detail-body::before{margin-bottom:12px!important;font-size:12px!important;}
+  body.lt-review-detail-page .review-detail-body p{font-size:16px!important;line-height:1.8!important;letter-spacing:-.2px!important;}
+  body.lt-review-detail-page .review-detail-comments{padding:16px 0!important;font-size:13px!important;}
+  body.lt-review-detail-page .review-detail-comments span{font-size:22px!important;margin-right:5px!important;}
+  body.lt-review-detail-page .review-detail-login{margin:24px 0 22px!important;min-height:125px!important;padding:18px!important;}
+  body.lt-review-detail-page .review-detail-login p{font-size:14px!important;}
+  body.lt-review-detail-page .review-detail-login button{min-width:78px!important;min-height:40px!important;font-size:13px!important;}
+  body.lt-review-detail-page .review-detail-next{padding:16px 0!important;}
+  body.lt-review-detail-page .review-detail-next small{margin-bottom:6px!important;font-size:11px!important;}
+  body.lt-review-detail-page .review-detail-next a{font-size:14px!important;line-height:1.5!important;}
+  body.lt-review-detail-page .review-detail-actions{padding-top:18px!important;gap:7px!important;}
+  body.lt-review-detail-page .review-detail-login.auth-hidden{display:none!important;}
+  body.lt-review-detail-page .review-detail-actions a{min-height:42px!important;font-size:14px!important;border-radius:7px!important;}
+}
+</style>
+
+<style id="lt-review-detail-mobile-readability-v4">
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-page{padding-left:12px!important;padding-right:12px!important;}
+  body.lt-review-detail-page .review-detail-user{padding-left:4px!important;padding-right:4px!important;}
+  body.lt-review-detail-page .review-detail-user-name{font-size:17px!important;}
+  body.lt-review-detail-page .review-detail-meta{font-size:12.5px!important;}
+  body.lt-review-detail-page .review-detail-body{padding:30px 4px 31px!important;}
+  body.lt-review-detail-page .review-detail-body p{font-size:17px!important;line-height:1.9!important;letter-spacing:-.15px!important;}
+  body.lt-review-detail-page .review-detail-comments{padding-left:4px!important;padding-right:4px!important;font-size:14px!important;}
+  body.lt-review-detail-page .review-detail-next{padding-left:4px!important;padding-right:4px!important;}
+  body.lt-review-detail-page .review-detail-actions{padding-left:4px!important;padding-right:4px!important;}
+}
+</style>
+<style id="lt-review-detail-mobile-title-size-v1">
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-title{font-size:18px!important;}
+}
+</style>
+<style id="lt-breadcrumb-v1">
+.lt-breadcrumb{max-width:1080px;margin:0 auto 18px;padding:0 24px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.68)}
+.lt-breadcrumb a{color:inherit;text-decoration:none}
+.lt-breadcrumb a:hover{text-decoration:underline}
+.lt-breadcrumb .sep{opacity:.45}
+.lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.lt-breadcrumb{margin:0 0 12px;padding:0 16px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
+</style>
+</head>
+<body class="lt-review-detail-page">
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none"><defs><filter id="lt-logo-clean" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox"><feColorMatrix in="SourceGraphic" type="saturate" values="0" result="g"/><feBlend in="SourceGraphic" in2="g" mode="difference" result="d"/><feColorMatrix in="d" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .333 .333 .333 0 0" result="m"/><feComponentTransfer in="m"><feFuncA type="linear" slope="7" intercept="-.035"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></defs></svg>
+<header class="header">
+  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+    <img class="logo-image" src="assets/love-team-logo-clean-transparent.png?v=20261004-inner-logo-v2" alt="LOVE TEAM">
+  </a>
+  <nav class="nav">
+    <a class="home-nav" href="index.html">홈</a>
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+  </nav>
+  <div class="header-actions">
+    <a href="#login" id="openAuth" data-auth-open="1">로그인 / 회원가입</a>
+    <a class="kakao-btn" href="https://open.kakao.com/" target="_blank" rel="noopener">고객센터</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+    <a href="#" id="mobileOpenAuth" data-auth-open data-auth-mode="login">로그인</a>
+    <a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a>
+    <a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener">고객센터</a>
+  </div>
+</header>
+<main>
+<nav class="lt-breadcrumb" aria-label="페이지 경로"><a href="index.html">홈</a><span class="sep" aria-hidden="true">›</span><a href="reviews.html">후기</a><span class="sep" aria-hidden="true">›</span><span class="current" aria-current="page">상세보기</span></nav>
+<section class="review-detail-page">
+<div class="review-detail-wrap" id="reviewDetail">
+  <div class="review-detail-card">후기를 불러오는 중입니다.</div>
+</div>
+</section>
+</main>
+<script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js?v=20261002-auth-syntax-fix-v3"></script>
+<script src="script.js?v=20261002-mobile-menu-fix-v1"></script>
+<script>
+(function(){
+  const client=window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+  const root=document.getElementById('reviewDetail');
+  const id=new URLSearchParams(location.search).get('id');
+
+  function esc(v){
+    return String(v??'').replace(/[&<>"']/g,function(ch){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+    });
+  }
+  function formatDate(v){
+    const d=new Date(v);
+    return Number.isNaN(d.getTime()) ? '-' : d.toLocaleDateString('ko-KR');
+  }
+  function titleFromText(v){
+    const s=String(v||'').trim().replace(/\s+/g,' ');
+    return s.length>54 ? s.slice(0,54)+'…' : s;
+  }
+
+  async function load(){
+    if(!root||!client||!id){
+      root.innerHTML='<div class="review-detail-card">후기 정보를 찾을 수 없습니다.</div>';
+      return;
+    }
+
+    const result=await client.from('reviews')
+      .select('id,display_name,title,content,service,created_at')
+      .eq('id',id)
+      .maybeSingle();
+
+    if(result.error||!result.data){
+      root.innerHTML='<div class="review-detail-card">후기 정보를 찾을 수 없습니다.</div>';
+      return;
+    }
+
+    const row=result.data;
+    var seoArticle=document.getElementById("lt-article-jsonld");
+    if(seoArticle)seoArticle.remove();
+    seoArticle=document.createElement("script");
+    seoArticle.type="application/ld+json";seoArticle.id="lt-article-jsonld";
+    seoArticle.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":String(row.title||"후기").trim(),"author":{"@type":"Person","name":String(row.display_name||"익명").trim()},"datePublished":row.created_at||undefined,"mainEntityOfPage":{"@type":"WebPage","@id":location.href}});
+    document.head.appendChild(seoArticle);
+    let views=0;
+    try{
+      const viewResult=await client.rpc('increment_review_view',{target_review_id:row.id});
+      if(!viewResult.error) views=Number(viewResult.data)||0;
+    }catch(_){
+      try{
+        const viewResult=await client.from('review_view_counts').select('view_count').eq('review_id',row.id).maybeSingle();
+        if(!viewResult.error) views=Number(viewResult.data?.view_count)||0;
+      }catch(__){}
+    }
+
+    let next=null;
+    try{
+      const nextResult=await client.from('reviews')
+        .select('id,display_name,title,content,service,created_at')
+        .order('created_at',{ascending:false})
+        .limit(50);
+      if(!nextResult.error){
+        const rows=nextResult.data||[];
+        const idx=rows.findIndex(function(x){return x.id===row.id;});
+        next=idx>=0 ? (rows[idx+1]||null) : null;
+      }
+    }catch(_){}
+
+    root.innerHTML=
+      '<article class="review-detail-card">'+
+        '<div class="review-detail-section-label">✨ 글 후기</div>'+
+        '<h1 class="review-detail-title">'+esc(row.title || titleFromText(row.content))+'</h1>'+
+        '<div class="review-detail-user">'+
+          '<div class="review-detail-avatar" aria-hidden="true">●</div>'+
+          '<div>'+
+            '<div class="review-detail-user-name">'+esc(row.display_name)+'</div>'+
+            '<div class="review-detail-meta"><span>REVIEW</span><span>'+esc(formatDate(row.created_at))+'</span><span>조회수 '+esc(views)+'</span></div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="review-detail-body"><p>'+esc(row.content)+'</p></div>'+
+        '<div class="review-detail-comments"><span>◯</span>0</div>'+
+      '</article>'+
+      '<div class="review-detail-login" id="reviewDetailLogin">'+
+        '<p>로그인이 필요합니다.</p>'+
+        '<button type="button" id="reviewDetailLoginButton">로그인</button>'+
+      '</div>'+
+      (next ? '<div class="review-detail-next"><small>다음 후기</small><a href="review-detail.html?id='+encodeURIComponent(next.id)+'">'+esc(next.title || titleFromText(next.content))+'</a></div>' : '')+
+      '<div class="review-detail-actions">'+
+        '<a class="secondary" href="reviews.html">목록</a>'+
+        '<a href="reviews.html#reviewWriteArea">글쓰기</a>'+
+      '</div>';
+
+    const loginBox=document.getElementById('reviewDetailLogin');
+    async function syncLoginBox(){
+      if(!loginBox) return;
+      let session=window.LoveTeamSession || null;
+      try{
+        if(window.LoveTeamAuth?.getSession){
+          session=await window.LoveTeamAuth.getSession();
+        }
+      }catch(_){}
+      loginBox.classList.toggle('auth-hidden',!!session);
+    }
+
+    syncLoginBox();
+    window.addEventListener('love-auth-state',syncLoginBox);
+    window.addEventListener('love-auth-changed',syncLoginBox);
+
+    const loginButton=document.getElementById('reviewDetailLoginButton');
+    if(loginButton){
+      loginButton.addEventListener('click',function(){
+        if(window.LoveTeamAuth?.open) window.LoveTeamAuth.open('login');
+      });
+    }
+  }
+
+  load();
+})();
+</script>
+<a class="lt-mobile-floating-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅으로 이동"><span class="kakao-talk-icon" aria-hidden="true"></span></a>
+<script id="lt-breadcrumb-dynamic-v1">
+(function(){
+  var category="후기";
+  var pageUrl="https://ghkdtldn2324-max.github.io/love-team/review-detail.html";
+  var root=document.body;
+  function esc(v){return String(v==null?"":v).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]||c;});}
+  function upsert(title){
+    title=String(title||"").trim();
+    if(!title)return;
+    var seoTitle=title+" | 로브팀";
+    var seoDescription=title+" - 발로란트 서비스 이용 후기 | 로브팀";
+    document.title=seoTitle;
+    document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').forEach(function(m){m.setAttribute("content",seoDescription);});
+    document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]').forEach(function(m){m.setAttribute("content",seoTitle);});
+    var old=document.getElementById("lt-breadcrumb-jsonld");
+    if(old)old.remove();
+    var pageSchema=document.getElementById("lt-detail-webpage-jsonld");
+    if(pageSchema)pageSchema.remove();
+    var ws=document.createElement("script");
+    ws.type="application/ld+json";ws.id="lt-detail-webpage-jsonld";
+    ws.textContent=JSON.stringify({"@context":"https://schema.org","@type":"WebPage","name":seoTitle,"description":seoDescription,"url":location.href,"isPartOf":{"@type":"WebSite","name":"로브팀","url":"https://ghkdtldn2324-max.github.io/love-team/"}});
+    document.head.appendChild(ws);
+    var s=document.createElement("script");
+    s.type="application/ld+json";s.id="lt-breadcrumb-jsonld";
+    s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":category,"item":new URL("reviews.html",location.href).href},{"@type":"ListItem","position":3,"name":title}]});
+    document.head.appendChild(s);
+    var cur=document.querySelector(".lt-breadcrumb .current"); if(cur)cur.textContent=title;
+  }
+  function findTitle(){
+    if("review-detail.html"==="notice-detail.html"){var e=document.getElementById("title");return e&&e.textContent;}
+    if("review-detail.html"==="work-detail.html"){var e=document.querySelector("#detail h1,#detail h2,.work-detail-title");return e&&e.textContent;}
+    var e=document.querySelector(".review-detail-title");return e&&e.textContent;
+  }
+  var lastTitle="";
+  function sync(){var t=findTitle();if(t && t.trim()!==lastTitle){lastTitle=t.trim();upsert(t);}}
+  new MutationObserver(sync).observe(root,{subtree:true,childList:true,characterData:true});
+  document.addEventListener("DOMContentLoaded",sync);
+  setTimeout(sync,500);setTimeout(sync,1500);
+})();
+</script>
+<!-- lt-dynamic-canonical-v1 review-detail.html -->
+<script id="lt-dynamic-canonical-v1">
+(function(){
+  var params=new URLSearchParams(location.search);
+  if(!params.get("id"))return;
+  var canonicalUrl=location.href.split("#")[0];
+  var link=document.querySelector('link[rel="canonical"]');
+  if(!link){link=document.createElement("link");link.rel="canonical";document.head.appendChild(link);}
+  link.href=canonicalUrl;
+  var og=document.querySelector('meta[property="og:url"]');
+  if(!og){og=document.createElement("meta");og.setAttribute("property","og:url");document.head.appendChild(og);}
+  og.setAttribute("content",canonicalUrl);
+})();
+</script>
+</body>
+<style id="lt-review-detail-pc-reference-final-v4">
+@media(min-width:761px){
+  body.lt-review-detail-page,
+  body.lt-review-detail-page main,
+  body.lt-review-detail-page .review-detail-page{
+    background:#fff!important;
+  }
+
+  body.lt-review-detail-page .review-detail-page{
+    min-height:calc(100vh - 118px)!important;
+    padding:44px 24px 76px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-wrap{
+    width:100%!important;
+    max-width:1100px!important;
+    margin:0 auto!important;
+  }
+
+  body.lt-review-detail-page .review-detail-card{
+    width:100%!important;
+    border:0!important;
+    border-top:1px solid #dedee4!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:#fff!important;
+    overflow:visible!important;
+  }
+
+  body.lt-review-detail-page .review-detail-section-label{
+    display:block!important;
+    margin:0!important;
+    padding:0 0 19px!important;
+    font-size:16px!important;
+    line-height:1.4!important;
+    font-weight:800!important;
+    color:#3e3e48!important;
+  }
+
+  body.lt-review-detail-page .review-detail-title{
+    display:block!important;
+    margin:0!important;
+    padding:0 0 18px!important;
+    border-bottom:1px solid #e7e7eb!important;
+    font-size:20px!important;
+    line-height:1.55!important;
+    font-weight:700!important;
+    letter-spacing:-.25px!important;
+    color:#22222a!important;
+  }
+
+  body.lt-review-detail-page .review-detail-user{
+    display:flex!important;
+    align-items:center!important;
+    gap:13px!important;
+    margin:0!important;
+    padding:17px 0 16px!important;
+    min-height:0!important;
+    border-bottom:1px solid #e7e7eb!important;
+    background:#fff!important;
+  }
+
+  body.lt-review-detail-page .review-detail-avatar{
+    position:relative!important;
+    display:block!important;
+    width:48px!important;
+    height:48px!important;
+    flex:0 0 48px!important;
+    overflow:hidden!important;
+    border:0!important;
+    border-radius:50%!important;
+    box-shadow:none!important;
+    background:#eeeeF1!important;
+    font-size:0!important;
+  }
+
+  body.lt-review-detail-page .review-detail-avatar::before{
+    content:""!important;
+    position:absolute!important;
+    top:9px!important;
+    left:50%!important;
+    width:13px!important;
+    height:13px!important;
+    transform:translateX(-50%)!important;
+    border-radius:50%!important;
+    background:#bfc0c5!important;
+    opacity:1!important;
+  }
+
+  body.lt-review-detail-page .review-detail-avatar::after{
+    content:""!important;
+    position:absolute!important;
+    left:50%!important;
+    bottom:6px!important;
+    width:27px!important;
+    height:15px!important;
+    transform:translateX(-50%)!important;
+    border-radius:16px 16px 8px 8px!important;
+    background:#bfc0c5!important;
+    opacity:1!important;
+  }
+
+  body.lt-review-detail-page .review-detail-user-name{
+    margin:0!important;
+    font-size:14px!important;
+    line-height:1.4!important;
+    font-weight:700!important;
+    letter-spacing:-.1px!important;
+    color:#33333b!important;
+  }
+
+  body.lt-review-detail-page .review-detail-user-name::after{
+    display:none!important;
+    content:none!important;
+  }
+
+  body.lt-review-detail-page .review-detail-meta{
+    display:flex!important;
+    align-items:center!important;
+    flex-wrap:wrap!important;
+    gap:0!important;
+    margin-top:4px!important;
+    font-size:11px!important;
+    line-height:1.4!important;
+    color:#777780!important;
+  }
+
+  body.lt-review-detail-page .review-detail-meta span{
+    display:inline-flex!important;
+    align-items:center!important;
+    white-space:nowrap!important;
+  }
+
+  body.lt-review-detail-page .review-detail-meta span+span::before{
+    content:""!important;
+    display:inline-block!important;
+    width:1px!important;
+    height:9px!important;
+    margin:0 7px!important;
+    background:#d5d5da!important;
+  }
+
+  body.lt-review-detail-page .review-detail-body{
+    margin:0!important;
+    padding:34px 0 38px!important;
+    border-bottom:1px solid #dedee4!important;
+    background:#fff!important;
+  }
+
+  body.lt-review-detail-page .review-detail-body::before{
+    display:none!important;
+    content:none!important;
+  }
+
+  body.lt-review-detail-page .review-detail-body p{
+    margin:0!important;
+    padding:0!important;
+    white-space:pre-line!important;
+    word-break:keep-all!important;
+    overflow-wrap:anywhere!important;
+    font-size:15px!important;
+    line-height:1.9!important;
+    letter-spacing:-.12px!important;
+    color:#33333b!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments{
+    margin:0!important;
+    padding:17px 0!important;
+    border-bottom:1px solid #dedee4!important;
+    background:#fff!important;
+    color:#55555e!important;
+    font-size:13px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments{
+    display:flex!important;
+    align-items:center!important;
+    min-height:46px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments span{
+    position:relative!important;
+    display:inline-block!important;
+    flex:0 0 15px!important;
+    width:15px!important;
+    height:11px!important;
+    margin:0 7px 0 0!important;
+    padding:0!important;
+    font-size:0!important;
+    line-height:0!important;
+    vertical-align:middle!important;
+    border:1.6px solid #66666e!important;
+    border-radius:7px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments span + *{
+    vertical-align:middle!important;
+  }
+
+  body.lt-review-detail-page .review-detail-login{
+    width:100%!important;
+    box-sizing:border-box!important;
+    margin:30px 0 22px!important;
+    min-height:118px!important;
+    padding:17px 20px!important;
+    border:1px solid #dedee4!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:#fff!important;
+  }
+
+  body.lt-review-detail-page .review-detail-login p{
+    margin:0!important;
+    font-size:12px!important;
+    line-height:1.5!important;
+    color:#8b8b93!important;
+  }
+
+  body.lt-review-detail-page .review-detail-login button{
+    min-width:58px!important;
+    min-height:30px!important;
+    padding:0 12px!important;
+    border:0!important;
+    border-radius:0!important;
+    background:#8b8888!important;
+    color:#fff!important;
+    font-size:10px!important;
+    font-weight:700!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next{
+    margin:0!important;
+    padding:14px 0!important;
+    border-top:1px solid #dedee4!important;
+    border-bottom:1px solid #dedee4!important;
+    border-left:0!important;
+    border-right:0!important;
+    border-radius:0!important;
+    background:#fff!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next small{
+    display:block!important;
+    margin:0 0 6px!important;
+    font-size:9px!important;
+    line-height:1.4!important;
+    color:#888890!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next a{
+    display:block!important;
+    font-size:11px!important;
+    line-height:1.5!important;
+    color:#33333b!important;
+    text-decoration:none!important;
+  }
+
+  body.lt-review-detail-page .review-detail-actions{
+    display:flex!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    padding:10px 0 0!important;
+  }
+
+  body.lt-review-detail-page .review-detail-actions a,
+  body.lt-review-detail-page .review-detail-actions button{
+    min-width:47px!important;
+    min-height:27px!important;
+    padding:0 10px!important;
+    border:0!important;
+    border-radius:0!important;
+    font-size:9px!important;
+    line-height:1!important;
+  }
+}
+
+
+  body.lt-review-detail-page .review-detail-comments span::after{
+    content:""!important;
+    position:absolute!important;
+    left:1px!important;
+    bottom:-4px!important;
+    width:5px!important;
+    height:5px!important;
+    background:#fff!important;
+    border-left:1.6px solid #66666e!important;
+    border-bottom:1.6px solid #66666e!important;
+    transform:skewX(-28deg) rotate(-8deg)!important;
+  }</style>
+</html>
+<style id="lt-review-detail-mobile-compact-v5">
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-page{padding-left:12px!important;padding-right:12px!important;}
+  body.lt-review-detail-page .review-detail-user{padding-left:4px!important;padding-right:4px!important;}
+  body.lt-review-detail-page .review-detail-user-name{font-size:14px!important;line-height:1.4!important;}
+  body.lt-review-detail-page .review-detail-meta{font-size:11px!important;line-height:1.35!important;}
+  body.lt-review-detail-page .review-detail-body{padding:22px 4px 23px!important;}
+  body.lt-review-detail-page .review-detail-body p{font-size:14px!important;line-height:1.65!important;letter-spacing:-.15px!important;}
+  body.lt-review-detail-page .review-detail-comments{padding-left:4px!important;padding-right:4px!important;font-size:12px!important;}
+  body.lt-review-detail-page .review-detail-next{padding-left:4px!important;padding-right:4px!important;}
+  body.lt-review-detail-page .review-detail-actions{padding-left:4px!important;padding-right:4px!important;}
+  body.lt-review-detail-page .review-detail-actions button{font-size:12px!important;height:36px!important;}
+}
+</style>
+
+<style id="lt-review-detail-login-pc-fix-v1">
+/* 로그인 상태에서는 PC에서도 로그인 안내 영역을 표시하지 않음 */
+.review-detail-login.auth-hidden{display:none!important;}
+</style>
+<style id="lt-mobile-floating-kakao-v1">
+@media(max-width:760px){
+  .lt-mobile-floating-kakao{
+    position:fixed!important;right:16px!important;bottom:16px!important;
+    width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    border-radius:50%!important;background:#fee500!important;color:#111!important;
+    text-decoration:none!important;box-shadow:0 8px 22px rgba(0,0,0,.24)!important;
+    z-index:100001!important;-webkit-tap-highlight-color:transparent!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon{
+    width:29px!important;height:25px!important;flex:0 0 29px!important;margin:0!important;
+    border-radius:9px!important;background:#111!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::before{color:#fee500!important;font-size:8px!important;}
+  .lt-mobile-floating-kakao .kakao-talk-icon::after{background:#111!important;left:5px!important;bottom:-4px!important;width:7px!important;height:7px!important;}
+  .lt-mobile-floating-kakao .kakao-talk-icon i{display:none!important;}
+}
+
+@media(min-width:761px){.lt-mobile-floating-kakao{display:none!important;}}
+</style>
+<style id="lt-review-detail-mobile-next-bright-v1">
+@media(max-width:760px){
+  body.lt-review-detail-page .review-detail-next{
+    background:rgba(15,16,28,.82)!important;
+    border-top-color:rgba(255,255,255,.18)!important;
+    border-bottom-color:rgba(255,255,255,.18)!important;
+  }
+  body.lt-review-detail-page .review-detail-next small{
+    color:rgba(255,255,255,.62)!important;
+  }
+  body.lt-review-detail-page .review-detail-next a{
+    color:#fff!important;
+    font-weight:700!important;
+  }
+}
+</style>
+<style id="lt-review-detail-mobile-bg-restore-v1">
+@media(max-width:760px){
+  html,body{background:#080912!important;}
+  body.lt-review-detail-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912!important;
+    overflow-x:hidden!important;
+  }
+  body.lt-review-detail-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.16) 0%,rgba(5,6,14,.30) 55%,rgba(5,6,14,.48) 100%),
+      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-review-detail-mobile-restore') center center/cover no-repeat!important;
+  }
+  body.lt-review-detail-page>header,
+  body.lt-review-detail-page>main,
+  body.lt-review-detail-page>footer{position:relative!important;z-index:1!important;}
+  body.lt-review-detail-page main,
+  body.lt-review-detail-page .review-detail-page{background:transparent!important;}
+  body.lt-review-detail-page .review-detail-page{min-height:calc(100vh - 68px)!important;}
+  body.lt-review-detail-page .review-detail-card{background:rgba(255,255,255,.96)!important;}
+  body.lt-review-detail-page .review-detail-login{background:rgba(250,249,253,.96)!important;}
+}
+</style>
+
+
+<style id="lt-review-detail-pc-hero-bg-final-v5">
+@media(min-width:761px){
+  html{
+    background:#080912!important;
+  }
+  html,body{
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261003-review-detail-hero-v5') center top/cover fixed no-repeat!important;
+  }
+  body.lt-review-detail-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261003-review-detail-hero-v5') center top/cover fixed no-repeat!important;
+  }
+  body.lt-review-detail-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:linear-gradient(180deg,rgba(5,6,14,.34) 0%,rgba(8,7,18,.48) 55%,rgba(5,5,12,.62) 100%)!important;
+  }
+  body.lt-review-detail-page>header,
+  body.lt-review-detail-page>main{
+    position:relative!important;
+    z-index:1!important;
+  }
+  body.lt-review-detail-page .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:10000!important;
+    background:transparent!important;
+    background-color:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+  body.lt-review-detail-page main,
+  body.lt-review-detail-page .review-detail-page{
+    background:transparent!important;
+  }
+  body.lt-review-detail-page .review-detail-page{
+    min-height:calc(100vh - 118px)!important;
+  }
+}
+</style>
+
+<style id="lt-review-detail-pc-ui-readable-v1">
+@media(min-width:761px){
+  body.lt-review-detail-page .review-detail-page{
+    padding:54px 24px 90px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-wrap{
+    max-width:1080px!important;
+    padding:0!important;
+  }
+
+  body.lt-review-detail-page .review-detail-card{
+    position:relative!important;
+    overflow:hidden!important;
+    border:1px solid rgba(255,255,255,.20)!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.96)!important;
+    box-shadow:0 22px 60px rgba(0,0,0,.30)!important;
+    backdrop-filter:blur(8px)!important;
+    -webkit-backdrop-filter:blur(8px)!important;
+  }
+
+  body.lt-review-detail-page .review-detail-section-label{
+    padding:26px 34px 12px!important;
+    color:#6656c7!important;
+    font-size:14px!important;
+    font-weight:900!important;
+    letter-spacing:-.1px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-title{
+    padding:0 34px 22px!important;
+    border-bottom:1px solid #e7e5ef!important;
+    color:#1f1f29!important;
+    font-size:27px!important;
+    line-height:1.45!important;
+    font-weight:800!important;
+    letter-spacing:-.7px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-user{
+    padding:18px 34px!important;
+    border-bottom:1px solid #e7e5ef!important;
+    background:#fafafe!important;
+  }
+
+  body.lt-review-detail-page .review-detail-user-name{
+    color:#292934!important;
+    font-size:15px!important;
+    font-weight:800!important;
+  }
+
+  body.lt-review-detail-page .review-detail-meta{
+    color:#858592!important;
+    font-size:12px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-body{
+    padding:38px 34px 42px!important;
+    background:#fff!important;
+    border-bottom:1px solid #e3e1e9!important;
+  }
+
+  body.lt-review-detail-page .review-detail-body p{
+    max-width:920px!important;
+    color:#30303a!important;
+    font-size:16px!important;
+    line-height:2.05!important;
+    letter-spacing:-.15px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-comments{
+    padding:16px 34px!important;
+    background:#fbfaff!important;
+    border-bottom:1px solid #e3e1e9!important;
+    color:#686875!important;
+    font-size:13px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-login{
+    margin:22px 0!important;
+    min-height:100px!important;
+    padding:20px 24px!important;
+    border:1px solid rgba(255,255,255,.42)!important;
+    border-radius:14px!important;
+    background:rgba(255,255,255,.93)!important;
+    box-shadow:0 14px 36px rgba(0,0,0,.18)!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next{
+    margin-top:14px!important;
+    padding:18px 24px!important;
+    border:1px solid rgba(255,255,255,.28)!important;
+    border-radius:14px!important;
+    background:rgba(255,255,255,.94)!important;
+    box-shadow:0 12px 30px rgba(0,0,0,.14)!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next small{
+    color:#7d7d88!important;
+    font-size:11px!important;
+  }
+
+  body.lt-review-detail-page .review-detail-next a{
+    color:#292934!important;
+    font-size:14px!important;
+    font-weight:700!important;
+  }
+
+  body.lt-review-detail-page .review-detail-actions{
+    padding:18px 0 0!important;
+  }
+
+  body.lt-review-detail-page .review-detail-actions a{
+    min-width:92px!important;
+    min-height:40px!important;
+    border-radius:9px!important;
+    font-size:12px!important;
+    box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
+  }
+}
+</style>
+
+
+<style id="lt-pc-layout-final-v3">@media(min-width:761px){body.lt-review-detail-page main{padding:0!important;}body.lt-review-detail-page .review-detail-page{padding:18px 20px 90px!important;}body.lt-review-detail-page main>.lt-breadcrumb{margin:0 auto 18px!important;}}</style>
