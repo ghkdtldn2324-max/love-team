@@ -3,6 +3,8 @@ name: Optimize images
 on:
   push:
     branches: [main]
+    paths:
+      - 'assets/**/*.png'
   workflow_dispatch:
 
 permissions:
