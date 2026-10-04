@@ -6826,3 +6826,74 @@ body:not(.home-page) .header .logo-image{
     color:transparent;
   }
 }
+
+
+/* =====================================================
+   HOMEPAGE FINAL POLISH 2 — 20261004
+   Homepage-only visual refinement. No layout/function changes.
+===================================================== */
+.home-page .lt-hero-content{
+  text-shadow:0 2px 18px rgba(0,0,0,.18);
+}
+.home-page .lt-hero-kicker{
+  opacity:.95;
+  text-shadow:0 3px 18px rgba(0,0,0,.45);
+}
+.home-page .lt-hero h1 span:last-child{
+  filter:drop-shadow(0 6px 22px rgba(135,77,238,.2));
+}
+.home-page .home-hero-panel{
+  border-color:rgba(176,145,255,.24)!important;
+  box-shadow:0 18px 55px rgba(12,5,28,.28);
+}
+.home-page .home-hero-event strong{
+  text-shadow:0 5px 22px rgba(127,69,220,.16);
+}
+@media (min-width:761px){
+  .home-page .logo-image{
+    filter:drop-shadow(0 0 9px rgba(89,112,255,.32))!important;
+  }
+  .home-page .nav a{
+    transition:color .18s ease,transform .18s ease;
+  }
+  .home-page .nav a:hover{
+    transform:translateY(-1px);
+  }
+  .home-page .header-actions>a:not(.kakao-btn){
+    transition:color .18s ease;
+  }
+  .home-page .header-actions>a:not(.kakao-btn):hover{
+    color:#c4a8ff!important;
+  }
+}
+@media(max-width:760px){
+  .home-page .lt-hero-content{
+    padding-left:24px;
+    padding-right:24px;
+  }
+  .home-page .lt-hero h1{
+    letter-spacing:-2.4px;
+    text-shadow:0 8px 26px rgba(0,0,0,.48);
+  }
+  .home-page .lt-hero-content>p:not(.lt-hero-kicker){
+    max-width:330px;
+    font-size:14px;
+    line-height:1.7;
+  }
+  .home-page .lt-hero-btn{
+    min-height:52px;
+    padding:0 23px;
+    border-radius:13px;
+  }
+  .home-page .home-hero-panel{
+    box-shadow:0 12px 35px rgba(10,4,25,.24);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .home-page .lt-hero-btn,
+  .home-page .nav a,
+  .home-page .header-actions>a,
+  .home-page .home-hero-benefits article{
+    transition:none!important;
+  }
+}
