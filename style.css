@@ -6897,3 +6897,11 @@ body:not(.home-page) .header .logo-image{
     transition:none!important;
   }
 }
+
+
+/* Mobile homepage logo alignment — 3px right */
+@media(max-width:760px){
+  .home-page .header .logo{
+    transform:translateX(3px);
+  }
+}
