@@ -13,12 +13,2688 @@
 <meta property="og:title" content="LOVE TEAM | 후기">
 <meta property="og:description" content="LOVE TEAM 회원들의 발로란트 서비스 이용 후기를 확인하세요.">
 <meta property="og:url" content="https://ghkdtldn2324-max.github.io/love-team/reviews.html">
-<meta property="og:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/love-team-logo-clean-transparent.webp">
+<meta property="og:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LOVE TEAM | 후기">
 <meta name="twitter:description" content="LOVE TEAM 회원들의 발로란트 서비스 이용 후기를 확인하세요.">
-<meta name="twitter:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/love-team-logo-clean-transparent.webp">
+<meta name="twitter:image" content="https://ghkdtldn2324-max.github.io/love-team/assets/A4E32EAD-F882-47A5-B734-26DDE13717DF.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"><link rel="stylesheet" href="style.css?v=20261004-unified-inner-logo-v6">
+<link rel="stylesheet" href="style.css?v=20261004-unified-inner-logo-v6">
+
+<style>
+
+.reviews-page{
+  background:#fff;
+  min-height:calc(100vh - 174px);
+  padding:86px 20px 110px;
+  color:#171722;
+}
+
+.reviews-wrap{
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.reviews-head{
+  text-align:center;
+  margin-bottom:34px;
+}
+
+.reviews-head h1{
+  font-size:36px;
+  margin:0 0 10px;
+}
+
+.reviews-head p:last-child{
+  color:#777889;
+  font-size:13px;
+  margin:0;
+}
+
+.review-list{
+  border-top:1px solid #e8e5ef;
+}
+
+.review-row{
+  padding:24px 10px;
+  border-bottom:1px solid #e8e5ef;
+}
+
+.review-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:12px;
+}
+
+.review-user{
+  font-size:15px;
+  font-weight:900;
+}
+
+.review-date{
+  font-size:11px;
+  color:#92929e;
+  white-space:nowrap;
+}
+
+.review-text{
+  font-size:14px;
+  line-height:1.8;
+  color:#4e4e5c;
+  margin:0;
+}
+
+.review-meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:11px;
+  font-size:11px;
+  color:#92929e;
+}
+
+.review-service{
+  padding:5px 9px;
+  border-radius:999px;
+  background:#f2edff;
+  color:#7042d0;
+  font-weight:800;
+}
+
+.reviews-note{
+  text-align:center;
+  margin:25px 0 0;
+  color:#92929e;
+  font-size:11px;
+}
+
+
+/* =========================
+   후기 작성
+   ========================= */
+
+.review-write-area{
+  background:#fff;
+  border:1px solid #e8e5ef;
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:34px;
+  box-shadow:0 10px 30px rgba(40,30,70,.05);
+}
+
+.review-write-head{
+  margin-bottom:20px;
+}
+
+.review-write-kicker{
+  margin:0 0 5px;
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:#8b56df;
+  font-weight:900;
+}
+
+.review-write-head h2{
+  margin:0 0 5px;
+  font-size:21px;
+}
+
+.review-write-head p:last-child{
+  margin:0;
+  color:#888895;
+  font-size:11px;
+}
+
+.review-write-label{
+  display:block;
+  margin-top:13px;
+  font-size:11px;
+  font-weight:800;
+  color:#444;
+}
+
+.review-write-label select,
+.review-write-label textarea{
+  display:block;
+  width:100%;
+  margin-top:6px;
+  box-sizing:border-box;
+  border:1px solid #ddd9e8;
+  border-radius:9px;
+  padding:11px;
+  font:inherit;
+  font-size:12px;
+  outline:none;
+  background:#fff;
+}
+
+.review-write-label select{
+  height:42px;
+}
+
+.review-write-label textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.review-write-label select:focus,
+.review-write-label textarea:focus{
+  border-color:#8662ed;
+  box-shadow:0 0 0 3px rgba(134,98,237,.08);
+}
+
+
+.review-star-score{
+  margin-left:8px;
+  font-size:11px;
+  color:#777889;
+  font-weight:700;
+  min-width:35px;
+}
+
+
+/* =========================
+   메시지 / 버튼
+   ========================= */
+
+.review-write-message{
+  display:none;
+  margin:12px 0 0;
+  padding:9px 11px;
+  border-radius:8px;
+  background:#f5f1ff;
+  color:#6d4ee8;
+  font-size:11px;
+}
+
+.review-write-message.error{
+  background:#fff0f1;
+  color:#c33;
+}
+
+.review-submit{
+  width:100%;
+  margin-top:12px;
+  border:0;
+  border-radius:9px;
+  padding:12px;
+  background:linear-gradient(100deg,#4e8fff,#a64de9);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.review-login-notice{
+  margin-bottom:34px;
+  padding:18px;
+  border-radius:13px;
+  background:#f7f5fb;
+  text-align:center;
+  color:#777;
+  font-size:12px;
+}
+
+.review-login-notice button{
+  border:0;
+  background:none;
+  color:#7042d0;
+  font-weight:900;
+  cursor:pointer;
+  padding:0 3px;
+}
+
+
+/* =========================
+   모바일
+   ========================= */
+
+@media(max-width:600px){
+
+  .reviews-page{
+    padding:62px 16px 80px;
+  }
+
+  .reviews-head h1{
+    font-size:29px;
+  }
+
+  .review-row{
+    padding:21px 4px;
+  }
+
+  .review-top{
+    align-items:flex-start;
+  }
+
+  .review-date{
+    font-size:10px;
+  }
+
+  .review-text{
+    font-size:13px;
+  }
+
+  .review-write-area{
+    padding:18px;
+    border-radius:13px;
+    margin-bottom:28px;
+  }
+
+  .review-write-head h2{
+    font-size:19px;
+  }
+
+  .review-write-label select,
+  .review-write-label textarea{
+    font-size:13px;
+  }
+
+}
+
+</style>
+
+
+<style>
+/* MOBILE HEADER LOGO — final page alignment */
+@media(max-width:760px){.header .logo{margin-left:0!important}.header .logo-image{transform:translateX(-12px)!important}}
+</style>
+
+<style>
+/* PC SUBPAGE BACKGROUND — 20261001 */
+@media(min-width:761px){
+  body.lt-reviews-page{
+    position:relative;
+    min-height:100vh;
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261001-pc-bg') center center/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.72) 0%,rgba(8,7,18,.82) 48%,rgba(5,5,12,.9) 100%),
+      radial-gradient(circle at 20% 20%,rgba(78,125,255,.12),transparent 34%),
+      radial-gradient(circle at 82% 18%,rgba(177,70,255,.12),transparent 34%);
+  }
+  body.lt-reviews-page>*{position:relative;z-index:1;}
+}
+</style>
+<style>
+@media(min-width:761px){.reviews-page{background:transparent!important}}
+</style>
+<style>
+/* PC REVIEW BACKGROUND FORCE 20261001 */
+@media(min-width:761px){
+  body.lt-reviews-page{
+    background:#080912!important;
+  }
+  body.lt-reviews-page .reviews-page{
+    position:relative!important;
+    min-height:calc(100vh - 174px)!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.48),rgba(8,7,18,.62)),
+      url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261001-reviews-bg') center center/cover fixed no-repeat!important;
+    isolation:isolate!important;
+  }
+}
+</style>
+<style>
+/* PC SUBPAGE HEADING — match notice 20261001 */
+@media(min-width:761px){
+  .section-heading h2,
+  .pricing-hero h2,
+  .works-head h1,
+  .reviews-head h1{
+    color:#fff!important;
+    text-shadow:0 4px 18px rgba(0,0,0,.38)!important;
+  }
+}
+</style>
+
+<style id="lt-header-clean-final">
+@media(min-width:761px){
+  body.lt-notice-page .header,
+  body.lt-faq-page .header,
+  body.lt-pricing-page .header,
+  body.lt-works-page .header,
+  body.lt-reviews-page .header{
+    border-bottom:0!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-header-bg-final">
+@media(min-width:761px){
+  body.lt-reviews-page{
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261001-reviews-header-bg') center center/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page::before{
+    z-index:0!important;
+    background:linear-gradient(180deg,rgba(5,6,14,.34) 0%,rgba(8,7,18,.48) 55%,rgba(5,5,12,.62) 100%)!important;
+  }
+  body.lt-reviews-page .top-notice,
+  body.lt-reviews-page .header{
+    position:relative!important;
+    z-index:10000!important;
+    background:transparent!important;
+    background-color:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+  body.lt-reviews-page .reviews-page{
+    background:transparent!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-bg-scroll-final">
+@media(min-width:761px){
+  html,body{background:#080912!important;}
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261001-reviews-scroll-bg') center top/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page::before{
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:linear-gradient(180deg,rgba(5,6,14,.34) 0%,rgba(8,7,18,.48) 55%,rgba(5,5,12,.62) 100%)!important;
+  }
+  body.lt-reviews-page .top-notice{
+    position:relative!important;
+    z-index:10001!important;
+    background:rgba(7,7,10,.28)!important;
+  }
+  body.lt-reviews-page .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:10000!important;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+  body.lt-reviews-page .header.page-scrolled{
+    background:rgba(7,7,10,.94)!important;
+    border:0!important;
+    box-shadow:0 8px 28px rgba(0,0,0,.24)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+  }
+  body.lt-reviews-page .reviews-page{
+    position:relative!important;
+    z-index:1!important;
+    min-height:calc(100vh - 174px)!important;
+    background:transparent!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-bg-main-final">
+@media(min-width:761px){
+  html{background:#080912!important;}
+  body.lt-reviews-page{
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261001-reviews-full-bg') center top/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{
+    background:transparent!important;
+  }
+  body.lt-reviews-page .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:10000!important;
+  }
+  body.lt-reviews-page .header.page-scrolled{
+    position:sticky!important;
+    top:0!important;
+    background:rgba(7,7,10,.94)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+  }
+}
+</style>
+
+<style id="love-mobile-bg-v3">
+@media(max-width:760px){
+  html,body{
+    background:#080912!important;
+  }
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:transparent!important;
+    overflow-x:hidden!important;
+  }
+  body.lt-reviews-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.16) 0%,rgba(5,6,14,.28) 52%,rgba(5,6,14,.44) 100%),
+      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-reviews-mobile-v3') center center/cover no-repeat!important;
+  }
+
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{
+    background:transparent!important;
+  }
+
+  body.lt-reviews-page main{
+    position:relative!important;
+    z-index:1!important;
+  }
+
+  body.lt-reviews-page .reviews-page{
+    position:relative!important;
+    z-index:1!important;
+    min-height:calc(100vh - 68px)!important;
+  }
+
+  /* 후기 목록 패널은 히어로 배경과 분리 */
+  body.lt-reviews-page .review-list{
+    background:rgba(255,255,255,.96)!important;
+    border:1px solid rgba(232,229,239,.96)!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    box-shadow:0 10px 30px rgba(40,30,70,.05)!important;
+  }
+
+  body.lt-reviews-page .review-row{
+    background:rgba(255,255,255,.96)!important;
+  }
+
+  body.lt-reviews-page .review-row:last-child{
+    border-bottom:0!important;
+  }
+
+  body.lt-reviews-page .review-login-notice{
+    background:rgba(247,245,251,.96)!important;
+  }
+
+  body.lt-reviews-page .review-write-area{
+    background:rgba(255,255,255,.96)!important;
+  }
+
+  body.lt-reviews-page .review-login-notice{
+    background:rgba(247,245,251,.92)!important;
+  }
+
+  body.lt-reviews-page .header{
+    position:sticky!important;
+    top:0!important;
+    z-index:10000!important;
+  }
+
+  body.lt-reviews-page footer{
+    position:relative!important;
+    z-index:1!important;
+    background:rgba(5,6,14,.58)!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-mobile-board-v1">
+@media(max-width:760px){
+  /* 참고 이미지의 '게시판형 후기' 레이아웃을 적용하되 LOVE TEAM 색상은 유지 */
+  body.lt-reviews-page .reviews-head{display:none!important;}
+  body.lt-reviews-page .reviews-page{
+    background:#fff!important;
+    color:#171722!important;
+    padding:28px 16px 80px!important;
+  }
+  body.lt-reviews-page .reviews-wrap{max-width:none!important;}
+  body.lt-reviews-page .review-mobile-board-title{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:12px!important;
+    margin:0 0 24px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    margin:0!important;
+    font-size:29px!important;
+    font-weight:500!important;
+    letter-spacing:-1.4px!important;
+    color:#171722!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{
+    font-size:25px!important;
+    margin-right:5px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-write{
+    flex:0 0 auto!important;
+    min-width:112px!important;
+    height:54px!important;
+    border:0!important;
+    border-radius:0!important;
+    background:linear-gradient(135deg,#6b78ff,#9b55e8)!important;
+    color:#fff!important;
+    font-size:16px!important;
+    font-weight:800!important;
+    cursor:pointer!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    display:flex!important;
+    align-items:baseline!important;
+    gap:5px!important;
+    margin-bottom:20px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:39px!important;
+    font-weight:400!important;
+    letter-spacing:-2px!important;
+    color:#171722!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{
+    font-size:22px!important;
+    color:#b5baff!important;
+    font-weight:500!important;
+  }
+  body.lt-reviews-page .review-mobile-search{
+    position:relative!important;
+    margin-bottom:20px!important;
+  }
+  body.lt-reviews-page .review-mobile-search input{
+    width:100%!important;
+    height:58px!important;
+    border:0!important;
+    border-bottom:2px solid #171722!important;
+    border-radius:0!important;
+    padding:0 46px 0 8px!important;
+    outline:none!important;
+    background:#fff!important;
+    color:#171722!important;
+    font-size:20px!important;
+  }
+  body.lt-reviews-page .review-mobile-search input::placeholder{color:#999!important;}
+  body.lt-reviews-page .review-mobile-search::after{
+    content:"⌕"!important;
+    position:absolute!important;
+    right:7px!important;
+    top:50%!important;
+    transform:translateY(-55%)!important;
+    font-size:36px!important;
+    line-height:1!important;
+    color:#8f8f8f!important;
+    pointer-events:none!important;
+  }
+  body.lt-reviews-page .review-list{
+    background:#fff!important;
+    border:0!important;
+    border-top:2px solid #dedede!important;
+    border-radius:0!important;
+    overflow:visible!important;
+    box-shadow:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:block!important;
+    padding:24px 18px 26px!important;
+    border-bottom:2px solid #dedede!important;
+    background:#fff!important;
+    color:#171722!important;
+    text-decoration:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin:0 0 12px!important;
+    font-size:20px!important;
+    line-height:1.55!important;
+    font-weight:500!important;
+    letter-spacing:-.55px!important;
+    overflow-wrap:anywhere!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    display:flex!important;
+    align-items:center!important;
+    flex-wrap:wrap!important;
+    gap:0!important;
+    color:#707070!important;
+    font-size:14px!important;
+    line-height:1.5!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    content:""!important;
+    display:inline-block!important;
+    width:1px!important;
+    height:13px!important;
+    margin:0 12px!important;
+    background:#d5d5d5!important;
+    vertical-align:-2px!important;
+  }
+  body.lt-reviews-page .review-row{display:none!important;}
+  body.lt-reviews-page .reviews-note{display:none!important;}
+  body.lt-reviews-page .review-login-notice{
+    background:#fff!important;
+    border:1px solid #e4e4e4!important;
+    border-radius:12px!important;
+    margin:0 0 20px!important;
+    padding:18px!important;
+    color:#777!important;
+  }
+  body.lt-reviews-page .review-write-area{
+    display:none!important;
+    margin:0 0 22px!important;
+    padding:18px!important;
+    border:1px solid #dedde5!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    box-shadow:0 8px 24px rgba(50,40,100,.07)!important;
+  }
+  body.lt-reviews-page .review-write-area.mobile-open{display:block!important;}
+  body.lt-reviews-page .review-write-head{margin-bottom:15px!important;}
+  body.lt-reviews-page .review-write-kicker{color:#7b63e8!important;}
+  body.lt-reviews-page .review-write-head h2{font-size:20px!important;color:#171722!important;}
+  body.lt-reviews-page .review-write-label{
+    margin-top:12px!important;
+    color:#4b4b55!important;
+  }
+  body.lt-reviews-page .review-write-label select,
+  body.lt-reviews-page .review-write-label textarea{
+    border:1px solid #dedde5!important;
+    border-radius:9px!important;
+    background:#fff!important;
+    color:#171722!important;
+  }
+  body.lt-reviews-page .review-submit{
+    background:linear-gradient(100deg,#5d7cff,#9d4ee8)!important;
+    border-radius:8px!important;
+  }
+  body.lt-reviews-page .review-mobile-empty{
+    padding:30px 18px!important;
+    color:#888!important;
+    text-align:center!important;
+  }
+}
+@media(min-width:761px){
+  .review-mobile-board-title,.review-mobile-count,.review-mobile-search{display:none;}
+}
+</style>
+
+
+<style id="lt-reviews-mobile-readability-v2">
+@media(max-width:760px){
+  html,body{background:#fff!important;color:#171722!important;}
+  body.lt-reviews-page main{background:#fff!important;}
+  body.lt-reviews-page .reviews-page{
+    padding:26px 16px 88px!important;
+    background:#fff!important;
+    color:#171722!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title{
+    margin:0 0 22px!important;
+    min-height:52px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    font-size:28px!important;
+    line-height:1.2!important;
+    font-weight:700!important;
+    letter-spacing:-1.1px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{
+    font-size:23px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-write{
+    min-width:104px!important;
+    height:50px!important;
+    border-radius:9px!important;
+    font-size:16px!important;
+    font-weight:800!important;
+    box-shadow:0 5px 14px rgba(100,78,220,.16)!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    margin:0 0 18px!important;
+    gap:7px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:32px!important;
+    font-weight:700!important;
+    letter-spacing:-1.4px!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{
+    font-size:19px!important;
+    color:#8276e9!important;
+    font-weight:700!important;
+  }
+  body.lt-reviews-page .review-mobile-search{
+    margin-bottom:22px!important;
+  }
+  body.lt-reviews-page .review-mobile-search input{
+    height:54px!important;
+    padding:0 44px 0 4px!important;
+    font-size:17px!important;
+    border-bottom:2px solid #262630!important;
+  }
+  body.lt-reviews-page .review-mobile-search input::placeholder{
+    color:#9a9aa3!important;
+  }
+  body.lt-reviews-page .review-mobile-search::after{
+    font-size:31px!important;
+    right:5px!important;
+    color:#777780!important;
+  }
+  body.lt-reviews-page .review-list{
+    border-top:2px solid #d9d9df!important;
+    border-radius:0!important;
+    background:#fff!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    padding:22px 4px 23px!important;
+    border-bottom:1px solid #dcdce2!important;
+    background:#fff!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin:0 0 11px!important;
+    font-size:18px!important;
+    line-height:1.62!important;
+    font-weight:600!important;
+    letter-spacing:-.45px!important;
+    color:#171722!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    font-size:13px!important;
+    color:#73737c!important;
+    line-height:1.55!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    margin:0 9px!important;
+    height:12px!important;
+    background:#cfcfd6!important;
+  }
+  body.lt-reviews-page .review-write-area.mobile-open{
+    display:block!important;
+    margin:0 0 22px!important;
+    padding:20px!important;
+    border:1px solid #dddce5!important;
+    border-radius:12px!important;
+    box-shadow:0 8px 24px rgba(35,28,70,.08)!important;
+  }
+  body.lt-reviews-page .review-write-head h2{
+    font-size:21px!important;
+    line-height:1.4!important;
+    font-weight:700!important;
+  }
+  body.lt-reviews-page .review-write-head p:last-child{
+    font-size:13px!important;
+    line-height:1.6!important;
+  }
+  body.lt-reviews-page .review-write-label{
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+  body.lt-reviews-page .review-write-label select,
+  body.lt-reviews-page .review-write-label textarea{
+    font-size:15px!important;
+    line-height:1.6!important;
+    padding:12px!important;
+  }
+  body.lt-reviews-page .review-write-label select{height:48px!important;}
+  body.lt-reviews-page .review-write-label textarea{min-height:150px!important;}
+  body.lt-reviews-page .review-submit{
+    min-height:50px!important;
+    margin-top:14px!important;
+    font-size:16px!important;
+  }
+  body.lt-reviews-page .review-login-notice{
+    padding:18px!important;
+    margin-bottom:20px!important;
+    border:1px solid #e1ddec!important;
+    border-radius:11px!important;
+    font-size:13px!important;
+    line-height:1.7!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-mobile-readability-v3">
+@media(max-width:760px){
+  body.lt-reviews-page .reviews-page{padding:22px 16px 70px!important;}
+  body.lt-reviews-page .review-mobile-board-title{margin-bottom:18px!important;min-height:46px!important;}
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:24px!important;line-height:1.25!important;font-weight:700!important;letter-spacing:-.8px!important;}
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{font-size:20px!important;margin-right:3px!important;}
+  body.lt-reviews-page .review-mobile-board-write{min-width:88px!important;height:42px!important;border-radius:7px!important;font-size:14px!important;box-shadow:none!important;}
+  body.lt-reviews-page .review-mobile-count{margin-bottom:14px!important;gap:5px!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:27px!important;font-weight:700!important;letter-spacing:-1px!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:16px!important;font-weight:700!important;}
+  body.lt-reviews-page .review-mobile-search{margin-bottom:16px!important;}
+  body.lt-reviews-page .review-mobile-search input{height:46px!important;font-size:15px!important;padding-left:2px!important;}
+  body.lt-reviews-page .review-mobile-search::after{font-size:27px!important;}
+  body.lt-reviews-page .review-mobile-row{padding:17px 4px 18px!important;}
+  body.lt-reviews-page .review-mobile-row-title{margin-bottom:7px!important;font-size:16px!important;line-height:1.55!important;font-weight:600!important;letter-spacing:-.25px!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:12px!important;line-height:1.45!important;}
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{margin:0 7px!important;height:10px!important;}
+  body.lt-reviews-page .review-write-area.mobile-open{padding:17px!important;margin-bottom:18px!important;}
+  body.lt-reviews-page .review-write-head h2{font-size:18px!important;}
+  body.lt-reviews-page .review-write-head p:last-child{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label select,
+  body.lt-reviews-page .review-write-label textarea{font-size:14px!important;line-height:1.55!important;padding:10px!important;}
+  body.lt-reviews-page .review-write-label select{height:44px!important;}
+  body.lt-reviews-page .review-write-label textarea{min-height:125px!important;}
+  body.lt-reviews-page .review-submit{min-height:46px!important;font-size:14px!important;}
+}
+</style>
+<style id="lt-reviews-mobile-readability-v4">
+@media(max-width:760px){
+  body.lt-reviews-page .reviews-page{
+    padding:20px 16px 68px!important;
+    color:#22222a!important;
+  }
+
+  body.lt-reviews-page .reviews-wrap{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  body.lt-reviews-page .review-mobile-board-title{
+    margin:0 0 16px!important;
+    min-height:42px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-board-title h1{
+    font-size:23px!important;
+    line-height:1.35!important;
+    font-weight:700!important;
+    letter-spacing:-.7px!important;
+    color:#202028!important;
+  }
+
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{
+    font-size:19px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-board-write{
+    min-width:82px!important;
+    height:40px!important;
+    padding:0 14px!important;
+    border-radius:7px!important;
+    font-size:13px!important;
+    font-weight:700!important;
+  }
+
+  body.lt-reviews-page .review-mobile-count{
+    margin:0 0 12px!important;
+    align-items:baseline!important;
+  }
+
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:25px!important;
+    line-height:1.2!important;
+    letter-spacing:-.8px!important;
+    color:#24242d!important;
+  }
+
+  body.lt-reviews-page .review-mobile-count span{
+    font-size:15px!important;
+    line-height:1.2!important;
+    color:#7569dd!important;
+  }
+
+  body.lt-reviews-page .review-mobile-search{
+    margin-bottom:12px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-search input{
+    width:100%!important;
+    height:44px!important;
+    font-size:14px!important;
+    line-height:44px!important;
+    color:#303039!important;
+    border-bottom:1.5px solid #3d3d46!important;
+  }
+
+  body.lt-reviews-page .review-mobile-search input::placeholder{
+    color:#9999a2!important;
+    opacity:1!important;
+  }
+
+  body.lt-reviews-page .review-mobile-search::after{
+    font-size:25px!important;
+    color:#777780!important;
+  }
+
+  body.lt-reviews-page .review-list{
+    border-top:1px solid #d8d8df!important;
+    background:#fff!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row{
+    display:block!important;
+    padding:16px 4px 17px!important;
+    min-height:0!important;
+    text-decoration:none!important;
+    border-bottom:1px solid #dedee4!important;
+    background:#fff!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row:active{
+    background:#faf9fd!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row-title{
+    margin:0 0 8px!important;
+    max-width:100%!important;
+    font-size:16px!important;
+    line-height:1.58!important;
+    font-weight:600!important;
+    letter-spacing:-.28px!important;
+    color:#202028!important;
+    word-break:keep-all!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row-meta{
+    display:flex!important;
+    align-items:center!important;
+    flex-wrap:wrap!important;
+    font-size:12px!important;
+    line-height:1.45!important;
+    color:#777780!important;
+    letter-spacing:-.1px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row-meta span{
+    white-space:nowrap!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    width:1px!important;
+    height:10px!important;
+    margin:0 7px!important;
+    background:#d1d1d7!important;
+  }
+
+  body.lt-reviews-page .review-mobile-empty{
+    padding:42px 10px!important;
+    text-align:center!important;
+    font-size:14px!important;
+    line-height:1.6!important;
+    color:#888891!important;
+  }
+
+  body.lt-reviews-page .review-write-area.mobile-open{
+    margin:0 0 16px!important;
+    padding:16px!important;
+    border:1px solid #dedde5!important;
+    border-radius:10px!important;
+    background:#fff!important;
+    box-shadow:0 5px 16px rgba(35,28,70,.06)!important;
+  }
+
+  body.lt-reviews-page .review-write-head h2{
+    margin:0!important;
+    font-size:18px!important;
+    line-height:1.4!important;
+    font-weight:700!important;
+    color:#22222a!important;
+  }
+
+  body.lt-reviews-page .review-write-head p:last-child{
+    margin-top:4px!important;
+    font-size:12px!important;
+    line-height:1.55!important;
+    color:#85858e!important;
+  }
+
+  body.lt-reviews-page .review-write-label{
+    font-size:12px!important;
+    line-height:1.5!important;
+    color:#55555e!important;
+  }
+
+  body.lt-reviews-page .review-write-label select,
+  body.lt-reviews-page .review-write-label textarea{
+    font-size:14px!important;
+    line-height:1.55!important;
+    color:#292932!important;
+  }
+
+  body.lt-reviews-page .review-write-label textarea{
+    min-height:120px!important;
+  }
+
+  body.lt-reviews-page .review-submit{
+    min-height:44px!important;
+    font-size:14px!important;
+  }
+
+  body.lt-reviews-page .review-login-notice{
+    margin:0 0 16px!important;
+    padding:14px 15px!important;
+    border:1px solid #e0dfe7!important;
+    border-radius:9px!important;
+    background:#faf9fd!important;
+    font-size:13px!important;
+    line-height:1.65!important;
+    color:#73737c!important;
+  }
+
+  body.lt-reviews-page .review-login-notice button{
+    font-size:13px!important;
+    font-weight:700!important;
+  }
+
+  body.lt-reviews-page .reviews-note{
+    margin-top:13px!important;
+    font-size:11px!important;
+    line-height:1.55!important;
+    color:#9999a1!important;
+  }
+}
+</style>
+
+<style id="lt-reviews-mobile-readability-v5">
+@media(max-width:760px){
+  body.lt-reviews-page .reviews-page{padding-left:12px!important;padding-right:12px!important;}
+  body.lt-reviews-page .reviews-wrap{width:100%!important;max-width:none!important;}
+  body.lt-reviews-page .review-mobile-board-title{padding:0 4px!important;}
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:24px!important;line-height:1.35!important;letter-spacing:-.7px!important;}
+  body.lt-reviews-page .review-mobile-board-write{min-width:88px!important;height:42px!important;font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-count{padding:0 4px!important;margin-bottom:14px!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:28px!important;line-height:1.2!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:16px!important;}
+  body.lt-reviews-page .review-mobile-search{margin-bottom:14px!important;}
+  body.lt-reviews-page .review-mobile-search input{height:48px!important;padding-left:8px!important;font-size:15px!important;}
+  body.lt-reviews-page .review-list{width:100%!important;border-radius:12px!important;}
+  body.lt-reviews-page .review-mobile-row{padding:18px 8px 19px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:17px!important;line-height:1.65!important;letter-spacing:-.25px!important;margin-bottom:9px!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:12.5px!important;line-height:1.5!important;}
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{margin-left:8px!important;margin-right:8px!important;}
+}
+</style>
+<style id="lt-breadcrumb-v1">
+.lt-breadcrumb{max-width:1080px;margin:0 auto 18px;padding:0 24px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.68)}
+.lt-breadcrumb a{color:inherit;text-decoration:none}
+.lt-breadcrumb a:hover{text-decoration:underline}
+.lt-breadcrumb .sep{opacity:.45}
+.lt-breadcrumb .current{color:rgba(255,255,255,.9);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.lt-breadcrumb{margin:0 0 12px;padding:0 16px;font-size:11px;gap:6px}.lt-breadcrumb .current{max-width:58vw}}
+</style>
+</head>
+
+
+<body class="lt-reviews-page">
+<!-- LOGO CHECKERBOARD FILTER: code-only, does not modify the PNG -->
+<svg aria-hidden="true" focusable="false" width="0" height="0" viewBox="0 0 1 1" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none"><defs><filter id="lt-logo-clean" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB" primitiveUnits="objectBoundingBox"><feColorMatrix in="SourceGraphic" type="saturate" values="0" result="lt-gray"/><feBlend in="SourceGraphic" in2="lt-gray" mode="difference" result="lt-color"/><feColorMatrix in="lt-color" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .333 .333 .333 0 0" result="lt-mask"/><feComponentTransfer in="lt-mask"><feFuncA type="linear" slope="7" intercept="-.035"/></feComponentTransfer><feComposite in="SourceGraphic" in2="lt-mask" operator="in"/></filter></defs></svg>
+
+
+<header class="header">
+  <a class="logo" href="index.html" aria-label="LOVE TEAM 홈">
+    <img class="logo-image" src="assets/love-team-logo-clean-transparent.png?v=20261004-inner-logo-v2" alt="LOVE TEAM">
+  </a>
+
+
+  <nav class="nav"><a class="home-nav" href="index.html">홈</a>
+
+    <a href="notice.html">
+      공지사항
+    </a>
+
+    <a href="faq.html">
+      자주 묻는 질문
+    </a>
+
+    <a href="pricing.html">
+      가격표
+    </a>
+
+    <a href="works.html">
+      작업 내역
+    </a>
+
+    <a href="reviews.html">
+      후기
+    </a>
+
+  </nav>
+
+
+  <div class="header-actions"><a class="love-admin-link" id="loveDesktopAdminLink" href="admin.html" style="display:none;">관리자 페이지</a>
+
+    <a
+      href="#login"
+      id="openAuth"
+      data-love-auth-status="1"
+      data-auth-open="1"
+    >
+      로그인 / 회원가입
+    </a>
+
+    <a
+      class="kakao-btn"
+      href="https://open.kakao.com/"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터
+    </a>
+
+  </div>
+
+  <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="메뉴 열기">☰</button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="notice.html">공지사항</a>
+    <a href="faq.html">자주 묻는 질문</a>
+    <a href="pricing.html">가격표</a>
+    <a href="works.html">작업 내역</a>
+    <a href="reviews.html">후기</a>
+    <a href="#" id="mobileOpenAuth" data-auth-open data-auth-mode="login">로그인</a><a href="admin.html" id="loveMobileAdminLink" style="display:none;">🛡️ 관리자 페이지</a>
+    <a class="mobile-kakao" href="https://open.kakao.com/" target="_blank" rel="noopener"><span class="kakao-talk-icon" aria-hidden="true"><i></i><i></i><i></i></span>고객센터</a>
+  </div>
+
+</header>
+
+
+<main>
+<nav class="lt-breadcrumb" aria-label="페이지 경로"><a href="index.html">홈</a><span class="sep" aria-hidden="true">›</span><span class="current" aria-current="page">후기</span></nav>
+
+<section class="reviews-page">
+
+<div class="reviews-wrap">
+
+
+  <div class="reviews-head">
+
+    <p class="eyebrow">
+      LOVE TEAM REVIEWS
+    </p>
+
+    <h1>
+      고객 후기
+    </h1>
+
+    <p>
+      실제 이용 후기를 익명으로 안내합니다.
+    </p>
+
+  </div>
+
+
+
+  <div class="review-mobile-board-title">
+    <h1><span class="spark">✨</span>글 후기</h1>
+    <button type="button" id="reviewMobileWriteButton" class="review-mobile-board-write">글쓰기</button>
+  </div>
+
+  <div class="review-mobile-count">
+    <strong>REVIEW</strong>
+    <span id="reviewMobileCount">0</span>
+  </div>
+
+  <div class="review-mobile-search">
+    <input id="reviewMobileSearchInput" type="search" placeholder="Search" aria-label="후기 검색" autocomplete="off">
+  </div>
+
+
+  <!-- 로그인한 회원만 보이는 후기 작성 -->
+
+  <div
+    id="reviewWriteArea"
+    class="review-write-area"
+    style="display:none;"
+  >
+
+    <div class="review-write-head">
+
+      <p class="review-write-kicker">
+        LOVE TEAM MEMBER
+      </p>
+
+      <h2>
+        후기 작성
+      </h2>
+
+      <p>
+        서비스 이용 후기를 남겨주세요.
+      </p>
+
+    </div>
+
+
+    <label class="review-write-label">
+
+      서비스
+
+      <select id="reviewService">
+        <option value="승당">승당제</option>
+        <option value="듀오">듀오</option>
+        <option value="배치고사">배치고사</option>
+        <option value="티어">티어 승급</option>
+        <option value="1:1">1:1 강의</option>
+      </select>
+
+    </label>
+
+
+    <label class="review-write-label">
+
+      제목
+
+      <input
+        type="text"
+        id="reviewTitle"
+        maxlength="80"
+        placeholder="후기 제목을 입력해주세요."
+        autocomplete="off"
+      >
+
+    </label>
+
+
+    <label class="review-write-label">
+
+      세부 내용
+
+      <textarea
+        id="reviewText"
+        maxlength="300"
+        placeholder="이용 후기를 자세히 작성해주세요."
+      ></textarea>
+
+    </label>
+
+
+    <p
+      id="reviewWriteMessage"
+      class="review-write-message"
+    ></p>
+
+
+    <button
+      type="button"
+      id="reviewSubmit"
+      class="review-submit"
+    >
+      후기 등록
+    </button>
+
+  </div>
+
+
+  <!-- 로그아웃 상태 -->
+
+  <div
+    id="reviewLoginNotice"
+    class="review-login-notice"
+  >
+
+    후기를 작성하려면
+
+    <button
+      type="button"
+      id="reviewLoginButton"
+    >
+      로그인
+    </button>
+
+    해주세요.
+
+  </div>
+
+
+  <!-- 후기 목록 -->
+
+  <div class="review-board-head" aria-hidden="true">
+    <span>No</span>
+    <span>제목</span>
+    <span>글쓴이</span>
+    <span>작성일</span>
+    <span>조회수</span>
+  </div>
+
+  <div
+    id="reviewList"
+    class="review-list"
+  ></div>
+
+
+  <nav id="reviewPagination" class="review-pagination" aria-label="후기 페이지 이동"></nav>
+
+  <p class="reviews-note">
+    ※ 고객 이름은 개인정보 보호를 위해 일부만 공개됩니다.
+  </p>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <strong>
+    LOVE TEAM
+  </strong>
+
+  <p>
+    © 2026 LOVE TEAM. All rights reserved.
+  </p>
+
+</footer>
+
+
+<!-- 로그인 기능 먼저 불러오기 -->
+
+<script src="supabase-config.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="auth.js?v=20261002-auth-syntax-fix-v3"></script>
+
+<script src="script.js?v=20261002-mobile-menu-fix-v1"></script>
+
+
+<script>
+
+
+/* ============================
+   기존 후기
+   ============================ */
+
+const fallback = [
+
+  {
+    name:'Ja***',
+    text:'진행 과정이 깔끔했고 원하는 부분을 자세하게 설명해주셔서 만족했습니다.',
+    date:'2026.09.28',
+    service:'승당'
+  },
+
+  {
+    name:'Mi***',
+    text:'플레이 방향을 잡는 데 도움이 많이 됐습니다. 문의 답변도 빠르게 받을 수 있었습니다.',
+    date:'2026.09.27',
+    service:'티어'
+  },
+
+  {
+    name:'Ho***',
+    text:'일정 조율이 편했고 진행 상황도 안내받을 수 있어서 좋았습니다.',
+    date:'2026.09.25',
+    service:'듀오'
+  },
+
+  {
+    name:'Se***',
+    text:'배치 진행 전에 필요한 내용을 안내받아서 처음 이용하는데도 어렵지 않았습니다.',
+    date:'2026.09.23',
+    service:'배치고사'
+  },
+
+  {
+    name:'Lu***',
+    text:'전체적으로 친절하게 진행해주셨고 게임에 대한 피드백도 이해하기 쉬웠습니다.',
+    date:'2026.09.21',
+    service:'승당'
+  }
+
+];
+
+
+let currentReviewRows = [];
+let currentReviewPage = 1;
+const REVIEWS_PER_PAGE = 10;
+
+async function getReviews(){
+  try{
+    const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+    if(!client) return fallback.map(function(r){ return {...r,id:null,views:0}; });
+
+    const result = await client.from('reviews')
+      .select('id,display_name,title,content,service,created_at')
+      .order('created_at',{ascending:false});
+    if(result.error) throw result.error;
+
+    const rows = result.data || [];
+    if(rows.length === 0) return fallback.map(function(r){ return {...r,id:null,views:0}; });
+
+    let viewMap = {};
+    try{
+      const ids = rows.map(function(r){ return r.id; }).filter(Boolean);
+      if(ids.length){
+        const viewResult = await client
+          .from('review_view_counts')
+          .select('review_id,view_count')
+          .in('review_id',ids);
+        if(!viewResult.error){
+          (viewResult.data || []).forEach(function(v){
+            viewMap[v.review_id] = Number(v.view_count) || 0;
+          });
+        }
+      }
+    }catch(_){}
+
+    return rows.map(function(r){
+      return {
+        id:r.id,
+        name:r.display_name,
+        title:r.title || (r.content ? String(r.content).slice(0,40) : '후기'),
+        text:r.content,
+        date:new Date(r.created_at).toLocaleDateString('ko-KR'),
+        service:r.service,
+        views:viewMap[r.id] || 0
+      };
+    });
+  }catch(error){
+    console.error('review load error:',error);
+    return fallback.map(function(r){ return {...r,id:null,views:0}; });
+  }
+}
+
+function reviewTitle(text){
+  const value=String(text||'').trim().replace(/\s+/g,' ');
+  return value.length>54 ? value.slice(0,54)+'…' : value;
+}
+
+function escReview(value){
+  return String(value ?? '').replace(/[&<>"']/g,function(ch){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+  });
+}
+
+function renderPagination(total){
+  const pagination=document.getElementById('reviewPagination');
+  if(!pagination) return;
+  const pageCount=Math.ceil(total/REVIEWS_PER_PAGE);
+  if(pageCount<=1){
+    pagination.innerHTML='';
+    return;
+  }
+  let html='';
+  for(let i=1;i<=pageCount;i++){
+    html+='<button type="button" class="'+(i===currentReviewPage?'active':'')+'" data-review-page="'+i+'">'+i+'</button>';
+  }
+  pagination.innerHTML=html;
+  pagination.querySelectorAll('[data-review-page]').forEach(function(button){
+    button.addEventListener('click',function(){
+      currentReviewPage=Number(button.dataset.reviewPage)||1;
+      renderReviewRows(window.currentFilteredReviews || currentReviewRows);
+      const top=document.querySelector('.review-mobile-board-title') || document.getElementById('reviewList');
+      if(top) top.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+}
+
+function renderReviewRows(reviews){
+  const list = document.getElementById('reviewList');
+  const count = document.getElementById('reviewMobileCount');
+  if(!list) return;
+
+  window.currentFilteredReviews=reviews;
+  if(count) count.textContent = String(currentReviewRows.length || reviews.length);
+
+  if(!reviews.length){
+    list.innerHTML='<div class="review-mobile-empty">검색 결과가 없습니다.</div>';
+    renderPagination(0);
+    return;
+  }
+
+  const pageCount=Math.ceil(reviews.length/REVIEWS_PER_PAGE);
+  if(currentReviewPage>pageCount) currentReviewPage=pageCount;
+  const start=(currentReviewPage-1)*REVIEWS_PER_PAGE;
+  const pageRows=reviews.slice(start,start+REVIEWS_PER_PAGE);
+
+  list.innerHTML = pageRows.map(function(r,index){
+    const title=String(r.title || '').trim() || reviewTitle(r.text);
+    const no=start+index+1;
+    const author=String(r.name || '').trim() || '회원';
+    const date=String(r.date || '').trim() || '-';
+    const views=Number(r.views || 0).toLocaleString('ko-KR');
+    const cells='<span class="review-no">'+no+'</span>'+
+      '<div class="review-row-title"><strong>'+escReview(title)+'</strong></div>'+
+      '<span class="review-row-author">'+escReview(author)+'</span>'+
+      '<span class="review-row-date">'+escReview(date)+'</span>'+
+      '<span class="review-row-views">'+views+'</span>';
+
+    if(r.id){
+      return '<a class="review-mobile-row" href="review-detail.html?id='+encodeURIComponent(r.id)+'">'+cells+'</a>';
+    }
+
+    return '<article class="review-mobile-row">'+cells+'</article>';
+  }).join('');
+
+  renderPagination(reviews.length);
+}
+async function render(){
+  currentReviewRows = await getReviews();
+  currentReviewPage = 1;
+  window.currentFilteredReviews = currentReviewRows;
+  renderReviewRows(currentReviewRows);
+}
+
+render();
+
+(function(){
+  const input=document.getElementById('reviewMobileSearchInput');
+  const writeButton=document.getElementById('reviewMobileWriteButton');
+  const writeArea=document.getElementById('reviewWriteArea');
+  const loginNotice=document.getElementById('reviewLoginNotice');
+
+  if(input){
+    input.addEventListener('input',function(){
+      const q=input.value.trim().toLowerCase();
+      if(!q){
+        currentReviewPage=1;
+        renderReviewRows(currentReviewRows);
+        return;
+      }
+      currentReviewPage=1;
+      renderReviewRows(currentReviewRows.filter(function(r){
+        return [r.title,r.name,r.text,r.service,r.date].join(' ').toLowerCase().includes(q);
+      }));
+    });
+  }
+
+  if(writeButton){
+    writeButton.addEventListener('click',async function(){
+      let session=window.LoveTeamSession;
+
+      if(!session && window.LoveTeamAuth?.getSession){
+        try{
+          session=await window.LoveTeamAuth.getSession();
+          window.LoveTeamSession=session;
+        }catch(_){}
+      }
+
+      if(!session){
+        if(loginNotice){
+          loginNotice.style.display='block';
+          loginNotice.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+        return;
+      }
+
+      if(loginNotice) loginNotice.style.display='none';
+
+      if(writeArea){
+        const open=writeArea.classList.toggle('mobile-open');
+        if(open) writeArea.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  }
+})();
+
+/* ============================
+   후기 작성
+   ============================ */
+
+(function(){
+
+
+  const writeArea =
+    document.getElementById(
+      'reviewWriteArea'
+    );
+
+
+  const loginNotice =
+    document.getElementById(
+      'reviewLoginNotice'
+    );
+
+
+  const loginButton =
+    document.getElementById(
+      'reviewLoginButton'
+    );
+
+
+  const submit =
+    document.getElementById(
+      'reviewSubmit'
+    );
+
+
+  const message =
+    document.getElementById(
+      'reviewWriteMessage'
+    );
+
+
+  // 후기 작성은 별점/서비스 선택 없이 내용만 입력합니다.
+
+  /* ============================
+     메시지
+     ============================ */
+
+  function showMessage(
+    text,
+    error
+  ){
+
+    if(!message) return;
+
+
+    message.textContent =
+      text;
+
+
+    message.style.display =
+      'block';
+
+
+    message.classList.toggle(
+      'error',
+      !!error
+    );
+
+  }
+
+
+
+  /* ============================
+     로그인 상태
+     ============================ */
+
+  function updateReviewWriter(){
+
+    const session =
+      window.LoveTeamSession;
+
+
+    if(session){
+
+      if(writeArea){
+        writeArea.style.display =
+          'block';
+        if(window.matchMedia('(max-width:760px)').matches){
+          writeArea.classList.remove('mobile-open');
+        }
+      }
+
+
+      if(loginNotice){
+
+        loginNotice.style.display =
+          'none';
+
+      }
+
+    }else{
+
+      if(writeArea){
+        writeArea.style.display =
+          'none';
+        writeArea.classList.remove('mobile-open');
+      }
+
+
+      if(loginNotice){
+
+        loginNotice.style.display =
+          window.matchMedia('(max-width:760px)').matches
+            ? 'none'
+            : 'block';
+
+      }
+
+    }
+
+  }
+
+
+  async function refreshReviewCooldown(session){
+    const client = window.LoveTeamAuth?.client || window.LoveTeamSupabase;
+    if(!client || !session?.user) return;
+
+    const submitButton = document.getElementById('reviewSubmit');
+    if(!submitButton) return;
+
+    try{
+      const adminCheck = await client.functions.invoke('admin-check',{body:{}});
+      const isAdmin =
+        !adminCheck.error &&
+        adminCheck.data?.ok === true &&
+        adminCheck.data?.admin === true;
+
+      if(isAdmin){
+        submitButton.disabled = false;
+        return;
+      }
+
+      const result = await client
+        .from('review_write_limits')
+        .select('blocked_until')
+        .eq('user_id', session.user.id)
+        .maybeSingle();
+
+      if(result.error) return;
+
+      const blockedUntil = result.data?.blocked_until || null;
+      const until = blockedUntil ? new Date(blockedUntil) : null;
+      const blocked = until && !Number.isNaN(until.getTime()) && until.getTime() > Date.now();
+
+      if(blocked){
+        const remainMs = Math.max(0, until.getTime() - Date.now());
+        const remainMinutes = Math.max(1, Math.ceil(remainMs / 60000));
+        const hours = Math.floor(remainMinutes / 60);
+        const minutes = remainMinutes % 60;
+        const remainText = hours > 0
+          ? hours + '시간 ' + minutes + '분 후 다시 작성할 수 있습니다.'
+          : minutes + '분 후 다시 작성할 수 있습니다.';
+
+        submitButton.disabled = true;
+        showMessage('후기 작성 제한 중입니다. ' + remainText, true);
+      }else{
+        submitButton.disabled = false;
+      }
+    }catch(error){
+      console.error('후기 작성 제한 상태 확인 실패:',error);
+    }
+  }
+
+  async function syncReviewSession(){
+    try{
+      let session = null;
+
+      if(window.LoveTeamAuth?.getSession){
+        session = await window.LoveTeamAuth.getSession();
+      }else if(window.LoveTeamAuth?.client){
+        const result = await window.LoveTeamAuth.client.auth.getSession();
+        session = result?.data?.session || null;
+        window.LoveTeamSession = session;
+      }
+
+      updateReviewWriter();
+      if(session) refreshReviewCooldown(session);
+      return session;
+    }catch(error){
+      console.error('후기 로그인 상태 확인 실패:',error);
+      window.LoveTeamSession = null;
+      updateReviewWriter();
+      return null;
+    }
+  }
+
+  syncReviewSession();
+
+
+
+  window.addEventListener(
+    'love-auth-state',
+    function(e){
+
+      window.LoveTeamSession =
+        e.detail?.session || null;
+
+
+      updateReviewWriter();
+
+    }
+  );
+
+
+
+  window.addEventListener(
+    'love-auth-changed',
+    function(){
+
+      if(
+        window.LoveTeamAuth &&
+        window.LoveTeamAuth.client
+      ){
+
+        window.LoveTeamAuth.client.auth
+          .getSession()
+          .then(function(result){
+
+            window.LoveTeamSession =
+              result?.data?.session || null;
+
+
+            updateReviewWriter();
+            if(window.LoveTeamSession) refreshReviewCooldown(window.LoveTeamSession);
+
+          });
+
+      }
+
+    }
+  );
+
+
+
+  /* ============================
+     로그인 버튼
+     ============================ */
+
+  if(loginButton){
+
+    loginButton.addEventListener(
+      'click',
+      function(){
+
+        if(
+          window.LoveTeamAuth &&
+          window.LoveTeamAuth.open
+        ){
+
+          window.LoveTeamAuth.open(
+            'login'
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  /* ============================
+     후기 등록
+     ============================ */
+
+  if(submit){
+
+    submit.addEventListener(
+      'click',
+      async function(){
+
+
+        const client =
+          window.LoveTeamAuth?.client ||
+          window.LoveTeamSupabase;
+
+        let session =
+          window.LoveTeamSession;
+
+        if(window.LoveTeamAuth?.getSession){
+          try{
+            session = await window.LoveTeamAuth.getSession();
+          }catch(error){
+            console.error('후기 등록 세션 확인 실패:',error);
+          }
+        }else if(client){
+          try{
+            const result = await client.auth.getSession();
+            session = result?.data?.session || null;
+            window.LoveTeamSession = session;
+          }catch(error){
+            console.error('후기 등록 세션 확인 실패:',error);
+          }
+        }
+
+        if(!session){
+
+          showMessage(
+            '로그인 후 후기를 작성할 수 있습니다.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        const service =
+          document
+            .getElementById('reviewService')
+            .value;
+
+        const title =
+          document
+            .getElementById('reviewTitle')
+            .value
+            .trim();
+
+        const text =
+          document
+            .getElementById(
+              'reviewText'
+            )
+            .value
+            .trim();
+
+
+
+        if(!title){
+
+          showMessage(
+            '후기 제목을 입력해주세요.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        if(text.length < 5){
+
+          showMessage(
+            '후기는 5자 이상 작성해주세요.',
+            true
+          );
+
+          return;
+
+        }
+
+
+
+        const meta =
+          session.user?.user_metadata || {};
+
+        const displayName =
+          String(meta.name || '회원').trim() || '회원';
+
+        if(!client){
+          showMessage(
+            '후기 기능을 준비하는 중입니다.',
+            true
+          );
+          return;
+        }
+
+        let error = null;
+
+        // 관리자 계정은 별도 Edge Function을 통해 1시간 제한 없이 등록
+        let isAdmin = false;
+
+        try{
+          const adminCheck = await client.functions.invoke('admin-check',{body:{}});
+          isAdmin =
+            !adminCheck.error &&
+            adminCheck.data?.ok === true &&
+            adminCheck.data?.admin === true;
+        }catch(adminError){
+          console.error('관리자 여부 확인 실패:',adminError);
+        }
+
+        if(isAdmin){
+          const adminResult =
+            await client.functions.invoke(
+              'admin-review-create',
+              {
+                body:{
+                  user_id: session.user.id,
+                  stars: 5,
+                  title: title,
+                  content: text,
+                  service: service
+                }
+              }
+            );
+
+          error = adminResult.error || (
+            adminResult.data?.ok === false
+              ? new Error(adminResult.data?.message || '관리자 후기 등록에 실패했습니다.')
+              : null
+          );
+        }else{
+          const insertResult =
+            await client
+              .from('reviews')
+              .insert({
+                user_id: session.user.id,
+                display_name: displayName,
+                stars: 5,
+                title: title,
+                content: text,
+                service: service
+              });
+
+          error = insertResult.error || null;
+        }
+
+        if(error){
+          console.error(
+            'review insert error:',
+            error
+          );
+
+          const errorText =
+            String(error?.message || error?.details || "");
+
+          if (errorText.includes("REVIEW_COOLDOWN:")) {
+            const rawUntil =
+              errorText.split("REVIEW_COOLDOWN:")[1];
+
+            const until = new Date(rawUntil);
+            let remainText = "잠시 후 다시 시도해주세요.";
+
+            if (!Number.isNaN(until.getTime())) {
+              const remainMs = Math.max(0, until.getTime() - Date.now());
+              const remainMinutes = Math.max(
+                1,
+                Math.ceil(remainMs / 60000)
+              );
+              const hours = Math.floor(remainMinutes / 60);
+              const minutes = remainMinutes % 60;
+
+              remainText =
+                hours > 0
+                  ? hours + "시간 " + minutes + "분 후 다시 작성할 수 있습니다."
+                  : minutes + "분 후 다시 작성할 수 있습니다.";
+            }
+
+            showMessage(
+              "후기는 1시간에 한 번만 작성할 수 있습니다. " + remainText,
+              true
+            );
+          } else {
+            showMessage(
+              '후기 등록에 실패했습니다.',
+              true
+            );
+          }
+
+          return;
+        }
+
+
+
+        document
+          .getElementById('reviewTitle')
+          .value = '';
+
+        document
+          .getElementById(
+            'reviewText'
+          )
+          .value = '';
+
+
+
+
+        showMessage(
+          '후기가 등록되었습니다.'
+        );
+
+        refreshReviewCooldown(session);
+
+
+
+        if(writeArea && window.matchMedia('(max-width:760px)').matches){
+          writeArea.classList.remove('mobile-open');
+        }
+        render();
+
+
+
+        setTimeout(
+          function(){
+
+            if(message){
+
+              message.style.display =
+                'none';
+
+            }
+
+          },
+          1200
+        );
+
+      }
+    );
+
+  }
+
+
+})();
+
+</script>
+
+
+
+<script>
+(function(){
+  var header=document.querySelector('.header');
+  if(!header) return;
+  function sync(){ header.classList.toggle('page-scrolled',window.scrollY>8); }
+  window.addEventListener('scroll',sync,{passive:true});
+  sync();
+})();
+</script>
+<script type="application/ld+json" id="lt-breadcrumb-jsonld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://ghkdtldn2324-max.github.io/love-team/"},{"@type":"ListItem","position":2,"name":"후기","item":"https://ghkdtldn2324-max.github.io/love-team/reviews.html"}]}</script>
+</body>
+
+<style id="lt-mobile-floating-kakao-v1">
+@media(max-width:760px){
+  .lt-mobile-floating-kakao{
+    position:fixed!important;
+    right:16px!important;
+    bottom:16px!important;
+    width:54px!important;
+    height:54px!important;
+    min-width:54px!important;
+    min-height:54px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border-radius:50%!important;
+    background:#fee500!important;
+    color:#111!important;
+    text-decoration:none!important;
+    box-shadow:0 8px 22px rgba(0,0,0,.24)!important;
+    z-index:100001!important;
+    -webkit-tap-highlight-color:transparent!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon{
+    width:29px!important;
+    height:25px!important;
+    flex:0 0 29px!important;
+    margin:0!important;
+    border-radius:9px!important;
+    background:#111!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::before{
+    color:#fee500!important;
+    font-size:8px!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon::after{
+    background:#111!important;
+    left:5px!important;
+    bottom:-4px!important;
+    width:7px!important;
+    height:7px!important;
+  }
+  .lt-mobile-floating-kakao .kakao-talk-icon i{display:none!important;}
+}
+</style>
+</html>
+
+<style id="lt-reviews-mobile-compact-v6">
+@media(max-width:760px){
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:21px!important;line-height:1.3!important;}
+  body.lt-reviews-page .review-mobile-board-write{min-width:78px!important;height:38px!important;font-size:13px!important;}
+  body.lt-reviews-page .review-mobile-count{margin-bottom:10px!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:23px!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-search{margin-bottom:10px!important;}
+  body.lt-reviews-page .review-mobile-search input{height:42px!important;font-size:13px!important;}
+  body.lt-reviews-page .review-list{border-radius:10px!important;}
+  body.lt-reviews-page .review-mobile-row{padding:12px 7px 13px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:14px!important;line-height:1.45!important;letter-spacing:-.3px!important;margin-bottom:6px!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:11px!important;line-height:1.35!important;}
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{margin-left:6px!important;margin-right:6px!important;}
+}
+</style>
+
+<style id="lt-reviews-pc-compact-v1">
+@media(min-width:761px){
+  .review-mobile-board-title h1{font-size:21px!important;line-height:1.3!important;}
+  .review-mobile-board-write{min-width:78px!important;height:38px!important;font-size:13px!important;}
+  .review-mobile-count{margin-bottom:10px!important;}
+  .review-mobile-count strong{font-size:23px!important;}
+  .review-mobile-count span{font-size:14px!important;}
+  .review-mobile-search{margin-bottom:10px!important;}
+  .review-mobile-search input{height:42px!important;font-size:13px!important;}
+  .review-mobile-row{padding:12px 7px 13px!important;}
+  .review-mobile-row-title{font-size:14px!important;line-height:1.45!important;letter-spacing:-.3px!important;margin-bottom:6px!important;}
+  .review-mobile-row-meta{font-size:11px!important;line-height:1.35!important;}
+  .review-mobile-row-meta span+span::before{margin-left:6px!important;margin-right:6px!important;}
+}
+</style>
+
+<style id="lt-reviews-pc-match-mobile-v2">
+@media(min-width:761px){
+  html,body{background:#fff!important;color:#171722!important;}
+  body.lt-reviews-page{background:#fff!important;min-height:100vh!important;}
+  body.lt-reviews-page::before{display:none!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:#fff!important;}
+  body.lt-reviews-page .reviews-page{
+    min-height:calc(100vh - 174px)!important;
+    padding:20px 16px 68px!important;
+    color:#22222a!important;
+  }
+  body.lt-reviews-page .reviews-wrap{width:100%!important;max-width:1000px!important;margin:0 auto!important;}
+  body.lt-reviews-page .reviews-head{display:none!important;}
+  body.lt-reviews-page .review-mobile-board-title{
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    gap:12px!important;margin:0 0 16px!important;min-height:42px!important;padding:0 4px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    margin:0!important;font-size:24px!important;line-height:1.35!important;font-weight:700!important;
+    letter-spacing:-.7px!important;color:#202028!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{font-size:19px!important;margin-right:3px!important;}
+  body.lt-reviews-page .review-mobile-board-write{
+    flex:0 0 auto!important;min-width:88px!important;height:42px!important;padding:0 14px!important;
+    border:0!important;border-radius:7px!important;background:linear-gradient(135deg,#6b78ff,#9b55e8)!important;
+    color:#fff!important;font-size:14px!important;font-weight:700!important;cursor:pointer!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    display:flex!important;align-items:baseline!important;gap:5px!important;
+    margin:0 0 14px!important;padding:0 4px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:28px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-1px!important;color:#24242d!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{font-size:16px!important;line-height:1.2!important;font-weight:700!important;color:#7569dd!important;}
+  body.lt-reviews-page .review-mobile-search{position:relative!important;margin-bottom:14px!important;}
+  body.lt-reviews-page .review-mobile-search input{
+    width:100%!important;height:48px!important;box-sizing:border-box!important;padding:0 44px 0 8px!important;
+    border:0!important;border-bottom:1.5px solid #3d3d46!important;border-radius:0!important;outline:none!important;
+    background:#fff!important;color:#303039!important;font-size:15px!important;
+  }
+  body.lt-reviews-page .review-mobile-search::after{font-size:27px!important;right:5px!important;color:#777780!important;}
+  body.lt-reviews-page .review-list{
+    width:100%!important;border:0!important;border-top:1px solid #d8d8df!important;border-radius:0!important;
+    overflow:visible!important;background:#fff!important;box-shadow:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:block!important;padding:18px 8px 19px!important;min-height:0!important;
+    border-bottom:1px solid #dedee4!important;background:#fff!important;color:#171722!important;text-decoration:none!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin:0 0 9px!important;max-width:100%!important;font-size:17px!important;line-height:1.65!important;
+    font-weight:600!important;letter-spacing:-.25px!important;color:#202028!important;word-break:keep-all!important;overflow-wrap:anywhere!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:0!important;
+    font-size:12.5px!important;line-height:1.5!important;color:#777780!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span{white-space:nowrap!important;}
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    width:1px!important;height:10px!important;margin:0 8px!important;background:#d1d1d7!important;
+  }
+  body.lt-reviews-page .review-row,body.lt-reviews-page .reviews-note{display:none!important;}
+  body.lt-reviews-page .review-write-area{
+    display:none!important;margin:0 0 16px!important;padding:16px!important;border:1px solid #dedde5!important;
+    border-radius:10px!important;background:#fff!important;box-shadow:0 5px 16px rgba(35,28,70,.06)!important;
+  }
+  body.lt-reviews-page .review-write-area.mobile-open{display:block!important;}
+  body.lt-reviews-page .review-login-notice{display:none!important;}
+  body.lt-reviews-page .review-write-head h2{font-size:18px!important;}
+  body.lt-reviews-page .review-write-head p:last-child{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label{font-size:12px!important;}
+  body.lt-reviews-page .review-write-label select,body.lt-reviews-page .review-write-label textarea{
+    font-size:14px!important;line-height:1.55!important;padding:10px!important;
+  }
+  body.lt-reviews-page .review-write-label select{height:44px!important;}
+  body.lt-reviews-page .review-write-label textarea{min-height:120px!important;}
+  body.lt-reviews-page .review-submit{min-height:44px!important;font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-empty{padding:42px 10px!important;text-align:center!important;font-size:14px!important;line-height:1.6!important;color:#888891!important;}
+}
+</style>
+
+<style id="lt-reviews-bg-readability-fix-v3">
+/* 후기 히어로 배경 복구 + 가독성 확대 */
+@media(min-width:761px){
+  html,body{background:#080912!important;color:#171722!important;}
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912 url('assets/EA643181-92BB-4CA6-8382-CFACD76589D9.png?v=20261002-reviews-bg-fix') center top/cover fixed no-repeat!important;
+  }
+  body.lt-reviews-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.28) 0%,rgba(8,7,18,.42) 55%,rgba(5,5,12,.58) 100%),
+      radial-gradient(circle at 20% 20%,rgba(78,125,255,.10),transparent 34%),
+      radial-gradient(circle at 82% 18%,rgba(177,70,255,.10),transparent 34%)!important;
+  }
+  body.lt-reviews-page>header,
+  body.lt-reviews-page>main,
+  body.lt-reviews-page>footer{position:relative!important;z-index:1!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:transparent!important;}
+  body.lt-reviews-page .reviews-page{
+    min-height:calc(100vh - 174px)!important;
+    padding:46px 24px 90px!important;
+  }
+  body.lt-reviews-page .reviews-wrap{max-width:1100px!important;}
+  body.lt-reviews-page .review-mobile-board-title{
+    margin-bottom:22px!important;
+    min-height:54px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1{
+    font-size:32px!important;
+    line-height:1.3!important;
+    letter-spacing:-1px!important;
+  }
+  body.lt-reviews-page .review-mobile-board-title h1 .spark{font-size:25px!important;}
+  body.lt-reviews-page .review-mobile-board-write{
+    min-width:108px!important;
+    height:50px!important;
+    padding:0 18px!important;
+    border-radius:9px!important;
+    font-size:16px!important;
+  }
+  body.lt-reviews-page .review-mobile-count{
+    margin-bottom:18px!important;
+    gap:8px!important;
+  }
+  body.lt-reviews-page .review-mobile-count strong{
+    font-size:34px!important;
+    letter-spacing:-1.2px!important;
+  }
+  body.lt-reviews-page .review-mobile-count span{font-size:19px!important;}
+  body.lt-reviews-page .review-mobile-search{margin-bottom:20px!important;}
+  body.lt-reviews-page .review-mobile-search input{
+    height:56px!important;
+    padding:0 50px 0 10px!important;
+    font-size:18px!important;
+    border-bottom-width:2px!important;
+  }
+  body.lt-reviews-page .review-mobile-search::after{font-size:32px!important;}
+  body.lt-reviews-page .review-list{border-top-width:2px!important;}
+  body.lt-reviews-page .review-mobile-row{
+    padding:24px 10px 25px!important;
+  }
+  body.lt-reviews-page .review-mobile-row-title{
+    margin-bottom:11px!important;
+    font-size:20px!important;
+    line-height:1.65!important;
+    letter-spacing:-.4px!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta{
+    font-size:14px!important;
+    line-height:1.55!important;
+  }
+  body.lt-reviews-page .review-mobile-row-meta span+span::before{
+    height:13px!important;
+    margin:0 10px!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:25px!important;line-height:1.35!important;}
+  body.lt-reviews-page .review-mobile-board-write{min-width:92px!important;height:44px!important;font-size:14px!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:30px!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:17px!important;}
+  body.lt-reviews-page .review-mobile-search input{height:50px!important;font-size:16px!important;}
+  body.lt-reviews-page .review-mobile-search::after{font-size:29px!important;}
+  body.lt-reviews-page .review-mobile-row{padding:19px 8px 20px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:18px!important;line-height:1.6!important;margin-bottom:8px!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:13px!important;line-height:1.5!important;}
+}
+</style>
+
+<style id="lt-reviews-final-size-color-v4">
+/* 후기 게시글 크기 축소 + 메인 텍스트 밝게 */
+@media(min-width:761px){
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:26px!important;line-height:1.25!important;color:#fff!important;text-shadow:0 3px 14px rgba(0,0,0,.42)!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:28px!important;color:#fff!important;text-shadow:0 2px 10px rgba(0,0,0,.35)!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:16px!important;color:#ddd8ff!important;}
+  body.lt-reviews-page .review-mobile-row{padding:17px 10px 18px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:16px!important;line-height:1.5!important;margin-bottom:7px!important;color:#3f3f49!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:11px!important;line-height:1.35!important;}
+}
+@media(max-width:760px){
+  body.lt-reviews-page .review-mobile-board-title h1{font-size:21px!important;line-height:1.3!important;color:#fff!important;text-shadow:0 2px 12px rgba(0,0,0,.42)!important;}
+  body.lt-reviews-page .review-mobile-count strong{font-size:23px!important;color:#fff!important;text-shadow:0 2px 10px rgba(0,0,0,.35)!important;}
+  body.lt-reviews-page .review-mobile-count span{font-size:14px!important;color:#ddd8ff!important;}
+  body.lt-reviews-page .review-mobile-row{padding:11px 7px 12px!important;}
+  body.lt-reviews-page .review-mobile-row-title{font-size:13px!important;line-height:1.4!important;margin-bottom:5px!important;color:#44444d!important;}
+  body.lt-reviews-page .review-mobile-row-meta{font-size:10px!important;line-height:1.3!important;}
+}
+</style>
+
+<style id="lt-reviews-pagination-v1">
+.review-board-head{
+  display:grid;
+  grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+  align-items:center;
+  gap:12px;
+  min-height:46px;
+  padding:0 10px;
+  border-top:1px solid #d8d8df;
+  border-bottom:1px solid #d8d8df;
+  background:rgba(250,249,253,.96);
+  color:#777780;
+  font-size:12px;
+  font-weight:800;
+  text-align:center;
+}
+.review-board-head span:nth-child(2){text-align:left;}
+.review-pagination{display:flex;justify-content:center;align-items:center;gap:7px;margin:24px 0 0;flex-wrap:wrap;}
+@media(min-width:761px){
+  body.lt-reviews-page .review-board-head{
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+    min-height:44px;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px;
+    align-items:center!important;
+    gap:12px!important;
+    min-height:48px!important;
+    padding:8px 10px!important;
+    box-sizing:border-box!important;
+  }
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    display:block!important;
+    text-align:center!important;
+    color:#777780!important;
+    font-size:12px!important;
+    white-space:nowrap!important;
+  }
+  body.lt-reviews-page .review-row-title{min-width:0!important;text-align:left!important;}
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:14px!important;
+    line-height:1.4!important;
+    font-weight:600!important;
+    color:#3f3f49!important;
+  }
+}
+@media(max-width:760px){
+  body.lt-reviews-page .review-board-head{
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    gap:5px!important;
+    min-height:42px!important;
+    padding:0 6px!important;
+    font-size:11px!important;
+  }
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    gap:5px!important;
+    align-items:center!important;
+    min-height:44px!important;
+    padding:7px 6px!important;
+    box-sizing:border-box!important;
+  }
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    display:block!important;
+    text-align:center!important;
+    color:#777780!important;
+    font-size:10px!important;
+    white-space:nowrap!important;
+  }
+  body.lt-reviews-page .review-row-title{min-width:0!important;text-align:left!important;}
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+    font-weight:600!important;
+    color:#44444d!important;
+  }
+}
+.review-pagination button{width:36px;height:36px;border:1px solid #ddd9e8;border-radius:7px;background:#fff;color:#666;cursor:pointer;font-size:13px;font-weight:700;}
+.review-pagination button.active{border-color:#7866e8;background:linear-gradient(135deg,#6b78ff,#9b55e8);color:#fff;}
+@media(max-width:760px){
+  body.lt-reviews-page .review-pagination{gap:5px;margin:18px 0 0;}
+  body.lt-reviews-page .review-pagination button{width:32px;height:32px;border-radius:6px;font-size:12px;}
+}
+</style>
+
+<style id="lt-reviews-mobile-bg-restore-v1">
+@media(max-width:760px){
+  html,body{background:#080912!important;}
+  body.lt-reviews-page{
+    position:relative!important;
+    min-height:100vh!important;
+    background:#080912!important;
+    overflow-x:hidden!important;
+  }
+  body.lt-reviews-page::before{
+    content:""!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:
+      linear-gradient(180deg,rgba(5,6,14,.16) 0%,rgba(5,6,14,.30) 55%,rgba(5,6,14,.48) 100%),
+      url('assets/F466B927-EFF9-4BEE-8D22-A31A7219C346.png?v=20261002-reviews-mobile-restore') center center/cover no-repeat!important;
+  }
+  body.lt-reviews-page>header,
+  body.lt-reviews-page>main,
+  body.lt-reviews-page>footer{position:relative!important;z-index:1!important;}
+  body.lt-reviews-page main,
+  body.lt-reviews-page .reviews-page{background:transparent!important;}
+  body.lt-reviews-page .reviews-page{min-height:calc(100vh - 68px)!important;}
+  body.lt-reviews-page .review-list{background:rgba(255,255,255,.96)!important;}
+}
+</style>
+<style id="lt-review-write-title-detail-v1">
+.review-write-area .review-write-label input[type="text"]{
+  width:100%;min-height:46px;padding:0 14px;border:1px solid #ddd9e8;border-radius:9px;
+  background:#fff;color:#222;outline:none;font:inherit;box-sizing:border-box;
+}
+.review-write-area .review-write-label input[type="text"]:focus,
+.review-write-area .review-write-label textarea:focus{border-color:#8a72e8;box-shadow:0 0 0 3px rgba(122,103,220,.10);}
+@media(max-width:760px){
+  body.lt-reviews-page .review-write-area .review-write-label input[type="text"]{min-height:42px;font-size:14px;padding:0 11px;}
+}
+</style>
+
+<style id="lt-reviews-board-column-align-v1">
+/* 후기 헤더/게시글 열 위치 최종 정렬 20261002 */
+body.lt-reviews-page .review-list{
+  padding:0!important;
+}
+
+.review-board-head,
+body.lt-reviews-page .review-mobile-row{
+  box-sizing:border-box!important;
+  align-items:center!important;
+}
+
+.review-board-head > span,
+body.lt-reviews-page .review-mobile-row > span,
+body.lt-reviews-page .review-mobile-row > .review-row-title{
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+
+.review-board-head > span:nth-child(2),
+body.lt-reviews-page .review-mobile-row > .review-row-title{
+  text-align:left!important;
+}
+
+@media(min-width:761px){
+  body.lt-reviews-page .review-board-head,
+  body.lt-reviews-page .review-mobile-row{
+    grid-template-columns:64px minmax(0,1fr) 120px 120px 80px!important;
+    column-gap:12px!important;
+    width:100%!important;
+  }
+
+  body.lt-reviews-page .review-board-head{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    width:100%!important;
+    text-align:center!important;
+    justify-self:stretch!important;
+  }
+
+  body.lt-reviews-page .review-row-title{
+    width:100%!important;
+    justify-self:stretch!important;
+    padding:0!important;
+  }
+}
+
+@media(max-width:760px){
+  body.lt-reviews-page .review-board-head,
+  body.lt-reviews-page .review-mobile-row{
+    grid-template-columns:42px minmax(0,1fr) 72px 82px 52px!important;
+    column-gap:5px!important;
+    width:100%!important;
+  }
+
+  body.lt-reviews-page .review-board-head{
+    padding-left:6px!important;
+    padding-right:6px!important;
+  }
+
+  body.lt-reviews-page .review-mobile-row{
+    display:grid!important;
+    padding-left:6px!important;
+    padding-right:6px!important;
+  }
+
+  body.lt-reviews-page .review-no,
+  body.lt-reviews-page .review-row-author,
+  body.lt-reviews-page .review-row-date,
+  body.lt-reviews-page .review-row-views{
+    width:100%!important;
+    text-align:center!important;
+    justify-self:stretch!important;
+  }
+
+  body.lt-reviews-page .review-row-title{
+    width:100%!important;
+    justify-self:stretch!important;
+    padding:0!important;
+  }
+
+  body.lt-reviews-page .review-row-title strong{
+    display:block!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+  }
+}
+</style>
+
+
+
+<style id="lt-pc-layout-final-v3">@media(min-width:761px){body.lt-reviews-page main{padding:0!important;}body.lt-reviews-page .reviews-page{padding:18px 20px 110px!important;}body.lt-reviews-page .reviews-head{display:block!important;margin:0 0 28px!important;}body.lt-reviews-page .review-mobile-board-title{display:none!important;}body.lt-reviews-page .review-list{position:relative!important;z-index:2!important;margin-top:0!important;}body.lt-reviews-page main>.lt-breadcrumb{margin:0 auto 18px!important;}}</style>
+
+<style id="lt-reviews-pc-readable-final-v1">
+@media(min-width:761px){
+  body.lt-reviews-page .reviews-page{padding:28px 24px 90px!important;}
+  body.lt-reviews-page .reviews-head{display:block!important;text-align:center!important;margin:0 auto 32px!important;padding:0!important;position:relative!important;z-index:3!important;}
+  body.lt-reviews-page .reviews-head .eyebrow{color:rgba(255,255,255,.78)!important;}
+  body.lt-reviews-page .reviews-head h1{color:#fff!important;text-shadow:0 3px 14px rgba(0,0,0,.45)!important;margin:0 0 10px!important;}
+  body.lt-reviews-page .reviews-head p:last-child{color:rgba(255,255,255,.82)!important;text-shadow:0 2px 8px rgba(0,0,0,.35)!important;}
+  body.lt-reviews-page .review-board-head{position:relative!important;z-index:4!important;}
+  body.lt-reviews-page .review-list{position:relative!important;z-index:4!important;background:rgba(255,255,255,.97)!important;border-radius:0 0 12px 12px!important;overflow:hidden!important;}
+}
+</style>
