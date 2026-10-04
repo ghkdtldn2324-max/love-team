@@ -1,0 +1,76 @@
+name: Optimize images
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install image optimizer
+        run: npm install --no-save sharp
+
+      - name: Create WebP copies of active PNG assets
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const sharp = require('sharp');
+
+          const files = [
+            '05DE61AF-8FFA-4C8C-AA36-982D963CB8DF.png',
+            '0B0871E2-5B09-48AD-A3F4-3F4D8C9EC523.png',
+            '118760C5-320F-43B8-B305-7EABC8433F74.png',
+            '0EF36044-2630-45BE-B799-14DF48ACC13F.png',
+            'CC1CEBBD-7BD9-4E0F-B334-5BBFFBA9A0CD.png',
+            '05E35376-718D-43E4-B7F1-D4170FEC2B2A.png',
+            '9371078D-187F-4137-9F89-FDFBAEE00EAE.png',
+            '35E7E1D9-705B-4C1D-A061-89B3972A2C04.png',
+            '06E581BD-0A70-47C1-A838-79EE8F17BA2B.png',
+            '68101B7C-8FEB-47A1-A31C-787AC9FF6310.png',
+            'EA643181-92BB-4CA6-8382-CFACD76589D9.png',
+            'F466B927-EFF9-4BEE-8D22-A31A7219C346.png',
+            'love-team-logo-clean-transparent.png'
+          ];
+
+          (async () => {
+            for (const file of files) {
+              const input = path.join('assets', file);
+              const output = input.replace(/\.png$/i, '.webp');
+              if (!fs.existsSync(input)) continue;
+              await sharp(input)
+                .webp({ quality: 82, effort: 5 })
+                .toFile(output);
+              console.log(file, '->', output);
+            }
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Commit optimized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.webp
+          if git diff --cached --quiet; then
+            echo "No optimized image changes."
+            exit 0
+          fi
+          git commit -m "perf: add optimized WebP image assets"
+          git push
