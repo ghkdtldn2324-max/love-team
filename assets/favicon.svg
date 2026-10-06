@@ -1,16 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
 <defs>
- <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050812"/><stop offset=".5" stop-color="#11102b"/><stop offset="1" stop-color="#090719"/></linearGradient>
- <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d8e8ff"/><stop offset=".45" stop-color="#8b7cff"/><stop offset="1" stop-color="#43d9ff"/></linearGradient>
- <linearGradient id="core" x1=".15" y1="0" x2=".85" y2="1"><stop stop-color="#25206b"/><stop offset=".55" stop-color="#10143f"/><stop offset="1" stop-color="#08091b"/></linearGradient>
- <filter id="glow"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".35" stop-color="#d9d5ff"/><stop offset=".62" stop-color="#8c6cff"/><stop offset="1" stop-color="#35aaff"/></linearGradient>
+ <linearGradient id="p" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#26117b"/><stop offset=".45" stop-color="#100b39"/><stop offset="1" stop-color="#05051b"/></linearGradient>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff55ff"/><stop offset=".5" stop-color="#7c4dff"/><stop offset="1" stop-color="#27d9ff"/></linearGradient>
+ <filter id="b"><feGaussianBlur stdDeviation="2.7" result="x"/><feMerge><feMergeNode in="x"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
-<rect width="256" height="256" rx="48" fill="url(#bg)"/>
-<path d="M128 18 L151 43 L184 31 L177 64 L209 78 L182 96 L205 126 L171 126 L183 165 L151 151 L128 224 L105 151 L73 165 L85 126 L51 126 L74 96 L47 78 L79 64 L72 31 L105 43 Z" fill="url(#core)" stroke="url(#edge)" stroke-width="5" stroke-linejoin="round"/>
-<path d="M128 55 L151 78 L173 72 L166 96 L184 111 L157 116 L148 139 L128 124 L108 139 L99 116 L72 111 L90 96 L83 72 L105 78 Z" fill="#090b24" stroke="#706cff" stroke-width="3" stroke-linejoin="round"/>
-<path d="M96 100 Q111 84 128 96 Q145 84 160 100 L150 111 Q139 102 128 111 Q117 102 106 111 Z" fill="#c9d7ff" opacity=".92" filter="url(#glow)"/>
-<path d="M115 103 L128 96 L141 103 L128 113 Z" fill="#0c0d25"/>
-<path d="M128 132 L141 151 L128 178 L115 151 Z" fill="#17154a" stroke="url(#edge)" stroke-width="3"/>
-<path d="M67 72 L82 61 L94 67 L78 80 Z M189 72 L174 61 L162 67 L178 80 Z" fill="#54d9ff" stroke="#b7e9ff" stroke-width="2"/>
-<circle cx="128" cy="151" r="5" fill="#e9e4ff" filter="url(#glow)"/>
+<!-- outer wing/crest silhouette -->
+<path d="M19 58 L74 91 L63 50 Q61 37 73 25 L102 7 L91 49 L111 39 L128 20 L145 39 L165 49 L154 7 L183 25 Q195 37 193 50 L182 91 L237 58 L211 108 L232 103 L207 137 L181 151 L168 191 L143 170 L128 245 L113 170 L88 191 L75 151 L49 137 L24 103 L45 108 Z" fill="url(#p)" stroke="url(#s)" stroke-width="4.5" stroke-linejoin="round"/>
+<!-- inner blades -->
+<path d="M35 69 L82 98 L69 63 L101 81 L113 61 L128 79 L143 61 L155 81 L187 63 L174 98 L221 69 L194 116 L168 128 L154 111 L128 129 L102 111 L88 128 L62 116 Z" fill="#0b092a" stroke="url(#s)" stroke-width="3"/>
+<!-- purple inner channels -->
+<path d="M48 82 L91 106 L78 78 L101 91 L113 76 L106 111 L80 124 L60 111 Z" fill="none" stroke="url(#g)" stroke-width="5" filter="url(#b)"/>
+<path d="M208 82 L165 106 L178 78 L155 91 L143 76 L150 111 L176 124 L196 111 Z" fill="none" stroke="url(#g)" stroke-width="5" filter="url(#b)"/>
+<!-- central spear -->
+<path d="M128 52 L151 96 L128 122 L105 96 Z" fill="url(#p)" stroke="url(#s)" stroke-width="3"/>
+<!-- center jewel -->
+<path d="M128 72 L142 91 L128 112 L114 91 Z" fill="url(#g)" stroke="#f7efff" stroke-width="2" filter="url(#b)"/>
+<!-- lower jewel -->
+<path d="M128 157 L145 178 L128 209 L111 178 Z" fill="url(#g)" stroke="#eeeaff" stroke-width="2" filter="url(#b)"/>
+<!-- side jewels -->
+<path d="M75 101 L88 112 L78 125 L64 114 Z M181 101 L192 114 L178 125 L168 112 Z" fill="url(#g)" stroke="#f0eaff" stroke-width="1.5"/>
+<!-- highlights -->
+<path d="M73 34 Q69 45 72 56 L91 82 M183 34 Q187 45 184 56 L165 82" fill="none" stroke="#fff" stroke-width="3" opacity=".9"/>
 </svg>
