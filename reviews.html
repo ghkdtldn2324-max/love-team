@@ -1704,10 +1704,11 @@ render();
     if(session){
 
       if(writeArea){
-        writeArea.style.display =
-          'block';
+        writeArea.style.display = 'block';
+        writeArea.hidden = false;
+        writeArea.classList.add('review-writer-visible');
         if(window.matchMedia('(max-width:760px)').matches){
-          writeArea.classList.remove('mobile-open');
+          writeArea.classList.add('mobile-open');
         }
       }
 
@@ -1722,9 +1723,9 @@ render();
     }else{
 
       if(writeArea){
-        writeArea.style.display =
-          'none';
-        writeArea.classList.remove('mobile-open');
+        writeArea.style.display = 'none';
+        writeArea.hidden = true;
+        writeArea.classList.remove('mobile-open','review-writer-visible');
       }
 
 
@@ -2611,6 +2612,19 @@ render();
   body.lt-reviews-page .reviews-page{background:transparent!important;}
   body.lt-reviews-page .reviews-page{min-height:calc(100vh - 68px)!important;}
   body.lt-reviews-page .review-list{background:rgba(255,255,255,.96)!important;}
+}
+</style>
+<style id="lt-review-writer-visible-fix-v1">
+/* 로그인 상태에서는 후기 작성 영역을 항상 표시 */
+.review-write-area.review-writer-visible{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+@media(max-width:760px){
+  .review-write-area.review-writer-visible{
+    display:block!important;
+  }
 }
 </style>
 <style id="lt-review-write-title-detail-v1">
